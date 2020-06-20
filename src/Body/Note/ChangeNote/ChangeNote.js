@@ -20,7 +20,7 @@ const divh = {
 
 const ChangeNote = (props) => {
     const [inVal, exVal] = useState(true);
-    const EditValue = (v) => {
+    const EditValue = (v) => { 
         v.inVal !== inVal && exVal(!inVal);
         RecievedNote=CurrentNote
     }
@@ -35,7 +35,7 @@ const ChangeNote = (props) => {
                 <form style={divh}>
                     <div>
                         <th style={notestyle}>{CurrentNote != "" ? Value = CurrentNote : Value = RecievedNote}</th>
-                        <th><div><EditFilled onClick={EditValue} /></div></th>
+                        <th><div><EditOutlined onClick={EditValue} /></div></th>
                     </div>
                 </form>
             )
@@ -43,7 +43,7 @@ const ChangeNote = (props) => {
         else {
             return(
                 <form style={divh}>
-                        <th style={notestyle}><input placeholder={props.note} value = {CurrentNote} onChange={e => setNote(e.target.value)}/></th>
+                        <th style={notestyle}><input style={divh} placeholder={props.note} value = {CurrentNote} onChange={e => setNote(e.target.value)}/></th>
                         <th><div><EditFilled onClick={EditValue} /></div></th>
                 </form>
             )
