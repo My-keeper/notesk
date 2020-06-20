@@ -3,17 +3,18 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ChangeNote from './ChangeNote/ChangeNote'
 
 const NoteStyle = {
-    background: "#fff",
-  borderRadius: "7px",
-  boxShadow: "0 2px 5px #ccc",
-  padding: "10px",
-  width: "240px",
-  margin: "16px",
-  float: "left",
+    background: "#82a43a",
+    borderRadius: "7px",
+    boxShadow: "0 2px 5px #ccc",
+    padding: "10px",
+    width: "240px",
+    margin: "16px",
+    float: "left",
 }
 const header = {
     fontSize: "1.1em",
     marginBottom: "6px",
+    width : "240px%"
 }
 const buttonStyle ={
     position: "relative",
@@ -34,11 +35,17 @@ const Note = (props) =>
    }
 
    return(
-        <div style={NoteStyle}>
-            <h1 style={header}><ChangeNote title={props.title} name="t" note="Changing Title "/></h1>
-            <h1 style={header}><ChangeNote content={props.content} name="c" note="Changing Note"/></h1>
+        <table style={NoteStyle}>
+            <h1 style={header}><ChangeNote title={props.title} name="t" note={props.title}/></h1>
+            <h1 style={header}><ChangeNote content={props.content} name="c" note={props.title}/></h1> 
+            {/* <div style={divh}>
+                <th style={me}><h1 style={header}><ChangeNote title={props.title} name="t" note={props.title} /></h1></th>
+            </div> 
+            <div style={divh}>
+                <th style={me}><h1 style={header}><ChangeNote content={props.content} name="c" note={props.title}/></h1></th>
+            </div>  */}
             <button style={buttonStyle} onClick={handleDelete}><DeleteIcon /></button>
-        </div>
+        </table>
    )
 
 }

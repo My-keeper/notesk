@@ -1,5 +1,5 @@
 import React, { useState }  from 'react';
-import EditFilled from "@material-ui/icons/Edit";
+import { EditFilled , EditOutlined } from '@ant-design/icons';
 
 const NoteStyle = {
     position: "relative",
@@ -8,49 +8,51 @@ const NoteStyle = {
     fontSize: "16px",
     width: "15%",
 }
-const NoteSize = {
-    width: "240px",
+const notestyle = {
+    width: "220px",
 }
 const fildSize = {
     width: "80%",
-    margin: "0px 0px 0px 0px",
+}
+const divh = {
+    width: "100%"
 }
 
-
 const ChangeNote = (props) => {
-    let [CurrentNote, setNote] = useState("")
-
     const [inVal, exVal] = useState(true);
     const EditValue = (v) => {
         v.inVal !== inVal && exVal(!inVal);
-        ReAddedHandler()
+        RecievedNote=CurrentNote
     }
-
-    let Name = ""
-    props.name === "t" ? Name = props.title : Name = props.content
+    
+    let [CurrentNote, setNote] = useState("")
+    let RecievedNote = ""
+    props.name === "t" ? RecievedNote = props.title : RecievedNote =  props.content
 
     const ReAddedHandler = (Value) => {
         if (inVal) { 
             return ( 
-            <div style= {NoteSize}>
-                <div>{  Value=Name} 
-                <div style={NoteStyle}><EditFilled onClick={EditValue} /></div>
-                </div>
-            </div>
+                <form style={divh}>
+                    <div>
+                        <th style={notestyle}>{CurrentNote != "" ? Value = CurrentNote : Value = RecievedNote}</th>
+                        <th><div><EditFilled onClick={EditValue} /></div></th>
+                    </div>
+                </form>
             )
             }
         else {
             return(
-            <div style= {NoteSize}>
-                <div style={fildSize}><input placeholder={props.note} onChange={e => setNote(e.target.value)}/></div> <EditFilled onClick={EditValue} style={NoteStyle}/>
-            </div>
+                <form style={divh}>
+                        <th style={notestyle}><input placeholder={props.note} value = {CurrentNote} onChange={e => setNote(e.target.value)}/></th>
+                        <th><div><EditFilled onClick={EditValue} /></div></th>
+                </form>
             )
         }        
     }
     return(
-        <div>
+        <form >
             {ReAddedHandler()}
-        </div>
+        </form>
     )
 }
 
