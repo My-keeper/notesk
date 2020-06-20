@@ -1,13 +1,6 @@
 import React, { useState }  from 'react';
 import { EditFilled , EditOutlined } from '@ant-design/icons';
 
-const NoteStyle = {
-    position: "relative",
-    float: "right",
-    border: "none",
-    fontSize: "16px",
-    width: "15%",
-}
 const divh = {
     width: "100%"
 }
@@ -37,7 +30,7 @@ const ChangeNote = (props) => {
             return ( 
                 <form style={divh}>
                     <div>
-                        <th style={notestyle}>{CurrentNote != "" ? Value = CurrentNote : Value = RecievedNote}</th>
+                        <th style={notestyle}>{CurrentNote !== "" ? Value = CurrentNote : Value = RecievedNote}</th>
                         <th><div style={IcionStyling}><EditOutlined onClick={EditValue} /></div></th>
                     </div>
                 </form>
