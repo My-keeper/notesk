@@ -1,5 +1,4 @@
-import React from 'react';
-import DeleteIcon from "@material-ui/icons/Delete";
+import React, {useState} from 'react';
 import ChangeNote from './ChangeNote/ChangeNote'
 import { DeleteFilled , DeleteOutlined } from '@ant-design/icons';
 
@@ -17,18 +16,6 @@ const header = {
     marginBottom: "6px",
     width : "240px%"
 }
-const buttonStyle ={
-    position: "relative",
-    float: "right",
-    marginRight: "10px",
-    color: "#f5ba13",
-    border: "none",
-    width: "36px",
-    height: "36px",
-    cursor: "pointer",
-    outline: "none",
-}
-
 const Hover= {
     position: "relative",
     fontSize: "27px",
@@ -42,15 +29,19 @@ const Note = (props) =>
 {    
     const handleDelete = () => {
         props.onDelete(props.id);
+   }    
+   const [isHover, SetHover] = useState(true);
+   
+   const OnHovering = (v) => {
+        v.Hover !== isHover && SetHover(!isHover)
    }
-
    return(
         <table style={NoteStyle}>
             <h1 style={header}><ChangeNote title={props.title} name="t" note={props.title}/></h1>
-            <h1 style={header}><ChangeNote content={props.content} name="c" note={props.content}/></h1> 
-            {/* <button style={buttonStyle} onClick={handleDelete}><DeleteIcon /></button> */}
-            <div style={Hover}><DeleteFilled /></div>
-            <DeleteOutlined />
+            <h1 style={header}><ChangeNote content={props.content} name="c" note={props.content}/></h1>
+            <div style={Hover} onPointerEnter={OnHovering} onMouseLeave={OnHovering}>
+                 {isHover ? <DeleteFilled onClick={handleDelete}/> : <DeleteOutlined onClick={handleDelete}/>} 
+            </div>
 
         </table>
    )

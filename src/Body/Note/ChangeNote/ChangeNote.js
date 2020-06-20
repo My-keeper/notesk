@@ -8,14 +8,17 @@ const NoteStyle = {
     fontSize: "16px",
     width: "15%",
 }
+const divh = {
+    width: "100%"
+}
 const notestyle = {
     width: "220px",
 }
-const fildSize = {
-    width: "80%",
-}
-const divh = {
-    width: "100%"
+const IcionStyling = {
+    position: "relative",
+    float: "right",
+    marginRight: "10px",
+    color: "#f5ba13",
 }
 
 const ChangeNote = (props) => {
@@ -35,7 +38,7 @@ const ChangeNote = (props) => {
                 <form style={divh}>
                     <div>
                         <th style={notestyle}>{CurrentNote != "" ? Value = CurrentNote : Value = RecievedNote}</th>
-                        <th><div><EditOutlined onClick={EditValue} /></div></th>
+                        <th><div style={IcionStyling}><EditOutlined onClick={EditValue} /></div></th>
                     </div>
                 </form>
             )
@@ -44,7 +47,7 @@ const ChangeNote = (props) => {
             return(
                 <form style={divh}>
                         <th style={notestyle}><input style={divh} placeholder={props.note} value = {CurrentNote} onChange={e => setNote(e.target.value)}/></th>
-                        <th><div><EditFilled onClick={EditValue} /></div></th>
+                        <th><div style={IcionStyling}><EditFilled onClick={EditValue} /></div></th>
                 </form>
             )
         }        
