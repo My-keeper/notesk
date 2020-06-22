@@ -1,14 +1,26 @@
 import React from 'react';
-import './Footer.css'
+import styled from "styled-components";
+
+const FooterContainer = styled.div`
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+`
+const FooterInfo = styled.p`
+    color: #ccc;
+`
+
 
 const currentYear = new Date().getFullYear();
 
 const Footer = () => (
-        <div className="footer">
-            <p>
+        <FooterContainer>
+            <FooterInfo>
              Copyright ⓒ {currentYear}
-            </p>
-        </div>
+            </FooterInfo>
+        </FooterContainer>
 )
 
 export default Footer 
