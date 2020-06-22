@@ -1,70 +1,78 @@
 import React, { useState } from 'react';
-import './CreateNote.css';
-import AddIcon from "@material-ui/icons/Add";
-import Fab from "@material-ui/core/Fab";
-import Zoom from "@material-ui/core/Zoom";
+import styled from 'styled-components';
+import { PlusCircleFilled, CheckCircleFilled} from '@ant-design/icons'
 
-const Note = (props) => {
+const NoteContainer = styled.div`
+    position: relative;
+    width: 480px;
+    margin: 30px auto 20px auto;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+    border-radius: 7px;
+`
+const TextContainer = 
+{
+    width: "100%",
+    border: "none",
+    padding: "4px",
+    outline: "none",
+    fontSize: "1.2em",
+    fontFamily: "inherit",
+    resize: "none",
+}
+const AddNote = styled.div`
+    font-size :30px;
+    color: #f5ba13;
+    position: absolute;
+    right: 15px;
+    bottom: -13px;
+    width: 36px;
+    height: 36px;
+`
+const CreateNote = (props) => {
     const [isExpanded, setExpanded] = useState(false);
-    const [CurrentNote, setNote] = useState({
-        title: "",
-        content: ""
-    });
-
-const handlerChange = (event) => {
-    //getting info from the event and they are the name and value of the file that is used 
-        //-> we are using distructuring object     // const Name = event.target.name; && const Value = event.target.value;
-    const {name , value} = event.target ;
-    //sending the given info from the target to the usesate using setNote
-    setNote(prevNote => {
-        return { 
-            ...prevNote,
-            [name]: value
-        };
-    });
-}
-
-const subNote = (event) => {
-    //to prevent <form> to refresh every time it tragers then use 
-    event.preventDefault();
-    props.AddedNote(CurrentNote);
-    setNote({
-        title: "",
-        content: ""
-    })
-}
-
-const expand = (v) => {
-    v.isExpanded !== isExpanded && setExpanded(!isExpanded)
-  }
-
-    return (
-        <div>
-            <form className="create-note">
-                 <input
-                    value={CurrentNote.title} 
-                    name="title" 
-                    placeholder="Title"
-                    onChange={handlerChange}  
-                    onClick={expand}  
-                    />
-                {isExpanded && (
-                    <textarea 
-                    value={CurrentNote.content} 
-                    name="content" 
-                    placeholder="Take a note ..." 
-                    rows={isExpanded ? 3 : 1}
-                    onChange={handlerChange}    
-                    />
-                    )}
-                <Zoom  in={isExpanded}>
-                    <Fab onClick={subNote}>
-                        <AddIcon/>
-                    </Fab>
-                </Zoom>
-            </form>
-        </div>
+    const [CurrentNote, setNote] = useState({title: "",content: ""});
+    const [isHover, SetHover] = useState(true);
+    const OnHovering = () => {SetHover(!isHover)}
+    const subNote = (event) => {
+        event.preventDefault();
+        props.AddedNote(CurrentNote);
+        setNote({
+            title: "",
+            content: ""
+        })
+    }
+    const handlerChange = (event) => {
+        const {name , value} = event.target ;
+        setNote(prevNote => { return {...prevNote, [name]: value};});
+    }
+    const expand = () => {
+        setExpanded(true)
+    }
+    return(
+        <NoteContainer>
+            <input 
+                style={TextContainer}
+                value={CurrentNote.title} 
+                placeholder="Title"
+                name="title" 
+                onClick={expand}
+                onChange={handlerChange}
+            />
+            {isExpanded && [<textarea 
+                style={TextContainer}
+                value={CurrentNote.content} 
+                name="content" 
+                placeholder="Take a note ..." 
+                rows={isExpanded ? 3 : 1}
+                onChange={handlerChange}
+            />,
+            <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
+                {isHover ? <PlusCircleFilled onClick={subNote}/> : <CheckCircleFilled onClick={subNote}/>}
+            </AddNote>]}
+        </NoteContainer>
     )
 }
 
-export default Note 
+export default CreateNote;
