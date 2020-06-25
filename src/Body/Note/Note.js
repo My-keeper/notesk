@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ChangeNote from './ChangeNote/ChangeNote'
 import { DeleteFilled , DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import FadeIn from 'react-fade-in';
 
 const NoteContainer = styled.div`
     background: #fff;
@@ -14,15 +15,15 @@ const NoteContainer = styled.div`
     display: flex;
     flex-direction: column;
 `
-const HoveringContainer = styled.div`
+const HoveringContainer = styled(FadeIn)`
     display: flex;
     flex-direction: row-reverse;
     margin-top: 6px;
     margin-right: 6px;
     font-size: 27px;
     color: #f5ba13;
-    
 `
+
 const Note = (props) => 
 {    
     const handleDelete = () => {

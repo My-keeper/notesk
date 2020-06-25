@@ -11,7 +11,11 @@ const container ={
     
 }
 const firstest = styled.div`
-
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 2;
+    margin-bottom: 10px;
 `
 const IcionStyling = {
     position: "relative",
