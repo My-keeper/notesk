@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { PlusCircleFilled, CheckCircleFilled} from '@ant-design/icons'
+import FadeIn from 'react-fade-in';
+import UserInput from '../../UI/InputArea'
+import TextArea from '../../UI/TextArea'
 
 const NoteContainer = styled.div`
     position: relative;
@@ -21,7 +24,7 @@ const TextContainer =
     fontFamily: "inherit",
     resize: "none",
 }
-const AddNote = styled.div`
+const AddNote = styled(FadeIn)`
     font-size :30px;
     color: #f5ba13;
     position: absolute;
@@ -52,22 +55,51 @@ const CreateNote = (props) => {
     }
     return(
         <NoteContainer>
-            <input 
+            {/* <input 
                 style={TextContainer}
                 value={CurrentNote.title} 
                 placeholder="Title"
                 name="title" 
                 onClick={expand}
                 onChange={handlerChange}
+            /> */}
+            <UserInput
+                InputValue={CurrentNote.title}
+                name="title"
+                inputType={"text"}
+                PlaceholderValue={"Title"}
+                onchangeValue={handlerChange}
+                onClickValue={expand}
+                widthInput={"100"}
+                BorderValue={"none"}
+                paddingVale={"4px"}
+                outlineValue={"none"}
+                fontSizeValue={"1.2em"}
+                fontFamilyValue={"inherit"}
             />
-            {isExpanded && [<textarea 
-                style={TextContainer}
-                value={CurrentNote.content} 
-                name="content" 
-                placeholder="Take a note ..." 
+            {isExpanded && [
+            // <textarea 
+            //     style={TextContainer}
+            //     value={CurrentNote.content} 
+            //     name="content" 
+            //     placeholder="Take a note ..." 
+            //     rows={isExpanded ? 3 : 1}
+            //     onChange={handlerChange}
+            // />,
+            <TextArea
+                InputValue={CurrentNote.content}
+                name="content"
+                PlaceholderValue={"Take a note ..."}
                 rows={isExpanded ? 3 : 1}
-                onChange={handlerChange}
-            />,
+                onchangeValue={handlerChange}
+                widthInput={"480px"}
+                BorderValue={"none"}
+                paddingVale={"4px"}
+                outlineValue={"none"}
+                fontSizeValue={"1.2em"}
+                fontFamilyValue={"inherit"}
+            />
+            ,
             <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
                 {isHover ? <PlusCircleFilled onClick={subNote}/> : <CheckCircleFilled onClick={subNote}/>}
             </AddNote>]}
