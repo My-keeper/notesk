@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { PlusCircleFilled, CheckCircleFilled} from '@ant-design/icons'
-import {Animated} from "react-animated-css";
 import FadeIn from 'react-fade-in';
 import UserInput from '../../UI/InputArea'
 import TextArea from '../../UI/TextArea'
+import NoteContainer from '../../UI/Modal'
 
-const NoteContainer = styled.div`
-    position: relative;
-    width: 480px;
-    margin: 30px auto 20px auto;
-    padding: 15px;
-    background: #fff;
-    box-shadow: 0 1px 5px rgb(138, 137, 137);
-    border-radius: 7px;
-`
 const AddNote = styled.div`
     font-size :30px;
     color: #f5ba13;
@@ -45,7 +36,17 @@ const CreateNote = (props) => {
         setExpanded(true)
     }
     return(
-        <NoteContainer>
+    <FadeIn>
+        <NoteContainer
+        position= {"relative"}
+        width= {"480px"}
+        margin= {"30px auto 20px auto"}
+        padding= {"15px"}
+        background= {"#fff"}
+        boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
+        borderRadiusValue= {"7px"}
+        resizeValue={"both"}
+        >
             <UserInput
                 InputValue={CurrentNote.title}
                 name="title"
@@ -59,7 +60,7 @@ const CreateNote = (props) => {
                 outlineValue={"none"}
                 fontSizeValue={"1.2em"}
                 fontFamilyValue={"inherit"}
-            />
+                />
             {isExpanded && [<TextArea
                 InputValue={CurrentNote.content}
                 name="content"
@@ -73,11 +74,12 @@ const CreateNote = (props) => {
                 fontSizeValue={"1.2em"}
                 fontFamilyValue={"inherit"}
                 resizeValue={"vertical"}
-            />,
-            <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
-                {isHover ? <FadeIn><PlusCircleFilled onClick={subNote}/></FadeIn> : <FadeIn><CheckCircleFilled onClick={subNote}/></FadeIn>}
+                />,
+                <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
+                <FadeIn>{isHover ? <PlusCircleFilled onClick={subNote}/> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>
             </AddNote>]}
         </NoteContainer>
+    </FadeIn>
     )
 }
 

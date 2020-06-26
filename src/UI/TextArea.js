@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 
 const TextareaContainer = styled.textarea`
     display: flex;

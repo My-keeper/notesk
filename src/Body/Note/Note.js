@@ -2,20 +2,11 @@ import React, {useState} from 'react';
 import ChangeNote from './ChangeNote/ChangeNote'
 import { DeleteFilled , DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
-import FadeIn from 'react-fade-in';
+import FadeIn  from 'react-fade-in';
+import NoteContainer from '../../UI/Modal';
 
-const NoteContainer = styled.div`
-    background: #fff;
-    border-radius: 7px;
-    box-shadow: 0 2px 5px #ccc;
-    padding: 10px;
-    width: 240px;
-    margin: 16px;
-    float: left;
-    display: flex;
-    flex-direction: column;
-`
-const HoveringContainer = styled(FadeIn)`
+
+const HoveringContainer = styled.div`
     display: flex;
     flex-direction: row-reverse;
     margin-top: 6px;
@@ -30,16 +21,27 @@ const Note = (props) =>
         props.onDelete(props.id);
    }    
    const [isHover, SetHover] = useState(true);
-   
-   const OnHovering = (v) => {
-        v.Hover !== isHover && SetHover(!isHover)
-   }
+   const OnHovering = () => {SetHover(!isHover)}
    return(
-        <NoteContainer>
+    <FadeIn>
+        <NoteContainer
+            background= {"#fff"}
+            borderRadiusValue= {"7px"}
+            boxShadowValue= {"0 2px 5px #ccc"}
+            flexDirectionValue= {"column"}
+            padding= {"10px"}
+            width= {"240px"}
+            margin= {"16px"}
+            float= {"left"}
+            display= {"flex"}
+            >
             <ChangeNote title={props.title} name="t" note={props.title}/>
             <ChangeNote content={props.content} name="c" note={props.content}/>
-            <HoveringContainer > <DeleteFilled onClick={handleDelete}/> </HoveringContainer>
+            <HoveringContainer onPointerEnter={OnHovering} onMouseLeave={OnHovering}> 
+            <FadeIn> {isHover ? <DeleteFilled onClick={handleDelete}/>: <DeleteOutlined onClick={handleDelete}/>}</FadeIn> 
+            </HoveringContainer>
         </NoteContainer>
+    </FadeIn>
    )
 
 }

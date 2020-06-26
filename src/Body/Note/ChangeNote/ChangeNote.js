@@ -2,7 +2,9 @@ import React, { useState }  from 'react';
 import FadeIn from 'react-fade-in';
 import { EditFilled , EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
-import {Animated} from "react-animated-css";
+import TextArea from '../../../UI/TextArea'
+import NoteContainer from '../../../UI/Modal'
+import Model from '../../../UI/Modal'
  
 const container ={
     width: "100%",
@@ -12,6 +14,7 @@ const container ={
     marginBottom: "10px",
     
 }
+
 const TextContainer = {
     width: "100%",
     border: "",
@@ -40,11 +43,21 @@ const ChangeNote = (props) => {
     const ReAddedHandler = (Value) => {
         if (inVal) { 
             return (  
-                <div style={container}>
-                        <div style={{width: "90%"}}>{CurrentNote !== "" ? Value = CurrentNote : Value = RecievedNote}</div>
-                        <IcionStyleing><EditOutlined onClick={EditValue}/></IcionStyleing>
+                // <div style={container}>
+                //         <div style={{width: "90%"}}>{CurrentNote !== "" ? Value = CurrentNote : Value = RecievedNote}</div>
+                //         <IcionStyleing><EditOutlined onClick={EditValue}/></IcionStyleing>
 
-                </div> 
+                // </div> 
+                <Model
+                        width= {"100%"}
+                        display= {"flex"}
+                        flexDirectionValue= {"row"}
+                        flexGrowValue= {"4"}
+                        marginBottomValue= {"10px"}
+                >
+                    <div style={{width: "90%"}}>{CurrentNote !== "" ? Value = CurrentNote : Value = RecievedNote}</div>
+                        <IcionStyleing><EditOutlined onClick={EditValue}/></IcionStyleing>
+                </Model>
             )
             }
         else {
