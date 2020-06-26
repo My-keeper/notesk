@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { PlusCircleFilled, CheckCircleFilled} from '@ant-design/icons'
+import {Animated} from "react-animated-css";
 import FadeIn from 'react-fade-in';
 import UserInput from '../../UI/InputArea'
 import TextArea from '../../UI/TextArea'
@@ -14,22 +15,12 @@ const NoteContainer = styled.div`
     box-shadow: 0 1px 5px rgb(138, 137, 137);
     border-radius: 7px;
 `
-const TextContainer = 
-{
-    width: "100%",
-    border: "none",
-    padding: "4px",
-    outline: "none",
-    fontSize: "1.2em",
-    fontFamily: "inherit",
-    resize: "none",
-}
-const AddNote = styled(FadeIn)`
+const AddNote = styled.div`
     font-size :30px;
     color: #f5ba13;
     position: absolute;
-    right: 15px;
-    bottom: -13px;
+    right: 25px;
+    bottom: -15px;
     width: 36px;
     height: 36px;
 `
@@ -55,14 +46,6 @@ const CreateNote = (props) => {
     }
     return(
         <NoteContainer>
-            {/* <input 
-                style={TextContainer}
-                value={CurrentNote.title} 
-                placeholder="Title"
-                name="title" 
-                onClick={expand}
-                onChange={handlerChange}
-            /> */}
             <UserInput
                 InputValue={CurrentNote.title}
                 name="title"
@@ -77,16 +60,7 @@ const CreateNote = (props) => {
                 fontSizeValue={"1.2em"}
                 fontFamilyValue={"inherit"}
             />
-            {isExpanded && [
-            // <textarea 
-            //     style={TextContainer}
-            //     value={CurrentNote.content} 
-            //     name="content" 
-            //     placeholder="Take a note ..." 
-            //     rows={isExpanded ? 3 : 1}
-            //     onChange={handlerChange}
-            // />,
-            <TextArea
+            {isExpanded && [<TextArea
                 InputValue={CurrentNote.content}
                 name="content"
                 PlaceholderValue={"Take a note ..."}
@@ -98,10 +72,10 @@ const CreateNote = (props) => {
                 outlineValue={"none"}
                 fontSizeValue={"1.2em"}
                 fontFamilyValue={"inherit"}
-            />
-            ,
+                resizeValue={"vertical"}
+            />,
             <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
-                {isHover ? <PlusCircleFilled onClick={subNote}/> : <CheckCircleFilled onClick={subNote}/>}
+                {isHover ? <FadeIn><PlusCircleFilled onClick={subNote}/></FadeIn> : <FadeIn><CheckCircleFilled onClick={subNote}/></FadeIn>}
             </AddNote>]}
         </NoteContainer>
     )

@@ -6,6 +6,7 @@ const Container = styled.div`
   display: flex;
 `
 const InputContainer = styled.input`
+  resize: ${(props) => (props.resizeInput ? props.resizeInput : "none")};
   width: ${(props) => (props.widthInput ? props.widthInput : "100%")};
   height: ${(props) => (props.heightInput ? props.heightInput : null)};
   border: ${(props) => (props.borderInput ? props.borderInput : "none" )};
@@ -13,6 +14,14 @@ const InputContainer = styled.input`
   outline: ${(props) => (props.outlineInput ? props.outlineInput : null)};
   font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
   font-family: ${(props) => (props.fontFamilyInput ? props.fontFamilyInput : "none")};
+  /* &:hover {
+    border: 1px solid rgb(245,186,19, 0.493);
+    box-shadow: 0 0 2px 2px rgb(245,186,19, 0.493);
+  } */
+  &:focus {
+    border: 1px solid rgb(245,186,19, 0.493);;
+    box-shadow: 0 0 2px 2px rgb(245,186,19, 0.493);
+  }
 `
 const passwordIconStyling = {
   color: "#c1c1c1",
@@ -57,7 +66,9 @@ export default function UserInput(props) {
         outlineInput={props.outlineValue}
         fontSizeInput={props.fontSizeValue}
         fontFamilyInput={props.fontFamilyValue}
+        resizeInput={props.resizeValue}
         name={props.name}
+        rows={props.rows} 
       />
       <div>{getInputPasswordIcon()}</div>
     </Container>
