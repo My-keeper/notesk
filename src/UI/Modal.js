@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+const borderStyling = {
+    border: "1px solid rgb(245,186,19, 0.382)",
+    boxShadow: "0 0 2px 2px rgb(245,186,19, 0.382)",
+  }
 
 const ModelContainer = styled.div`
     position: ${(props) => (props.positionInput ? props.positionInput : null)};
@@ -19,6 +23,17 @@ const ModelContainer = styled.div`
     flex-grow: ${(props) => (props.flexGrowInput ? props.flexGrowInput : "none")};
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : "none")};
     z-index: 3;
+    background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
+    color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
+    &::placeholder{
+        color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
+    };
+    &:hover { 
+        ${(props) => (props.IsCalled === "HOVER" ? borderStyling : "none")};
+    };
+    &:focus { 
+        ${(props) => (props.IsCalled === "FOCUS" ? borderStyling : "none")};
+    };
 `
 
 export default function Model (props) {
@@ -42,6 +57,9 @@ export default function Model (props) {
             flexDirectionInput={props.flexDirectionValue}
             flexGrowInput={props.flexGrowValue}
             marginBottom={props.marginBottomValue}
+            backGroundColorInput={props.backGroundColorValue}
+            FontColorInput={props.FontColorValue}
+            PlaceHolderColorInput={props.PlaceHolderColorValue}
         >
             {props.children}
         </ModelContainer>

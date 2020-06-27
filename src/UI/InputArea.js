@@ -5,6 +5,10 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 const Container = styled.div`
   display: flex;
 `
+const borderStyling = {
+  border: "1px solid rgb(245,186,19, 0.382)",
+  boxShadow: "0 0 2px 2px rgb(245,186,19, 0.382)",
+}
 const InputContainer = styled.input`
   resize: ${(props) => (props.resizeInput ? props.resizeInput : "none")};
   width: ${(props) => (props.widthInput ? props.widthInput : "100%")};
@@ -14,14 +18,22 @@ const InputContainer = styled.input`
   outline: ${(props) => (props.outlineInput ? props.outlineInput : null)};
   font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
   font-family: ${(props) => (props.fontFamilyInput ? props.fontFamilyInput : "none")};
+  box-shadow: ${(props) => (props.boxShowInput ? props.boxShowInput : "none")}; 
+  background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
+  color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
+  &::placeholder{
+    color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
+  };
+  &:hover { 
+    ${(props) => (props.IsCalled === "HOVER" ? borderStyling : "none")};
+  };
+  &:focus { 
+    ${(props) => (props.IsCalled === "FOCUS" ? borderStyling : "none")};
+  };
   /* &:hover {
     border: 1px solid rgb(245,186,19, 0.493);
     box-shadow: 0 0 2px 2px rgb(245,186,19, 0.493);
   } */
-  &:focus {
-    border: 1px solid rgb(245,186,19, 0.493);;
-    box-shadow: 0 0 2px 2px rgb(245,186,19, 0.493);
-  }
 `
 const passwordIconStyling = {
   color: "#c1c1c1",
@@ -30,6 +42,7 @@ const passwordIconStyling = {
 };
 
 export default function UserInput(props) {
+  // const [Try,changeTry] = useState(false)
   const [Password, ChangePassword] = useState(false);
   const toggleShowPassword = () => {ChangePassword(!Password)};
   const getInputPasswordIcon = () => {
@@ -62,6 +75,7 @@ export default function UserInput(props) {
         widthInput={props.widthValue}
         heightInput={props.heightValue}
         borderInput={props.BorderValue}
+        boxShowInput={props.boxShowValue}
         paddingInput={props.paddingVale}
         outlineInput={props.outlineValue}
         fontSizeInput={props.fontSizeValue}
@@ -69,6 +83,10 @@ export default function UserInput(props) {
         resizeInput={props.resizeValue}
         name={props.name}
         rows={props.rows} 
+        IsCalled={props.IsCalledValue}
+        backGroundColorInput={props.backGroundColorValue}
+        FontColorInput={props.FontColorValue}
+        PlaceHolderColorInput={props.PlaceHolderColorValue}
       />
       <div>{getInputPasswordIcon()}</div>
     </Container>

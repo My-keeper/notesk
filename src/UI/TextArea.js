@@ -1,24 +1,37 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+const borderStyling = {
+  border: "1px solid rgb(245,186,19, 0.393)",
+  boxShadow: "0 0 2px 2px rgb(245,186,19, 0.393)",
+}
+
 const TextareaContainer = styled.textarea`
     display: flex;
     resize: ${(props) => (props.resizeInput ? props.resizeInput : "none")};
-    width: ${(props) => (props.widthInput ? props.widthInput : "450px")};
+    width: ${(props) => (props.widthInput ? props.widthInput : "100%")};
     height: ${(props) => (props.heightInput ? props.heightInput : null)};
     border: ${(props) => (props.borderInput ? props.borderInput : "none" )};
     padding: ${(props) => (props.paddingInput ? props.paddingInput : null)};
     outline: ${(props) => (props.outlineInput ? props.outlineInput : null)};
     font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
     font-family: ${(props) => (props.fontFamilyInput ? props.fontFamilyInput : "none")};
+    box-shadow: ${(props) => (props.boxShowInput ? props.boxShowInput : "none")}; 
+    background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
+    color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
+    &::placeholder{
+      color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
+    };
+    &:hover { 
+      ${(props) => (props.IsCalled === "HOVER" ? borderStyling : "none")};
+    };
+    &:focus { 
+      ${(props) => (props.IsCalled === "FOCUS" ? borderStyling : "none")};
+    };
     /* &:hover {
     border: 1px solid rgb(245,186,19, 0.493);
     box-shadow: 0 0 2px 2px rgb(245,186,19, 0.493);
     } */
-    &:focus {
-        border: 1px solid rgb(245,186,19, 0.493);;
-        box-shadow: 0 0 2px 2px rgb(245,186,19, 0.493);
-    }
 `
 export default function UserInput(props) {
   return (
@@ -37,6 +50,10 @@ export default function UserInput(props) {
         resizeInput={props.resizeValue}
         name={props.name}
         rows={props.rows} 
+        IsCalled={props.IsCalledValue}
+        backGroundColorInput={props.backGroundColorValue}
+        FontColorInput={props.FontColorValue}
+        PlaceHolderColorInput={props.PlaceHolderColorValue}
       />
   );
 }

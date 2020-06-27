@@ -2,18 +2,18 @@ import React, { useState }  from 'react';
 import FadeIn from 'react-fade-in';
 import { EditFilled , EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import UserInput from '../../../UI/InputArea'
 import TextArea from '../../../UI/TextArea'
 import NoteContainer from '../../../UI/Modal'
-import Model from '../../../UI/Modal'
  
-const container ={
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    flexGrow: "4",
-    marginBottom: "10px",
+// const container ={
+//     width: "100%",
+//     display: "flex",
+//     flexDirection: "row",
+//     flexGrow: "4",
+//     marginBottom: "10px",
     
-}
+// }
 
 const TextContainer = {
     width: "100%",
@@ -43,12 +43,7 @@ const ChangeNote = (props) => {
     const ReAddedHandler = (Value) => {
         if (inVal) { 
             return (  
-                // <div style={container}>
-                //         <div style={{width: "90%"}}>{CurrentNote !== "" ? Value = CurrentNote : Value = RecievedNote}</div>
-                //         <IcionStyleing><EditOutlined onClick={EditValue}/></IcionStyleing>
-
-                // </div> 
-                <Model
+                <NoteContainer
                         width= {"100%"}
                         display= {"flex"}
                         flexDirectionValue= {"row"}
@@ -57,30 +52,50 @@ const ChangeNote = (props) => {
                 >
                     <div style={{width: "90%"}}>{CurrentNote !== "" ? Value = CurrentNote : Value = RecievedNote}</div>
                         <IcionStyleing><EditOutlined onClick={EditValue}/></IcionStyleing>
-                </Model>
+                </NoteContainer>
             )
             }
         else {
             return(
-                <div style={container}>
+                <NoteContainer
+                        width= {"100%"}
+                        display= {"flex"}
+                        flexDirectionValue= {"row"}
+                        flexGrowValue= {"4"}
+                        marginBottomValue= {"10px"}
+                >
                         <div style={{width: "90%"}}>
                             {props.name === "t" ?
-                            <input 
-                            style={TextContainer} 
-                            placeholder={props.note} 
-                            value = {CurrentNote} 
-                            onChange={e => setNote(e.target.value)}/>
+                            <UserInput 
+                            width= {"100%"}
+                            BorderValue= {""}
+                            padding= {"4px"}
+                            outlineValue= "none"
+                            fontSizeValue= {"1.2em"}
+                            fontFamilyValue= {"inherit"}
+                            resizeValue= {"none"}
+                            IsCalledValue={"HOVER"}
+                            PlaceholderValue={props.note} 
+                            InputValue = {CurrentNote}
+                            onchangeValue={e => setNote(e.target.value)}/>
                             :
-                            <textarea 
-                            style={TextContainer} 
-                            placeholder={props.note} 
-                            value = {CurrentNote} 
-                            onChange={e => setNote(e.target.value)}  
+                            <TextArea 
+                            PlaceholderValue={props.note} 
+                            InputValue = {CurrentNote} 
+                            onchangeValue={e => setNote(e.target.value)}  
                             rows={6}
+                            width= {"100%"}
+                            BorderValue= {""}
+                            padding= {"4px"}
+                            outlineValue= "none"
+                            fontSizeValue= {"1.2em"}
+                            fontFamilyValue= {"inherit"}
+                            resizeValue= {"vertical"}
+                            IsCalledValue={"HOVER"}
                             />}
                             </div>
                         <IcionStyleing><EditFilled onClick={EditValue}/></IcionStyleing>
-                </div>
+                </NoteContainer>
             )
         }        
     }

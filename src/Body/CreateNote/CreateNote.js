@@ -60,6 +60,7 @@ const CreateNote = (props) => {
                 outlineValue={"none"}
                 fontSizeValue={"1.2em"}
                 fontFamilyValue={"inherit"}
+                IsCalledValue={"FOCUS"} 
                 />
             {isExpanded && [<TextArea
                 InputValue={CurrentNote.content}
@@ -74,6 +75,7 @@ const CreateNote = (props) => {
                 fontSizeValue={"1.2em"}
                 fontFamilyValue={"inherit"}
                 resizeValue={"vertical"}
+                IsCalledValue={"FOCUS"}
                 />,
                 <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
                 <FadeIn>{isHover ? <PlusCircleFilled onClick={subNote}/> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>
