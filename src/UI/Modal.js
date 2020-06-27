@@ -37,8 +37,7 @@ const ModelContainer = styled.div`
 `
 
 export default function Model (props) {
-    // const [modalOpacity, changemodelOpacity] = useState(0)
-    
+
 
     return(
         <ModelContainer

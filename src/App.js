@@ -9,6 +9,18 @@ class App extends Component {
   
   state = {
     notes: [],
+    Color: {
+      NotekG:"#2F4F4F",
+      NoteF:"",
+
+      UserInputBG:"#fff",
+      UserInputF:"#000000",
+      UserInputPH:"#A9A9A9",
+      
+      TextAreaBGC:"#fff",
+      TextAreaFC:"#000000",
+      TextAreaPHC :"#A9A9A9",
+    },
   }
 
   addNote = (note) => {
@@ -26,6 +38,7 @@ class App extends Component {
   NoteItems = () =>{
     return  [...this.state.notes].map((eachItem,i) => {
       return <Note 
+        Color={this.state.Color}
         key = {i}
         id= {i}
         title={eachItem.title} 
@@ -34,12 +47,16 @@ class App extends Component {
         />;
      })
   }
-
+  colorchanged = (NewColor) => {
+    this.setState({
+      Color: NewColor
+    })
+  }
   render() {
     return (
       <div >
-          <Nav/>     
-          <CreateNote AddedNote={this.addNote}/>   
+          <Nav ColorChanged={this.colorchanged}/>     
+          <CreateNote Color={this.state.Color} AddedNote={this.addNote}/>   
           {this.NoteItems()}
           <Footer/>
       </div>

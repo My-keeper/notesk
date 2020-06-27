@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import SwitchIcon from '../UI/Switch'
 
 const Header = styled.div `
     background-color: #f5ba13;
@@ -13,9 +14,10 @@ const HeaderInfo = styled.h1`
     font-weight: 200;
 `
 
-const Nav = () => (
+const Nav = (props) => (
     <Header> 
         <HeaderInfo> Mero </HeaderInfo>
+        <SwitchIcon OnChangedColor={props.ColorChanged}/>
     </Header>
 )
 

@@ -14,6 +14,7 @@ const TextareaContainer = styled.textarea`
     border: ${(props) => (props.borderInput ? props.borderInput : "none" )};
     padding: ${(props) => (props.paddingInput ? props.paddingInput : null)};
     outline: ${(props) => (props.outlineInput ? props.outlineInput : null)};
+    border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
     font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
     font-family: ${(props) => (props.fontFamilyInput ? props.fontFamilyInput : "none")};
     box-shadow: ${(props) => (props.boxShowInput ? props.boxShowInput : "none")}; 
@@ -51,6 +52,7 @@ export default function UserInput(props) {
         name={props.name}
         rows={props.rows} 
         IsCalled={props.IsCalledValue}
+        borderRadiusInput={props.borderRadiusValue}
         backGroundColorInput={props.backGroundColorValue}
         FontColorInput={props.FontColorValue}
         PlaceHolderColorInput={props.PlaceHolderColorValue}

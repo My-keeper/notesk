@@ -35,8 +35,9 @@ const Note = (props) =>
             float= {"left"}
             display= {"flex"}
             >
-            <ChangeNote title={props.title} name="t" note={props.title}/>
-            <ChangeNote content={props.content} name="c" note={props.content}/>
+                {console.log(props.Color)}
+            <ChangeNote ChangeColor={props.Color} content={props.content} name="c" note={props.content}/>
+            <ChangeNote ChangeColor={props.Color} title={props.title} name="t" note={props.title}/>
             <HoveringContainer onPointerEnter={OnHovering} onMouseLeave={OnHovering}> 
             <FadeIn> {isHover ? <DeleteFilled onClick={handleDelete}/>: <DeleteOutlined onClick={handleDelete}/>}</FadeIn> 
             </HoveringContainer>

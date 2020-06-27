@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { PlusCircleFilled, CheckCircleFilled} from '@ant-design/icons'
 import FadeIn from 'react-fade-in';
-import UserInput from '../../UI/InputArea'
-import TextArea from '../../UI/TextArea'
-import NoteContainer from '../../UI/Modal'
+import UserInput from '../../UI/InputArea';
+import TextArea from '../../UI/TextArea';
+import NoteContainer from '../../UI/Modal';
+import SwitchIcion from '../../UI/Switch';
+
 
 const AddNote = styled.div`
     font-size :30px;
@@ -37,15 +39,15 @@ const CreateNote = (props) => {
     }
     return(
     <FadeIn>
-        <NoteContainer
+    <NoteContainer
         position= {"relative"}
         width= {"480px"}
         margin= {"30px auto 20px auto"}
         padding= {"15px"}
-        background= {"#fff"}
         boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
         borderRadiusValue= {"7px"}
         resizeValue={"both"}
+        backGroundColorValue={props.Color.NotekGC}
         >
             <UserInput
                 InputValue={CurrentNote.title}
@@ -61,6 +63,9 @@ const CreateNote = (props) => {
                 fontSizeValue={"1.2em"}
                 fontFamilyValue={"inherit"}
                 IsCalledValue={"FOCUS"} 
+                borderRadiusValue= {"7px"}
+                backGroundColorValue={props.Color.UserInputBG}
+                PlaceHolderColorValue={props.Color.UserInputPH}
                 />
             {isExpanded && [<TextArea
                 InputValue={CurrentNote.content}
@@ -76,6 +81,9 @@ const CreateNote = (props) => {
                 fontFamilyValue={"inherit"}
                 resizeValue={"vertical"}
                 IsCalledValue={"FOCUS"}
+                borderRadiusValue= {"7px"}
+                backGroundColorValue={props.Color.TextAreaBGC}
+                PlaceHolderColorValue={props.Color.TextAreaPHC}
                 />,
                 <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
                 <FadeIn>{isHover ? <PlusCircleFilled onClick={subNote}/> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>

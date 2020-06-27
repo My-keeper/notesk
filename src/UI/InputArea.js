@@ -9,7 +9,9 @@ const borderStyling = {
   border: "1px solid rgb(245,186,19, 0.382)",
   boxShadow: "0 0 2px 2px rgb(245,186,19, 0.382)",
 }
+
 const InputContainer = styled.input`
+  display: flex;
   resize: ${(props) => (props.resizeInput ? props.resizeInput : "none")};
   width: ${(props) => (props.widthInput ? props.widthInput : "100%")};
   height: ${(props) => (props.heightInput ? props.heightInput : null)};
@@ -19,8 +21,9 @@ const InputContainer = styled.input`
   font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
   font-family: ${(props) => (props.fontFamilyInput ? props.fontFamilyInput : "none")};
   box-shadow: ${(props) => (props.boxShowInput ? props.boxShowInput : "none")}; 
-  background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
+  background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "#ffffff")};
   color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
+  border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
   &::placeholder{
     color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
   };
@@ -87,6 +90,7 @@ export default function UserInput(props) {
         backGroundColorInput={props.backGroundColorValue}
         FontColorInput={props.FontColorValue}
         PlaceHolderColorInput={props.PlaceHolderColorValue}
+        borderRadiusInput={props.borderRadiusValue}
       />
       <div>{getInputPasswordIcon()}</div>
     </Container>
