@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import SwitchIcon from '../UI/Switch'
+import SwitchIcon from './Switch'
 
 const Header = styled.div `
     background-color: #f5ba13;

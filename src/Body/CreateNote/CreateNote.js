@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { PlusCircleFilled, CheckCircleFilled} from '@ant-design/icons'
 import FadeIn from 'react-fade-in';
-import UserInput from '../../UI/InputArea';
+import UserInput from '../../UI/UserInput';
 import TextArea from '../../UI/TextArea';
 import NoteContainer from '../../UI/Modal';
-import SwitchIcion from '../../UI/Switch';
 
 
 const AddNote = styled.div`
@@ -47,27 +46,27 @@ const CreateNote = (props) => {
         boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
         borderRadiusValue= {"7px"}
         resizeValue={"both"}
-        backGroundColorValue={props.Color.NotekGC}
+        backGroundColorValue={props.RecieveColor.NotekGCC}
         >
-            <UserInput
-                InputValue={CurrentNote.title}
-                name="title"
-                inputType={"text"}
-                PlaceholderValue={"Title"}
-                onchangeValue={handlerChange}
-                onClickValue={expand}
-                widthInput={"100"}
-                BorderValue={"none"}
-                paddingVale={"4px"}
-                outlineValue={"none"}
-                fontSizeValue={"1.2em"}
-                fontFamilyValue={"inherit"}
-                IsCalledValue={"FOCUS"} 
-                borderRadiusValue= {"7px"}
-                backGroundColorValue={props.Color.UserInputBG}
-                PlaceHolderColorValue={props.Color.UserInputPH}
-                />
-            {isExpanded && [<TextArea
+        <UserInput
+            InputValue={CurrentNote.title}
+            name="title"
+            inputType={"text"}
+            PlaceholderValue={"Title"}
+            onchangeValue={handlerChange}
+            onClickValue={expand}
+            widthInput={"100"}
+            BorderValue={"none"}
+            paddingVale={"4px"}
+            outlineValue={"none"}
+            fontSizeValue={"1.2em"}
+            fontFamilyValue={"inherit"}
+            IsCalledValue={"FOCUS"} 
+            borderRadiusValue= {"7px"}
+            backGroundColorValue={props.RecieveColor.UserInputBGC}
+            FontColorValue={props.RecieveColor.UserInputFC}
+            PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+            />{isExpanded && [<TextArea
                 InputValue={CurrentNote.content}
                 name="content"
                 PlaceholderValue={"Take a note ..."}
@@ -82,10 +81,11 @@ const CreateNote = (props) => {
                 resizeValue={"vertical"}
                 IsCalledValue={"FOCUS"}
                 borderRadiusValue= {"7px"}
-                backGroundColorValue={props.Color.TextAreaBGC}
-                PlaceHolderColorValue={props.Color.TextAreaPHC}
+                backGroundColorValue={props.RecieveColor.TextAreaBGC}
+                FontColorValue={props.RecieveColor.TextAreaFC}
+                PlaceHolderColorValue={props.RecieveColor.TextAreaPHC}
                 />,
-                <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
+            <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
                 <FadeIn>{isHover ? <PlusCircleFilled onClick={subNote}/> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>
             </AddNote>]}
         </NoteContainer>

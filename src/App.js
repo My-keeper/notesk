@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css'
-import Nav from './Header/Header'
+import Nav from './UI/NavBar'
 import Note from './Body/Note/Note'
 import Footer from './Footer/Footer'
 import CreateNote from './Body/CreateNote/CreateNote'
@@ -10,16 +10,17 @@ class App extends Component {
   state = {
     notes: [],
     Color: {
-      NotekG:"#2F4F4F",
-      NoteF:"",
-
-      UserInputBG:"#fff",
-      UserInputF:"#000000",
-      UserInputPH:"#A9A9A9",
-      
-      TextAreaBGC:"#fff",
-      TextAreaFC:"#000000",
-      TextAreaPHC :"#A9A9A9",
+      // ModelArea
+      NotekGCC : "#fff",
+      NoteFC : "",
+      //userInput
+      UserInputBGC : "#fff",
+      UserInputFC : "#000000",
+      UserInputPHC : "",
+      //TextArea
+      TextAreaBGC : "#fff",
+      TextAreaFC : "#000000",
+      TextAreaPHC : "",
     },
   }
 
@@ -38,7 +39,7 @@ class App extends Component {
   NoteItems = () =>{
     return  [...this.state.notes].map((eachItem,i) => {
       return <Note 
-        Color={this.state.Color}
+        RecieveColor={this.state.Color}
         key = {i}
         id= {i}
         title={eachItem.title} 
@@ -56,7 +57,7 @@ class App extends Component {
     return (
       <div >
           <Nav ColorChanged={this.colorchanged}/>     
-          <CreateNote Color={this.state.Color} AddedNote={this.addNote}/>   
+          <CreateNote RecieveColor={this.state.Color} AddedNote={this.addNote}/>   
           {this.NoteItems()}
           <Footer/>
       </div>

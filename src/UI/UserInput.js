@@ -21,7 +21,7 @@ const InputContainer = styled.input`
   font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
   font-family: ${(props) => (props.fontFamilyInput ? props.fontFamilyInput : "none")};
   box-shadow: ${(props) => (props.boxShowInput ? props.boxShowInput : "none")}; 
-  background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "#ffffff")};
+  background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
   color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
   border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
   &::placeholder{

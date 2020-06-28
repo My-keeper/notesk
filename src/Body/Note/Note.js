@@ -34,10 +34,10 @@ const Note = (props) =>
             margin= {"16px"}
             float= {"left"}
             display= {"flex"}
+            backGroundColorValue={props.RecieveColor.NotekGCC}
             >
-                {console.log(props.Color)}
-            <ChangeNote ChangeColor={props.Color} content={props.content} name="c" note={props.content}/>
-            <ChangeNote ChangeColor={props.Color} title={props.title} name="t" note={props.title}/>
+            <ChangeNote RecieveChangeColor={props.RecieveColor} title={props.title} name="t" note={props.title}/>
+            <ChangeNote RecieveChangeColor={props.RecieveColor} content={props.content} name="c" note={props.content}/>
             <HoveringContainer onPointerEnter={OnHovering} onMouseLeave={OnHovering}> 
             <FadeIn> {isHover ? <DeleteFilled onClick={handleDelete}/>: <DeleteOutlined onClick={handleDelete}/>}</FadeIn> 
             </HoveringContainer>

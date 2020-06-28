@@ -17,28 +17,30 @@ const SwitchIcion = (props) => {
     const changedBackGround = () => {
         const toReturn = {}
         if(isClicked){
-            toReturn.NotekGC="#999999";
-            toReturn.NoteFC="";
-
-            toReturn.UserInputBGC="#999999";
-            toReturn.UserInputFC="#000000";
-            toReturn.UserInputPHC="#A9A9A9";
-            
-            toReturn.TextAreaBGC ="#999999";
-            toReturn.TextAreaFC ="#000000";
-            toReturn.TextAreaPHC ="#A9A9A9";
+            //ModelArea
+            toReturn.NotekGCC = "#999999";
+            toReturn.NoteFC = "";
+            //userInput
+            toReturn.UserInputBGC = "#999999";
+            toReturn.UserInputFC = "#F8F8F8";
+            toReturn.UserInputPHC = "#E0E0E0";
+            //TextArea
+            toReturn.TextAreaBGC = "#999999";
+            toReturn.TextAreaFC = "#F8F8F8";
+            toReturn.TextAreaPHC = "#E0E0E0";
         }
         else{
-            toReturn.NotekGC="#fff";
-            toReturn.NoteFC="";
-
-            toReturn.UserInputBGC="#fff";
-            toReturn.UserInputFC="#000000";
-            toReturn.UserInputPHC="#ffffff";
-            
-            toReturn.TextAreaBGC ="#fff";
-            toReturn.TextAreaFC ="#000000";
-            toReturn.TextAreaPHC ="#ffffff";
+            //ModelArea
+            toReturn.NotekGCC = "#282828";
+            toReturn.NoteF = "";
+            //userInput
+            toReturn.UserInputBGC = "#282828";
+            toReturn.UserInputFC = "#F0F0F0";
+            toReturn.UserInputPHC = "#C8C8C8";
+            //TextArea
+            toReturn.TextAreaBGC = "#282828";
+            toReturn.TextAreaFC = "#C8C8C8";
+            toReturn.TextAreaPHC = "#C8C8C8";
         }
         return toReturn
     }

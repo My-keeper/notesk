@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import FadeIn from 'react-fade-in';
 import { EditFilled , EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
-import UserInput from '../../../UI/InputArea'
+import UserInput from '../../../UI/UserInput'
 import TextArea from '../../../UI/TextArea'
 import NoteContainer from '../../../UI/Modal'
  
@@ -49,7 +49,9 @@ const ChangeNote = (props) => {
                         flexDirectionValue= {"row"}
                         flexGrowValue= {"4"}
                         marginBottomValue= {"10px"}
-                >
+                        backGroundColorValue={props.RecieveChangeColor.NotekGCC}
+                >   
+                {/* {console.log(ChangeColor.NotekGCC)} */}
                     <div style={{width: "90%"}}>{CurrentNote !== "" ? Value = CurrentNote : Value = RecievedNote}</div>
                         <IcionStyleing><EditOutlined onClick={EditValue}/></IcionStyleing>
                 </NoteContainer>
