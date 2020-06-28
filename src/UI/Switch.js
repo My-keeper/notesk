@@ -1,25 +1,20 @@
 import React, { useState }  from 'react';
-
-const dark = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/>
-    <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-6.671-5.575A8 8 0 1 0 16.425 5.328a8.997 8.997 0 0 1-2.304 8.793 8.997 8.997 0 0 1-8.792 2.304z"/>
-    </svg> 
-const light = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/>
-    <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-5-4.68a8.965 8.965 0 0 0 5.707-2.613A8.965 8.965 0 0 0 15.32 7 6 6 0 1 1 7 15.32z"/>
-    </svg>
-
+import { Brightness1, Brightness2, Brightness3, Brightness2Sharp } from '@material-ui/icons';
 
 const SwitchIcion = (props) => {
-    const [isClicked, isClickedChanged] = useState(true);
+    const [isClicked, isClickedChanged] = useState(1);
     const changeState = () => {
         props.OnChangedColor(changedBackGround())
-        isClickedChanged(!isClicked)
+        if(isClicked === 1){isClickedChanged(2)} 
+        else if (isClicked === 2){isClickedChanged(3)}
+        else if (isClicked === 3){isClickedChanged(1)}
     }
     const changedBackGround = () => {
         const toReturn = {}
-        if(isClicked){
+        if(isClicked === 1){
             //ModelArea
-            toReturn.NotekGCC = "#999999";
-            toReturn.NoteFC = "";
+            toReturn.NotekBGC = "#999999";
+            toReturn.NoteFC = "#F8F8F8";
             //userInput
             toReturn.UserInputBGC = "#999999";
             toReturn.UserInputFC = "#F8F8F8";
@@ -29,10 +24,11 @@ const SwitchIcion = (props) => {
             toReturn.TextAreaFC = "#F8F8F8";
             toReturn.TextAreaPHC = "#E0E0E0";
         }
-        else{
+        else if(isClicked === 2) 
+        {
             //ModelArea
-            toReturn.NotekGCC = "#282828";
-            toReturn.NoteF = "";
+            toReturn.NotekBGC = "#282828";
+            toReturn.NoteFC = "#F0F0F0";
             //userInput
             toReturn.UserInputBGC = "#282828";
             toReturn.UserInputFC = "#F0F0F0";
@@ -42,11 +38,24 @@ const SwitchIcion = (props) => {
             toReturn.TextAreaFC = "#C8C8C8";
             toReturn.TextAreaPHC = "#C8C8C8";
         }
+        else if (isClicked === 3)
+        {
+            //ModelArea
+            toReturn.NotekBGC = "#fff";
+            toReturn.NoteFC = "#000000";
+            //userInput
+            toReturn.UserInputBGC = "#fff";
+            toReturn.UserInputFC = "#000000";
+            toReturn.UserInputPHC = "";
+            //TextArea
+            toReturn.TextAreaBGC = "#fff";
+            toReturn.TextAreaFC = "#000000";
+            toReturn.TextAreaPHC = "";
+        }
         return toReturn
     }
-
     return(
-        <div onClick={changeState}>{isClicked ? (dark) : (light) }</div>
+        <div onClick={changeState}>{isClicked === 1 ?  <Brightness3/>: (isClicked === 2 ? <Brightness2/> : <Brightness1/> ) }</div>
     )
 };
 

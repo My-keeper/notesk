@@ -46,7 +46,7 @@ const CreateNote = (props) => {
         boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
         borderRadiusValue= {"7px"}
         resizeValue={"both"}
-        backGroundColorValue={props.RecieveColor.NotekGCC}
+        backGroundColorValue={props.RecieveColor.NotekBGC}
         >
         <UserInput
             InputValue={CurrentNote.title}

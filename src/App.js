@@ -11,8 +11,8 @@ class App extends Component {
     notes: [],
     Color: {
       // ModelArea
-      NotekGCC : "#fff",
-      NoteFC : "",
+      NotekBGC : "#fff",
+      NoteFC : "#000000",
       //userInput
       UserInputBGC : "#fff",
       UserInputFC : "#000000",
