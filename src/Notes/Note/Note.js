@@ -6,7 +6,7 @@ import FadeIn  from 'react-fade-in';
 import NoteContainer from '../../UI/Modal';
 
 
-const HoveringContainer = styled.div`
+const HoveringContainer = styled(FadeIn)`
     display: flex;
     flex-direction: row-reverse;
     margin-top: 6px;
@@ -38,11 +38,10 @@ const Note = (props) =>
             >
             <ChangeNote RecieveChangeColor={props.RecieveColor} title={props.title} name="t" note={props.title}/>
             <ChangeNote RecieveChangeColor={props.RecieveColor} content={props.content} name="c" note={props.content}/>
-            <HoveringContainer onPointerEnter={OnHovering} onMouseLeave={OnHovering}> 
-            <FadeIn> 
-                <div></div>
-                <div>{isHover ? <DeleteFilled onClick={handleDelete}/>: <DeleteOutlined onClick={handleDelete}/>}</div>
-            </FadeIn> 
+            <HoveringContainer > 
+                {isHover ? 
+                <DeleteFilled onClick={handleDelete} onPointerEnter={OnHovering} onMouseLeave={OnHovering}/>: 
+                <DeleteOutlined onClick={handleDelete} onPointerEnter={OnHovering} onMouseLeave={OnHovering}/>}
             </HoveringContainer>
         </NoteContainer>
     </FadeIn>

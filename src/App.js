@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './App.css'
 import Nav from './UI/NavBar'
-import Note from './Body/Note/Note'
-import Footer from './Footer/Footer'
-import CreateNote from './Body/CreateNote/CreateNote'
+import Note from './Notes/Note/Note'
+import Footer from './UI/Footer'
+import CreateNote from './Notes/CreateNote/CreateNote'
 
 class App extends Component {
   
   state = {
     notes: [],
     Color: {
+      //borderColor 
+      BorderColor : "#999999",
+      //IcionColor
+      IconC : "#f5ba13",
       // ModelArea
       NotekBGC : "#fff",
       NoteFC : "#000000",

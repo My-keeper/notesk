@@ -20,6 +20,9 @@ const TextareaContainer = styled.textarea`
     box-shadow: ${(props) => (props.boxShowInput ? props.boxShowInput : "none")}; 
     background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
     color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
+    border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
+    border-width: ${(props) => (props.borderWidthInput ? props.borderWidthInput : "inherit")};
+    margin-right: ${(props) => (props.marginRightInput ? props.marginRightInput : "none")};
     &::placeholder{
       color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
     };
@@ -56,6 +59,9 @@ export default function UserInput(props) {
         backGroundColorInput={props.backGroundColorValue}
         FontColorInput={props.FontColorValue}
         PlaceHolderColorInput={props.PlaceHolderColorValue}
+        borderColorInput={props.borderColorValue}
+        borderWidthInput={props.borderWidthValue}
+        marginRightInput={props.marginRightValue}
       />
   );
 }

@@ -1,6 +1,15 @@
 import React, { useState }  from 'react';
-import { Brightness1, Brightness2, Brightness3, Brightness2Sharp } from '@material-ui/icons';
+import styled from 'styled-components';
+import { Brightness5, Brightness2, Brightness3 } from '@material-ui/icons';
+import FadeIn  from 'react-fade-in';
 
+const IconStyle = styled(FadeIn)`
+    color: ${(props) => (props.FontColorInput ? props.FontColorInput : "")};
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: ${(props) => (props.FontSizeInput ? props.FontSizeInput : "")};
+`
 const SwitchIcion = (props) => {
     const [isClicked, isClickedChanged] = useState(1);
     const changeState = () => {
@@ -9,9 +18,14 @@ const SwitchIcion = (props) => {
         else if (isClicked === 2){isClickedChanged(3)}
         else if (isClicked === 3){isClickedChanged(1)}
     }
+    
     const changedBackGround = () => {
         const toReturn = {}
         if(isClicked === 1){
+            //borderColor 
+            toReturn.BorderColor = "#FFD700";
+            //IcionColor
+            toReturn.IconC = "#f5ba13";
             //ModelArea
             toReturn.NotekBGC = "#999999";
             toReturn.NoteFC = "#F8F8F8";
@@ -26,6 +40,10 @@ const SwitchIcion = (props) => {
         }
         else if(isClicked === 2) 
         {
+            //borderColor 
+            toReturn.BorderColor = "#f5ba13";
+            //IcionColor
+            toReturn.IconC = "#f5ba13";
             //ModelArea
             toReturn.NotekBGC = "#282828";
             toReturn.NoteFC = "#F0F0F0";
@@ -40,6 +58,10 @@ const SwitchIcion = (props) => {
         }
         else if (isClicked === 3)
         {
+            //borderColor 
+            toReturn.BorderColor = "#999999";
+            //IcionColor
+            toReturn.IconC = "#f5ba13";
             //ModelArea
             toReturn.NotekBGC = "#fff";
             toReturn.NoteFC = "#000000";
@@ -55,7 +77,15 @@ const SwitchIcion = (props) => {
         return toReturn
     }
     return(
-        <div onClick={changeState}>{isClicked === 1 ?  <Brightness3/>: (isClicked === 2 ? <Brightness2/> : <Brightness1/> ) }</div>
+        <IconStyle 
+            FontColorInput = {isClicked === 1 ?  "#999999": (isClicked === 2 ? "#282828" : "#fff" ) }
+        >
+            {isClicked === 1 ?  
+            <Brightness3 style={{fontSize:"30px"}} onClick={changeState}/> : 
+                (isClicked === 2 ? 
+                    <Brightness2 style={{fontSize:"30px"}} onClick={changeState}/> : 
+                    <Brightness5 style={{fontSize:"30px"}} onClick={changeState}/> ) }
+        </IconStyle>
     )
 };
 

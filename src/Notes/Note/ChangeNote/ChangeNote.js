@@ -22,9 +22,9 @@ const IcionStyleing = styled(FadeIn)`
     color: #f5ba13;
 `
 const ChangeNote = (props) => {
-    const [inVal, exVal] = useState(true);
-    const EditValue = (v) => { 
-        v.inVal !== inVal && exVal(!inVal);
+    const [isHover, SetHover] = useState(true);
+    const EditValue = () => { 
+        SetHover(!isHover);
         RecievedNote=CurrentNote
     }
     
@@ -33,7 +33,7 @@ const ChangeNote = (props) => {
     props.name === "t" ? RecievedNote = props.title : RecievedNote =  props.content
 
     const ReAddedHandler = (Value) => {
-        if (inVal) { 
+        if (isHover) { 
             return (  
                 <NoteContainer
                     width= {"100%"}
