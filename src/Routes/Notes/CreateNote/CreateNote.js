@@ -21,7 +21,7 @@ const InfoContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 2px;
+    margin: 4px;
     `
 const CreateNote = (props) => {
     const IconColor = {
@@ -39,7 +39,7 @@ const CreateNote = (props) => {
         setSubmit(true);
         if (CurrentNote.title === "" && CurrentNote.content === "" )
         {   
-        return( <FadeIn>{setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)", contentPH: "Please Enter some Content ...(-_-)!"}) && isIconUserInput() && isIconTextArea()}</FadeIn> )
+        return( <FadeIn>{setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)!", contentPH: "Please Enter some Content ...(-_-)!"}) && isIconUserInput() && isIconTextArea()}</FadeIn> )
         } 
         else  if (CurrentNote.title === "" )
         {  
@@ -84,14 +84,14 @@ const CreateNote = (props) => {
         backGroundColorValue={props.RecieveColor.NotekBGC}
         >
         <InfoContainer>
-            <UserInput
+            <FadeIn><UserInput
             InputValue={CurrentNote.title}
             name="title"
             inputType={"text"}
             PlaceholderValue={CurrentPlaceHolde.titlePH}
             onchangeValue={handlerChange}
             onClickValue={expand}
-            widthValue={"423px"}
+            widthValue={"421px"}
             paddingVale={"4px"}
             outlineValue={"none"}
             fontSizeValue={"1.2em"}
@@ -105,18 +105,18 @@ const CreateNote = (props) => {
             BorderValue={"solid"}
             borderWidthValue="thin"
             marginRightValue={"10px"}
-            />
+            /></FadeIn>
             <FadeIn>{ isIconUserInput()}</FadeIn>
         </InfoContainer>
             {isExpanded && 
         <InfoContainer>
-            <TextArea
+            <FadeIn><TextArea
             InputValue={CurrentNote.content}
             name="content"
             PlaceholderValue={CurrentPlaceHolde.contentPH}
             rows={isExpanded ? 3 : 1}
             onchangeValue={handlerChange}
-            widthValue={"465px"}
+            widthValue={"421px"}
             paddingVale={"4px"}
             outlineValue={"none"}
             fontSizeValue={"1.2em"}
@@ -131,7 +131,7 @@ const CreateNote = (props) => {
             BorderValue={"solid"}
             borderWidthValue="thin"
             marginRightValue={"10px"}
-            /> 
+            /> </FadeIn>
             <FadeIn>{isIconTextArea()}</FadeIn>
         </InfoContainer>}
             {isExpanded && <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>

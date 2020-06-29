@@ -26,18 +26,19 @@ const ChangeNote = (props) => {
     const ReAddedHandler = (Value) => {
         if (isHover) { 
             return (  
-                <NoteContainer
-                    width= {"100%"}
-                    display= {"flex"}
-                    flexDirectionValue= {"row"}
-                    flexGrowValue= {"4"}
-                    marginBottomValue= {"10px"}
-                    backGroundColorValue={props.RecieveChangeColor.NotekBGC}
-                    FontColorValue={props.RecieveChangeColor.NoteFC}
-                >
-                <div style={{width: "90%"}}>{CurrentNote !== "" ? Value = CurrentNote : Value = RecievedNote}</div>
-                <IcionStyleing><EditOutlined onClick={EditValue}/></IcionStyleing>
-                </NoteContainer>
+                <FadeIn><NoteContainer
+                width= {"100%"}
+                display= {"flex"}
+                flexDirectionValue= {"row"}
+                flexGrowValue= {"4"}
+                marginBottomValue= {"5px"}
+                backGroundColorValue={props.RecieveChangeColor.NotekBGC}
+                FontColorValue={props.RecieveChangeColor.NoteFC}
+            >
+                 {/* border:"solid", borderWidth:"thin",borderRadius:"5px",height: "24px",marginRight: "8px",borderColor:props.RecieveChangeColor.BorderColor */}
+            <div style={{width: "90%"}}>{CurrentNote !== "" ? Value = CurrentNote : Value = RecievedNote}</div>
+            <IcionStyleing><EditOutlined onClick={EditValue}/></IcionStyleing>
+            </NoteContainer></FadeIn>
             )
             }
         else {
