@@ -7,15 +7,6 @@ import TextArea from '../../../../UI/TextArea'
 import NoteContainer from '../../../../UI/Modal'
 
 
-const TextContainer = {
-    width: "100%",
-    border: "",
-    padding: "4px",
-    outline: "none",
-    fontSize: "1.2em",
-    fontFamily: "inherit",
-    resize: "none",
-}
 const IcionStyleing = styled(FadeIn)`
     position: relative;
     float: right;
