@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { PlusCircleFilled, CheckCircleFilled} from '@ant-design/icons'
 import FadeIn from 'react-fade-in';
-import UserInput from '../../UI/UserInput';
-import TextArea from '../../UI/TextArea';
-import NoteContainer from '../../UI/Modal';
+import UserInput from '../../../UI/UserInput';
+import TextArea from '../../../UI/TextArea';
+import NoteContainer from '../../../UI/Modal';
 import { SentimentVeryDissatisfied, Title, ImportContacts ,SentimentVerySatisfied} from '@material-ui/icons';
 
 const AddNote = styled.div`

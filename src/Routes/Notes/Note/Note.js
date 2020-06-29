@@ -3,7 +3,7 @@ import ChangeNote from './ChangeNote/ChangeNote'
 import { DeleteFilled , DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import FadeIn  from 'react-fade-in';
-import NoteContainer from '../../UI/Modal';
+import NoteContainer from '../../../UI/Modal';
 
 
 const HoveringContainer = styled(FadeIn)`

@@ -2,9 +2,9 @@ import React, { useState }  from 'react';
 import FadeIn from 'react-fade-in';
 import { EditFilled , EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
-import UserInput from '../../../UI/UserInput'
-import TextArea from '../../../UI/TextArea'
-import NoteContainer from '../../../UI/Modal'
+import UserInput from '../../../../UI/UserInput'
+import TextArea from '../../../../UI/TextArea'
+import NoteContainer from '../../../../UI/Modal'
 
 
 const TextContainer = {
