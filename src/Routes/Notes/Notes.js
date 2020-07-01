@@ -38,6 +38,30 @@ class Notes extends Component {
     test.splice(id,1)
     this.setState({notes: test})
   }
+  onChangeTitle = (id, newTitle) =>{
+    const  newNoteTitle = [... this.state.notes].filter((_,index) => {
+      return index === id
+    })[0]
+    if (newNoteTitle){
+      newNoteTitle.title = newTitle
+      const newNotes = [... this.state.notes]
+      newNotes[id] = newNoteTitle
+      console.log(newNoteTitle, newNotes)
+      this.setState({notes : newNotes})
+    }
+  }
+  onChangeContent = (id, newContent) =>{
+    const  newNoteContent = [... this.state.notes].filter((_,index) => {
+      return index === id
+    })[0]
+    if (newNoteContent){
+      newNoteContent.content = newContent
+      const newNotes = [... this.state.notes]
+      newNotes[id] = newNoteContent
+      console.log(newNoteContent, newNotes)
+      this.setState({notes : newNotes})
+    }
+  }
 
   NoteItems = () =>{
     return  [...this.state.notes].map((eachItem,i) => {
@@ -48,6 +72,8 @@ class Notes extends Component {
         title={eachItem.title} 
         content={eachItem.content}
         onDelete={this.deleteNote}
+        ChangeTitle={this.onChangeTitle}
+        ChangeContent={this.onChangeContent}
         />;
      })
   }
