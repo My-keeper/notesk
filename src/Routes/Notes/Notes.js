@@ -3,6 +3,7 @@ import Nav from '../../UI/NavBar'
 import Note from './Note/Note'
 import Footer from '../../UI/Footer'
 import CreateNote from './CreateNote/CreateNote'
+import FadeIn from 'react-fade-in';
 
 class Notes extends Component {
   
@@ -39,26 +40,24 @@ class Notes extends Component {
     this.setState({notes: test})
   }
   onChangeTitle = (id, newTitle) =>{
-    const  newNoteTitle = [... this.state.notes].filter((_,index) => {
+    const newNoteTitle = [...this.state.notes].filter((_,index) => {
       return index === id
     })[0]
     if (newNoteTitle){
       newNoteTitle.title = newTitle
-      const newNotes = [... this.state.notes]
+      const newNotes = [...this.state.notes]
       newNotes[id] = newNoteTitle
-      console.log(newNoteTitle, newNotes)
       this.setState({notes : newNotes})
     }
   }
   onChangeContent = (id, newContent) =>{
-    const  newNoteContent = [... this.state.notes].filter((_,index) => {
+    const  newNoteContent = [...this.state.notes].filter((_,index) => {
       return index === id
     })[0]
     if (newNoteContent){
       newNoteContent.content = newContent
-      const newNotes = [... this.state.notes]
+      const newNotes = [...this.state.notes]
       newNotes[id] = newNoteContent
-      console.log(newNoteContent, newNotes)
       this.setState({notes : newNotes})
     }
   }
@@ -86,8 +85,8 @@ class Notes extends Component {
     return (
       <div >
           <Nav ColorChanged={this.colorchanged}/>     
-          <CreateNote RecieveColor={this.state.Color} AddedNote={this.addNote}/>   
-          {this.NoteItems()}
+          <FadeIn><CreateNote RecieveColor={this.state.Color} AddedNote={this.addNote}/>  </FadeIn> 
+          <FadeIn>{this.NoteItems()}</FadeIn>
           <Footer/>
       </div>
     );

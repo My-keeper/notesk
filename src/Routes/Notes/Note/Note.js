@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
-import ChangeNote from './ChangeNote/ChangeNote'
-import { DeleteFilled , DeleteOutlined } from '@ant-design/icons';
+import { DeleteFilled , DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import FadeIn  from 'react-fade-in';
 import NoteContainer from '../../../UI/Modal';
-import { EditFilled , EditOutlined } from '@ant-design/icons';
 import UserInput from '../../../UI/UserInput'
 import TextArea from '../../../UI/TextArea'
 
@@ -16,48 +14,48 @@ const HoveringContainer = styled.div`
     font-size: 27px;
     color: #f5ba13;
 `
-const Container = styled(FadeIn)`
+const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 10px;
 `
-const IcionStyleing = styled(FadeIn)`
+const IcionStyleing = styled.div`
     position: relative;
     float: right;
     color: #f5ba13;
 `
 
 const Note = (props) => 
-{    
-    const handleDelete = () => {
-        props.onDelete(props.id);
-   }    
-
-   const [isHover, SetHover] = useState(true);
-   const OnHovering = () => {SetHover(!isHover)}
-   
-   //this is for changing the title
-   const [TitleClicked, ChangeTitleClicked] = useState(true)
-   let [RecievedTitle, ChangeRecievedTitle] = useState("")
-    console.log("this is the changed title " + RecievedTitle)
+{   
+    //this is for deleting the note 
+    const handleDelete = () => {props.onDelete(props.id);}    
+    //this is for the Hovering for the delete Icon
+    const [isHover, SetHover] = useState(true);
+    const OnHovering = () => {SetHover(!isHover)}
+    //this is for changing the title
+    const [TitleClicked, ChangeTitleClicked] = useState(true)
+    let [RecievedTitle, ChangeRecievedTitle] = useState("")
     const TitleHandler = () =>{return(ChangeTitleClicked(false),ChangeRecievedTitle(props.title)) }
     const changeTItleHandler = () => {return(ChangeTitleClicked(true) , props.ChangeTitle(props.id, RecievedTitle), ChangeRecievedTitle(""))}
     const handlingTitle =() => {
         if (TitleClicked) {
             return(
+            <FadeIn>
             <Container>
                 <FadeIn>{ props.title}</FadeIn>
-                <IcionStyleing><EditOutlined onClick={TitleHandler}/></IcionStyleing>
+                <FadeIn><IcionStyleing><EditOutlined onClick={TitleHandler}/></IcionStyleing></FadeIn>
             </Container>
+            </FadeIn>
             )
         }
         else
         {
             return(
+            <FadeIn>
             <Container>
                 <FadeIn>
-                    <UserInput 
+                <UserInput 
                     width= {"100%"}
                     BorderValue= {""}
                     padding= {"4px"}
@@ -72,34 +70,37 @@ const Note = (props) =>
                     backGroundColorValue={props.RecieveColor.UserInputBGC}
                     FontColorValue={props.RecieveColor.UserInputFC}
                     PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
-                    />
+                />
                 </FadeIn>
-                <IcionStyleing><EditOutlined onClick={changeTItleHandler} /></IcionStyleing>
+                <FadeIn><IcionStyleing><EditOutlined onClick={changeTItleHandler} /></IcionStyleing></FadeIn>
             </Container>
+            </FadeIn>
             )
         }
     }
     //this is for changing the content
     const [ContentClicked, ChangeContentClicked] = useState(true)
     let [RecievedContent, ChangeRecievedContent] = useState("")
-     console.log("this is the changed title " + RecievedContent)
-     const ContentHandler = () =>{return(ChangeContentClicked(false),ChangeRecievedContent(props.content)) }
-     const changeContentHandler = () => {return(ChangeContentClicked(true) , props.ChangeContent(props.id, RecievedContent), ChangeRecievedContent(""))}
-     const handlingContent =() => {
-         if (ContentClicked) {
-             return(
-             <Container>
-                 <FadeIn>{ props.content}</FadeIn>
-                 <IcionStyleing><EditOutlined onClick={ContentHandler}/></IcionStyleing>
-             </Container>
-             )
-         }
-         else
-         {
-             return(
-             <Container>
-                 <FadeIn>
-                 <TextArea 
+    const ContentHandler = () =>{return(ChangeContentClicked(false),ChangeRecievedContent(props.content)) }
+    const changeContentHandler = () => {return(ChangeContentClicked(true) , props.ChangeContent(props.id, RecievedContent), ChangeRecievedContent(""))}
+    const handlingContent =() => {
+        if (ContentClicked) {
+            return(
+            <FadeIn>
+            <Container>
+                <FadeIn>{ props.content}</FadeIn>
+                <FadeIn><IcionStyleing><EditOutlined onClick={ContentHandler}/></IcionStyleing></FadeIn>
+            </Container>
+            </FadeIn>
+            )
+        }
+        else
+        {
+            return(
+            <FadeIn>
+            <Container>
+                <FadeIn>
+                <TextArea 
                     PlaceholderValue={props.content} 
                     InputValue = {RecievedContent} 
                     onchangeValue={e => ChangeRecievedContent(e.target.value)}  
@@ -115,13 +116,14 @@ const Note = (props) =>
                     backGroundColorValue={props.RecieveColor.TextAreaBGC}
                     FontColorValue={props.RecieveColor.TextAreaFC}
                     PlaceHolderColorValue={props.RecieveColor.TextAreaPHC}
-                    />
-                 </FadeIn>
-                 <IcionStyleing><EditOutlined onClick={changeContentHandler} /></IcionStyleing>
-             </Container>
-             )
-         }
-     }       
+                />
+                </FadeIn>
+                <FadeIn><IcionStyleing><EditOutlined onClick={changeContentHandler} /></IcionStyleing></FadeIn>
+            </Container>
+            </FadeIn>
+            )
+        }
+    }       
    return(
     <FadeIn>
         <NoteContainer
@@ -137,12 +139,12 @@ const Note = (props) =>
             backGroundColorValue={props.RecieveColor.NotekBGC}
             FontColorValue={props.RecieveColor.NoteFC}
             >
-            {handlingTitle()}
-            {handlingContent()}
+            <FadeIn>{handlingTitle()}</FadeIn>
+            <FadeIn>{handlingContent()}</FadeIn>
             <HoveringContainer > 
                 {isHover ? 
-                <DeleteFilled onClick={handleDelete} onPointerEnter={OnHovering} onMouseLeave={OnHovering}/>: 
-                <DeleteOutlined onClick={handleDelete} onPointerEnter={OnHovering} onMouseLeave={OnHovering}/>}
+                <FadeIn><DeleteFilled onClick={handleDelete} onPointerEnter={OnHovering} onMouseLeave={OnHovering}/></FadeIn>: 
+                <FadeIn><DeleteOutlined onClick={handleDelete} onPointerEnter={OnHovering} onMouseLeave={OnHovering}/></FadeIn>}
             </HoveringContainer>
         </NoteContainer>
     </FadeIn>
