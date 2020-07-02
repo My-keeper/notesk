@@ -24,10 +24,7 @@ const InfoContainer = styled.div`
     margin: 4px;
     `
 const CreateNote = (props) => {
-    const IconColor = {
-        color : props.RecieveColor.IconC,
-        // marginLeft: "10px"
-    }
+    const IconColor = { color : props.RecieveColor.IconC }
     const [isExpanded, setExpanded] = useState(false);
     const [isSubmit, setSubmit] = useState(false);
     const [CurrentNote, setNote] = useState({title: "",content: ""});
@@ -134,9 +131,10 @@ const CreateNote = (props) => {
             /> </FadeIn>
             <FadeIn>{isIconTextArea()}</FadeIn>
         </InfoContainer>}
-            {isExpanded && <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering} in={isExpanded}>
+            {isExpanded && 
+            <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering}>
                 <FadeIn>{isHover ? <PlusCircleFilled onClick={subNote}/> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>
-        </AddNote>}
+            </AddNote>}
         </NoteContainer>
     </FadeIn>
     )
