@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
 import styled from 'styled-components';
-import { Brightness5, Brightness2, Brightness3 } from '@material-ui/icons';
+import { Brightness4, Brightness2, Brightness3 } from '@material-ui/icons';
 import FadeIn  from 'react-fade-in';
 
 const IconStyle = styled(FadeIn)`
@@ -84,7 +84,7 @@ const SwitchIcion = (props) => {
             <Brightness3 style={{fontSize:"30px"}} onClick={changeState}/> : 
                 (isClicked === 2 ? 
                     <Brightness2 style={{fontSize:"30px"}} onClick={changeState}/> : 
-                    <Brightness5 style={{fontSize:"30px"}} onClick={changeState}/> ) }
+                    <Brightness4 style={{fontSize:"30px"}} onClick={changeState}/> ) }
         </IconStyle>
     )
 };
