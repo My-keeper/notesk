@@ -24,6 +24,29 @@ const SwitchIcion = (props) => {
         if(isClicked === 1)
         {
             //BodyColor
+            toReturn.BodyColor = "#999999";
+            //borderColor 
+            toReturn.BorderColor = "#999999";
+            //IcionColor
+            toReturn.IconC = "#f5ba13";
+            //UserIconColor
+            toReturn.UserIconColor= "#999999";
+            toReturn.UserIconTextColor= "#282828";
+            //ModelArea
+            toReturn.NotekBGC = "#fff";
+            toReturn.NoteFC = "#000000";
+            //userInput
+            toReturn.UserInputBGC = "#fff";
+            toReturn.UserInputFC = "#000000";
+            toReturn.UserInputPHC = "";
+            //TextArea
+            toReturn.TextAreaBGC = "#fff";
+            toReturn.TextAreaFC = "#000000";
+            toReturn.TextAreaPHC = "";
+        }
+        else if(isClicked === 2) 
+        {            
+            //BodyColor
             toReturn.BodyColor = "#282828";
             //borderColor 
             toReturn.BorderColor = "#FFD700";
@@ -44,7 +67,7 @@ const SwitchIcion = (props) => {
             toReturn.TextAreaFC = "#F8F8F8";
             toReturn.TextAreaPHC = "#E0E0E0";
         }
-        else if(isClicked === 2) 
+        else if (isClicked === 3)
         {
             //BodyColor
             toReturn.BodyColor = "#f2f2f2";
@@ -54,7 +77,7 @@ const SwitchIcion = (props) => {
             toReturn.IconC = "#f5ba13";
             //UserIconColor
             toReturn.UserIconColor= "#fff";
-            toReturn.UserIconTextColor= "#000000";
+            toReturn.UserIconTextColor= "#999999";
             //ModelArea
             toReturn.NotekBGC = "#282828";
             toReturn.NoteFC = "#F0F0F0";
@@ -65,30 +88,6 @@ const SwitchIcion = (props) => {
             //TextArea
             toReturn.TextAreaBGC = "#282828";
             toReturn.TextAreaFC = "#C8C8C8";
-            toReturn.TextAreaPHC = "#C8C8C8";
-        }
-        else if (isClicked === 3)
-        {
-            //BodyColor
-            toReturn.BodyColor = "#999999";
-            //borderColor 
-            toReturn.BorderColor = "#999999";
-            //IcionColor
-            toReturn.IconC = "#f5ba13";
-            //UserIconColor
-            toReturn.UserIconColor= "#999999";
-            toReturn.UserIconTextColor= "#F8F8F8";
-            //ModelArea
-            toReturn.NotekBGC = "#fff";
-            toReturn.NoteFC = "#000000";
-            //userInput
-            toReturn.UserInputBGC = "#fff";
-            toReturn.UserInputFC = "#000000";
-            toReturn.UserInputPHC = "";
-            //TextArea
-            toReturn.TextAreaBGC = "#fff";
-            toReturn.TextAreaFC = "#000000";
-            toReturn.TextAreaPHC = "";
         }
         return toReturn
     }
