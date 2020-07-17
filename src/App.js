@@ -5,19 +5,24 @@ import Weather from './API/Weather'
 import Calendar from './Routes/Calendar/Calendar'
 import Header from "./UI/Header"
 import NavBar from "./UI/NavBar"
+import styled from "styled-components";
+
+const BodyStyle = styled.body`
+   background: #282828; 
+`
 
 class App extends Component {
   
   
   render() {
     return (
-      <div >
+<BodyStyle >
         {/* <Header/> */}
         {/* <NavBar/> */}
         <Notes/>
-      </div>
-    );
-  }
+      </BodyStyle>
+        );
+      }
 }
 
 export default App;

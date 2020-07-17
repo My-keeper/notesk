@@ -10,6 +10,9 @@ class Notes extends Component {
   state = {
     notes: [],
     Color: {
+      //UserIconColor
+      UserIconColor: "#999999",
+      UserIconTextColor:"#F8F8F8",
       //borderColor 
       BorderColor : "#999999",
       //IcionColor
@@ -84,7 +87,7 @@ class Notes extends Component {
   render() {
     return (
       <div >
-          <Nav ColorChanged={this.colorchanged}/>     
+          <Nav ColorChanged={this.colorchanged} RecieveColor={this.state.Color}/>     
           <FadeIn><CreateNote RecieveColor={this.state.Color} AddedNote={this.addNote}/>  </FadeIn> 
           <FadeIn>{this.NoteItems()}</FadeIn>
           <Footer/>
