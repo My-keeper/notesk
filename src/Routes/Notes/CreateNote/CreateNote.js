@@ -34,19 +34,19 @@ const CreateNote = (props) => {
     const subNote = (event) => {
         event.preventDefault();
         setSubmit(true);
-        // if (CurrentNote.title === "" && CurrentNote.content === "" )
-        // {   
-        // return( <FadeIn>{setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)!", contentPH: "Please Enter some Content ...(-_-)!"}) && isIconUserInput() && isIconTextArea()}</FadeIn> )
-        // } 
-        // else  if (CurrentNote.title === "" )
-        // {  
-        // return( <FadeIn>{setPlaceHolder({titlePH: "Please Enter A Title ....(-_-)"}) && isIconUserInput()}</FadeIn>)
+        if (CurrentNote.title === "" && CurrentNote.content === "" )
+        {   
+        return( <FadeIn>{setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)!", contentPH: "Please Enter some Content ...(-_-)!"}) && isIconUserInput() && isIconTextArea()}</FadeIn> )
+        } 
+        else  if (CurrentNote.title === "" )
+        {  
+        return( <FadeIn>{setPlaceHolder({titlePH: "Please Enter A Title ....(-_-)"}) && isIconUserInput()}</FadeIn>)
                 
-        // } else if (CurrentNote.content === "" ){
-        // return( <FadeIn>{setPlaceHolder({contentPH: "Please Enter some Content ...(-_-)!"}) && isIconTextArea()}</FadeIn>)
-        // }
-        // else
-        // {
+        } else if (CurrentNote.content === "" ){
+        return( <FadeIn>{setPlaceHolder({contentPH: "Please Enter some Content ...(-_-)!"}) && isIconTextArea()}</FadeIn>)
+        }
+        else
+        {
             props.AddedNote(CurrentNote);
             setNote({
                 title: "",
@@ -57,7 +57,7 @@ const CreateNote = (props) => {
                 contentPH: "Take a note ..."
             })
             setSubmit(false);
-        // }
+        }
             
     }
     
