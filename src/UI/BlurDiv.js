@@ -1,9 +1,9 @@
+import React from "react";
+import styled from "styled-components";
 {/* <BlurDiv style={{ height: "100%" }} blurDegree={"3px"}>
 <StyledImage src={backgroundImage} alt="oops" />
 </BlurDiv> */}
 
-import React from "react";
-import styled from "styled-components";
 
 const StyledBlurDiv = styled.div`
   filter: blur(${(props) => props.blurDegree});

@@ -21,7 +21,10 @@ const SwitchIcion = (props) => {
     
     const changedBackGround = () => {
         const toReturn = {}
-        if(isClicked === 1){
+        if(isClicked === 1)
+        {
+            //BodyColor
+            toReturn.BodyColor = "#282828";
             //borderColor 
             toReturn.BorderColor = "#FFD700";
             //IcionColor
@@ -43,6 +46,8 @@ const SwitchIcion = (props) => {
         }
         else if(isClicked === 2) 
         {
+            //BodyColor
+            toReturn.BodyColor = "#f2f2f2";
             //borderColor 
             toReturn.BorderColor = "#f5ba13";
             //IcionColor
@@ -64,6 +69,8 @@ const SwitchIcion = (props) => {
         }
         else if (isClicked === 3)
         {
+            //BodyColor
+            toReturn.BodyColor = "#999999";
             //borderColor 
             toReturn.BorderColor = "#999999";
             //IcionColor
