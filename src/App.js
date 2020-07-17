@@ -21,26 +21,26 @@ const ContainerDiv = styled.div`
 class App extends Component {
   state = {
     Color: {
-      //BodyColorChange
-      BodyColor: "#999999",
-      //UserIconColor
-      UserIconColor: "#999999",
-      UserIconTextColor:"#F8F8F8",
+      //BodyColor
+      BodyColor : "#f2f2f2",
       //borderColor 
-      BorderColor : "#999999",
+      BorderColor : "#f5ba13",
       //IcionColor
       IconC : "#f5ba13",
-      // ModelArea
-      NotekBGC : "#fff",
-      NoteFC : "#000000",
+      //UserIconColor
+      UserIconColor: "#fff",
+      UserIconTextColor: "#999999",
+      //ModelArea
+      NotekBGC : "#282828",
+      NoteFC : "#F0F0F0",
       //userInput
-      UserInputBGC : "#fff",
-      UserInputFC : "#000000",
-      UserInputPHC : "",
+      UserInputBGC : "#282828",
+      UserInputFC : "#F0F0F0",
+      UserInputPHC : "#C8C8C8",
       //TextArea
-      TextAreaBGC : "#fff",
-      TextAreaFC : "#000000",
-      TextAreaPHC : "",
+      TextAreaBGC : "#282828",
+      TextAreaFC : "#C8C8C8",
+      TextAreaPHC : "#C8C8C8",
     }
   }
   ChangeColorsValue = (NewColor) => {

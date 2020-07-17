@@ -8,7 +8,7 @@ import FadeIn from 'react-fade-in';
 class Notes extends Component {
   
   state = {
-    notes: [],
+    notes: []
   }
 
   addNote = (note) => {
