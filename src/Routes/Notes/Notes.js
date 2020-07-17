@@ -64,7 +64,7 @@ class Notes extends Component {
 
   NoteItems = () =>{
     return  [...this.state.notes].map((eachItem,i) => {
-      return <Note 
+      return (<Note 
         RecieveColor={this.state.Color}
         key = {i}
         id= {i}
@@ -73,7 +73,7 @@ class Notes extends Component {
         onDelete={this.deleteNote}
         ChangeTitle={this.onChangeTitle}
         ChangeContent={this.onChangeContent}
-        />;
+        />)
      })
   }
   colorchanged = (NewColor) => {
@@ -84,9 +84,10 @@ class Notes extends Component {
   render() {
     return (
       <div >
+        {console.log(this.state.notes)}
           <Nav ColorChanged={this.colorchanged}/>     
           <FadeIn><CreateNote RecieveColor={this.state.Color} AddedNote={this.addNote}/>  </FadeIn> 
-          <FadeIn>{this.NoteItems()}</FadeIn>
+          {this.NoteItems()}
           <Footer/>
       </div>
     );
