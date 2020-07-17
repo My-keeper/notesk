@@ -8,7 +8,7 @@ import FadeIn from 'react-fade-in';
 class Notes extends Component {
   
   state = {
-    notes: [],
+    notes: []
   }
 
   addNote = (note) => {
@@ -64,7 +64,7 @@ class Notes extends Component {
       <div style={{ height: "100%" }} >
           <Nav ColorChanged={this.props.colorchanged} RecieveColor={this.props.Color}/>     
           <FadeIn><CreateNote RecieveColor={this.props.Color} AddedNote={this.addNote}/>  </FadeIn> 
-          <FadeIn>{this.NoteItems()}</FadeIn>
+          {this.NoteItems()} 
           <Footer/>
       </div>
     );
