@@ -9,23 +9,6 @@ class Notes extends Component {
   
   state = {
     notes: [],
-    Color: {
-      //borderColor 
-      BorderColor : "#999999",
-      //IcionColor
-      IconC : "#f5ba13",
-      // ModelArea
-      NotekBGC : "#fff",
-      NoteFC : "#000000",
-      //userInput
-      UserInputBGC : "#fff",
-      UserInputFC : "#000000",
-      UserInputPHC : "",
-      //TextArea
-      TextAreaBGC : "#fff",
-      TextAreaFC : "#000000",
-      TextAreaPHC : "",
-    },
   }
 
   addNote = (note) => {
@@ -64,8 +47,8 @@ class Notes extends Component {
 
   NoteItems = () =>{
     return  [...this.state.notes].map((eachItem,i) => {
-      return (<Note 
-        RecieveColor={this.state.Color}
+      return <Note 
+        RecieveColor={this.props.Color}
         key = {i}
         id= {i}
         title={eachItem.title} 
@@ -73,21 +56,15 @@ class Notes extends Component {
         onDelete={this.deleteNote}
         ChangeTitle={this.onChangeTitle}
         ChangeContent={this.onChangeContent}
-        />)
+        />
      })
-  }
-  colorchanged = (NewColor) => {
-    this.setState({
-      Color: NewColor
-    })
   }
   render() {
     return (
-      <div >
-        {console.log(this.state.notes)}
-          <Nav ColorChanged={this.colorchanged}/>     
-          <FadeIn><CreateNote RecieveColor={this.state.Color} AddedNote={this.addNote}/>  </FadeIn> 
-          {this.NoteItems()}
+      <div style={{ height: "100%" }} >
+          <Nav ColorChanged={this.props.colorchanged} RecieveColor={this.props.Color}/>     
+          <FadeIn><CreateNote RecieveColor={this.props.Color} AddedNote={this.addNote}/>  </FadeIn> 
+          <FadeIn>{this.NoteItems()}</FadeIn>
           <Footer/>
       </div>
     );
