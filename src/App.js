@@ -15,7 +15,6 @@ const ContainerDiv = styled.div`
   // background-color: #282828;
   background-color: ${(props) => ( props.BodyColorValue ? props.BodyColorValue : "")};
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
-  // background-color: ${(props) => ( props.BodyColor ? props.BodyColor : "")};
 `;
 
 class App extends Component {
