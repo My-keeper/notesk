@@ -43,7 +43,10 @@ const SwitchIcion = (props) => {
             toReturn.TextAreaBGC = "#fff";
             toReturn.TextAreaFC = "#000000";
             toReturn.TextAreaPHC = "";
+            //Calendar
+            toReturn.TextFC="#fff"
         }
+        //this is the meddle mode
         else if(isClicked === 2) 
         {            
             //BodyColor
@@ -66,7 +69,10 @@ const SwitchIcion = (props) => {
             toReturn.TextAreaBGC = "#999999";
             toReturn.TextAreaFC = "#F8F8F8";
             toReturn.TextAreaPHC = "#E0E0E0";
-        }
+            //Calendar
+            toReturn.TextFC="#fff"
+        } 
+        // this is in the drakest mode
         else if (isClicked === 3)
         {
             //BodyColor
@@ -88,6 +94,8 @@ const SwitchIcion = (props) => {
             //TextArea
             toReturn.TextAreaBGC = "#282828";
             toReturn.TextAreaFC = "#C8C8C8";
+            //Calendar
+            toReturn.TextFC="#282828"
         }
         return toReturn
     }
