@@ -72,7 +72,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 
-
+## For using Ssh with more than once device https://gist.github.com/jexchan/2351996
 
 _jexchan
 then, add these two keys as following
