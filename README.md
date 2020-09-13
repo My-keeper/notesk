@@ -66,3 +66,59 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+
+
+
+
+
+_jexchan
+then, add these two keys as following
+
+$ ssh-add ~/.ssh/id_rsa_activehacker
+$ ssh-add ~/.ssh/id_rsa_jexchan
+you can delete all cached keys before
+
+$ ssh-add -D
+finally, you can check your saved keys
+
+$ ssh-add -l
+Modify the ssh config
+$ cd ~/.ssh/
+$ touch config
+$ subl -a config
+Then added
+
+#activehacker account
+Host github.com-activehacker
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/id_rsa_activehacker
+
+#jexchan account
+Host github.com-jexchan
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/id_rsa_jexchan
+Clone you repo and modify your Git config
+clone your repo git clone git@github.com:activehacker/gfs.git gfs_jexchan
+
+cd gfs_jexchan and modify git config
+
+$ git config user.name "jexchan"
+$ git config user.email "jexchan@gmail.com" 
+
+$ git config user.name "activehacker"
+$ git config user.email "jexlab@gmail.com" 
+or you can have global git config $ git config --global user.name "jexchan" $ git config --global user.email "jexchan@gmail.com"
+
+then use normal flow to push your code
+
+$ git add .
+$ git commit -m "your comments"
+$ git push
+Another related article in Chinese
+
+http://4simple.github.com/docs/multipleSSHkeys/
