@@ -66,3 +66,13 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+
+
+
+## For using Ssh with more than once device https://gist.github.com/jexchan/2351996
+##if you received "Could not open a connection to your authentication agent." use 
+eval `ssh-agent -s`
+ssh-add

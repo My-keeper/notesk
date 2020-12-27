@@ -18,7 +18,6 @@ const SwitchIcion = (props) => {
         else if (isClicked === 2){isClickedChanged(3)}
         else if (isClicked === 3){isClickedChanged(1)}
     }
-    
     const changedBackGround = () => {
         const toReturn = {}
         if(isClicked === 1)
@@ -104,10 +103,10 @@ const SwitchIcion = (props) => {
             FontColorInput = {isClicked === 1 ?  "#999999": (isClicked === 2 ? "#282828" : "#fff" ) }
         >
             {isClicked === 1 ?  
-            <Brightness3 style={{fontSize:"30px",marginTop:"11"}} onClick={changeState}/> : 
+            <Brightness3 style={{fontSize:"30px", marginTop:"35%"}} onClick={changeState}/> : 
                 (isClicked === 2 ? 
-                    <Brightness2 style={{fontSize:"30px",marginTop:"11"}} onClick={changeState}/> : 
-                    <Brightness4 style={{fontSize:"30px",marginTop:"11"}} onClick={changeState}/> ) }
+                    <Brightness2 style={{fontSize:"30px",marginTop:"35%"}} onClick={changeState}/> : 
+                    <Brightness4 style={{fontSize:"30px",marginTop:"35%"}} onClick={changeState}/> ) }
         </IconStyle>
     )
 };
