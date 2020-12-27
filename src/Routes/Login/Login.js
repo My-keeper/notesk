@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import Navbar from "../../UI/NavBar";
+import Nav from "../../UI/NavBar";
+import LoginForm from "./LoginForm";
 
 const Login = (props) => {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Nav ColorChanged={props.colorchanged} RecieveColor={props.Color}/>
+      <LoginForm ColorChanged={props.colorchanged} RecieveColor={props.Color}/>
     </div>
   );
 };

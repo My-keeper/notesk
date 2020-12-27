@@ -5,6 +5,7 @@ import Notes from './Routes/Notes/Notes'
 import Weather from './API/Weather'
 import Calendar from './Routes/Calendar/Calendar' 
 import {BrowserRouter, Route,  } from "react-router-dom"
+import Login from "./Routes/Login/Login"
 
 const ContainerDiv = styled.div`
   font-family: "Montserrat", sans-serif;  
@@ -54,6 +55,10 @@ class App extends Component {
     return ( 
         <BrowserRouter>
       <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
+        <Route 
+          path="/" render={(props) =>
+          <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        />
         <Route 
           path="/notes" render={(props) =>
           <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}

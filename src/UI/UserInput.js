@@ -27,6 +27,8 @@ const InputContainer = styled.input`
   border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
   border-width: ${(props) => (props.borderWidthInput ? props.borderWidthInput : "inherit")};
   margin-right: ${(props) => (props.marginRightInput ? props.marginRightInput : "none")};
+  margin-left: ${(props) => (props.marginLeftInput ? props.marginLeftInput : "none")};
+  margin-top: ${(props) => (props.marginTopInput ? props.marginTopInput : "none")};
   &::placeholder{
     color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
   };
@@ -97,6 +99,8 @@ export default function UserInput(props) {
         borderColorInput={props.borderColorValue}
         borderWidthInput={props.borderWidthValue}
         marginRightInput={props.marginRightValue}
+        marginLeftInput={props.marginLeftValue}
+        marginTopInput={props.marginTopValue}
       />
       <div>{getInputPasswordIcon()}</div>
     </Container>
