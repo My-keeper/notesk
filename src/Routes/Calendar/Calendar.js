@@ -13,8 +13,8 @@ class CalendarList extends Component {
     return (
       <div>
         <Nav ColorChanged={this.props.colorchanged} RecieveColor={this.props.Color}/>
-        {/* <FallCallendar CalendarColor={this.props.Color}/> */}
-        <Schedule ScheduleColor={this.props.Color}/>
+        <FallCallendar CalendarColor={this.props.Color}/>
+        {/* <Schedule ScheduleColor={this.props.Color}/> */}
       </div>
     );
   }

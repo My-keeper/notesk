@@ -51,7 +51,6 @@ class App extends Component {
       Color: NewColor,
     });
   };
-
   render() {
     return (
       <ContainerDiv BodyColorValue={this.state.Color.BodyColor}>
