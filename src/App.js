@@ -5,6 +5,7 @@ import Notes from "./Routes/Notes/Notes";
 import Weather from "./API/Weather";
 import Calendar from "./Routes/Calendar/Calendar";
 import Login from "./Routes/Login/Login";
+import {Route, BrowserRouter} from "react-router-dom";
 
 const ContainerDiv = styled.div`
   font-family: "Montserrat", sans-serif;
@@ -53,13 +54,20 @@ class App extends Component {
   };
   render() {
     return (
+      <BrowserRouter>
       <ContainerDiv BodyColorValue={this.state.Color.BodyColor}>
-        {/* <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue} /> */}
-        <Calendar
+        <Route path="/" exact 
+          component={(props) => <Calendar
           Color={this.state.Color}
           colorchanged={this.ChangeColorsValue}
-        />
+        />} />
+        <Route path="/notes" exact
+          component={(props) => <Notes 
+          Color={this.state.Color} 
+          colorchanged={this.ChangeColorsValue} 
+          />} />
       </ContainerDiv>
+      </BrowserRouter>
     );
   }
 }
