@@ -56,16 +56,16 @@ class App extends Component {
         <BrowserRouter>
       <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
         <Route 
-          path="/" render={(props) =>
-          <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-        />
-        <Route 
           path="/notes" render={(props) =>
-          <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+            <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         <Route 
           path="/calendar" render={(props) =>
-          <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+            <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        />
+        <Route 
+          path="/" render={(props) =>
+          <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         </ContainerDiv>
       </BrowserRouter>  
