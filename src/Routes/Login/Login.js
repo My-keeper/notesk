@@ -5,7 +5,7 @@ import Navbar from "../../UI/NavBar";
 const Login = (props) => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
     </div>
   );
 };

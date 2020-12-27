@@ -51,12 +51,15 @@ class App extends Component {
     this.setState({
       Color: NewColor,
     });
-  };
+};
   render() {
     return (
       <BrowserRouter>
       <ContainerDiv BodyColorValue={this.state.Color.BodyColor}>
-        <Route path="/" exact 
+        <Route path="/" exact
+          component={(props) => <Login/>}
+        />
+        <Route path="/calendar" exact 
           component={(props) => <Calendar
           Color={this.state.Color}
           colorchanged={this.ChangeColorsValue}
