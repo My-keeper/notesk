@@ -52,7 +52,8 @@ class App extends Component {
   render() {
     return ( 
       <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
-        <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/> 
+      <Calendar/>
+        {/* <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>  */}
       </ContainerDiv>
         );
       }
