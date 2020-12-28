@@ -36,14 +36,23 @@ const CreateNote = (props) => {
         setSubmit(true);
         if (CurrentNote.title === "" && CurrentNote.content === "" )
         {   
-        return( <FadeIn>{setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)!", contentPH: "Please Enter some Content ...(-_-)!"}) && isIconUserInput() && isIconTextArea()}</FadeIn> )
+        return( <FadeIn>{
+            setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)!", contentPH: "Please Enter some Content ...(-_-)!"}) 
+            && isIconUserInput() && isIconTextArea()}
+        </FadeIn> )
         } 
         else  if (CurrentNote.title === "" )
         {  
-        return( <FadeIn>{setPlaceHolder({titlePH: "Please Enter A Title ....(-_-)"}) && isIconUserInput()}</FadeIn>)
+        return( <FadeIn>{
+            setPlaceHolder({titlePH: "Please Enter A Title ....(-_-)"}) 
+            && isIconUserInput()}
+        </FadeIn>)
                 
         } else if (CurrentNote.content === "" ){
-        return( <FadeIn>{setPlaceHolder({contentPH: "Please Enter some Content ...(-_-)!"}) && isIconTextArea()}</FadeIn>)
+        return( <FadeIn>{
+            setPlaceHolder({contentPH: "Please Enter some Content ...(-_-)!"}) 
+            && isIconTextArea()}
+        </FadeIn>)
         }
         else
         {
@@ -61,8 +70,14 @@ const CreateNote = (props) => {
             
     }
     
-    const isIconUserInput = () => (!isSubmit ? (CurrentNote.title === "" ? <SentimentVerySatisfied style={IconColor}/> : <Title style={IconColor}/>) : (CurrentNote.title === "" ? <SentimentVeryDissatisfied style={IconColor}/> : <Title style={IconColor}/>))
-    const isIconTextArea = () => (!isSubmit ? (CurrentNote.content === "" ? <SentimentVerySatisfied style={IconColor}/> : <ImportContacts style={IconColor}/>) : (CurrentNote.content === "" ? <SentimentVeryDissatisfied style={IconColor}/> : <ImportContacts style={IconColor}/>))
+    const isIconUserInput = () => 
+    (!isSubmit ? 
+        (CurrentNote.title === "" ? <SentimentVerySatisfied style={IconColor}/> : <Title style={IconColor}/>) 
+        : (CurrentNote.title === "" ? <SentimentVeryDissatisfied style={IconColor}/> : <Title style={IconColor}/>))
+    const isIconTextArea = () => 
+    (!isSubmit ? 
+        (CurrentNote.content === "" ? <SentimentVerySatisfied style={IconColor}/> : <ImportContacts style={IconColor}/>) 
+        : (CurrentNote.content === "" ? <SentimentVeryDissatisfied style={IconColor}/> : <ImportContacts style={IconColor}/>))
     const handlerChange = (event) => {
         const {name , value} = event.target ;
         setNote(prevNote => { return {...prevNote, [name]: value};});
