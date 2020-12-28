@@ -8,10 +8,10 @@ import FadeIn  from "react-fade-in";
 
 
 const InfoContainer = styled.div`
-    width: 455px;
+    width: 440px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 4px;
     margin-bottom: 10px;
     `
@@ -30,11 +30,11 @@ const LoginForm = (props) => {
     const LoginContainer = 
     <FadeIn><NoteContainer
     position= {"relative"}
-    width= {"40%"}
+    width= {"450px"}
     margin= {"300px auto 20px auto"}
     padding= {"15px"}
     boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
-    borderRadiusValue= {"7px"}
+    borderRadiusValue= {"20px"}
     resizeValue={"both"}
     backGroundColorValue={props.RecieveColor.NotekBGC}
     >
@@ -44,7 +44,7 @@ const LoginForm = (props) => {
             inputType={"text"}
             name="title"
             PlaceholderValue={"E-mail"}
-            widthValue={"460px"}
+            widthValue={"380px"}
             paddingVale={"4px"}
             outlineValue={"none"}
             fontSizeValue={"1.2em"}
@@ -66,7 +66,7 @@ const LoginForm = (props) => {
             inputType={"text"}
             name="title"
             PlaceholderValue={"Password"}
-            widthValue={"460px"}
+            widthValue={"380px"}
             paddingVale={"4px"}
             outlineValue={"none"}
             fontSizeValue={"1.2em"}
@@ -82,15 +82,17 @@ const LoginForm = (props) => {
             marginRightValue={"10px"}
             /></FadeIn>
         </InfoContainer>
-        <FadeIn><Button
+        <Button
             width={"120px"}
             marginBottomValue={"10px"}
             marginLeftValue={"35%"}
             fontSizeValue={"20px"}
             borderRadiusValue={"15px"}
+            borderColorValue={props.RecieveColor.BorderColor}
+            borderWidthValue="thin"
             text = {"Login"} 
             icon = {<LoginOutlined style={ButtonIconColor}/>}
-        /></FadeIn>
+        />
     </NoteContainer></FadeIn>
     
 return (

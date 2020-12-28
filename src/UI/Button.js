@@ -10,9 +10,10 @@ const StyledButton = styled.button`
   font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
   background-color: ${(props) =>
 props.disabled ? props.disabledBackgroundColor : props.backgroundColor};
-  margin: 10px;
+  border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
   margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : "none")};
   border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
+  border-width: ${(props) => (props.borderWidthInput ? props.borderWidthInput : "inherit")};
   margin-left: ${(props) => (props.marginLeft ? props.marginLeft : "none")};
   border: ${(props) => (props.border === undefined ? "none" : props.border)};
   outline: none;
@@ -34,6 +35,8 @@ const AppButton = (props) => (
     marginBottom={props.marginBottomValue}
     marginLeft={props.marginLeftValue}
     borderRadiusInput={props.borderRadiusValue}
+    borderColorInput={props.borderColorValue}
+    borderWidthInput={props.borderWidthValue}
   >
     {props.icon}
     {props.text}
