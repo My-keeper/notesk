@@ -88,7 +88,7 @@ const LoginForm = (props) => {
             marginLeftValue={"35%"}
             fontSizeValue={"20px"}
             borderRadiusValue={"15px"}
-            borderColorValue={props.RecieveColor.BorderColor}
+            backGroundColorValue={props.RecieveColor.LogSignColor}
             borderWidthValue="thin"
             text = {"Login"} 
             icon = {<LoginOutlined style={ButtonIconColor}/>}

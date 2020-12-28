@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
+  // display: flex;
   cursor: pointer;
-  height: ${(props) => (props.heightInput ? props.heightInput : null)};
-  width: ${(props) => (props.widthInput ? props.widthInput : "auto")};
   text-align: center;
-  color: ${(props) => (props.disabled ? props.disabledColor : props.color)};
+  width: ${(props) => (props.widthInput ? props.widthInput : "auto")};
+  height: ${(props) => (props.heightInput ? props.heightInput : null)};
+  color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
   font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
-  background-color: ${(props) =>
-props.disabled ? props.disabledBackgroundColor : props.backgroundColor};
+  background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
   border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
   margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : "none")};
   border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
@@ -36,7 +36,9 @@ const AppButton = (props) => (
     marginLeft={props.marginLeftValue}
     borderRadiusInput={props.borderRadiusValue}
     borderColorInput={props.borderColorValue}
+    backGroundColorInput={props.backGroundColorValue}
     borderWidthInput={props.borderWidthValue}
+    FontColorInput={props.FontColorValue}
   >
     {props.icon}
     {props.text}

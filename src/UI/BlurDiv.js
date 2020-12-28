@@ -6,7 +6,10 @@ import styled from "styled-components";
 
 
 const StyledBlurDiv = styled.div`
-  filter: blur(${(props) => props.blurDegree});
+backdrop-filter: blur(${(props) => props.blurDegree});
+position: absolute;
+height: 100%;
+width: 100%;
 `;
 
 const BlurDiv = (props) => {

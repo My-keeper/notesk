@@ -23,6 +23,8 @@ const ContainerDiv = styled.div`
 class App extends Component {
   state = {
     Color: {
+      //Login/Signup color 
+      LogSignColor : "#999999",
       //BodyColor
       BodyColor : "#f2f2f2",
       //borderColor 
