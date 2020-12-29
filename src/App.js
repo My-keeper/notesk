@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import './App.css'
-import Notes from './Routes/Notes/Notes' 
-import Weather from './API/Weather'
-import Calendar from './Routes/Calendar/Calendar' 
-import {BrowserRouter, Route,  } from "react-router-dom"
-import Login from "./Routes/Login/Login"
+import "./App.css";
+import Notes from "./Routes/Notes/Notes" ;
+import Calendar from "./Routes/Calendar/Calendar";
+import {BrowserRouter, Route,  } from "react-router-dom";
+import Login from "./Routes/Login/Login";
+import Signup from "./Routes/Signup/Signup";
+import Weather from "./API/Weather";
 
 const ContainerDiv = styled.div`
   font-family: "Montserrat", sans-serif;  
@@ -47,6 +48,7 @@ class App extends Component {
       TextAreaPHC : "#C8C8C8",
     }
   }
+   
   ChangeColorsValue = (NewColor) => {
     this.setState({
       Color: NewColor
@@ -55,20 +57,24 @@ class App extends Component {
 
   render() {
     return ( 
-        <BrowserRouter>
-      <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
-        <Route 
-          path="/notes" render={(props) =>
-            <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-        />
-        <Route 
-          path="/calendar" render={(props) =>
-            <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-        />
-        <Route 
-          path="/login" render={(props) =>
-            <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-        />
+      <BrowserRouter>
+        <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
+          <Route 
+            path="/notes" exact render={(props) =>
+              <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+          />
+          <Route 
+            path="/calendar" exact render={(props) =>
+              <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+          />
+          <Route 
+            path="/login" exact render={(props) =>
+              <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+          />
+          <Route 
+            path="/signup" exact render={(props) =>
+              <Signup Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+          />
         </ContainerDiv>
       </BrowserRouter>  
     )

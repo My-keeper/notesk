@@ -13,6 +13,7 @@ const StyledButton = styled.button`
   margin-left: ${(props) => (props.marginLeft ? props.marginLeft : "none")};
   outline: none;
   cursor: ${(props) => (!props.disabled ? "pointer" : "not-allowed")};
+  padding: ${(props) => (props.paddingInput ? props.paddingInput : "none" )};
   border: ${(props) => (props.borderInput ? props.borderInput : "none" )};
   border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
   border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
@@ -57,6 +58,7 @@ const AppButton = (props) => (
     borderInput={props.BorderValue}
     PlaceHolderColorInput={props.PlaceHolderColorValue}
     IsCalled={props.IsCalledValue}
+    paddingInput={props.paddingInputValue}
   >
     <IconStuly>
       {props.icon}
