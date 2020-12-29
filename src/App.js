@@ -5,6 +5,7 @@ import Notes from './Routes/Notes/Notes'
 import Weather from './API/Weather'
 import Calendar from './Routes/Calendar/Calendar' 
 import {BrowserRouter, Route,  } from "react-router-dom"
+import Login from "./Routes/Login/Login"
 
 const ContainerDiv = styled.div`
   font-family: "Montserrat", sans-serif;  
@@ -22,6 +23,8 @@ const ContainerDiv = styled.div`
 class App extends Component {
   state = {
     Color: {
+      //Login/Signup color 
+      LogSignColor : "#999999",
       //BodyColor
       BodyColor : "#f2f2f2",
       //borderColor 
@@ -56,11 +59,15 @@ class App extends Component {
       <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
         <Route 
           path="/notes" render={(props) =>
-          <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+            <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         <Route 
           path="/calendar" render={(props) =>
-          <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+            <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        />
+        <Route 
+          path="/login" render={(props) =>
+            <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         </ContainerDiv>
       </BrowserRouter>  

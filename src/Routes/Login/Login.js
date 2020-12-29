@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import Navbar from "../../UI/NavBar";
+import Nav from "../../UI/NavBar";
+import LoginForm from "./LoginForm";
+import BlurDiv from "../../UI/BlurDiv";
 
 const Login = (props) => {
   return (
     <div>
-      <Navbar />
+      <BlurDiv blurDegree={"1.4px"}/>
+      <Nav ColorChanged={props.colorchanged} RecieveColor={props.Color}/>
+      <LoginForm ColorChanged={props.colorchanged} RecieveColor={props.Color}/>
     </div>
   );
 };
