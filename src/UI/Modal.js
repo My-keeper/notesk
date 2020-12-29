@@ -44,7 +44,7 @@ export default function Model (props) {
             positionInput={props.position}
             BackgroundInput={props.Background}
             widthInput={props.width}
-            heightInput={props.height}
+            heightInput={props.heightValue}
             marginInput={props.margin}
             paddingInput={props.padding}
             OpacityInput={props.Opacity}

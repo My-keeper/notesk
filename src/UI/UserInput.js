@@ -15,7 +15,6 @@ const InputContainer = styled.input`
   resize: ${(props) => (props.resizeInput ? props.resizeInput : "none")};
   width: ${(props) => (props.widthInput ? props.widthInput : "100%")};
   height: ${(props) => (props.heightInput ? props.heightInput : null)};
-  border: ${(props) => (props.borderInput ? props.borderInput : "none" )};
   padding: ${(props) => (props.paddingInput ? props.paddingInput : null)};
   outline: ${(props) => (props.outlineInput ? props.outlineInput : null)};
   font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
@@ -23,10 +22,13 @@ const InputContainer = styled.input`
   box-shadow: ${(props) => (props.boxShowInput ? props.boxShowInput : "none")}; 
   background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
   color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
+  border: ${(props) => (props.borderInput ? props.borderInput : "none" )};
   border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
   border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
   border-width: ${(props) => (props.borderWidthInput ? props.borderWidthInput : "inherit")};
   margin-right: ${(props) => (props.marginRightInput ? props.marginRightInput : "none")};
+  margin-left: ${(props) => (props.marginLeftInput ? props.marginLeftInput : "none")};
+  margin-top: ${(props) => (props.marginTopInput ? props.marginTopInput : "none")};
   &::placeholder{
     color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
   };
@@ -80,7 +82,6 @@ export default function UserInput(props) {
         onClick={props.onClickValue}
         widthInput={props.widthValue}
         heightInput={props.heightValue}
-        borderInput={props.BorderValue}
         boxShowInput={props.boxShowValue}
         paddingInput={props.paddingVale}
         outlineInput={props.outlineValue}
@@ -93,10 +94,13 @@ export default function UserInput(props) {
         backGroundColorInput={props.backGroundColorValue}
         FontColorInput={props.FontColorValue}
         PlaceHolderColorInput={props.PlaceHolderColorValue}
+        borderInput={props.BorderValue}
         borderRadiusInput={props.borderRadiusValue}
         borderColorInput={props.borderColorValue}
         borderWidthInput={props.borderWidthValue}
         marginRightInput={props.marginRightValue}
+        marginLeftInput={props.marginLeftValue}
+        marginTopInput={props.marginTopValue}
       />
       <div>{getInputPasswordIcon()}</div>
     </Container>
