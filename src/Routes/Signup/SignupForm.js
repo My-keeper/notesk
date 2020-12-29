@@ -98,7 +98,6 @@ const LoginForm = (props) => {
             icon = {<LoginOutlined style={ButtonIconColor}/>}
         /></FadeIn>
     </NoteContainer></FadeIn>
-    
 return (
     <FadeIn>{LoginContainer}</FadeIn>
 )
