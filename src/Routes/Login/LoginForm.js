@@ -83,7 +83,7 @@ const LoginForm = (props) => {
             marginRightValue={"10px"}
             /></FadeIn>
         </InfoContainer>
-        <Button
+        <FadeIn><Button
             width={"120px"}
             marginBottomValue={"10px"}
             marginLeftValue={"35%"}
@@ -96,7 +96,7 @@ const LoginForm = (props) => {
             borderWidthValue="thin"
             text = {"Login"} 
             icon = {<LoginOutlined style={ButtonIconColor}/>}
-        />
+        /></FadeIn>
     </NoteContainer></FadeIn>
     
 return (

@@ -66,8 +66,8 @@ class App extends Component {
             <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         <Route 
-          path="/" render={(props) =>
-          <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+          path="/login" render={(props) =>
+            <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         </ContainerDiv>
       </BrowserRouter>  
