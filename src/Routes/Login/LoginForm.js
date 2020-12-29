@@ -14,7 +14,7 @@ const InfoContainer = styled.div`
     justify-content: flex-start;
     margin: 4px;
     margin-bottom: 10px;
-    `
+`
 
 const LoginForm = (props) => {
     const IconColor = { 
@@ -27,6 +27,7 @@ const LoginForm = (props) => {
         fontSize:"20px", 
         marginRight:"9px", 
         marginTop:"4px" }
+        
     const LoginContainer = 
     <FadeIn><NoteContainer
     position= {"relative"}
@@ -89,6 +90,9 @@ const LoginForm = (props) => {
             fontSizeValue={"20px"}
             borderRadiusValue={"15px"}
             backGroundColorValue={props.RecieveColor.LogSignColor}
+            FontColorValue={props.RecieveColor.IconC}
+            borderColorValue={props.RecieveColor.BorderColor}
+            BorderValue={"solid"}
             borderWidthValue="thin"
             text = {"Login"} 
             icon = {<LoginOutlined style={ButtonIconColor}/>}

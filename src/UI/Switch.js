@@ -50,8 +50,8 @@ const SwitchIcion = (props) => {
         //this is the meddle mode
         else if(isClicked === 2) 
         {   
-            //Login/Signup color 
-            toReturn.LogSignColor = "#F0F0F0";
+            //Login/Signup color  F0F0F0
+            toReturn.LogSignColor = "#282828";
             //BodyColor
             toReturn.BodyColor = "#282828";
             //borderColor 

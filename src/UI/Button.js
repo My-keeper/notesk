@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  // display: flex;
   cursor: pointer;
   text-align: center;
   width: ${(props) => (props.widthInput ? props.widthInput : "auto")};
@@ -10,15 +9,32 @@ const StyledButton = styled.button`
   color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
   font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
   background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
-  border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
   margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : "none")};
-  border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
-  border-width: ${(props) => (props.borderWidthInput ? props.borderWidthInput : "inherit")};
   margin-left: ${(props) => (props.marginLeft ? props.marginLeft : "none")};
-  border: ${(props) => (props.border === undefined ? "none" : props.border)};
   outline: none;
   cursor: ${(props) => (!props.disabled ? "pointer" : "not-allowed")};
+  border: ${(props) => (props.borderInput ? props.borderInput : "none" )};
+  border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
+  border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
+  border-width: ${(props) => (props.borderWidthInput ? props.borderWidthInput : "inherit")};
+  &::placeholder{
+    color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
+  };
+  &:hover { 
+    ${(props) => (props.IsCalled === "HOVER" ? borderStyling : "none")};
+  };
+  &:focus { 
+    ${(props) => (props.IsCalled === "FOCUS" ? borderStyling : "none")};
+  };
 `;
+const IconStuly= styled.div`
+  margin-top: 2px;
+  margin-bottom: 2px;
+`
+const borderStyling = {
+  border: "1px solid rgb(245,186,19, 0.382)",
+  boxShadow: "0 0 2px 2px rgb(245,186,19, 0.382)",
+}
 
 const AppButton = (props) => (
   <StyledButton
@@ -27,21 +43,25 @@ const AppButton = (props) => (
     color={props.color}
     fontSizeInput={props.fontSizeValue}
     backgroundColor={props.backgroundColor}
-    border={props.border}
     onClick={props.onClick}
     disabled={props.disabled}
     disabledColor={props.disabledColor}
     disabledBackgroundColor={props.disabledBackgroundColor}
     marginBottom={props.marginBottomValue}
     marginLeft={props.marginLeftValue}
+    FontColorInput={props.FontColorValue}
+    backGroundColorInput={props.backGroundColorValue}
     borderRadiusInput={props.borderRadiusValue}
     borderColorInput={props.borderColorValue}
-    backGroundColorInput={props.backGroundColorValue}
     borderWidthInput={props.borderWidthValue}
-    FontColorInput={props.FontColorValue}
+    borderInput={props.BorderValue}
+    PlaceHolderColorInput={props.PlaceHolderColorValue}
+    IsCalled={props.IsCalledValue}
   >
-    {props.icon}
-    {props.text}
+    <IconStuly>
+      {props.icon}
+      {props.text}
+    </IconStuly>
   </StyledButton>
 );
 
