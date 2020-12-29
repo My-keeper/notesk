@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MailOutlined, KeyOutlined, LoginOutlined} from "@ant-design/icons";
+import { MailOutlined, KeyOutlined, LoginOutlined, UserAddOutlined} from "@ant-design/icons";
 import UserInput from "../../UI/UserInput";
 import NoteContainer from '../../UI/Modal';
 import Button from "../../UI/Button";
@@ -16,30 +16,43 @@ const InfoContainer = styled.div`
     margin-bottom: 10px;
 `
 
-const LoginForm = (props) => {
+const SignupForm = (props) => {
     const IconColor = { 
         color : props.RecieveColor.IconC, 
         fontSize:"25px", 
         marginRight:"9px", 
         marginTop:"4px" }
+    
     const ButtonIconColor = { 
         color : props.RecieveColor.IconC, 
         fontSize:"20px", 
         marginRight:"9px", 
         marginTop:"4px" }
-        
-    const LoginContainer = 
-    <FadeIn><NoteContainer
-    position= {"relative"}
-    width= {"450px"}
-    margin= {"300px auto 20px auto"}
-    padding= {"15px"}
-    boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
-    borderRadiusValue= {"20px"}
-    resizeValue={"both"}
-    backGroundColorValue={props.RecieveColor.NotekBGC}
-    >
-        <InfoContainer>
+    
+    const Username = <InfoContainer>
+            <FadeIn><UserAddOutlined style={IconColor}/></FadeIn>
+            <FadeIn><UserInput 
+            inputType={"text"}
+            name="title"
+            PlaceholderValue={"UserNamr"}
+            widthValue={"380px"}
+            paddingVale={"4px"}
+            outlineValue={"none"}
+            fontSizeValue={"1.2em"}
+            fontFamilyValue={"inherit"}
+            IsCalledValue={"FOCUS"} 
+            borderRadiusValue= {"7px"}
+            backGroundColorValue={props.RecieveColor.UserInputBGC}
+            FontColorValue={props.RecieveColor.UserInputFC}
+            PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+            borderColorValue={props.RecieveColor.BorderColor}
+            BorderValue={"solid"}
+            borderWidthValue="thin"
+            marginRightValue={"10px"}
+            /></FadeIn>
+        </InfoContainer>
+    
+    const Email = <InfoContainer>
             <FadeIn><MailOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
             inputType={"text"}
@@ -61,7 +74,8 @@ const LoginForm = (props) => {
             marginRightValue={"10px"}
             /></FadeIn>
         </InfoContainer>
-        <InfoContainer>
+    
+    const PassWord = <InfoContainer>
             <FadeIn><KeyOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
             inputType={"text"}
@@ -83,7 +97,32 @@ const LoginForm = (props) => {
             marginRightValue={"10px"}
             /></FadeIn>
         </InfoContainer>
-        <FadeIn><Button
+
+    const ConfirmPassWord = <InfoContainer>
+            <FadeIn><KeyOutlined style={IconColor}/></FadeIn>
+            <FadeIn><UserInput 
+            inputType={"text"}
+            name="title"
+            PlaceholderValue={"Confirm PassWord"}
+            widthValue={"380px"}
+            paddingVale={"4px"}
+            outlineValue={"none"}
+            fontSizeValue={"1.2em"}
+            fontFamilyValue={"inherit"}
+            IsCalledValue={"FOCUS"} 
+            borderRadiusValue= {"7px"}
+            backGroundColorValue={props.RecieveColor.UserInputBGC}
+            FontColorValue={props.RecieveColor.UserInputFC}
+            PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+            borderColorValue={props.RecieveColor.BorderColor}
+            BorderValue={"solid"}
+            borderWidthValue="thin"
+            marginRightValue={"10px"}
+            /></FadeIn>
+        </InfoContainer>    
+    
+    const SignupButton = <FadeIn>
+            <Button
             width={"120px"}
             marginBottomValue={"10px"}
             marginLeftValue={"35%"}
@@ -92,15 +131,32 @@ const LoginForm = (props) => {
             backGroundColorValue={props.RecieveColor.LogSignColor}
             FontColorValue={props.RecieveColor.IconC}
             borderColorValue={props.RecieveColor.BorderColor}
-            BorderValue={"solid"}
+            BorderValue="solid"
             borderWidthValue="thin"
-            text = {"Login"} 
+            paddingInputValue="2px"
+            text = {"SignUp"} 
             icon = {<LoginOutlined style={ButtonIconColor}/>}
-        /></FadeIn>
-    </NoteContainer></FadeIn>
+            />
+        </FadeIn>
+
 return (
-    <FadeIn>{LoginContainer}</FadeIn>
+    <FadeIn><NoteContainer
+    position= {"relative"}
+    width= {"450px"}
+    margin= {"300px auto 20px auto"}
+    padding= {"15px"}
+    boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
+    borderRadiusValue= {"20px"}
+    resizeValue={"both"}
+    backGroundColorValue={props.RecieveColor.NotekBGC}
+    >
+        {Username}
+        {Email}
+        {PassWord}
+        {ConfirmPassWord}
+        {SignupButton}
+    </NoteContainer></FadeIn>
 )
 };
 
-export default LoginForm;
+export default SignupForm; 
