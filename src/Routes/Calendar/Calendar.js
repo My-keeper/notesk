@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Nav from "../../UI/NavBar";
-import Schedule from './Schedule'
+import Schedule from './ScheduleForm'
 import CalendarForm from "./CalenderForm";
 import styled from "styled-components";
 

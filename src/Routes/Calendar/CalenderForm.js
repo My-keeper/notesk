@@ -4,6 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from "./event-utils";
 
 const CalenderContainer = styled.div`
@@ -14,11 +15,14 @@ const CalenderContainer = styled.div`
 `
 
 const CalendarForm= (props) => {
-
+    //this is the method that will be called once the data is clicked 
+    const handleDateClick = (arg) => { // bind with an arrow function
+        alert(arg.dateStr)
+      }
     return(
         <CalenderContainer>
             <FullCalendar
-                plugins={[timeGridPlugin,dayGridPlugin, interactionPlugin]}
+                plugins={[timeGridPlugin,dayGridPlugin, interactionPlugin, listPlugin]}
                 headerToolbar={{
                     left: "prev,next today",
                     center: "title",
@@ -31,6 +35,13 @@ const CalendarForm= (props) => {
                 dayMaxEvents={true}
                 height="850px"
                 contentHeight="800px"
+                //we can pass here the event that will be created and we need title and date
+                events={[
+                    { title: 'event 1', date: '2021-02-01' },
+                    { title: 'event 2', date: '2021-01-01' }
+                  ]}
+                //if clicked then it shall show the inofrmation inside the data that is setected 
+                dateClick={handleDateClick}
                 //this is an event that is created as for demonstration
                 // initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
                 //to create you own event
