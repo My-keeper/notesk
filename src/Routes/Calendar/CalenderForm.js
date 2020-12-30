@@ -7,9 +7,10 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { INITIAL_EVENTS, createEventId } from "./event-utils";
 
 const CalenderContainer = styled.div`
-  padding: "10px",
-  color: props.CalendarColor.TextFC,
-  fontWeight: "bold",
+    margin: 10px;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+    min-height: 100%;
 `
 
 const CalendarForm= (props) => {
@@ -17,7 +18,7 @@ const CalendarForm= (props) => {
     return(
         <CalenderContainer>
             <FullCalendar
-                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                plugins={[timeGridPlugin,dayGridPlugin, interactionPlugin]}
                 headerToolbar={{
                     left: "prev,next today",
                     center: "title",

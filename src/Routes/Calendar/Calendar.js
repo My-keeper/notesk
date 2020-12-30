@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import Nav from "../../UI/NavBar";
 import Schedule from './Schedule'
 import CalendarForm from "./CalenderForm";
+import styled from "styled-components";
+
 
 class CalendarList extends Component {
+  
   state = {
     SelectedDate: true,
     currentEvents: [],
@@ -13,7 +16,7 @@ class CalendarList extends Component {
     return (
       <div>
         <Nav ColorChanged={this.props.colorchanged} RecieveColor={this.props.Color}/>
-        <CalendarForm CalendarColor={this.props.Color}/>
+        <CalendarForm CalendarColor={this.props.Color} />
         {/* <Schedule ScheduleColor={this.props.Color}/> */}
       </div>
     );
