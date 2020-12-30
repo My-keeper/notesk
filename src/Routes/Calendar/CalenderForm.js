@@ -6,6 +6,8 @@ import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from "./event-utils";
+import allLocales from '@fullcalendar/core/locales-all';
+import { Calendar } from '@fullcalendar/core';
 
 const CalenderContainer = styled.div`
     margin: 10px;
@@ -19,6 +21,8 @@ const CalendarForm= (props) => {
     const handleDateClick = (arg) => { // bind with an arrow function
         alert(arg.dateStr)
       }
+    //this option for the languafes 
+    const initialLocaleCode = 'ko'
     return(
         <CalenderContainer>
             <FullCalendar
@@ -28,6 +32,9 @@ const CalendarForm= (props) => {
                     center: "title",
                     right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
                 }}
+                //this is for the languages option 
+                locale= {initialLocaleCode}
+                // setOption={allLocales}
                 initialView="dayGridMonth"
                 editable={true} //to edit the info
                 selectable={true} //to enable selection
