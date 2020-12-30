@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MailOutlined, KeyOutlined, LoginOutlined, UserAddOutlined} from "@ant-design/icons";
+import { MailOutlined, KeyOutlined, LoginOutlined, UserAddOutlined, HomeOutlined} from "@ant-design/icons";
 import UserInput from "../../UI/UserInput";
 import NoteContainer from '../../UI/Modal';
 import Button from "../../UI/Button";
@@ -11,6 +11,7 @@ const InfoContainer = styled.div`
     width: 440px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start;
     margin: 4px;
     margin-bottom: 10px;
@@ -119,25 +120,117 @@ const SignupForm = (props) => {
             borderWidthValue="thin"
             marginRightValue={"10px"}
             /></FadeIn>
-        </InfoContainer>    
-    
-    const SignupButton = <FadeIn>
-            <Button
-            width={"120px"}
-            marginBottomValue={"10px"}
-            marginLeftValue={"35%"}
-            fontSizeValue={"20px"}
-            borderRadiusValue={"15px"}
-            backGroundColorValue={props.RecieveColor.LogSignColor}
-            FontColorValue={props.RecieveColor.IconC}
-            borderColorValue={props.RecieveColor.BorderColor}
-            BorderValue="solid"
-            borderWidthValue="thin"
-            paddingInputValue="2px"
-            text = {"SignUp"} 
-            icon = {<LoginOutlined style={ButtonIconColor}/>}
-            />
-        </FadeIn>
+        </InfoContainer>   
+
+const Country =<FadeIn><UserInput 
+        inputType={"text"}
+        name="title"
+        PlaceholderValue={"Country"}
+        widthValue={"184px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.RecieveColor.UserInputBGC}
+        FontColorValue={props.RecieveColor.UserInputFC}
+        PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+        borderColorValue={props.RecieveColor.BorderColor}
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"10px"}
+    /></FadeIn>
+
+const Province = <FadeIn><UserInput 
+        inputType={"text"}
+        name="title"
+        PlaceholderValue={"Province"}
+        widthValue={"184px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.RecieveColor.UserInputBGC}
+        FontColorValue={props.RecieveColor.UserInputFC}
+        PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+        borderColorValue={props.RecieveColor.BorderColor}
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"10px"}
+    /></FadeIn>
+
+const City = <FadeIn><UserInput 
+        inputType={"text"}
+        name="title"
+        PlaceholderValue={"City"}
+        widthValue={"184px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.RecieveColor.UserInputBGC}
+        FontColorValue={props.RecieveColor.UserInputFC}
+        PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+        borderColorValue={props.RecieveColor.BorderColor}
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"10px"}
+        marginTopValue={"10px"}
+        marginLeftValue={"34px"}
+    /></FadeIn>
+
+const ZipCode = <FadeIn><UserInput 
+        inputType={"text"}
+        name="title"
+        PlaceholderValue={"ZipCode"}
+        widthValue={"184px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.RecieveColor.UserInputBGC}
+        FontColorValue={props.RecieveColor.UserInputFC}
+        PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+        borderColorValue={props.RecieveColor.BorderColor}
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginTopValue={"10px"}
+        marginRightValue={"10px"}
+    /></FadeIn>
+
+const Location = <InfoContainer>
+        <FadeIn><HomeOutlined style={IconColor}/></FadeIn>
+        {Country}
+        {Province}
+        {City}
+        {ZipCode}
+    </InfoContainer>
+
+const SignupButton = <FadeIn>
+        <Button
+        width={"120px"}
+        marginBottomValue={"10px"}
+        marginTopValue={"5px"}
+        marginLeftValue={"40%"}
+        fontSizeValue={"20px"}
+        borderRadiusValue={"15px"}
+        backGroundColorValue={props.RecieveColor.LogSignColor}
+        FontColorValue={props.RecieveColor.IconC}
+        borderColorValue={props.RecieveColor.BorderColor}
+        BorderValue="solid"
+        borderWidthValue="thin"
+        paddingInputValue="3px"
+        text = {"SignUp"} 
+        icon = {<LoginOutlined style={ButtonIconColor}/>}
+        />
+    </FadeIn>
 
 return (
     <FadeIn><NoteContainer
@@ -154,6 +247,7 @@ return (
         {Email}
         {PassWord}
         {ConfirmPassWord}
+        {Location}
         {SignupButton}
     </NoteContainer></FadeIn>
 )

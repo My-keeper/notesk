@@ -42,10 +42,13 @@ const CalendarForm= (props) => {
                 dayMaxEvents={true}
                 height="850px"
                 contentHeight="800px"
+                //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it 
+                timeZone= 'canada/nl'
                 //we can pass here the event that will be created and we need title and date
+                //we can as well add onclick once the event is created then the info will show somehting
                 events={[
-                    { title: 'event 1', date: '2021-02-01' },
-                    { title: 'event 2', date: '2021-01-01' }
+                    { id: 'a', title: 'event 1', start: '2020-12-31T01:30:00Z', end: '2020-12-31T13:30:00Z',description: 'Lecture'},
+                    { id: 'b', title: 'event 2', date: '2021-01-01' }
                   ]}
                 //if clicked then it shall show the inofrmation inside the data that is setected 
                 dateClick={handleDateClick}
