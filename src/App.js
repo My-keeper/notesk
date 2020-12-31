@@ -24,6 +24,8 @@ const ContainerDiv = styled.div`
 class App extends Component {
   state = {
     Color: {
+      //Calender Coloe 
+      CalendarColorTable: "#C8C8C8",
       //Login/Signup color 
       LogSignColor : "#999999",
       //BodyColor
@@ -60,6 +62,10 @@ class App extends Component {
       <BrowserRouter>
         <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
         <Route 
+          path="/calendar" exact render={(props) =>
+            <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        />
+        <Route 
           path="/login" exact render={(props) =>
             <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
@@ -70,10 +76,6 @@ class App extends Component {
           <Route 
             path="/notes" exact render={(props) =>
               <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-          />
-          <Route 
-            path="/" exact render={(props) =>
-              <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
           />
         </ContainerDiv>
       </BrowserRouter>  

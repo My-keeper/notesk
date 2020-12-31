@@ -6,7 +6,6 @@ import CreateNote from './CreateNote/CreateNote'
 import FadeIn from 'react-fade-in';
 
 class Notes extends Component {
-  
   state = {
     notes: []
   }
