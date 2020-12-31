@@ -23,7 +23,7 @@ const CalendarForm= (props) => {
         alert(arg.dateStr)
       }
     //this option for the languafes 
-    const initialLocaleCode = ' '
+    const initialLocaleCode = 'En'
     
     const CalenderTable = <FullCalendar
         plugins={[timeGridPlugin,dayGridPlugin, interactionPlugin, listPlugin]}
