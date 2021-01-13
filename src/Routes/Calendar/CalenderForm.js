@@ -22,6 +22,12 @@ const CalendarForm= (props) => {
     const handleDateClick = (arg) => { // bind with an arrow function
         alert(arg.dateStr)
       }
+    //testing if we can add an event from here 
+    const EventTest = [
+        {id: 'a', title: 'event 1', start: '2020-12-31T12:30:00Z', end: '2020-12-31T13:30:00Z',description: 'Lecture'},
+        {id: 'b', title: 'event 3', start: '2021-01-12T12:30:00Z', end: '2021-01-14T13:30:00Z',description: 'Lecture',backgroundColor: 'blue'},
+        { id: 'b', title: 'event 2', date: '2021-01-01', display: 'background', backgroundColor: 'black'}
+    ]
     //this option for the languafes 
     const initialLocaleCode = 'En'
     
@@ -51,10 +57,12 @@ const CalendarForm= (props) => {
         timeZone= 'canada/nl'
         //we can pass here the event that will be created and we need title and date
         //we can as well add onclick once the event is created then the info will show somehting
-        events={[
-            { id: 'a', title: 'event 1', start: '2020-12-31T12:30:00Z', end: '2020-12-31T13:30:00Z',description: 'Lecture'},
-            { id: 'b', title: 'event 2', date: '2021-01-01', display: 'background', backgroundColor: 'black'}
-        ]}
+        events={EventTest
+        //     [
+        //     { },
+        //     { id: 'b', title: 'event 2', date: '2021-01-01', display: 'background', backgroundColor: 'black'}
+        // ]
+    }
         //if clicked then it shall show the inofrmation inside the data that is setected 
         dateClick={handleDateClick}
         //this is an event that is created as for demonstration

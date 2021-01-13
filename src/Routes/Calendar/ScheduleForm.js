@@ -4,6 +4,7 @@ import NoteContainer from '../../UI/Modal';
 import UserInput from '../../UI/UserInput'
 import FadeIn  from 'react-fade-in';
 import { MailOutlined } from "@ant-design/icons";
+import { SentimentVeryDissatisfied, Title, ImportContacts ,SentimentVerySatisfied} from '@material-ui/icons';
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -16,7 +17,7 @@ const InfoContainer = styled.div`
 
 const Schedule = (props) => {
     //for the titile 
-    const [title, ChangeTitle] = useState("")
+    // const [title, ChangeTitle] = useState("")
 
     const IconColor = { 
         // color : props.RecieveColor.IconC, 
@@ -24,32 +25,56 @@ const Schedule = (props) => {
         marginRight:"9px", 
         marginTop:"4px" }
 
-    const Email = <InfoContainer>
-        asd
-            <FadeIn><MailOutlined style={IconColor}/></FadeIn>
+    const title = <InfoContainer>
+            <FadeIn><Title style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
             inputType={"text"}
             name="title"
-            PlaceholderValue={"E-mail"}
+            PlaceholderValue={"Title"}
             widthValue={"380px"}
             paddingVale={"4px"}
             outlineValue={"none"}
             fontSizeValue={"1.2em"}
             fontFamilyValue={"inherit"}
             IsCalledValue={"FOCUS"} 
-            // borderRadiusValue= {"7px"}
-            // backGroundColorValue={props.RecieveColor.UserInputBGC}
-            // FontColorValue={props.RecieveColor.UserInputFC}
-            // PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
-            // borderColorValue={props.RecieveColor.BorderColor}
+            borderRadiusValue= {"7px"}
+            backGroundColorValue={props.ScheduleColor.UserInputBGC}
+            FontColorValue={props.ScheduleColor.UserInputFC}
+            PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
+            borderColorValue={props.ScheduleColor.BorderColor}
             // InputValue = {RecievedTitle}
             // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
             BorderValue={"solid"}
             borderWidthValue="thin"
             marginRightValue={"10px"}
             /></FadeIn>
-        </InfoContainer>
-    
+    </InfoContainer>
+
+    const tidescriptiontle = <InfoContainer>
+        <FadeIn><ImportContacts style={IconColor}/></FadeIn>
+        <FadeIn><UserInput 
+        inputType={"text"}
+        name="title"
+        PlaceholderValue={"description"}
+        widthValue={"380px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.ScheduleColor.UserInputBGC}
+        FontColorValue={props.ScheduleColor.UserInputFC}
+        PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
+        borderColorValue={props.ScheduleColor.BorderColor}
+        // InputValue = {RecievedTitle}
+        // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"10px"}
+        /></FadeIn>
+    </InfoContainer>
+
     return(
         <FadeIn>
             <NoteContainer
@@ -63,7 +88,8 @@ const Schedule = (props) => {
                 backGroundColorValue={props.ScheduleColor.NotekBGC}
                 FontColorValue={props.ScheduleColor.NoteFC}
                 >
-                    {Email}
+                    {title}
+                    {tidescriptiontle}
             </NoteContainer>
         </FadeIn>
     )
