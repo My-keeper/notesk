@@ -11,6 +11,7 @@ const borderStyling = {
 }
 
 const InputContainer = styled.input`
+  icon: ${<EyeOutlined/>};
   display: flex;
   resize: ${(props) => (props.resizeInput ? props.resizeInput : "none")};
   width: ${(props) => (props.widthInput ? props.widthInput : "100%")};
@@ -101,7 +102,10 @@ export default function UserInput(props) {
         marginRightInput={props.marginRightValue}
         marginLeftInput={props.marginLeftValue}
         marginTopInput={props.marginTopValue}
-      />
+        
+      >
+        
+      </InputContainer>
       <div>{getInputPasswordIcon()}</div>
     </Container>
   );
