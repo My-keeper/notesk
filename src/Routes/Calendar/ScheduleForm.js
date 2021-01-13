@@ -45,8 +45,8 @@ const Schedule = (props) => {
         color : props.ScheduleColor.IconC, 
         fontSize:"20px", 
         marginRight:"20px", 
-        marginTop:"8px",
-        marginLeft:"-34px",
+        marginTop:"7px",
+        marginLeft:"-35px",
         position:"sticky"
     }
 
@@ -133,11 +133,11 @@ const Schedule = (props) => {
         <FadeIn><CalendarOutlined style={IconColor}/>  </FadeIn>
         <DateContainer>
             <EachateContainer>
-                <span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span>
+                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
                 {CalendarContainer()}
             </EachateContainer>
             <EachateContainer>
-                <span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "24px"}}>To</span>
+                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "24px"}}>To</span></FadeIn>
                 {CalendarContainer()}
             </EachateContainer>
         </DateContainer>
