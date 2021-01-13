@@ -133,11 +133,11 @@ const Schedule = (props) => {
         <FadeIn><CalendarOutlined style={IconColor}/>  </FadeIn>
         <DateContainer>
             <EachateContainer>
-                <span style={{ padding: "4px" , fontSize: "1.2em"}}>From</span>
+                <span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span>
                 {CalendarContainer()}
             </EachateContainer>
             <EachateContainer>
-                <span style={{ padding: "4px" , fontSize: "1.2em"}}>To</span>
+                <span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "24px"}}>To</span>
                 {CalendarContainer()}
             </EachateContainer>
         </DateContainer>

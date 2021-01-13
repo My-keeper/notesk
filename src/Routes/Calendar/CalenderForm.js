@@ -7,6 +7,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from "./event-utils";
 import allLocales from '@fullcalendar/core/locales-all';
+import TodayIcon from '@material-ui/icons/Today';
 
 const CalenderContainer = styled.div`
     margin: 10px;
@@ -30,11 +31,11 @@ const CalendarForm= (props) => {
     ]
     //this option for the languafes 
     const initialLocaleCode = 'En'
-    
+    const Today = ["today" , <TodayIcon/>]
     const CalenderTable = <FullCalendar
         plugins={[timeGridPlugin,dayGridPlugin, interactionPlugin, listPlugin]}
         headerToolbar={{
-            left: "prev,next today",
+            left: 'prev,next $/{Today}',
             center: "title",
             right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
         }}
