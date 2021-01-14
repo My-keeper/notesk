@@ -5,6 +5,9 @@ import UserInput from '../../UI/UserInput'
 import FadeIn  from 'react-fade-in';
 import { CalendarOutlined , DownOutlined} from "@ant-design/icons";
 import { SentimentVeryDissatisfied, Title, ImportContacts ,SentimentVerySatisfied} from '@material-ui/icons';
+import SelectData from '../../UI/Select';
+
+//input for URL, description and if it is gonna happen again user
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -75,7 +78,7 @@ const Schedule = (props) => {
             /></FadeIn>
     </InfoContainer>
 
-    const tidescriptiontle = <InfoContainer>
+    const titleDescription = <InfoContainer>
         <FadeIn><ImportContacts style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
         inputType={"text"}
@@ -99,34 +102,36 @@ const Schedule = (props) => {
         marginRightValue={"10px"}
         /></FadeIn>
     </InfoContainer>
-
-    const  CalenderValue = (inputvalue) => <FadeIn><UserInput 
-    inputType={"text"}
-    name="title"
-    PlaceholderValue={inputvalue}
-    widthValue={"97px"}
-    paddingVale={"4px"}
-    outlineValue={"none"}
-    fontSizeValue={"1.2em"}
-    fontFamilyValue={"inherit"}
-    IsCalledValue={"FOCUS"} 
-    borderRadiusValue= {"7px"}
-    backGroundColorValue={props.ScheduleColor.UserInputBGC}
-    FontColorValue={props.ScheduleColor.UserInputFC}
-    PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
-    borderColorValue={props.ScheduleColor.BorderColor}
-    // InputValue = {RecievedTitle}
-    // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
-    BorderValue={"solid"}
-    borderWidthValue="thin"
-    marginRightValue={"10px"}
-    ><DownOutlined  style={DropDownArrow}/></UserInput></FadeIn>
+    
+    
+    const  CalenderValue = (PlaceHolderValue, InputCalenderValue ) => <FadeIn><SelectData 
+        inputType={"text"}
+        name="title"
+        PlaceholderValue={PlaceHolderValue}
+        widthValue={"97px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.ScheduleColor.UserInputBGC}
+        FontColorValue={props.ScheduleColor.UserInputFC}
+        PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
+        borderColorValue={props.ScheduleColor.BorderColor}
+        // InputValue = {RecievedTitle}
+        // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"10px"}
+        ><option value={InputCalenderValue}>{InputCalenderValue}</option>
+    </SelectData></FadeIn>
     
     const CalendarContainer = (value) => { 
         return value= [
-            [CalenderValue(" Year") ,<DownOutlined  style={DropDownArrow}/>], 
-            [CalenderValue(" Month") ,<DownOutlined  style={DropDownArrow}/>], 
-            [CalenderValue(" Day") ,<DownOutlined  style={DropDownArrow}/>]
+            CalenderValue(" Year", "Orgain") ,
+            CalenderValue(" Month"),
+            CalenderValue(" Day")
         ]}
     
     const calendar = <InfoContainer>
@@ -157,8 +162,10 @@ const Schedule = (props) => {
                 FontColorValue={props.ScheduleColor.NoteFC}
                 >
                     {title}
-                    {tidescriptiontle}
+                    {titleDescription}
                     {calendar}
+                    
+            
             </NoteContainer>
         </FadeIn>
     )
