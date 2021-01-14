@@ -25,9 +25,17 @@ const CalendarForm= (props) => {
       }
     //testing if we can add an event from here 
     const EventTest = [
-        {id: 'a', title: 'event 1', start: '2020-12-31T12:30:00Z', end: '2020-12-31T13:30:00Z',description: 'Lecture'},
+        {id: 'a', title: 'Testoing for more ', start: '2020-12-31T12:30:00Z',textColor:props.RecieveColor.CalendarColorTable, end: '2020-12-31T13:30:00Z',description: 'lets play some game s'},
         {id: 'b', title: 'event 3', start: '2021-01-12T12:30:00Z', end: '2021-01-14T13:30:00Z',description: 'Lecture',backgroundColor: 'blue'},
-        { id: 'b', title: 'event 2', date: '2021-01-01', display: 'background', backgroundColor: 'black'}
+        { id: 'b', title: 'event 2', date: '2021-01-01', display: 'background',  format: 'ics',backgroundColor: 'black'},
+        {groupId: 'blueEvents', // recurrent events in this group move together
+      daysOfWeek: [ '4' ],
+      startTime: '10:45:00',
+        endTime: '12:45:00'},
+        {      daysOfWeek: [ '3' ], // these recurrent events move separately
+        startTime: '11:00:00',
+        endTime: '11:30:00',
+        color: 'red'}
     ]
     //this option for the languafes 
     const initialLocaleCode = 'En'
