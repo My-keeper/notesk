@@ -34,29 +34,28 @@ const DateContainer = styled.div`
 `
 
 const Schedule = (props) => {
-    //for the titile 
-    // const [title, ChangeTitle] = useState("")
+
+    
     //this is for the years from this year 
     const years = ["year","2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040"]
-    const year = (new Date()).getFullYear();
-    // console.log(year)
-    // const years = Array.from(new Array(20),( val, index) => index + year);
-    // console.log(years)
     const YearContainer = (ReturnedValue) =>{
         return ReturnedValue = [years.map((year, index) => {
             return <option key={`year${index}`} value={"year"}>{year}</option>
         })]
     }
+
     //this is for the months in a year 
     const NumberOfMonths = ['Months','1','2','3','4','5','6','7','8','9','10','11','12']
     const MonthContainer = (ReturnedValue) =>{
         return ReturnedValue = [NumberOfMonths.map((month, index) => <option key={`month${index}`} value={month}>{month}</option>)]
     }
+
     //this is for the days in a Month 
     const NumberOfDays = ['Days','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
     const DayContainer = (ReturnedValue) =>{
         return ReturnedValue = [NumberOfDays.map((day, index) => <option key={`day${index}`} value={day}>{day}</option>)]
     }
+
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
         fontSize:"25px", 
@@ -210,6 +209,7 @@ const Schedule = (props) => {
             </EachateContainer>
         </DateContainer>
     </InfoContainer>
+
 
     return(
         <FadeIn>
