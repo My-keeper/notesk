@@ -3,7 +3,7 @@ import styled from "styled-components";
 import NoteContainer from '../../UI/Modal';
 import UserInput from '../../UI/UserInput'
 import FadeIn  from 'react-fade-in';
-import { CalendarOutlined , DownOutlined} from "@ant-design/icons";
+import { CalendarOutlined , ClockCircleFilled} from "@ant-design/icons";
 import { SentimentVeryDissatisfied, Title, ImportContacts ,SentimentVerySatisfied} from '@material-ui/icons';
 import SelectData from '../../UI/Select';
 
@@ -23,14 +23,12 @@ const EachateContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin: 4px;
-    margin-bottom: 10px;
 `
 const DateContainer = styled.div`
     width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-bottom: 10px;
 `
 
 const Schedule = (props) => {
@@ -54,6 +52,18 @@ const Schedule = (props) => {
     const NumberOfDays = ['Days','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
     const DayContainer = (ReturnedValue) =>{
         return ReturnedValue = [NumberOfDays.map((day, index) => <option key={`day${index}`} value={day}>{day}</option>)]
+    }
+
+    //this is for the hour input 
+    const Hours = ['Hour','1','2','3','4','5','6','7','8','9','10','11','12']
+    const DailyHours = (ReturnedValue) =>{
+        return ReturnedValue = [Hours.map((Hour, index) => <option key={`Hour${index}`} value={Hour}>{Hour}</option>)]
+    }
+
+    //this is for the hour input 
+    const Minuts = ['Minuts','5','10','15','20','25','30','35','40','45','50','55']
+    const DailyMinut = (ReturnedValue) =>{
+        return ReturnedValue = [Minuts.map((Minut, index) => <option key={`Minut${index}`} value={Minut}>{Minut}</option>)]
     }
 
     const IconColor = { 
@@ -210,8 +220,96 @@ const Schedule = (props) => {
         </DateContainer>
     </InfoContainer>
 
+    const  HourValue =<SelectData 
+        inputType={"text"}
+        name="title"
+        // PlaceholderValue={PlaceHolderValue}
+        widthValue={"105px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.ScheduleColor.UserInputBGC}
+        FontColorValue={props.ScheduleColor.UserInputFC}
+        PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
+        borderColorValue={props.ScheduleColor.BorderColor}
+        // InputValue = {RecievedTitle}
+        // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"15px"}
+    >
+        {DailyHours()}
+    </SelectData>
 
-    return(
+    const  MintValue =<SelectData 
+        inputType={"text"}
+        name="title"
+        // PlaceholderValue={PlaceHolderValue}
+        widthValue={"105px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.ScheduleColor.UserInputBGC}
+        FontColorValue={props.ScheduleColor.UserInputFC}
+        PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
+        borderColorValue={props.ScheduleColor.BorderColor}
+        // InputValue = {RecievedTitle}
+        // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"15px"}
+        >
+        {DailyMinut()}
+    </SelectData>
+
+    const  DayLightValue =<SelectData 
+        inputType={"text"}
+        name="title"
+        // PlaceholderValue={PlaceHolderValue}
+        widthValue={"105px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.ScheduleColor.UserInputBGC}
+        FontColorValue={props.ScheduleColor.UserInputFC}
+        PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
+        borderColorValue={props.ScheduleColor.BorderColor}
+        // InputValue = {RecievedTitle}
+        // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"15px"}
+        >
+        <option key={`am`} value="Am"> Am </option>
+        <option key={`Pm`} value="PM"> PM </option>
+        </SelectData>
+        
+    const TimeContainer = (value) => { return value= [ HourValue, MintValue, DayLightValue  ]}
+
+    const time =<InfoContainer>
+        <FadeIn><ClockCircleFilled style={IconColor}/>  </FadeIn>
+        <DateContainer>
+            <EachateContainer>
+                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>StartTime</span></FadeIn>
+                {TimeContainer()}
+            </EachateContainer>
+            <EachateContainer>
+                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>EndTime</span></FadeIn>
+                {TimeContainer()}
+            </EachateContainer>
+        </DateContainer>
+    </InfoContainer>
+   
+   return(
         <FadeIn>
             <NoteContainer
                 position= {"relative"}
@@ -227,6 +325,7 @@ const Schedule = (props) => {
                     {title}
                     {titleDescription}
                     {calendar}
+                    {time}
             </NoteContainer>
         </FadeIn>
     )
