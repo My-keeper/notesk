@@ -29,7 +29,7 @@ const CalendarForm= (props) => {
         {id: 'b', title: 'event 3', start: '2021-01-12T12:30:00Z', end: '2021-01-14T13:30:00Z',description: 'Lecture',backgroundColor: 'blue'},
         { id: 'b', title: 'event 2', date: '2021-01-01', display: 'background',  format: 'ics',backgroundColor: 'black'},
         {groupId: 'blueEvents', // recurrent events in this group move together
-      daysOfWeek: [ '4' ],
+      daysOfWeek: [ '4' ], //https://fullcalendar.io/docs/recurring-events
       startTime: '10:45:00',
         endTime: '12:45:00'},
         {      daysOfWeek: [ '3' ], // these recurrent events move separately

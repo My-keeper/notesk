@@ -63,8 +63,7 @@ const SelectData = (props) => {
         borderWidthInput={props.borderWidthValue}
         marginRightInput={props.marginRightValue}
       >
-          {props.icon}
-          {props.text}
+          {props.children}
       </SelectContainer>
     );
   };
