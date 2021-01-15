@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Nav from "../../UI/NavBar";
 import Schedule from './ScheduleForm'
 import CalendarForm from "./CalenderForm";
-
+import Dat from './DateSelected'
 
 class CalendarList extends Component {
   
@@ -17,6 +17,7 @@ class CalendarList extends Component {
         <Nav ColorChanged={this.props.colorchanged} RecieveColor={this.props.Color}/>
         {/* <Calen darForm RecieveColor={this.props.Color}/> */}
         <Schedule ScheduleColor={this.props.Color}/>
+        {/* <Dat/> */}
       </div>
     );
   }
