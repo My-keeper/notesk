@@ -7,7 +7,7 @@ import { CalendarOutlined , ClockCircleFilled} from "@ant-design/icons";
 import { SentimentVeryDissatisfied, Title, ImportContacts ,SentimentVerySatisfied} from '@material-ui/icons';
 import SelectData from '../../UI/Select';
 import DateSelected from './DateSelected';
-import TimeSelected from './TimeSelected';
+import TimeSelected from './test';
 
 //input for URL, description and if it is gonna happen again user
 
@@ -52,11 +52,36 @@ const Schedule = (props) => {
     }
 
     const title = <InfoContainer>
-            <FadeIn><Title style={IconColor}/></FadeIn>
+                <FadeIn><Title style={IconColor}/></FadeIn>
+                <FadeIn><UserInput 
+                inputType={"text"}
+                name="title"
+                PlaceholderValue={" Title"}
+                widthValue={"402px"}
+                paddingVale={"4px"}
+                outlineValue={"none"}
+                fontSizeValue={"1.2em"}
+                fontFamilyValue={"inherit"}
+                IsCalledValue={"FOCUS"} 
+                borderRadiusValue= {"7px"}
+                backGroundColorValue={props.ScheduleColor.UserInputBGC}
+                FontColorValue={props.ScheduleColor.UserInputFC}
+                PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
+                borderColorValue={props.ScheduleColor.BorderColor}
+                // InputValue = {RecievedTitle}
+                // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+                BorderValue={"solid"}
+                borderWidthValue="thin"
+                marginRightValue={"10px"}
+                /></FadeIn>
+        </InfoContainer>
+
+    const titleDescription = <InfoContainer>
+            <FadeIn><ImportContacts style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
             inputType={"text"}
             name="title"
-            PlaceholderValue={" Title"}
+            PlaceholderValue={" Description"}
             widthValue={"402px"}
             paddingVale={"4px"}
             outlineValue={"none"}
@@ -74,35 +99,8 @@ const Schedule = (props) => {
             borderWidthValue="thin"
             marginRightValue={"10px"}
             /></FadeIn>
-    </InfoContainer>
-
-    const titleDescription = <InfoContainer>
-        <FadeIn><ImportContacts style={IconColor}/></FadeIn>
-        <FadeIn><UserInput 
-        inputType={"text"}
-        name="title"
-        PlaceholderValue={" Description"}
-        widthValue={"402px"}
-        paddingVale={"4px"}
-        outlineValue={"none"}
-        fontSizeValue={"1.2em"}
-        fontFamilyValue={"inherit"}
-        IsCalledValue={"FOCUS"} 
-        borderRadiusValue= {"7px"}
-        backGroundColorValue={props.ScheduleColor.UserInputBGC}
-        FontColorValue={props.ScheduleColor.UserInputFC}
-        PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
-        borderColorValue={props.ScheduleColor.BorderColor}
-        // InputValue = {RecievedTitle}
-        // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
-        BorderValue={"solid"}
-        borderWidthValue="thin"
-        marginRightValue={"10px"}
-        /></FadeIn>
-    </InfoContainer>
+        </InfoContainer>
     
-   
-
     const calendar = <InfoContainer>
             <FadeIn><CalendarOutlined style={IconColor}/>  </FadeIn>
             <DateContainer>
@@ -118,18 +116,18 @@ const Schedule = (props) => {
         </InfoContainer>
 
     const time =<InfoContainer>
-        <FadeIn><ClockCircleFilled style={IconColor}/>  </FadeIn>
-        <DateContainer>
-            <EachateContainer>
-                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>Start</span></FadeIn>
-                <TimeSelected RecievedColor={props.ScheduleColor}/>
-            </EachateContainer>
-            <EachateContainer>
-                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>End</span></FadeIn>
-                <TimeSelected RecievedColor={props.ScheduleColor}/>
-            </EachateContainer>
-        </DateContainer>
-    </InfoContainer>
+            <FadeIn><ClockCircleFilled style={IconColor}/>  </FadeIn>
+            <DateContainer>
+                <EachateContainer>
+                    <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>Start</span></FadeIn>
+                    <TimeSelected RecievedColor={props.ScheduleColor}/>
+                </EachateContainer>
+                <EachateContainer>
+                    <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>End</span></FadeIn>
+                    <TimeSelected RecievedColor={props.ScheduleColor}/>
+                </EachateContainer>
+            </DateContainer>
+        </InfoContainer>
    
    return(
         <FadeIn>
