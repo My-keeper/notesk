@@ -24,11 +24,12 @@ const TwelveHourSystemValue = () => {
 
    //this for either AM or PM
    const TwelveHourSystem = ['AM','PM']
+   const PHValue ="TwelveHourSystemValue"
    const DayDivided =(
        [TwelveHourSystem.map((DayTime, index) => 
-           <option key={`TwelveHourSystem${index}`} value={DayTime.value}>{DayTime}</option>)]
+           <option PlaceHolderValue="TwelveHourSystemValue" key={`TwelveHourSystem${index}`} value={DayTime.value}>{DayTime}</option>)]
        )
    
       return(DayDivided)
   }
-export  {HourValue, MinutsValue, TwelveHourSystemValue};
+export {HourValue, MinutsValue, TwelveHourSystemValue};
