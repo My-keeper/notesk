@@ -1,50 +1,102 @@
+
 import React, { useState } from "react";
 import FadeIn  from 'react-fade-in';
 import SelectData from '../../UI/Select';
+import {YearsValue, NumberOfMonthsValue, NumberOfDaysValue} from './TimeSelected'
 
-//this is for the years from this year 
-const years = ["year","2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040"]
-const YearContainer = (
-    [years.map((year) => { return <option  value={"year"}>{year}</option> })]
-    )
-
-//this is for the months in a year 
-const NumberOfMonths = ['Months','1','2','3','4','5','6','7','8','9','10','11','12']
-const MonthContainer = (
-    [NumberOfMonths.map((month) => <option value={month}>{month}</option>)]
-    )
-
-//this is for the days in a Month 
-const NumberOfDays = ['Days','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
-const DayContainer = (
-    [NumberOfDays.map((days ) => <option value={days}>{days}</option>)]
-    )
-
-const Date = [YearContainer, MonthContainer, DayContainer]
-            
 const DateSelected = (props) => {
-    return Date.map((Inputvalue) => {
-        return <FadeIn><SelectData 
-            inputType={"text"}
-            name="title"
-            widthValue={"105px"}
-            paddingVale={"4px"}
-            outlineValue={"none"}
-            fontSizeValue={"1.2em"}
-            fontFamilyValue={"inherit"}
-            IsCalledValue={"FOCUS"} 
-            borderRadiusValue= {"7px"}
-            backGroundColorValue={ props.RecievedColor.UserInputBGC}
-            FontColorValue={props.RecievedColor.UserInputFC}
-            PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-            borderColorValue={props.RecievedColor.BorderColor} 
-            BorderValue={"solid"}
-            borderWidthValue="thin"
-            marginRightValue={"15px"}
+    
+   const [YearsValueInput, ChangeYearsValueInput] = useState("")
+   const handleYears = (e) =>{
+       console.log(e.target.value)
+       ChangeYearsValueInput(e.target.value );
+   }
+   const Years = <FadeIn><SelectData 
+       key={`YearsValueInput${YearsValueInput}`}
+       inputType={"text"}
+       name="title"
+       widthValue={"105px"}
+       paddingVale={"4px"}
+       outlineValue={"none"}
+       fontSizeValue={"1.2em"}
+       fontFamilyValue={"inherit"}
+       IsCalledValue={"FOCUS"} 
+       borderRadiusValue= {"7px"}
+       backGroundColorValue={ props.RecievedColor.UserInputBGC}
+       FontColorValue={props.RecievedColor.UserInputFC}
+       PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
+       borderColorValue={props.RecievedColor.BorderColor} 
+       BorderValue={"solid"}
+       borderWidthValue={"thin"}
+       marginRightValue={"15px"}
+       onchangeValue = {handleYears}
+       InputValue = {YearsValueInput}
+       >
+       {<YearsValue/>}
+    </SelectData></FadeIn>
+
+    const [MonthsValueInput, ChangeMonthsValue] = useState("")
+    const handleMonths = (e) =>{
+        console.log(e.target.value)
+        ChangeMonthsValue(e.target.value );
+    }
+    const Months = <FadeIn><SelectData 
+        key={`MonthsValueInput${MonthsValueInput}`}
+        inputType={"text"}
+        name="title"
+        widthValue={"105px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={ props.RecievedColor.UserInputBGC}
+        FontColorValue={props.RecievedColor.UserInputFC}
+        PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
+        borderColorValue={props.RecievedColor.BorderColor} 
+        BorderValue={"solid"}
+        borderWidthValue={"thin"}
+        marginRightValue={"15px"}
+        onchangeValue = {handleMonths}
+        InputValue = {MonthsValueInput}
         >
-            {Inputvalue}
-        </SelectData></FadeIn>
-    })
+        {<NumberOfMonthsValue/>}
+    </SelectData></FadeIn>
+    
+    const [DayValueInput, ChangeDayValue] = useState("")
+    const handleDays = (e) =>{
+        console.log(e.target.value)
+        ChangeDayValue(e.target.value );
+    }
+    const Days = <FadeIn><SelectData 
+        key={`DayValueInput${DayValueInput}`}
+        inputType={"text"}
+        name="title"
+        widthValue={"105px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={ props.RecievedColor.UserInputBGC}
+        FontColorValue={props.RecievedColor.UserInputFC}
+        PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
+        borderColorValue={props.RecievedColor.BorderColor} 
+        BorderValue={"solid"}
+        borderWidthValue={"thin"}
+        marginRightValue={"15px"}
+        onchangeValue = {handleDays}
+        InputValue = {DayValueInput}
+        >
+        {<NumberOfDaysValue/>}
+    </SelectData></FadeIn>
+    
+    return (
+        [Years, Months, Days]
+        )
+
 }
 
 export default DateSelected;

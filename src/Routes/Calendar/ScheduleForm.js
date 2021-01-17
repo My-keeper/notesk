@@ -4,10 +4,9 @@ import NoteContainer from '../../UI/Modal';
 import UserInput from '../../UI/UserInput'
 import FadeIn  from 'react-fade-in';
 import { CalendarOutlined , ClockCircleFilled} from "@ant-design/icons";
-import { SentimentVeryDissatisfied, Title, ImportContacts ,SentimentVerySatisfied} from '@material-ui/icons';
-import SelectData from '../../UI/Select';
+import { Title, ImportContacts } from '@material-ui/icons';
 import DateSelected from './DateSelected';
-import TimeSelected from './test';
+import TimeSelected from './OptionsForm';
 
 //input for URL, description and if it is gonna happen again user
 
@@ -144,7 +143,7 @@ const Schedule = (props) => {
                 >
                     {title}
                     {titleDescription} 
-                    {calendar}
+                    {calendar} 
                     {time}
             </NoteContainer>
         </FadeIn>
