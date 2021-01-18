@@ -1,99 +1,61 @@
 import React, { useState } from "react";
-import FadeIn  from 'react-fade-in';
-import SelectData from '../../UI/Select';
-import {HourValue, MinutsValue, TwelveHourSystemValue} from './TimeSelected'
 
-const OptionForm = (props) => {
-    
-    const [HourValueInput, ChangeHourValue] = useState("")
-    const handle = (e) =>{
-        console.log(e.target.value)
-        ChangeHourValue(e.target.value );
-    }
-    const Hours = <FadeIn><SelectData 
-        key={`HourValueInput${HourValueInput}`}
-        inputType={"text"}
-        name="title"
-        widthValue={"105px"}
-        paddingVale={"4px"}
-        outlineValue={"none"}
-        fontSizeValue={"1.2em"}
-        fontFamilyValue={"inherit"}
-        IsCalledValue={"FOCUS"} 
-        borderRadiusValue= {"7px"}
-        backGroundColorValue={ props.RecievedColor.UserInputBGC}
-        FontColorValue={props.RecievedColor.UserInputFC}
-        PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-        borderColorValue={props.RecievedColor.BorderColor} 
-        BorderValue={"solid"}
-        borderWidthValue={"thin"}
-        marginRightValue={"15px"}
-        onchangeValue = {handle}
-        InputValue = {HourValueInput}
-        >
-        {<HourValue/>}
-    </SelectData></FadeIn>
+//this is for the hour input 
+const HourValue = () => {
 
-    const [MinutsValueInput, ChangeMinutsValue] = useState("")
-    const handleMinuts = (e) =>{
-        console.log(e.target.value)
-        ChangeMinutsValue(e.target.value );
-    }
-    const Minuts = <FadeIn><SelectData 
-        key={`MinutsValueInput${MinutsValueInput}`}
-        inputType={"text"}
-        name="title"
-        widthValue={"105px"}
-        paddingVale={"4px"}
-        outlineValue={"none"}
-        fontSizeValue={"1.2em"}
-        fontFamilyValue={"inherit"}
-        IsCalledValue={"FOCUS"} 
-        borderRadiusValue= {"7px"}
-        backGroundColorValue={ props.RecievedColor.UserInputBGC}
-        FontColorValue={props.RecievedColor.UserInputFC}
-        PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-        borderColorValue={props.RecievedColor.BorderColor} 
-        BorderValue={"solid"}
-        borderWidthValue={"thin"}
-        marginRightValue={"15px"}
-        onchangeValue = {handleMinuts}
-        InputValue = {MinutsValueInput}
-        >
-        {<MinutsValue/>}
-    </SelectData></FadeIn>
-
-    const [DaytimeValueInput, ChangeDaytimeValue] = useState("")
-    const handleDaytime = (e) =>{
-        console.log(e.target.value)
-        ChangeDaytimeValue(e.target.value );
-    }
-    const DayTime = <FadeIn><SelectData 
-        key={`DaytimeValueInput${DaytimeValueInput}`}
-        inputType={"text"}
-        name="title"
-        widthValue={"105px"}
-        paddingVale={"4px"}
-        outlineValue={"none"}
-        fontSizeValue={"1.2em"}
-        fontFamilyValue={"inherit"}
-        IsCalledValue={"FOCUS"} 
-        borderRadiusValue= {"7px"}
-        backGroundColorValue={ props.RecievedColor.UserInputBGC}
-        FontColorValue={props.RecievedColor.UserInputFC}
-        PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-        borderColorValue={props.RecievedColor.BorderColor} 
-        BorderValue={"solid"}
-        borderWidthValue={"thin"}
-        marginRightValue={"15px"}
-        onchangeValue = {handleDaytime}
-        InputValue = {DaytimeValueInput}
-        >
-        {<TwelveHourSystemValue/>}
-    </SelectData></FadeIn>
-
-    return (
-        [Hours, Minuts, DayTime]
+    const Hours = ['Hour','1','2','3','4','5','6','7','8','9','10','11','12']
+    const DailyHours = (
+        [Hours.map((Hour, index) => 
+            <option  key={`Hour${index}`} value={Hour}>{Hour}</option>)]
         )
+    return(DailyHours)
 }
-export default OptionForm;
+const MinutsValue = () => {
+
+    //this is for the hour input 
+    const Minuts = ['Minuts','5','10','15','20','25','30','35','40','45','50','55']
+    const DailyMinut =(
+        [Minuts.map((Minut, index) => 
+            <option key={`Minut${index}`} value={Minut}>{Minut}</option>)]
+        )
+    return(DailyMinut)
+}
+const TwelveHourSystemValue = () => {
+
+    //this for either AM or PM
+    const TwelveHourSystem = ['..','AM','PM']
+    const DayDivided =(
+        [TwelveHourSystem.map((DayTime, index) => 
+            <option key={`TwelveHourSystem${index}`} value={DayTime}>{DayTime}</option>)]
+        )
+    return(DayDivided)
+}
+const NumberOfYearsValue = () => {
+
+   //this is for the years from this year 
+    const NumberOfYears = [ 'year','2021', '2022', '2023', '2024','2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034','2035', '2036', '2037', '2038', '2039','2040']
+    const YearContainer = (
+        [NumberOfYears.map((year, index) => <option  key={`NumberOfYearsValue${index}`} value={year}>{year}</option>)]
+        )
+    return(YearContainer)
+}
+const NumberOfMonthsValue = () => {
+
+    //this is for the months in a year 
+    const NumberOfMonths = ['Months','1','2','3','4','5','6','7','8','9','10','11','12']
+    const MonthContainer = (
+        [NumberOfMonths.map((month, index) => <option key={`NumberOfMonths${index}`}  value={month}>{month}</option>)]
+        )
+    return(MonthContainer)
+}
+const NumberOfDaysValue = () => {
+
+    //this is for the days in a Month 
+    const NumberOfDays = ['Days','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
+    const DayContainer = (
+        [NumberOfDays.map((days,index ) => <option key={`NumberOfDays${index}`} value={days}>{days}</option>)]
+        )
+    return(DayContainer)
+}
+
+export {HourValue, MinutsValue, TwelveHourSystemValue, NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue};

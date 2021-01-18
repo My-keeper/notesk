@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import FadeIn  from 'react-fade-in';
 import SelectData from '../../UI/Select';
-import {YearsValue, NumberOfMonthsValue, NumberOfDaysValue} from './TimeSelected'
+import {NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue} from './OptionsForm'
 
 const DateSelected = (props) => {
     
@@ -32,7 +32,7 @@ const DateSelected = (props) => {
        onchangeValue = {handleYears}
        InputValue = {YearsValueInput}
        >
-       {<YearsValue/>}
+       {<NumberOfYearsValue/>}
     </SelectData></FadeIn>
 
     const [MonthsValueInput, ChangeMonthsValue] = useState("")
@@ -94,7 +94,7 @@ const DateSelected = (props) => {
     </SelectData></FadeIn>
     
     return (
-        [Years, Months, Days]
+        [ Years, Months, Days]
         )
 
 }

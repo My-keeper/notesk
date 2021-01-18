@@ -6,7 +6,7 @@ import FadeIn  from 'react-fade-in';
 import { CalendarOutlined , ClockCircleFilled} from "@ant-design/icons";
 import { Title, ImportContacts } from '@material-ui/icons';
 import DateSelected from './DateSelected';
-import TimeSelected from './OptionsForm';
+import TimeSelected from './TimeSelected';
 
 //input for URL, description and if it is gonna happen again user
 
