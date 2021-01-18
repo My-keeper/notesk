@@ -3,10 +3,11 @@ import styled from "styled-components";
 import NoteContainer from '../../UI/Modal';
 import UserInput from '../../UI/UserInput'
 import FadeIn  from 'react-fade-in';
-import { CalendarOutlined , ClockCircleFilled} from "@ant-design/icons";
+import { CalendarOutlined , ClockCircleFilled, LinkOutlined } from "@ant-design/icons";
 import { Title, ImportContacts } from '@material-ui/icons';
 import DateSelected from './DateSelected';
 import TimeSelected from './TimeSelected';
+ 
 
 //input for URL, description and if it is gonna happen again user
 
@@ -39,15 +40,6 @@ const Schedule = (props) => {
         fontSize:"25px", 
         marginRight:"9px", 
         marginTop:"4px" 
-    }
-
-    const DropDownArrow = {
-        color : props.ScheduleColor.IconC, 
-        fontSize:"20px", 
-        marginRight:"20px", 
-        marginTop:"7px",
-        marginLeft:"-35px",
-        position:"sticky"
     }
 
     const title = <InfoContainer>
@@ -100,6 +92,31 @@ const Schedule = (props) => {
             /></FadeIn>
         </InfoContainer>
     
+    const AttachedLinkDescription = <InfoContainer>
+        <FadeIn><LinkOutlined style={IconColor}/></FadeIn>
+        <FadeIn><UserInput 
+        inputType={"text"}
+        name="Url"
+        PlaceholderValue={" Attached Link For Description"}
+        widthValue={"402px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.ScheduleColor.UserInputBGC}
+        FontColorValue={props.ScheduleColor.UserInputFC}
+        PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
+        borderColorValue={props.ScheduleColor.BorderColor}
+        // InputValue = {RecievedTitle}
+        // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"10px"}
+        /></FadeIn>
+    </InfoContainer>
+
     const calendar = <InfoContainer>
             <FadeIn><CalendarOutlined style={IconColor}/>  </FadeIn>
             <DateContainer>
@@ -128,6 +145,8 @@ const Schedule = (props) => {
             </DateContainer>
         </InfoContainer>
    
+    // const SubmitButton = 
+
    return(
         <FadeIn>
             <NoteContainer
@@ -142,7 +161,8 @@ const Schedule = (props) => {
                 FontColorValue={props.ScheduleColor.NoteFC}
                 >
                     {title}
-                    {titleDescription} 
+                    {titleDescription}
+                    {AttachedLinkDescription} 
                     {calendar} 
                     {time}
             </NoteContainer>
