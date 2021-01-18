@@ -4,11 +4,13 @@ import NoteContainer from '../../../UI/Modal';
 import UserInput from '../../../UI/UserInput'
 import FadeIn  from 'react-fade-in';
 import { CalendarOutlined , ClockCircleFilled, LinkOutlined, LoginOutlined } from "@ant-design/icons";
-import { Title, ImportContacts, RepeatIcon } from '@material-ui/icons';
+import { Title, ImportContacts } from '@material-ui/icons';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
+import RepeatIcon from '@material-ui/icons/Repeat';
 import DateSelected from './DropDown/DateSelected';
 import TimeSelected from './DropDown/TimeSelected';
 import ColorSelected from './DropDown/ColorSelected';
+import RepeatDaySelected from './DropDown/RepeatedDaysSelected';
 import Button from '../../../UI/Button';
 
 const InfoContainer = styled.div`
@@ -65,9 +67,7 @@ const Schedule = (props) => {
                 backGroundColorValue={props.ScheduleColor.UserInputBGC}
                 FontColorValue={props.ScheduleColor.UserInputFC}
                 PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
-                borderColorValue={props.ScheduleColor.BorderColor}
-                // InputValue = {RecievedTitle}
-                // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+                borderColorValue={props.ScheduleColor.BorderColor}  
                 BorderValue={"solid"}
                 borderWidthValue="thin"
                 marginRightValue={"10px"}
@@ -90,9 +90,7 @@ const Schedule = (props) => {
             backGroundColorValue={props.ScheduleColor.UserInputBGC}
             FontColorValue={props.ScheduleColor.UserInputFC}
             PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
-            borderColorValue={props.ScheduleColor.BorderColor}
-            // InputValue = {RecievedTitle}
-            // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+            borderColorValue={props.ScheduleColor.BorderColor}  
             BorderValue={"solid"}
             borderWidthValue="thin"
             marginRightValue={"10px"}
@@ -115,9 +113,7 @@ const Schedule = (props) => {
         backGroundColorValue={props.ScheduleColor.UserInputBGC}
         FontColorValue={props.ScheduleColor.UserInputFC}
         PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
-        borderColorValue={props.ScheduleColor.BorderColor}
-        // InputValue = {RecievedTitle}
-        // onchangeValue={e => ChangeRecievedTitle(e.target.value)}    
+        borderColorValue={props.ScheduleColor.BorderColor}    
         BorderValue={"solid"}
         borderWidthValue="thin"
         marginRightValue={"10px"}
@@ -157,6 +153,10 @@ const Schedule = (props) => {
             <FadeIn><ColorSelected RecievedColor={props.ScheduleColor}/></FadeIn>
     </InfoContainer>
 
+    const RepeatedDays = <InfoContainer>
+            <FadeIn><RepeatIcon style={IconColor}/></FadeIn>
+            <FadeIn><RepeatDaySelected RecievedColor={props.ScheduleColor}/></FadeIn>
+    </InfoContainer>
     const SubmitButton = <FadeIn><Button
         width={"120px"}
         marginBottomValue={"10px"}
@@ -196,6 +196,7 @@ const Schedule = (props) => {
                     {calendar} 
                     {time}
                     {Color}
+                    {/* {RepeatedDays} */}
                     {SubmitButton}
             </NoteContainer>
         </FadeIn>

@@ -67,10 +67,19 @@ const ColorOptionsValue = () => {
     const ColorChoose = ['Choose Color','BlueViolet','Black','CornflowerBlue','DarkMagenta','DimGrey',
                             'DodgerBlue','Fuchsia','MidnightBlue','Purple','Salmon']
     const ColorContainer = (
-        [ColorChoose.map((days,index ) => <option key={`ColorChoose${index}`} value={days}>{days}</option>)]
+        [ColorChoose.map((Colors,index ) => <option key={`ColorChoose${index}`} value={Colors}>{Colors}</option>)]
         )
     return(ColorContainer)
 }
+// const RepeatDayValue = () => {
+
+//     //this is for the days in a Month 
+//     const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+//     const ChosenDayContainer = (
+//         [ChoosenDay.map((daysChosen,index ) => <option key={`ChoosenDay${index}`} value={daysChosen}>{daysChosen}</option>)]
+//         )
+//     return(ChosenDayContainer)
+// }
 export {HourValue, MinutsValue, TwelveHourSystemValue, 
         NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue, 
         ColorOptionsValue};
