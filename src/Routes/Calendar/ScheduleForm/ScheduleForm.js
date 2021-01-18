@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import NoteContainer from '../../UI/Modal';
-import UserInput from '../../UI/UserInput'
+import NoteContainer from '../../../UI/Modal';
+import UserInput from '../../../UI/UserInput'
 import FadeIn  from 'react-fade-in';
-import { CalendarOutlined , ClockCircleFilled, LinkOutlined } from "@ant-design/icons";
-import { Title, ImportContacts } from '@material-ui/icons';
-import DateSelected from './DateSelected';
-import TimeSelected from './TimeSelected';
- 
-
-//input for URL, description and if it is gonna happen again user
+import { CalendarOutlined , ClockCircleFilled, LinkOutlined, LoginOutlined } from "@ant-design/icons";
+import { Title, ImportContacts, RepeatIcon } from '@material-ui/icons';
+import ColorLensIcon from '@material-ui/icons/ColorLens';
+import DateSelected from './DropDown/DateSelected';
+import TimeSelected from './DropDown/TimeSelected';
+import ColorSelected from './DropDown/ColorSelected';
+import Button from '../../../UI/Button';
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -35,13 +35,20 @@ const DateContainer = styled.div`
 
 const Schedule = (props) => {
 
+    const [IsShown, setIsShown] = useState(false)
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
         fontSize:"25px", 
         marginRight:"9px", 
         marginTop:"4px" 
     }
-
+    const ButtonIconColor = { 
+        color : props.ScheduleColor.IconC, 
+        fontSize:"20px", 
+        marginRight:"9px", 
+        marginTop:"4px" 
+    }
+    
     const title = <InfoContainer>
                 <FadeIn><Title style={IconColor}/></FadeIn>
                 <FadeIn><UserInput 
@@ -144,8 +151,31 @@ const Schedule = (props) => {
                 </EachateContainer>
             </DateContainer>
         </InfoContainer>
-   
-    // const SubmitButton = 
+
+    const Color = <InfoContainer>
+            <FadeIn><ColorLensIcon style={{fontSize:"32px",color : props.ScheduleColor.IconC,marginRight:"9px",marginTop:"4px"}}/></FadeIn>
+            <FadeIn><ColorSelected RecievedColor={props.ScheduleColor}/></FadeIn>
+    </InfoContainer>
+
+    const SubmitButton = <FadeIn><Button
+        width={"120px"}
+        marginBottomValue={"10px"}
+        marginLeftValue={"35%"}
+        fontSizeValue={"20px"}
+        borderRadiusValue={"15px"}
+        backGroundColorValue={IsShown ? props.ScheduleColor.LogSignColor : props.ScheduleColor.UserInputBGC }
+        FontColorValue={props.ScheduleColor.IconC}
+        borderColorValue={props.ScheduleColor.BorderColor}
+        IsCalledValue={"hover"} 
+        BorderValue="solid"
+        borderWidthValue="thin"
+        paddingInputValue="2px"
+        onMouseEnter={() => setIsShown(true)}
+        onMouseLeave={() => setIsShown(false)}
+        text = {"Submit"} 
+        icon = {<LoginOutlined style={ButtonIconColor}/>}
+        />
+        </FadeIn>
 
    return(
         <FadeIn>
@@ -165,6 +195,8 @@ const Schedule = (props) => {
                     {AttachedLinkDescription} 
                     {calendar} 
                     {time}
+                    {Color}
+                    {SubmitButton}
             </NoteContainer>
         </FadeIn>
     )

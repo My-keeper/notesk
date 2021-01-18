@@ -61,6 +61,8 @@ const AppButton = (props) => (
     IsCalled={props.IsCalledValue}
     paddingInput={props.paddingInputValue}
     marginTopInput={props.marginTopValue}
+    onMouseEnter={props.onMouseEnter}
+    onMouseLeave={props.onMouseLeave}
   >
     <IconStuly>
       {props.icon}

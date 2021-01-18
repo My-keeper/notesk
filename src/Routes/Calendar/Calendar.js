@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Nav from "../../UI/NavBar";
-import Schedule from './ScheduleForm'
+import Schedule from './ScheduleForm/ScheduleForm'
 import CalendarForm from "./CalenderForm";
-import Dat from './DateSelected'
+import Dat from './ScheduleForm/DropDown/DateSelected'
 
 class CalendarList extends Component {
   
@@ -15,9 +15,8 @@ class CalendarList extends Component {
     return (
       <div>
         <Nav ColorChanged={this.props.colorchanged} RecieveColor={this.props.Color}/>
-        {/* <Calen darForm RecieveColor={this.props.Color}/> */}
+        {/* <CalendarForm RecieveColor={this.props.Color}/> */}
         <Schedule ScheduleColor={this.props.Color}/>
-        {/* <Dat/> */}
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 //this is for the hour input 
 const HourValue = () => {
@@ -33,7 +33,9 @@ const TwelveHourSystemValue = () => {
 const NumberOfYearsValue = () => {
 
    //this is for the years from this year 
-    const NumberOfYears = [ 'year','2021', '2022', '2023', '2024','2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034','2035', '2036', '2037', '2038', '2039','2040']
+    const NumberOfYears = [ 'year','2021', '2022', '2023', '2024','2025', '2026', 
+                            '2027', '2028', '2029', '2030', '2031', '2032','2033', 
+                            '2034','2035', '2036', '2037', '2038', '2039','2040']
     const YearContainer = (
         [NumberOfYears.map((year, index) => <option  key={`NumberOfYearsValue${index}`} value={year}>{year}</option>)]
         )
@@ -51,11 +53,24 @@ const NumberOfMonthsValue = () => {
 const NumberOfDaysValue = () => {
 
     //this is for the days in a Month 
-    const NumberOfDays = ['Days','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
+    const NumberOfDays = ['Days','1','2','3','4','5','6','7','8','9','10',
+                        '11','12','13','14','15','16','17','18','19','20',
+                        '21','22','23','24','25','26','27','28','29','30','31']
     const DayContainer = (
         [NumberOfDays.map((days,index ) => <option key={`NumberOfDays${index}`} value={days}>{days}</option>)]
         )
     return(DayContainer)
 }
+const ColorOptionsValue = () => {
 
-export {HourValue, MinutsValue, TwelveHourSystemValue, NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue};
+    //this is for the days in a Month 
+    const ColorChoose = ['Choose Color','BlueViolet','Black','CornflowerBlue','DarkMagenta','DimGrey',
+                            'DodgerBlue','Fuchsia','MidnightBlue','Purple','Salmon']
+    const ColorContainer = (
+        [ColorChoose.map((days,index ) => <option key={`ColorChoose${index}`} value={days}>{days}</option>)]
+        )
+    return(ColorContainer)
+}
+export {HourValue, MinutsValue, TwelveHourSystemValue, 
+        NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue, 
+        ColorOptionsValue};

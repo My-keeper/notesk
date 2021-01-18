@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FadeIn  from 'react-fade-in';
-import SelectData from '../../UI/Select';
-import {HourValue, MinutsValue, TwelveHourSystemValue} from './OptionsForm'
+import SelectData from '../../../../UI/Select';
+import {HourValue, MinutsValue, TwelveHourSystemValue} from './OptionsForm';
 
 const OptionForm = (props) => {
     

@@ -29,13 +29,15 @@ const CalendarForm= (props) => {
         {id: 'b', title: 'event 3', start: '2021-01-12T12:30:00Z', end: '2021-01-14T13:30:00Z',description: 'Lecture',backgroundColor: 'blue'},
         { id: 'b', title: 'event 2', date: '2021-01-01', display: 'background',  format: 'ics',backgroundColor: 'black'},
         {groupId: 'blueEvents', // recurrent events in this group move together
-      daysOfWeek: [ '4' ], //https://fullcalendar.io/docs/recurring-events
+      daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
       startTime: '10:45:00',
-        endTime: '12:45:00'},
-        {      daysOfWeek: [ '3' ], // these recurrent events move separately
-        startTime: '11:00:00',
-        endTime: '11:30:00',
-        color: 'red'}
+        endTime: '12:45:00',
+        color: 'DodgerBlue'
+    },
+        // {      daysOfWeek: [ '3' ], // these recurrent events move separately
+        // startTime: '11:00:00',
+        // endTime: '11:30:00',
+        // color: 'red'}
     ]
     //this option for the languafes 
     const initialLocaleCode = 'En'
@@ -43,7 +45,7 @@ const CalendarForm= (props) => {
     const CalenderTable = <FullCalendar
         plugins={[timeGridPlugin,dayGridPlugin, interactionPlugin, listPlugin]}
         headerToolbar={{
-            left: 'prev,next $/{Today}',
+            left: 'prev,next today',
             center: "title",
             right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
         }}
