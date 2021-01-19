@@ -190,13 +190,14 @@ const Schedule = (props) => {
                 backGroundColorValue={props.ScheduleColor.NotekBGC}
                 FontColorValue={props.ScheduleColor.NoteFC}
                 >
-                    {title}
+                    {/* {title}
                     {titleDescription}
                     {AttachedLinkDescription} 
                     {calendar} 
                     {time}
-                    {Color}
+                    {Color} */}
                     {/* {RepeatedDays} */}
+                    {<RepeatDaySelected RecievedColor={props.ScheduleColor}/>}
                     {SubmitButton}
             </NoteContainer>
         </FadeIn>

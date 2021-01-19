@@ -71,15 +71,15 @@ const ColorOptionsValue = () => {
         )
     return(ColorContainer)
 }
-// const RepeatDayValue = () => {
+const RepeatDayValue = () => {
 
-//     //this is for the days in a Month 
-//     const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-//     const ChosenDayContainer = (
-//         [ChoosenDay.map((daysChosen,index ) => <option key={`ChoosenDay${index}`} value={daysChosen}>{daysChosen}</option>)]
-//         )
-//     return(ChosenDayContainer)
-// }
+    //this is for the days in a Month 
+    const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+    const ChosenDayContainer = (
+        ChoosenDay.map()
+        )
+    return(ChosenDayContainer)
+}
 export {HourValue, MinutsValue, TwelveHourSystemValue, 
         NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue, 
-        ColorOptionsValue};
+        ColorOptionsValue, RepeatDayValue};
