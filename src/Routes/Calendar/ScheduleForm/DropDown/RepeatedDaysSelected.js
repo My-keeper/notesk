@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import FadeIn  from 'react-fade-in';
 import Inputdata from '../../../../UI/UserInput';
-import {RepeatDayValue} from './OptionsForm';
 
 
 const RepeatDaySelected = (props) => {
@@ -64,10 +62,21 @@ const RepeatDaySelected = (props) => {
                      RepeatedDayContainer(ChoosenDay[6],handleRepeatedDays)]
     
     return (  
-    <div>
-        <div style={{display: "flex",width: "50px", flexDirection: "row"}}> {LineOne} </div>
-        <div style={{display: "flex",width: "50px", flexDirection: "row", marginTop: "5px", marginLeft: "90px", marginBottom: "8px"}}> {LineTwo} </div>
-    </div>
+    <FadeIn>
+        <div style={{display: "flex",width: "50px", flexDirection: "row"}}>
+             {LineOne} 
+        </div>
+        <div style={{
+            display: "flex",
+            width: "50px", 
+            flexDirection: "row", 
+            marginTop: "5px", 
+            marginLeft: "90px", 
+            marginBottom: "8px"}}
+        >
+             {LineTwo} 
+        </div>
+    </FadeIn>
        )
 }
 
