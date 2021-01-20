@@ -195,7 +195,7 @@ const Schedule = (props) => {
                     {AttachedLinkDescription} 
                     {calendar} 
                     {time}
-                    {Color} */}
+                    {Color}  */}
                     {/* {RepeatedDays} */}
                     {<RepeatDaySelected RecievedColor={props.ScheduleColor}/>}
                     {SubmitButton}
