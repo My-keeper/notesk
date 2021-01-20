@@ -4,44 +4,34 @@ import FadeIn  from 'react-fade-in';
 import Inputdata from '../../../../UI/UserInput';
 import {RepeatDayValue} from './OptionsForm';
 
-const EachateContainer = styled.div`
-    width: 60px;
-    display: flex;
-    flex-direction: column;
-    // justify-content: space-between;
-    margin: 4px;
-`
-const DateContainer = styled.div`
-    width: 50px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap
-    // justify-content: flex-start;
-`
 
 const RepeatDaySelected = (props) => {
-    const [onChange,ChangeOnChange]= useState({
-        isTuesday: false,
-        isWednesday: false,
-        isThursday: false,
-        isFriday: false,
-        isSaturday: false,
-        isSunday: false
-    })
-    const ChoosenDay = ['Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-    const [RepeatedDaysValueInput, ChangeRepeatedDaysValueInput] = useState("")
+    
+    const [isMonday,ChangeisMonday]= useState(false)
+    const [isTuesday,ChangeisTuesday]= useState(false)
+    const [isWednesday,ChangeisWednesday]= useState(false)
+    const [isThursday,ChangeisThursday]= useState(false)
+    const [isFriday,ChangeisFriday]= useState(false)
+    const [isSaturday,ChangeisSaturday]= useState(false)
+    const [isSunday,ChangeisSunday]= useState(false)
+    const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+    
     const handleRepeatedDays = (e) =>{
         console.log(e.target.value)
-        ChangeRepeatedDaysValueInput(e.target.value );
+        const onchangeValue = e.target.value
+       return ( onchangeValue == "Tuesday" ?( ChangeisMonday(!isMonday) , console.log(isMonday)) :
+        onchangeValue == "Monday" ?( ChangeisTuesday(!isTuesday) , console.log(isTuesday)) :
+        onchangeValue == "Wednesday" ?( ChangeisWednesday(!isWednesday) , console.log(isWednesday)) :
+        onchangeValue == "Thursday" ?( ChangeisThursday(!isThursday) , console.log(isThursday)) :
+        onchangeValue == "Friday" ?( ChangeisFriday(!isFriday) , console.log(isFriday)) :
+        onchangeValue == "Saturday" ?( ChangeisSaturday(!isSaturday) , console.log(isSaturday)) :
+        ( ChangeisSunday(!isSunday) , console.log(isSunday))
+        )
     }
-    // onChangeDays = () => {
-    //     onChange.map( (value) => {})
-    // }
 
-    console.log(onChange.isThursday)
-    const trya = (DayValue) => {
+    const RepeatedDayContainer = (DayValue,OnChangeInputValue) => {
         return [<Inputdata 
-            key={`RepeatedDaysValueInput${RepeatedDaysValueInput}`}
+            key={`RepeatedDaysValueInput${DayValue}`}
             inputType={"checkbox"}
             name="title"
             widthValue={"15px"}
@@ -58,21 +48,27 @@ const RepeatDaySelected = (props) => {
             BorderValue={"solid"}
             borderWidthValue={"thin"}
             marginRightValue={"5px"}
-            onchangeValue = {handleRepeatedDays}
+            marginTopValue={"4px"}
+            onchangeValue = {OnChangeInputValue}
             InputValue = {DayValue}
             ></Inputdata>,
             <label style={{marginRight: "10px"}}>{DayValue}</label>]
         }
         
-    const me = [trya(ChoosenDay[0]),trya(ChoosenDay[1]),trya(ChoosenDay[2]),trya(ChoosenDay[3]),trya(ChoosenDay[4])]
+    const LineOne = [RepeatedDayContainer(ChoosenDay[0],handleRepeatedDays),
+                     RepeatedDayContainer(ChoosenDay[1],handleRepeatedDays),
+                     RepeatedDayContainer(ChoosenDay[2],handleRepeatedDays),
+                     RepeatedDayContainer(ChoosenDay[3],handleRepeatedDays)]
+    const LineTwo = [RepeatedDayContainer(ChoosenDay[4],handleRepeatedDays),
+                     RepeatedDayContainer(ChoosenDay[5],handleRepeatedDays),
+                     RepeatedDayContainer(ChoosenDay[6],handleRepeatedDays)]
     
     return (  
-    // <div>
-        <div style={{display: "flex",width: "50px", flexDirection: "row"}}>
-                {me}
-        </div>
-    /* </div> */
-    )
+    <div>
+        <div style={{display: "flex",width: "50px", flexDirection: "row"}}> {LineOne} </div>
+        <div style={{display: "flex",width: "50px", flexDirection: "row", marginTop: "5px", marginLeft: "90px", marginBottom: "8px"}}> {LineTwo} </div>
+    </div>
+       )
 }
 
 export default RepeatDaySelected;
