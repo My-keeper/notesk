@@ -22,13 +22,14 @@ const CalendarForm= (props) => {
     const IconColor =  props.RecieveColor.CalendarColorTable
     //this is the method that will be called once the data is clicked 
     const handleDateClick = (arg) => { // bind with an arrow function
-        alert(arg.dateStr)
+        return <Schedule ScheduleColor={props.RecieveColor}/> 
+        // alert(arg.dateStr)
       }
     //testing if we can add an event from here 
     const EventTest = [
         {id: 'a', title: 'Testoing for more ', start: '2020-12-31T12:30:00Z',textColor:props.RecieveColor.CalendarColorTable, end: '2020-12-31T13:30:00Z',description: 'lets play some game s'},
         {id: 'b', title: 'event 3', start: '2021-01-12T12:30:00Z', end: '2021-01-14T13:30:00Z',description: 'Lecture',backgroundColor: 'blue'},
-        { id: 'b', title: 'event 2', date: '2021-01-01', display: 'background',  format: 'ics',backgroundColor: 'black'},
+        { id: 'b', title: 'event 2', date: '2021-01-01', display: 'background',  format: 'ics',backgroundColor: 'Salmon'},
         {groupId: 'blueEvents', // recurrent events in this group move together
       daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
       startTime: '10:45:00',
@@ -95,8 +96,8 @@ const CalendarForm= (props) => {
     return(
         <CalenderContainer CalendarColorSelected = {props.RecieveColor.CalendarColorTable} >
             {console.log(props.RecieveColor.CalendarColorTable)}
-            {CalenderTable}
-            {/* <Schedule ScheduleColor={props.RecieveColor}/> */}
+            {/* {CalenderTable} */}
+            <Schedule ScheduleColor={props.RecieveColor}/>
         </CalenderContainer>
     )
 };

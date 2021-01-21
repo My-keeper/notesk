@@ -12,7 +12,7 @@ const DateSelected = (props) => {
        ChangeYearsValueInput(e.target.value );
    }
    const Years = <FadeIn><SelectData 
-       key={`YearsValueInput${YearsValueInput}`}
+    key={YearsValueInput.id}
        inputType={"text"}
        name="title"
        widthValue={"105px"}
@@ -41,7 +41,7 @@ const DateSelected = (props) => {
         ChangeMonthsValue(e.target.value );
     }
     const Months = <FadeIn><SelectData 
-        key={`MonthsValueInput${MonthsValueInput}`}
+        key={MonthsValueInput.id}
         inputType={"text"}
         name="title"
         widthValue={"105px"}
@@ -70,7 +70,7 @@ const DateSelected = (props) => {
         ChangeDayValue(e.target.value );
     }
     const Days = <FadeIn><SelectData 
-        key={`DayValueInput${DayValueInput}`}
+        key={DayValueInput.id}
         inputType={"text"}
         name="title"
         widthValue={"105px"}

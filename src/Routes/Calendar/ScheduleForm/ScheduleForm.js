@@ -3,7 +3,7 @@ import styled from "styled-components";
 import NoteContainer from '../../../UI/Modal';
 import UserInput from '../../../UI/UserInput'
 import FadeIn  from 'react-fade-in';
-import { CalendarOutlined , ClockCircleFilled, LinkOutlined, LoginOutlined } from "@ant-design/icons";
+import { CalendarOutlined , ClockCircleFilled, LinkOutlined, LoginOutlined, BgColorsOutlined} from "@ant-design/icons";
 import { Title, ImportContacts } from '@material-ui/icons';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
 import RepeatIcon from '@material-ui/icons/Repeat';
@@ -54,6 +54,7 @@ const Schedule = (props) => {
     const title = <InfoContainer>
                 <FadeIn><Title style={IconColor}/></FadeIn>
                 <FadeIn><UserInput 
+                key={`title` + 1}
                 inputType={"text"}
                 name="title"
                 PlaceholderValue={" Title"}
@@ -76,7 +77,8 @@ const Schedule = (props) => {
 
     const titleDescription = <InfoContainer>
             <FadeIn><ImportContacts style={IconColor}/></FadeIn>
-            <FadeIn><UserInput 
+            <FadeIn><UserInput
+            key={`titleDescription`+1} 
             inputType={"text"}
             name="title"
             PlaceholderValue={" Description"}
@@ -100,6 +102,7 @@ const Schedule = (props) => {
     const AttachedLinkDescription = <InfoContainer>
         <FadeIn><LinkOutlined style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
+        key={`AttachedLinkDescription` }
         inputType={"text"}
         name="Url"
         PlaceholderValue={" Attached Link For Description"}
@@ -148,15 +151,22 @@ const Schedule = (props) => {
             </DateContainer>
         </InfoContainer>
 
-    const Color = <InfoContainer>
-            <FadeIn><ColorLensIcon style={{fontSize:"32px",color : props.ScheduleColor.IconC,marginRight:"9px",marginTop:"4px"}}/></FadeIn>
-            <FadeIn><ColorSelected RecievedColor={props.ScheduleColor}/></FadeIn>
+    const FontColor = <InfoContainer>
+            <EachateContainer>
+                <FadeIn><BgColorsOutlined style={{fontSize:"32px",color : props.ScheduleColor.IconC,marginRight:"9px",marginTop:"4px"}}/></FadeIn>
+                <FadeIn><ColorSelected RecievedColor={props.ScheduleColor}/></FadeIn>
+            </EachateContainer>
+            <EachateContainer>
+                <FadeIn><ColorLensIcon style={{fontSize:"32px",color : props.ScheduleColor.IconC,marginRight:"9px",marginTop:"4px"}}/></FadeIn>
+                <FadeIn><ColorSelected RecievedColor={props.ScheduleColor}/></FadeIn>
+            </EachateContainer>
     </InfoContainer>
 
     const RepeatedDays = <InfoContainer>
             <FadeIn><RepeatIcon style={IconColor}/></FadeIn>
             <FadeIn><RepeatDaySelected ValueOfRepeatedDays={(value) => ChangenumberOfRepeatedDays(value)} RecievedColor={props.ScheduleColor}/></FadeIn>
     </InfoContainer>
+
     const SubmitButton = <FadeIn><Button
         width={"120px"}
         marginBottomValue={"10px"}
@@ -177,8 +187,6 @@ const Schedule = (props) => {
         />
         </FadeIn>
 
-console.log(numberOfRepeatedDays)
-
    return(
         <FadeIn>
             <NoteContainer
@@ -197,7 +205,7 @@ console.log(numberOfRepeatedDays)
                     {AttachedLinkDescription} 
                     {calendar} 
                     {time}
-                    {Color} 
+                    {FontColor} 
                     {RepeatedDays}
                     {SubmitButton}
             </NoteContainer>

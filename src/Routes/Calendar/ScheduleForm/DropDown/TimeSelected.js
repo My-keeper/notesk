@@ -11,7 +11,7 @@ const OptionForm = (props) => {
         ChangeHourValue(e.target.value );
     }
     const Hours = <FadeIn><SelectData 
-        key={`HourValueInput${HourValueInput}`}
+        key={HourValueInput.id}
         inputType={"text"}
         name="title"
         widthValue={"105px"}
@@ -40,7 +40,7 @@ const OptionForm = (props) => {
         ChangeMinutsValue(e.target.value );
     }
     const Minuts = <FadeIn><SelectData 
-        key={`MinutsValueInput${MinutsValueInput}`}
+        key={MinutsValueInput.id}
         inputType={"text"}
         name="title"
         widthValue={"105px"}
@@ -69,7 +69,7 @@ const OptionForm = (props) => {
         ChangeDaytimeValue(e.target.value );
     }
     const DayTime = <FadeIn><SelectData 
-        key={`DaytimeValueInput${DaytimeValueInput}`}
+        key={DaytimeValueInput.id}
         inputType={"text"}
         name="title"
         widthValue={"105px"}
