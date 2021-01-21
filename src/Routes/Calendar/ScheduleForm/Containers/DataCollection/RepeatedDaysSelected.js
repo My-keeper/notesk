@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FadeIn  from 'react-fade-in';
-import Inputdata from '../../../../UI/UserInput';
+import Inputdata from '../../../../../UI/UserInput';
 
 
 const RepeatDaySelected = (props) => {
@@ -14,8 +14,6 @@ const RepeatDaySelected = (props) => {
     const [isSunday,ChangeisSunday]= useState(false)
     const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
-    
-    
     const handleRepeatedDays = (e) =>{
         
         const onchangeValue = e.target.value

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FadeIn  from 'react-fade-in';
-import SelectData from '../../../../UI/Select';
+import SelectData from '../../../../../UI/Select';
 import {ColorOptionsValue} from './OptionsForm';
 
 const ColorSelected = (props) => {
