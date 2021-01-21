@@ -8,6 +8,7 @@ import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from "./event-utils";
 import allLocales from '@fullcalendar/core/locales-all';
 import TodayIcon from '@material-ui/icons/Today';
+import Schedule from './ScheduleForm/ScheduleForm'
 
 const CalenderContainer = styled.div`
     margin: 10px;
@@ -95,6 +96,7 @@ const CalendarForm= (props) => {
         <CalenderContainer CalendarColorSelected = {props.RecieveColor.CalendarColorTable} >
             {console.log(props.RecieveColor.CalendarColorTable)}
             {CalenderTable}
+            {/* <Schedule ScheduleColor={props.RecieveColor}/> */}
         </CalenderContainer>
     )
 };
