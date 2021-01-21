@@ -36,7 +36,7 @@ const DateContainer = styled.div`
 `
 
 const Schedule = (props) => {
-
+    const [numberOfRepeatedDays, ChangenumberOfRepeatedDays] = useState(0) 
     const [IsShown, setIsShown] = useState(false)
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
@@ -155,7 +155,7 @@ const Schedule = (props) => {
 
     const RepeatedDays = <InfoContainer>
             <FadeIn><RepeatIcon style={IconColor}/></FadeIn>
-            <FadeIn><RepeatDaySelected RecievedColor={props.ScheduleColor}/></FadeIn>
+            <FadeIn><RepeatDaySelected ValueOfRepeatedDays={(value) => ChangenumberOfRepeatedDays(value)} RecievedColor={props.ScheduleColor}/></FadeIn>
     </InfoContainer>
     const SubmitButton = <FadeIn><Button
         width={"120px"}
@@ -177,6 +177,8 @@ const Schedule = (props) => {
         />
         </FadeIn>
 
+console.log(numberOfRepeatedDays)
+
    return(
         <FadeIn>
             <NoteContainer
@@ -197,7 +199,6 @@ const Schedule = (props) => {
                     {time}
                     {Color} 
                     {RepeatedDays}
-                    {/* {<RepeatDaySelected RecievedColor={props.ScheduleColor}/>} */}
                     {SubmitButton}
             </NoteContainer>
         </FadeIn>

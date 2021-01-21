@@ -4,7 +4,7 @@ import Inputdata from '../../../../UI/UserInput';
 
 
 const RepeatDaySelected = (props) => {
-    
+    const [NumberOfRepeatedDays,ChangeNumberOfRepeatedDays] = useState(0)
     const [isMonday,ChangeisMonday]= useState(false)
     const [isTuesday,ChangeisTuesday]= useState(false)
     const [isWednesday,ChangeisWednesday]= useState(false)
@@ -13,23 +13,54 @@ const RepeatDaySelected = (props) => {
     const [isSaturday,ChangeisSaturday]= useState(false)
     const [isSunday,ChangeisSunday]= useState(false)
     const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+
+    
     
     const handleRepeatedDays = (e) =>{
-        console.log(e.target.value)
+        
         const onchangeValue = e.target.value
-       return ( onchangeValue == "Tuesday" ?( ChangeisMonday(!isMonday) , console.log(isMonday)) :
-        onchangeValue == "Monday" ?( ChangeisTuesday(!isTuesday) , console.log(isTuesday)) :
-        onchangeValue == "Wednesday" ?( ChangeisWednesday(!isWednesday) , console.log(isWednesday)) :
-        onchangeValue == "Thursday" ?( ChangeisThursday(!isThursday) , console.log(isThursday)) :
-        onchangeValue == "Friday" ?( ChangeisFriday(!isFriday) , console.log(isFriday)) :
-        onchangeValue == "Saturday" ?( ChangeisSaturday(!isSaturday) , console.log(isSaturday)) :
-        ( ChangeisSunday(!isSunday) , console.log(isSunday))
+       
+        return ( 
+            onchangeValue == "Monday" ? (
+                isMonday == false ? 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisMonday(true)) : 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisMonday(false)) 
+                ) :
+            onchangeValue == "Tuesday" ? (
+                isTuesday == false ? 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisTuesday(true)) : 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisTuesday(false)) 
+                ) :
+            onchangeValue == "Wednesday" ? (
+                isWednesday == false ? 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisWednesday(true)) : 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisWednesday(false))
+                ) :
+            onchangeValue == "Thursday" ? (
+                isThursday == false ? 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisThursday(true)) : 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisThursday(false))
+                ) :
+            onchangeValue == "Friday" ? (
+                isFriday == false ? 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisFriday(true)) : 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisFriday(false))  
+                ) :
+            onchangeValue == "Saturday" ? (
+                isSaturday == false ? 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisSaturday(true) ) : 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisSaturday(false) )  
+                ):
+            ( 
+                isSunday == false ? 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisSunday(true)) : 
+                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisSunday(false))
+            )
         )
     }
 
     const RepeatedDayContainer = (DayValue,OnChangeInputValue) => {
         return [<Inputdata 
-            key={`RepeatedDaysValueInput${DayValue}`}
             inputType={"checkbox"}
             name="title"
             widthValue={"15px"}
@@ -61,6 +92,7 @@ const RepeatDaySelected = (props) => {
                      RepeatedDayContainer(ChoosenDay[5],handleRepeatedDays),
                      RepeatedDayContainer(ChoosenDay[6],handleRepeatedDays)]
     
+    props.ValueOfRepeatedDays(NumberOfRepeatedDays)
     return (  
     <FadeIn>
         <div style={{display: "flex",width: "50px", flexDirection: "row"}}>
