@@ -35,21 +35,24 @@ const CalenderContianer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
-
+    const [fromData, ChangeFromDate] = useState()
+    const [ToData, ChangeToDate] = useState()
     const calendar = <InfoContainer>
             <FadeIn><CalendarOutlined style={IconColor}/>  </FadeIn>
             <DateContainer>
                 <EachateContainer>
                     <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
-                    <DateSelected RecievedColor={props.ScheduleColor}/>
+                    <DateSelected submitDateValue={(value) => ChangeFromDate(value)} RecievedColor={props.ScheduleColor}/>
                 </EachateContainer>
                 <EachateContainer>
                     <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "24px"}}>To</span></FadeIn>
-                    <DateSelected RecievedColor={props.ScheduleColor}/>
+                    <DateSelected submitDateValue={(value) => ChangeToDate(value)} RecievedColor={props.ScheduleColor}/>
                 </EachateContainer>
             </DateContainer>
         </InfoContainer>
 
+    props.SubmitFromDateSelected(fromData)
+    props.SubmitToDateSelected(ToData)
     return(calendar)
 }
 
@@ -60,20 +63,41 @@ const TimerContainer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
-
+    const [StartHoursValue, ChangeStartHourValue ]= useState()
+    const [StartMinutsValue, ChangeStartMinutsValue ]= useState()
+    const [StartDayValue, ChangeStartDayValue ]= useState()
+    const [EndHoursValue, ChangeEndHourValue ]= useState()
+    const [EndMinutsValue, ChangeEndMinutsValue ]= useState()
+    const [EndDayValue, ChangeEndDayValue ]= useState()
+    
     const time =<InfoContainer>
             <FadeIn><ClockCircleFilled style={IconColor}/>  </FadeIn>
             <DateContainer>
                 <EachateContainer>
                     <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>Start</span></FadeIn>
-                    <TimeSelected RecievedColor={props.ScheduleColor}/>
+                    <TimeSelected 
+                        submitHourValue={(value) => ChangeStartHourValue(value)}
+                        submitMinutsValue={(value) => ChangeStartMinutsValue(value)}
+                        submitDayValue={(value) => ChangeStartDayValue(value)}
+                        RecievedColor={props.ScheduleColor}/>
                 </EachateContainer>
                 <EachateContainer>
                     <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>End</span></FadeIn>
-                    <TimeSelected RecievedColor={props.ScheduleColor}/>
+                    <TimeSelected 
+                        submitHourValue={(value) => ChangeEndHourValue(value)}
+                        submitMinutsValue={(value) => ChangeEndMinutsValue(value)}
+                        submitDayValue={(value) => ChangeEndDayValue(value)}
+                        RecievedColor={props.ScheduleColor}/>
                 </EachateContainer>
             </DateContainer>
         </InfoContainer>
+
+    props.SubmitFromHourSelected(StartHoursValue)
+    props.SubmitToHourlected(EndHoursValue)
+    props.SubmitFromMinutsSelected(StartMinutsValue)
+    props.SubmitToMinutsSelected(EndMinutsValue)
+    props.SubmitFromDayValueSelected(StartDayValue)
+    props.SubmitToDayValueSelected(EndDayValue)
 
     return (time)
 }

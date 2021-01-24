@@ -16,7 +16,7 @@ const InfoContainer = styled.div`
 
 const RDContainer = (props) => {
 
-    const [numberOfRepeatedDays, ChangenumberOfRepeatedDays] = useState(0) 
+    const [GetNumberOfRD, ChangeGetNumberOfRD] = useState(0) 
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
         fontSize:"30px", 
@@ -24,9 +24,10 @@ const RDContainer = (props) => {
         marginTop:"4px",
         marginLeft:"5px"
     }
+    props.SubmitNumberOfRP(GetNumberOfRD)
     const RepeatedDays = <InfoContainer>
         <FadeIn><RepeatIcon style={IconColor}/></FadeIn>
-        <FadeIn><RepeatDaySelected ValueOfRepeatedDays={(value) => ChangenumberOfRepeatedDays(value)} RecievedColor={props.ScheduleColor}/></FadeIn>
+        <FadeIn><RepeatDaySelected ValueOfRepeatedDays={(value) => ChangeGetNumberOfRD(value)} RecievedColor={props.ScheduleColor}/></FadeIn>
     </InfoContainer>
 
     return (RepeatedDays)

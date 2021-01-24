@@ -7,10 +7,7 @@ import {NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue} from './Opti
 const DateSelected = (props) => {
     
    const [YearsValueInput, ChangeYearsValueInput] = useState("")
-   const handleYears = (e) =>{
-       console.log(e.target.value)
-       ChangeYearsValueInput(e.target.value );
-   }
+   const handleYears = (e) =>{ChangeYearsValueInput(e.target.value );}
    const Years = <FadeIn><SelectData 
     key={YearsValueInput.id}
        inputType={"text"}
@@ -36,10 +33,7 @@ const DateSelected = (props) => {
     </SelectData></FadeIn>
 
     const [MonthsValueInput, ChangeMonthsValue] = useState("")
-    const handleMonths = (e) =>{
-        console.log(e.target.value)
-        ChangeMonthsValue(e.target.value );
-    }
+    const handleMonths = (e) =>{ChangeMonthsValue(e.target.value );}
     const Months = <FadeIn><SelectData 
         key={MonthsValueInput.id}
         inputType={"text"}
@@ -65,10 +59,7 @@ const DateSelected = (props) => {
     </SelectData></FadeIn>
     
     const [DayValueInput, ChangeDayValue] = useState("")
-    const handleDays = (e) =>{
-        console.log(e.target.value)
-        ChangeDayValue(e.target.value );
-    }
+    const handleDays = (e) =>{ChangeDayValue(e.target.value );}
     const Days = <FadeIn><SelectData 
         key={DayValueInput.id}
         inputType={"text"}
@@ -93,6 +84,8 @@ const DateSelected = (props) => {
         {<NumberOfDaysValue/>}
     </SelectData></FadeIn>
     
+
+   props.submitDateValue(YearsValueInput+ '-'+ MonthsValueInput + '-' + DayValueInput)
     return (
         [ Years, Months, Days]
         )

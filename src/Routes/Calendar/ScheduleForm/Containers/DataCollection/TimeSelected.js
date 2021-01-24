@@ -6,10 +6,7 @@ import {HourValue, MinutsValue, TwelveHourSystemValue} from './OptionsForm';
 const OptionForm = (props) => {
     
     const [HourValueInput, ChangeHourValue] = useState("")
-    const handle = (e) =>{
-        console.log(e.target.value)
-        ChangeHourValue(e.target.value );
-    }
+    const handle = (e) =>{ChangeHourValue(e.target.value );}
     const Hours = <FadeIn><SelectData 
         key={HourValueInput.id}
         inputType={"text"}
@@ -35,10 +32,7 @@ const OptionForm = (props) => {
     </SelectData></FadeIn>
 
     const [MinutsValueInput, ChangeMinutsValue] = useState("")
-    const handleMinuts = (e) =>{
-        console.log(e.target.value)
-        ChangeMinutsValue(e.target.value );
-    }
+    const handleMinuts = (e) =>{ChangeMinutsValue(e.target.value );}
     const Minuts = <FadeIn><SelectData 
         key={MinutsValueInput.id}
         inputType={"text"}
@@ -91,6 +85,11 @@ const OptionForm = (props) => {
         >
         {<TwelveHourSystemValue/>}
     </SelectData></FadeIn>
+
+    props.submitHourValue(HourValueInput)
+    props.submitMinutsValue(MinutsValueInput)
+    props.submitDayValue(DaytimeValueInput)
+
 
     return (
         [Hours, Minuts, DayTime]

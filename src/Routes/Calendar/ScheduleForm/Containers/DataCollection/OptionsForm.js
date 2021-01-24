@@ -3,7 +3,7 @@ import React from "react";
 //this is for the hour input 
 const HourValue = () => {
 
-    const Hours = ['Hour','1','2','3','4','5','6','7','8','9','10','11','12']
+    const Hours = ['Hour','01','02','03','04','05','06','07','08','09','10','11','12']
     const DailyHours = (
         [Hours.map((Hour, index) => 
             <option  key={index.id} value={Hour}>{Hour}</option>)]
@@ -13,7 +13,7 @@ const HourValue = () => {
 const MinutsValue = () => {
 
     //this is for the hour input 
-    const Minuts = ['Minuts','5','10','15','20','25','30','35','40','45','50','55']
+    const Minuts = ['Minuts','05','10','15','20','25','30','35','40','45','50','55']
     const DailyMinut =(
         [Minuts.map((Minut, index) => 
             <option key={index.id} value={Minut}>{Minut}</option>)]
@@ -44,7 +44,7 @@ const NumberOfYearsValue = () => {
 const NumberOfMonthsValue = () => {
 
     //this is for the months in a year 
-    const NumberOfMonths = ['Months','1','2','3','4','5','6','7','8','9','10','11','12']
+    const NumberOfMonths = ['Months','01','02','03','04','05','06','07','08','09','10','11','12']
     const MonthContainer = (
         [NumberOfMonths.map((month, index) => <option key={index.id}  value={month}>{month}</option>)]
         )
@@ -53,7 +53,7 @@ const NumberOfMonthsValue = () => {
 const NumberOfDaysValue = () => {
 
     //this is for the days in a Month 
-    const NumberOfDays = ['Days','1','2','3','4','5','6','7','8','9','10',
+    const NumberOfDays = ['Days','01','02','03','04','05','06','07','08','09','10',
                         '11','12','13','14','15','16','17','18','19','20',
                         '21','22','23','24','25','26','27','28','29','30','31']
     const DayContainer = (

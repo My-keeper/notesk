@@ -18,7 +18,44 @@ const InfoContainer = styled.div`
 `
 
 const Schedule = (props) => {
-    
+    // const
+    const [getTitleValue, ChangeTitleValu] = useState()
+    const [getTitleDescriptionValue, ChangeTitleDescriptionValu] = useState()
+    const [getURLValue, ChangegetURLValue] = useState()
+
+    const [getFormDateValue, ChangeFormDateValue] = useState()
+    const [getToDateValue, ChangeToDateValue] = useState()
+
+    const [GetStartHoursValue, ChangeGetStartHourValue ]= useState()
+    const [GetStartMinutsValue, ChangeGetStartMinutsValue ]= useState()
+    const [GetStartDayValue, ChangeGetStartDayValue ]= useState()
+    const [GetEndHoursValue, ChangeGetEndHourValue ]= useState()
+    const [GetEndMinutsValue, ChangeGetEndMinutsValue ]= useState()
+    const [GetEndDayValue, ChangeGetEndDayValue ]= useState()
+
+    const [getRDValue, ChangeRDValu] = useState()
+
+
+    const [CreateEvent, ChnageEventInfo]=useState(
+        {
+            id: 'a',  
+            title: 'Testoing for more ', 
+            start: '2021-01-30T12:30:00Z',
+            textColor:"pink", 
+            end: '2021-02-02T13:30:00Z',
+            description: 'lets play some game s', 
+            display: 'list-item', 
+            backgroundColor:"black",
+            daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
+            startTime: '10:45:00',
+            endTime: '12:45:00',
+            display: 'list-item',
+            textColor: 'black'
+        }
+    )
+        {
+    }
+
    return(
     <FadeIn>
         <NoteContainer
@@ -32,13 +69,31 @@ const Schedule = (props) => {
             backGroundColorValue={props.ScheduleColor.NotekBGC}
             FontColorValue={props.ScheduleColor.NoteFC}
             >
-                {<TitleContainer ScheduleColor={props.ScheduleColor}/>}
-                {<TitleDescriptionContainer ScheduleColor={props.ScheduleColor}/>}
-                {<URLContainer ScheduleColor={props.ScheduleColor}/>}
-                {<CalenderContianer ScheduleColor={props.ScheduleColor}/>}
-                {<TimerContainer ScheduleColor={props.ScheduleColor}/>}
-                {<FontColorContainer ScheduleColor={props.ScheduleColor}/>}
-                {<RDContainer ScheduleColor={props.ScheduleColor}/>} 
+                {<TitleContainer 
+                    SubmitTitle={(value) => ChangeTitleValu(value)}
+                    ScheduleColor={props.ScheduleColor}/>}
+                {<TitleDescriptionContainer 
+                    TitleDescription={(value) => ChangeTitleDescriptionValu(value)}
+                    ScheduleColor={props.ScheduleColor}/>}
+                {<URLContainer 
+                    URLOption={(value) => ChangegetURLValue(value)}
+                    ScheduleColor={props.ScheduleColor}/>}
+                {<CalenderContianer 
+                    SubmitFromDateSelected={(value) => ChangeFormDateValue(value)} 
+                    SubmitToDateSelected={(value) => ChangeToDateValue(value)} 
+                    ScheduleColor={props.ScheduleColor}/>}
+                {<TimerContainer
+                    SubmitFromHourSelected={(value) => ChangeGetStartHourValue(value)}
+                    SubmitToHourlected={(value) => ChangeGetEndHourValue(value)}
+                    SubmitFromMinutsSelected={(value) => ChangeGetStartMinutsValue(value)}
+                    SubmitToMinutsSelected={(value) => ChangeGetEndMinutsValue(value)}
+                    SubmitFromDayValueSelected={(value) => ChangeGetStartDayValue(value)}
+                    SubmitToDayValueSelected={(value) => ChangeGetEndDayValue(value)} 
+                    ScheduleColor={props.ScheduleColor}/>}
+                {/* {<FontColorContainer ScheduleColor={props.ScheduleColor}/>} */}
+                {<RDContainer 
+                    SubmitNumberOfRP={(value) => ChangeRDValu(value)} 
+                    ScheduleColor={props.ScheduleColor}/>} 
                 {<SubmissionContainer ScheduleColor={props.ScheduleColor}/>}
         </NoteContainer>
     </FadeIn>

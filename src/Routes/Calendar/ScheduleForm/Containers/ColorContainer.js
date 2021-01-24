@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components"; 
 import FadeIn  from 'react-fade-in'; 
 import {BgColorsOutlined} from "@ant-design/icons"; 
-import RepeatIcon from '@material-ui/icons/Repeat';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
 import ColorSelected from './DataCollection/ColorSelected';
-import RepeatDaySelected from './DataCollection/RepeatedDaysSelected';
 
 
 const InfoContainer = styled.div`
@@ -39,21 +37,4 @@ const FontColorContainer = (props) => {
 
     return(FontColor)
 }
-
-// const RepeatedDaysContainer = (props) => {
-//     const [numberOfRepeatedDays, ChangenumberOfRepeatedDays] = useState(0) 
-//     const IconColor = { 
-//         color : props.ScheduleColor.IconC, 
-//         fontSize:"25px", 
-//         marginRight:"9px", 
-//         marginTop:"4px" 
-//     }
-//     const RepeatedDays = <InfoContainer>
-//         <FadeIn><RepeatIcon style={IconColor}/></FadeIn>
-//         <FadeIn><RepeatDaySelected ValueOfRepeatedDays={(value) => ChangenumberOfRepeatedDays(value)} RecievedColor={props.ScheduleColor}/></FadeIn>
-//     </InfoContainer>
-
-//     return (RepeatedDays)
-// }
-
 export  {FontColorContainer};

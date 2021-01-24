@@ -22,13 +22,28 @@ const TitleContainer = (props) => {
         marginTop:"4px" 
     }
 
+    const [titleValue, ChangeTitle] = useState("")
+    const [CurrentPlaceHolde, setPlaceHolder]= useState("Title")
+    // const subTitle = (event) => {
+    //     event.preventDefault();
+    //     if (titleValue === "" )
+    //     {  
+    //          return( <FadeIn>{setPlaceHolder("Please Enter A Title ....(-_-)") }</FadeIn>)
+    //     }
+    //     else
+    //     {
+    //         props.AddedTitle(titleValue);
+    //         ChangeTitle("")
+    //         setPlaceHolder("Title")
+    //     }
+    // }    
     const title = <InfoContainer>
         <FadeIn><Title style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
         key={`title` + 1}
-        inputType={"text"}
+        inputType={titleValue}
+        PlaceholderValue={CurrentPlaceHolde}
         name="title"
-        PlaceholderValue={" Title"}
         widthValue={"402px"}
         paddingVale={"4px"}
         outlineValue={"none"}
@@ -45,6 +60,8 @@ const TitleContainer = (props) => {
         marginRightValue={"10px"}
         /></FadeIn>
     </InfoContainer>
+
+    props.SubmitTitle(titleValue)
 
     return(title)
 }
@@ -56,14 +73,28 @@ const TitleDescriptionContainer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
-
+    const [titleDescriptionValue, ChangetitleDescription] = useState("")
+    const [CurrentPlaceHolde, setPlaceHolder]= useState("Title Description")
+    // const subTitleDescription = (event) => {
+    //     event.preventDefault();
+    //     if (titleDescriptionValue === "" )
+    //     {  
+    //          return( <FadeIn>{setPlaceHolder("Please Enter A title Description ....(-_-)") }</FadeIn>)
+    //     }
+    //     else
+    //     {
+    //         props.AddedTitle(titleDescriptionValue);
+    //         ChangetitleDescription("")
+    //         setPlaceHolder("Title Description")
+    //     }
+    // }    
     const titleDescription = <InfoContainer>
         <FadeIn><ImportContacts style={IconColor}/></FadeIn>
         <FadeIn><UserInput
         key={`titleDescription`+1} 
-        inputType={"text"}
+        inputType={titleDescriptionValue}
+        PlaceholderValue={CurrentPlaceHolde}
         name="title"
-        PlaceholderValue={" Description"}
         widthValue={"402px"}
         paddingVale={"4px"}
         outlineValue={"none"}
@@ -81,6 +112,8 @@ const TitleDescriptionContainer = (props) => {
         /></FadeIn>
     </InfoContainer>
 
+    props.TitleDescription(titleDescriptionValue)
+
     return (titleDescription)
 }
 
@@ -91,14 +124,24 @@ const URLContainer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
-
+    const [URLValue, ChangeURL] = useState("")
+    const [CurrentPlaceHolde, setPlaceHolder]= useState("Optional Attached Link For Description")
+    // const subURL = (event) => {
+    //     event.preventDefault();
+    //     if (URLValue !== "" )
+    //     {  
+    //         props.AddedTitle(URLValue);
+    //         ChangeURL("")
+    //         setPlaceHolder("URL")
+    //     }
+    // }  
     const URL = <InfoContainer>
         <FadeIn><LinkOutlined style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
         key={`AttachedLinkDescription` }
-        inputType={"text"}
+        inputType={URLValue}
+        PlaceholderValue={CurrentPlaceHolde}
         name="Url"
-        PlaceholderValue={" Attached Link For Description"}
         widthValue={"402px"}
         paddingVale={"4px"}
         outlineValue={"none"}
@@ -115,6 +158,8 @@ const URLContainer = (props) => {
         marginRightValue={"10px"}
         /></FadeIn>
     </InfoContainer>
+
+    props.URLOption(URLValue)
 
     return (URL)
 }

@@ -4,57 +4,88 @@ import Inputdata from '../../../../../UI/UserInput';
 
 
 const RepeatDaySelected = (props) => {
-    const [NumberOfRepeatedDays,ChangeNumberOfRepeatedDays] = useState(0)
-    const [isMonday,ChangeisMonday]= useState(false)
-    const [isTuesday,ChangeisTuesday]= useState(false)
-    const [isWednesday,ChangeisWednesday]= useState(false)
-    const [isThursday,ChangeisThursday]= useState(false)
-    const [isFriday,ChangeisFriday]= useState(false)
-    const [isSaturday,ChangeisSaturday]= useState(false)
-    const [isSunday,ChangeisSunday]= useState(false)
+    const [NumberOfRepeatedDays,ChangeNumberOfRepeatedDays] = useState({})
+    const [isMonday,ChangeisMonday]= useState(0)
+    const [isTuesday,ChangeisTuesday]= useState(1)
+    const [isWednesday,ChangeisWednesday]= useState(2)
+    // const [isThursday,ChangeisThursday]= useState(false)
+    // const [isFriday,ChangeisFriday]= useState(false)
+    // const [isSaturday,ChangeisSaturday]= useState(false)
+    // const [isSunday,ChangeisSunday]= useState(false)
     const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
     const handleRepeatedDays = (e) =>{
         
         const onchangeValue = e.target.value
-       
-        return ( 
-            onchangeValue == "Monday" ? (
-                isMonday == false ? 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisMonday(true)) : 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisMonday(false)) 
-                ) :
-            onchangeValue == "Tuesday" ? (
-                isTuesday == false ? 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisTuesday(true)) : 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisTuesday(false)) 
-                ) :
-            onchangeValue == "Wednesday" ? (
-                isWednesday == false ? 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisWednesday(true)) : 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisWednesday(false))
-                ) :
-            onchangeValue == "Thursday" ? (
-                isThursday == false ? 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisThursday(true)) : 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisThursday(false))
-                ) :
-            onchangeValue == "Friday" ? (
-                isFriday == false ? 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisFriday(true)) : 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisFriday(false))  
-                ) :
-            onchangeValue == "Saturday" ? (
-                isSaturday == false ? 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisSaturday(true) ) : 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisSaturday(false) )  
-                ):
-            ( 
-                isSunday == false ? 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisSunday(true)) : 
-                        (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisSunday(false))
-            )
-        )
+        
+            // if (onchangeValue == "Monday") 
+            // {    
+            //     const newNumberOfRP= [...NumberOfRepeatedDays]
+            //     false
+            //  }
+            // else if (onchangeValue == "Tuesday")  
+            //    { 
+            //        false
+            //    }
+            // else if (onchangeValue == "Wednesday")
+            // {  
+            //     false
+            // }  
+            // else if (onchangeValue == "Thursday")
+            // { 
+            //     false
+            // }    
+            // else if (onchangeValue == "Friday" )
+            // (
+            //     false
+            // )   
+            // else if (onchangeValue == "Saturday")  
+            // (
+            //     false
+            // )
+            // else {
+                    
+            //     false
+            // }
+             
+
+        // return ( 
+        //     onchangeValue == "Monday" ? (
+        //         isMonday == false ? 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisMonday(true)) : 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisMonday(false)) 
+        //         ) :
+        //     onchangeValue == "Tuesday" ? (
+        //         isTuesday == false ? 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisTuesday(true)) : 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisTuesday(false)) 
+        //         ) :
+        //     onchangeValue == "Wednesday" ? (
+        //         isWednesday == false ? 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisWednesday(true)) : 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisWednesday(false))
+        //         ) :
+        //     onchangeValue == "Thursday" ? (
+        //         isThursday == false ? 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisThursday(true)) : 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisThursday(false))
+        //         ) :
+        //     onchangeValue == "Friday" ? (
+        //         isFriday == false ? 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisFriday(true)) : 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisFriday(false))  
+        //         ) :
+        //     onchangeValue == "Saturday" ? (
+        //         isSaturday == false ? 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisSaturday(true) ) : 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisSaturday(false) )  
+        //         ):
+        //     ( 
+        //         isSunday == false ? 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount + 1), ChangeisSunday(true)) : 
+        //                 (ChangeNumberOfRepeatedDays(prevCount => prevCount - 1), ChangeisSunday(false))
+        //     )
+        // )
     }
 
     const RepeatedDayContainer = (DayValue,OnChangeInputValue) => {
