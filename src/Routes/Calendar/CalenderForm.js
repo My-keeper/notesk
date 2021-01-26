@@ -22,10 +22,11 @@ const CalenderContainer = styled.div`
 const CalendarForm= (props) => {
     const [DataClicked, ChangeDataClicked]= useState(false)
 
+    const [ClickedDate, ChangeClickedDate] = useState()
     const IconColor =  props.RecieveColor.CalendarColorTable
     const handleDateClick = (arg) => { 
-        return ChangeDataClicked(true)
-        // console.log(arg.dateStr)
+        return (ChangeClickedDate(arg.dateStr),console.log(ClickedDate))
+        // ChangeDataClicked(true)
         // alert(arg.dateStr)
       }
     const [getEvent, ChangeEventInfo] = useState([{}])
@@ -67,7 +68,20 @@ const CalendarForm= (props) => {
         timeZone= 'canada/nl'
         //we can pass here the event that will be created and we need title and date
         //we can as well add onclick once the event is created then the info will show somehting
-        events={EventTest}
+        events={[
+            {
+              title: 'BCH237',
+              start: '2021-01-12T10:30:00',
+              end: '2021-01-12T11:30:00',
+              extendedProps: {
+                department: 'BioChemistry'
+              },
+              description: 'Lecture'
+            }
+            // more events ...
+          ]
+        }
+        
         //if clicked then it shall show the inofrmation inside the data that is setected 
         dateClick={handleDateClick}
         //this is an event that is created as for demonstration
@@ -89,8 +103,8 @@ const CalendarForm= (props) => {
         <CalenderContainer CalendarColorSelected = {props.RecieveColor.CalendarColorTable} >
             {console.log(props.RecieveColor.CalendarColorTable)}
             {/* {DataClicked == false ? CalenderTable :<Schedule ScheduleColor={props.RecieveColor}/> } */}
-            {/* {CalenderTable} */}
-            <Schedule ScheduleColor={props.RecieveColor}/>
+            {CalenderTable}
+            {/* <Schedule ScheduleColor={props.RecieveColor}/> */}
         </CalenderContainer>
     )
 };

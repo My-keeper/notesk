@@ -15,10 +15,7 @@ const RepeatDaySelected = (props) => {
     const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
     const handleRepeatedDays = (e) =>{
-        
         const onchangeValue = e.target.value
-        console.log(NumberOfRepeatedDays)
-        console.log(isMonday)
         return ( 
             onchangeValue == "Monday" ? (
                 isMonday == false ? 

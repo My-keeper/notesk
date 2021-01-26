@@ -35,7 +35,7 @@ const Schedule = (props) => {
 
     const [getRDValue, ChangeRDValu] = useState()
 
-
+    console.log(getRDValue)
     const [CreateEvent, ChnageEventInfo]=useState(
         {
             id: 'a',  
