@@ -55,7 +55,7 @@ const Schedule = (props) => {
             end: '2021-02-02T13:30:00Z',
             description: 'lets play some game s', 
             display: 'list-item', 
-            backgroundColor:"black",
+            backgroundColor:`${props.backGroundColorInput ? props.backGroundColorInput : "black"}`,
             daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
             startTime: '10:45:00',
             endTime: '12:45:00',
