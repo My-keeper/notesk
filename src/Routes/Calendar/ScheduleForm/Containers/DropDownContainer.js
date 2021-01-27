@@ -35,6 +35,13 @@ const CalenderContianer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
+    //the date that the user clicked on to have it go to the data collection and have the same number 
+    const [recievedClickedDate, ChangeRecievedClickedDate] = useState(props.RetrunClickedDate)
+    //Dividing the Recieved Date to Year Month Day and Send them to DateSelected
+    const RecievedYear = recievedClickedDate[0]
+    const RecievedMonth = recievedClickedDate[1]
+    const RecievedDay = recievedClickedDate[2]
+    //All the needed information for craeting the date from and to 
     const [fromData, ChangeFromDate] = useState()
     const [ToData, ChangeToDate] = useState()
     const calendar = <InfoContainer>
@@ -42,7 +49,13 @@ const CalenderContianer = (props) => {
             <DateContainer>
                 <EachateContainer>
                     <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
-                    <DateSelected submitDateValue={(value) => ChangeFromDate(value)} RecievedColor={props.ScheduleColor}/>
+                    <DateSelected 
+                        ReturnClickedYear={RecievedYear} 
+                        ReturnClickedMonth={RecievedMonth} 
+                        ReturnClickedDay={RecievedDay} 
+                        submitDateValue={(value) => ChangeFromDate(value)} 
+                        RecievedColor={props.ScheduleColor}
+                    />
                 </EachateContainer>
                 <EachateContainer>
                     <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "24px"}}>To</span></FadeIn>

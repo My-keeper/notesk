@@ -18,27 +18,37 @@ const InfoContainer = styled.div`
 `
 
 const Schedule = (props) => {
-    // const
+    //Clicked Date in the calender
+    const [getClickedDate, ChangeClickedDate] = useState(props.SelectedDateClicked)
+    //Id for each Event
+    const [IdCounter, ChnageIdCounter] = useState([])
+    //Title Area
     const [getTitleValue, ChangeTitleValu] = useState()
+    const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title")
+    //TitleDescription Area
     const [getTitleDescriptionValue, ChangeTitleDescriptionValu] = useState()
+    const [TitleDescriptionPlaceHoldervalue,ChangeTitleDescriptionPlaceHolder] = useState("Title Description")
+    //URL Area
     const [getURLValue, ChangegetURLValue] = useState()
-
+    const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description")
+    //Date Value Area From
     const [getFormDateValue, ChangeFormDateValue] = useState()
+    //Date Value Area To
     const [getToDateValue, ChangeToDateValue] = useState()
-
+    //Time Values Area Started
     const [GetStartHoursValue, ChangeGetStartHourValue ]= useState()
     const [GetStartMinutsValue, ChangeGetStartMinutsValue ]= useState()
     const [GetStartDayValue, ChangeGetStartDayValue ]= useState()
+    //Time Values Area Ended
     const [GetEndHoursValue, ChangeGetEndHourValue ]= useState()
     const [GetEndMinutsValue, ChangeGetEndMinutsValue ]= useState()
     const [GetEndDayValue, ChangeGetEndDayValue ]= useState()
-
+    //Values of Repeated Days
     const [getRDValue, ChangeRDValu] = useState()
-
-    console.log(getRDValue)
+    //The collection of Data to create the Event
     const [CreateEvent, ChnageEventInfo]=useState(
         {
-            id: 'a',  
+            id: `$ChnageIdCounter(prevCount => prevCount + 1)`,  
             title: 'Testoing for more ', 
             start: '2021-01-30T12:30:00Z',
             textColor:"pink", 
@@ -53,8 +63,6 @@ const Schedule = (props) => {
             textColor: 'black'
         }
     )
-        {
-    }
 
    return(
     <FadeIn>
@@ -71,16 +79,20 @@ const Schedule = (props) => {
             >
                 {<TitleContainer 
                     SubmitTitle={(value) => ChangeTitleValu(value)}
+                    SubmitTitlePlaceHolder={TitlePlaceHoldervalue}
                     ScheduleColor={props.ScheduleColor}/>}
                 {<TitleDescriptionContainer 
                     TitleDescription={(value) => ChangeTitleDescriptionValu(value)}
+                    SubmitTitleDescriptionPlaceHolder={TitleDescriptionPlaceHoldervalue}
                     ScheduleColor={props.ScheduleColor}/>}
                 {<URLContainer 
                     URLOption={(value) => ChangegetURLValue(value)}
+                    SubmitURLPlaceHolder={URLPlaceHolder}
                     ScheduleColor={props.ScheduleColor}/>}
                 {<CalenderContianer 
                     SubmitFromDateSelected={(value) => ChangeFormDateValue(value)} 
                     SubmitToDateSelected={(value) => ChangeToDateValue(value)} 
+                    RetrunClickedDate={getClickedDate}
                     ScheduleColor={props.ScheduleColor}/>}
                 {<TimerContainer
                     SubmitFromHourSelected={(value) => ChangeGetStartHourValue(value)}
@@ -90,7 +102,6 @@ const Schedule = (props) => {
                     SubmitFromDayValueSelected={(value) => ChangeGetStartDayValue(value)}
                     SubmitToDayValueSelected={(value) => ChangeGetEndDayValue(value)} 
                     ScheduleColor={props.ScheduleColor}/>}
-                {/* {<FontColorContainer ScheduleColor={props.ScheduleColor}/>} */}
                 {<RDContainer 
                     SubmitNumberOfRP={(value) => ChangeRDValu(value)} 
                     ScheduleColor={props.ScheduleColor}/>} 

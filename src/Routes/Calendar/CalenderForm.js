@@ -25,9 +25,7 @@ const CalendarForm= (props) => {
     const [ClickedDate, ChangeClickedDate] = useState()
     const IconColor =  props.RecieveColor.CalendarColorTable
     const handleDateClick = (arg) => { 
-        return (ChangeClickedDate(arg.dateStr),console.log(ClickedDate))
-        // ChangeDataClicked(true)
-        // alert(arg.dateStr)
+        return (ChangeClickedDate(arg.dateStr.split("-")),ChangeDataClicked(true))
       }
     const [getEvent, ChangeEventInfo] = useState([{}])
       const EventTest = [
@@ -101,10 +99,9 @@ const CalendarForm= (props) => {
 
     return(
         <CalenderContainer CalendarColorSelected = {props.RecieveColor.CalendarColorTable} >
-            {console.log(props.RecieveColor.CalendarColorTable)}
-            {/* {DataClicked == false ? CalenderTable :<Schedule ScheduleColor={props.RecieveColor}/> } */}
-            {CalenderTable}
-            {/* <Schedule ScheduleColor={props.RecieveColor}/> */}
+            {DataClicked == false ? CalenderTable :<Schedule SelectedDateClicked={ClickedDate} ScheduleColor={props.RecieveColor}/> }
+            {/* {CalenderTable} */}
+            {/* <Schedule SelectedDateClicked={ClickedDate} ScheduleColor={props.RecieveColor}/> */}
         </CalenderContainer>
     )
 };

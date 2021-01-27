@@ -23,7 +23,7 @@ const TitleContainer = (props) => {
     }
 
     const [titleValue, ChangeTitle] = useState("")
-    const [CurrentPlaceHolde, setPlaceHolder]= useState("Title")
+    const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitTitlePlaceHolder)
     // const subTitle = (event) => {
     //     event.preventDefault();
     //     if (titleValue === "" )
@@ -62,7 +62,6 @@ const TitleContainer = (props) => {
     </InfoContainer>
 
     props.SubmitTitle(titleValue)
-
     return(title)
 }
 
@@ -74,7 +73,7 @@ const TitleDescriptionContainer = (props) => {
         marginTop:"4px" 
     }
     const [titleDescriptionValue, ChangetitleDescription] = useState("")
-    const [CurrentPlaceHolde, setPlaceHolder]= useState("Title Description")
+    const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitTitleDescriptionPlaceHolder)
     // const subTitleDescription = (event) => {
     //     event.preventDefault();
     //     if (titleDescriptionValue === "" )
@@ -125,7 +124,7 @@ const URLContainer = (props) => {
         marginTop:"4px" 
     }
     const [URLValue, ChangeURL] = useState("")
-    const [CurrentPlaceHolde, setPlaceHolder]= useState("Optional Attached Link For Description")
+    const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitURLPlaceHolder)
     // const subURL = (event) => {
     //     event.preventDefault();
     //     if (URLValue !== "" )

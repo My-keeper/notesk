@@ -5,31 +5,31 @@ import SelectData from '../../../../../UI/Select';
 import {NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue} from './OptionsForm'
 
 const DateSelected = (props) => {
-    
-   const [YearsValueInput, ChangeYearsValueInput] = useState("")
-   const handleYears = (e) =>{ChangeYearsValueInput(e.target.value );}
-   const Years = <FadeIn><SelectData 
-    key={YearsValueInput.id}
-       inputType={"text"}
-       name="title"
-       widthValue={"105px"}
-       paddingVale={"4px"}
-       outlineValue={"none"}
-       fontSizeValue={"1.2em"}
-       fontFamilyValue={"inherit"}
-       IsCalledValue={"FOCUS"} 
-       borderRadiusValue= {"7px"}
-       backGroundColorValue={ props.RecievedColor.UserInputBGC}
-       FontColorValue={props.RecievedColor.UserInputFC}
-       PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-       borderColorValue={props.RecievedColor.BorderColor} 
-       BorderValue={"solid"}
-       borderWidthValue={"thin"}
-       marginRightValue={"15px"}
-       onchangeValue = {handleYears}
-       InputValue = {YearsValueInput}
+
+    const [YearsValueInput, ChangeYearsValueInput] = useState("")
+    const handleYears = (e) =>{ChangeYearsValueInput(e.target.value );}
+    const Years = <FadeIn><SelectData 
+        key={YearsValueInput.id}
+        inputType={"text"}
+        name="title"
+        widthValue={"105px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={ props.RecievedColor.UserInputBGC}
+        FontColorValue={props.RecievedColor.UserInputFC}
+        PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
+        borderColorValue={props.RecievedColor.BorderColor} 
+        BorderValue={"solid"}
+        borderWidthValue={"thin"}
+        marginRightValue={"15px"}
+        onchangeValue = {handleYears}
+        InputValue = {YearsValueInput}
        >
-       {<NumberOfYearsValue/>}
+       {<NumberOfYearsValue RecievedYear = {props.ReturnClickedYear}/>}
     </SelectData></FadeIn>
 
     const [MonthsValueInput, ChangeMonthsValue] = useState("")
