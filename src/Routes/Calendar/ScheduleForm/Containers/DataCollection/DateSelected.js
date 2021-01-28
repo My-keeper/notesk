@@ -9,6 +9,7 @@ const DateSelected = (props) => {
     const [YearsValueInput, ChangeYearsValueInput] = useState("")
     const handleYears = (e) =>{ChangeYearsValueInput(e.target.value );}
     const Years = <FadeIn><SelectData 
+    disabled
         key={YearsValueInput.id}
         inputType={"text"}
         name="title"
