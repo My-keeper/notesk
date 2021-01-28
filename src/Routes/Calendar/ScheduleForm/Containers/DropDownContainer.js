@@ -47,12 +47,22 @@ const CalenderContianer = (props) => {
     const calendar = <InfoContainer>
             <FadeIn><CalendarOutlined style={IconColor}/>  </FadeIn>
             <DateContainer>
+            <EachateContainer>
+                
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}></span></FadeIn>
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>Year</span></FadeIn>
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>Month</span></FadeIn>
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>Day</span></FadeIn>
+            </EachateContainer>
+
                 <EachateContainer>
                     <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
-                    <DateSelected 
+                    <DateSelected
+                        //The first three are used to send these data to DataSlected to be used for Year, Month, Day 
                         ReturnClickedYear={RecievedYear} 
                         ReturnClickedMonth={RecievedMonth} 
                         ReturnClickedDay={RecievedDay} 
+                        //The incoming dating is used to chagne the format of the date and then send that number to submission button
                         submitDateValue={(value) => ChangeFromDate(value)} 
                         RecievedColor={props.ScheduleColor}
                     />
@@ -63,7 +73,7 @@ const CalenderContianer = (props) => {
                 </EachateContainer>
             </DateContainer>
         </InfoContainer>
-
+    //To recieve a prop that will change the value from and to inside the schedule form to the value of From/to Date that has been created here  
     props.SubmitFromDateSelected(fromData)
     props.SubmitToDateSelected(ToData)
     return(calendar)

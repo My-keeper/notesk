@@ -31,7 +31,8 @@ const TwelveHourSystemValue = () => {
     return(DayDivided)
 }
 const NumberOfYearsValue = (props) => {
-    const [isYearDisabled, ChangeisYearDisabled]= useState(false)
+    //testing if the value of DisabledYear that is coming will work or not 
+    const [isYearDisabled, ChangeisYearDisabled]= useState(props.DisabledYear)
     //Recieved Clicked Date 
     const RecievedClickedDate = props.RecievedYear
     console.log(RecievedClickedDate)
