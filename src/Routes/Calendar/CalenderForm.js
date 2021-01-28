@@ -20,6 +20,9 @@ const CalenderContainer = styled.div`
 `
 
 const CalendarForm= (props) => {
+    //this part to collect list of the Events that is created and passed down once submitted
+    const [GetPassedDownEvents, ChangePassedDownEvents] = useState([])
+
     const [DataClicked, ChangeDataClicked]= useState(false)
 
     const [ClickedDate, ChangeClickedDate] = useState()

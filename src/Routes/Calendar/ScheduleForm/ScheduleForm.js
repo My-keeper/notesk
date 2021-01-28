@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import NoteContainer from '../../../UI/Modal'; 
 import FadeIn  from 'react-fade-in'; 
-import {TitleContainer, TitleDescriptionContainer, URLContainer} from './Containers/InputContainer';
+import {TitleContainer, TitleDescriptionContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
 import {CalenderContianer, TimerContainer} from './Containers/DropDownContainer';
 import {FontColorContainer} from './Containers/ColorContainer';
 import {SubmissionContainer} from './Containers/submitButtonContainer'; 
@@ -25,6 +25,9 @@ const Schedule = (props) => {
     //Title Area
     const [getTitleValue, ChangeTitleValu] = useState()
     const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title")
+    //Description Area
+    const [getDescriptionValue, ChangeDescriptionValu] = useState()
+    const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description")
     //TitleDescription Area
     const [getTitleDescriptionValue, ChangeTitleDescriptionValu] = useState()
     const [TitleDescriptionPlaceHoldervalue,ChangeTitleDescriptionPlaceHolder] = useState("Title Description")
@@ -55,11 +58,10 @@ const Schedule = (props) => {
             end: '2021-02-02T13:30:00Z',
             description: 'lets play some game s', 
             display: 'list-item', 
-            backgroundColor:"black",
+            backgroundColor:`${props.backGroundColorInput ? props.backGroundColorInput : "black"}`,
             daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
             startTime: '10:45:00',
             endTime: '12:45:00',
-            display: 'list-item',
             textColor: 'black'
         }
     )
@@ -85,6 +87,10 @@ const Schedule = (props) => {
                     TitleDescription={(value) => ChangeTitleDescriptionValu(value)}
                     SubmitTitleDescriptionPlaceHolder={TitleDescriptionPlaceHoldervalue}
                     ScheduleColor={props.ScheduleColor}/>}
+                {<DescriptionContainer 
+                    Description={(value) => ChangeDescriptionValu(value)}
+                    SubmitDescriptionPlaceHolder={DescriptionPlaceHoldervalue}
+                    ScheduleColor={props.ScheduleColor}/>}
                 {<URLContainer 
                     URLOption={(value) => ChangegetURLValue(value)}
                     SubmitURLPlaceHolder={URLPlaceHolder}
@@ -105,7 +111,28 @@ const Schedule = (props) => {
                 {<RDContainer 
                     SubmitNumberOfRP={(value) => ChangeRDValu(value)} 
                     ScheduleColor={props.ScheduleColor}/>} 
-                {<SubmissionContainer ScheduleColor={props.ScheduleColor}/>}
+                {<SubmissionContainer 
+                    PassIdCounter={IdCounter}
+                    PassTitleValue={getTitleValue}
+                    ChangePassTitlePlaceHolder={ChangeTitlePlaceHolder}
+                    PassTitleDescriptionValue={getTitleDescriptionValue}
+                    ChangePassTitleDescriptionPlaceHolder={ChangeTitleDescriptionPlaceHolder}
+                    PassDescriptionValue={getDescriptionValue}
+                    ChangeDescriptionPlaceHolder={ChangeDescriptionPlaceHolder}
+                    PassURLValue={getURLValue}
+                    PassFromDateValue={getFormDateValue}
+                    PassToDateValue={getToDateValue}
+                    PassStartHour={GetStartHoursValue}
+                    PassStartMinut={GetStartMinutsValue}
+                    PassStartSec={GetStartDayValue}
+                    PassEndHour={GetEndHoursValue}
+                    PassEndMinut={GetEndMinutsValue}
+                    PassEndSec={GetEndDayValue}
+                    PassRepeatedDaysValue={getRDValue}
+                    // PassTextColor={}
+                    // PassbackgroundColor={}
+                    // Passdisplay={}
+                    ScheduleColor={props.ScheduleColor}/>}
         </NoteContainer>
     </FadeIn>
     )

@@ -4,7 +4,7 @@ import UserInput from '../../../../UI/UserInput'
 import FadeIn  from 'react-fade-in';
 import { LinkOutlined} from "@ant-design/icons";
 import { Title, ImportContacts } from '@material-ui/icons';
-
+import DescriptionIcon from '@material-ui/icons/Description';
 const InfoContainer = styled.div`
     width: 440px;
     display: flex;
@@ -74,19 +74,7 @@ const TitleDescriptionContainer = (props) => {
     }
     const [titleDescriptionValue, ChangetitleDescription] = useState("")
     const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitTitleDescriptionPlaceHolder)
-    // const subTitleDescription = (event) => {
-    //     event.preventDefault();
-    //     if (titleDescriptionValue === "" )
-    //     {  
-    //          return( <FadeIn>{setPlaceHolder("Please Enter A title Description ....(-_-)") }</FadeIn>)
-    //     }
-    //     else
-    //     {
-    //         props.AddedTitle(titleDescriptionValue);
-    //         ChangetitleDescription("")
-    //         setPlaceHolder("Title Description")
-    //     }
-    // }    
+  
     const titleDescription = <InfoContainer>
         <FadeIn><ImportContacts style={IconColor}/></FadeIn>
         <FadeIn><UserInput
@@ -116,6 +104,45 @@ const TitleDescriptionContainer = (props) => {
     return (titleDescription)
 }
 
+const DescriptionContainer = (props) => {
+    const IconColor = { 
+        color : props.ScheduleColor.IconC, 
+        fontSize:"25px", 
+        marginRight:"9px", 
+        marginTop:"4px" 
+    }
+    const [DescriptionValue, ChangeDescription] = useState("")
+    const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitDescriptionPlaceHolder)
+  
+    const Description = <InfoContainer>
+        <FadeIn><DescriptionIcon style={IconColor}/></FadeIn>
+        <FadeIn><UserInput
+        key={`Description`+1} 
+        inputType={DescriptionValue}
+        PlaceholderValue={CurrentPlaceHolde}
+        name="title"
+        widthValue={"402px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.ScheduleColor.UserInputBGC}
+        FontColorValue={props.ScheduleColor.UserInputFC}
+        PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
+        borderColorValue={props.ScheduleColor.BorderColor}  
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"10px"}
+        /></FadeIn>
+    </InfoContainer>
+
+    props.Description(DescriptionValue)
+
+    return (Description)
+}
+
 const URLContainer = (props) => {
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
@@ -125,15 +152,7 @@ const URLContainer = (props) => {
     }
     const [URLValue, ChangeURL] = useState("")
     const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitURLPlaceHolder)
-    // const subURL = (event) => {
-    //     event.preventDefault();
-    //     if (URLValue !== "" )
-    //     {  
-    //         props.AddedTitle(URLValue);
-    //         ChangeURL("")
-    //         setPlaceHolder("URL")
-    //     }
-    // }  
+
     const URL = <InfoContainer>
         <FadeIn><LinkOutlined style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
@@ -163,4 +182,4 @@ const URLContainer = (props) => {
     return (URL)
 }
 
-export  {TitleContainer, TitleDescriptionContainer, URLContainer};
+export  {TitleContainer, TitleDescriptionContainer, DescriptionContainer, URLContainer};
