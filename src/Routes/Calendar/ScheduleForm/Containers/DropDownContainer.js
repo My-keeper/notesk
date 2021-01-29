@@ -40,7 +40,7 @@ const CalenderContianer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
-    const [tst, chte] = useState(false)
+    const [tst, chte] = useState(true)
     const mero = <Inputdata 
     // key={NumberOfRepeatedDays.id}
     inputType={"checkbox"}
@@ -99,7 +99,10 @@ const CalenderContianer = (props) => {
     const toDataCalendar = <EachateContainer>
         <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "-3px"}}>To </span></FadeIn>
         {mero}
-        <DateSelected Testing={true} submitDateValue={(value) => ChangeToDate(value)} RecievedColor={props.ScheduleColor}/>
+    <DateSelected Testing={tst} submitDateValue={(value) => ChangeToDate(value)} RecievedColor={props.ScheduleColor}/>
+        
+       {/* { tst ? "Click if you want to add a due date" :
+        <DateSelected Testing={true} submitDateValue={(value) => ChangeToDate(value)} RecievedColor={props.ScheduleColor}/>} */}
     </EachateContainer>
 
     //This is the returned Date to the calendar

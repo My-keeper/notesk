@@ -6,7 +6,10 @@ import {NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue} from './Opti
 
 const DateSelected = (props) => {
     // this is the value to disable the Year based on the user's input 
-    const [YearDisabled, ChangeYearDisabled] = useState(props.Testing)
+    const [YearDisabled, ChangeYearDisabled] = useState(true)
+    const t = () =>(
+        props.Testing ? YearDisabled : ChangeYearDisabled(!YearDisabled)
+    )
     // This part is changed once the user click on the drop down to see other options
     const [GetUserChangeYear, ChnageUserChangedYear] = useState(true)
     /*
@@ -41,7 +44,7 @@ const DateSelected = (props) => {
         onchangeValue = {handleYears}
         InputValue = {YearsValueInput}
        >
-       {<NumberOfYearsValue DisabledYear={YearDisabled} />} 
+       {<NumberOfYearsValue DisabledYear={t} />} 
     </SelectData></FadeIn>
 
     // this is the value to disable the Month based on the user's input 
