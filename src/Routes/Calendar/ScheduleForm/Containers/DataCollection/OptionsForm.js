@@ -31,13 +31,10 @@ const TwelveHourSystemValue = () => {
     return(DayDivided)
 }
 const NumberOfYearsValue = (props) => {
-    //testing if the value of DisabledYear that is coming will work or not 
+    //it is values is coming from DataSelected
     const [isYearDisabled, ChangeisYearDisabled]= useState(props.DisabledYear)
-    //Recieved Clicked Date 
-    const RecievedClickedDate = props.RecievedYear
-    console.log(RecievedClickedDate)
     //this is for the years from this year 
-    const NumberOfYears = [ 'year','2021', '2022', '2023', '2024','2025', '2026', 
+    const NumberOfYears = [ 'year','2020','2021', '2022', '2023', '2024','2025', '2026', 
                             '2027', '2028', '2029', '2030', '2031', '2032','2033', 
                             '2034','2035', '2036', '2037', '2038', '2039','2040']
     const YearContainer = (
@@ -48,8 +45,9 @@ const NumberOfYearsValue = (props) => {
         YearContainer
         )
 }
-const NumberOfMonthsValue = () => {
-    const [isMonthDisabled, ChangeisMonthDisabled]= useState(false)
+const NumberOfMonthsValue = (props) => {
+    //it is values is coming from DataSelected
+    const [isMonthDisabled, ChangeisMonthDisabled]= useState(props.DisabledMonth)
     //this is for the months in a year 
     const NumberOfMonths = ['Months','01','02','03','04','05','06','07','08','09','10','11','12']
     const MonthContainer = (
@@ -57,8 +55,9 @@ const NumberOfMonthsValue = () => {
         )
     return(MonthContainer)
 }
-const NumberOfDaysValue = () => {
-    const [isDaysDisabled, ChangeisDaysDisabled]= useState(false)
+const NumberOfDaysValue = (props) => {
+    //it is values is coming from DataSelected
+    const [isDaysDisabled, ChangeisDaysDisabled]= useState(props.DisabledDay)
     //this is for the days in a Month 
     const NumberOfDays = ['Days','01','02','03','04','05','06','07','08','09','10',
                         '11','12','13','14','15','16','17','18','19','20',

@@ -6,7 +6,7 @@ import {NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue} from './Opti
 
 const DateSelected = (props) => {
     // this is the value to disable the Year based on the user's input 
-    const [test, ChangeTest] = useState(props.getDiabledyear)
+    const [YearDisabled, ChangeYearDisabled] = useState(false)
     // This part is changed once the user click on the drop down to see other options
     const [GetUserChangeYear, ChnageUserChangedYear] = useState(true)
     /*
@@ -41,8 +41,11 @@ const DateSelected = (props) => {
         onchangeValue = {handleYears}
         InputValue = {YearsValueInput}
        >
-       {<NumberOfYearsValue DisabledYear={test} />} 
+       {<NumberOfYearsValue DisabledYear={YearDisabled} />} 
     </SelectData></FadeIn>
+
+    // this is the value to disable the Month based on the user's input 
+    const [MonthDisabled, ChangeMonthDisabled] = useState(false)
     // This part is changed once the user click on the drop down to see other options
     const [GetUserChangeMonth, ChnageUserChangedMonth] = useState(true)
     /*
@@ -75,8 +78,11 @@ const DateSelected = (props) => {
         onchangeValue = {handleMonths}
         InputValue = {MonthsValueInput}
         >
-        {<NumberOfMonthsValue/>}
+        {<NumberOfMonthsValue   DisabledMonth={MonthDisabled}/>}
     </SelectData></FadeIn>
+
+    // this is the value to disable the Month based on the user's input 
+    const [DayDisabled, ChangeDayDisabled] = useState(false)
     // This part is changed once the user click on the drop down to see other options
     const [GetUserChangeDay, ChnageUserChangedDay] = useState(true)
     /*
@@ -109,12 +115,11 @@ const DateSelected = (props) => {
         onchangeValue = {handleDays}
         InputValue = {DayValueInput}
         >
-        {<NumberOfDaysValue/>}
+        {<NumberOfDaysValue DisabledDay={DayDisabled}/>}
     </SelectData></FadeIn>
     
     //this is submitted to DropDownContainer
     props.submitDateValue(YearsValueInput+ '-'+ MonthsValueInput + '-' + DayValueInput)
-    // props.getDiabledyear(ChangeTest)
     return (
         [ Years, Months, Days]
         )

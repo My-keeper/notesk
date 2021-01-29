@@ -4,6 +4,8 @@ import FadeIn  from 'react-fade-in';
 import { CalendarOutlined , ClockCircleFilled} from "@ant-design/icons"; 
 import DateSelected from './DataCollection/DateSelected';
 import TimeSelected from './DataCollection/TimeSelected';
+import { Layers } from "@material-ui/icons";
+import { Layout } from "antd";
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -35,51 +37,56 @@ const CalenderContianer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
+    //This is for the layout for Year Month Days
+    const Layout = ['','Year','Month','Day']
+    const layoutValues = <EachateContainer>
+        {Layout.map(value => 
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
+    </EachateContainer>
+
     //the date that the user clicked on to have it go to the data collection and have the same number 
     const [recievedClickedDate, ChangeRecievedClickedDate] = useState(props.RetrunClickedDate)
     //Dividing the Recieved Date to Year Month Day and Send them to DateSelected
     const RecievedYear = recievedClickedDate[0]
     const RecievedMonth = recievedClickedDate[1]
     const RecievedDay = recievedClickedDate[2]
-    //All the needed information for craeting the date from and to 
-    const [fromData, ChangeFromDate] = useState()
-    const [ToData, ChangeToDate] = useState()
-    const calendar = <InfoContainer>
-            <FadeIn><CalendarOutlined style={IconColor}/>  </FadeIn>
-            <DateContainer>
-            <EachateContainer>
-                
-            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}></span></FadeIn>
-            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>Year</span></FadeIn>
-            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>Month</span></FadeIn>
-            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>Day</span></FadeIn>
-            </EachateContainer>
 
-                <EachateContainer>
-                    <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
-                    <DateSelected
-                        getDiabledyear={false}
-                        //The first three are used to send these data to DataSlected to be used for Year, Month, Day 
-                        ReturnClickedYear={RecievedYear} 
-                        ReturnClickedMonth={RecievedMonth} 
-                        ReturnClickedDay={RecievedDay} 
-                        //The incoming dating is used to chagne the format of the date and then send that number to submission button
-                        submitDateValue={(value) => ChangeFromDate(value)} 
-                        RecievedColor={props.ScheduleColor}
-                    />
-                </EachateContainer>
-                <EachateContainer>
-                    <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "24px"}}>To</span></FadeIn>
-                    <DateSelected 
-                        getDiabledyear={true}
-                        submitDateValue={(value) => ChangeToDate(value)}
-                        RecievedColor={props.ScheduleColor}/>
-                </EachateContainer>
-            </DateContainer>
-        </InfoContainer>
+    //All the needed information for craeting the date From 
+    const [fromData, ChangeFromDate] = useState()
+    const fromDataCalendar =<EachateContainer>
+        <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
+        <DateSelected
+            //The first three are used to send these data to DataSlected to be used for Year, Month, Day 
+            ReturnClickedYear={RecievedYear} 
+            ReturnClickedMonth={RecievedMonth} 
+            ReturnClickedDay={RecievedDay} 
+            //The incoming dating is used to chagne the format of the date and then send that number to submission button
+            submitDateValue={(value) => ChangeFromDate(value)} 
+            RecievedColor={props.ScheduleColor}
+        />
+    </EachateContainer>
+
+    //All the needed information for craeting the date To 
+    const [ToData, ChangeToDate] = useState()
+    const toDataCalendar = <EachateContainer>
+        <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "24px"}}>To</span></FadeIn>
+        <DateSelected submitDateValue={(value) => ChangeToDate(value)} RecievedColor={props.ScheduleColor}/>
+    </EachateContainer>
+
+    //This is the returned Date to the calendar
+    const calendar = <InfoContainer>
+        <FadeIn><CalendarOutlined style={IconColor}/>  </FadeIn>
+        <DateContainer>
+            {layoutValues}
+            {fromDataCalendar}
+            {toDataCalendar}
+        </DateContainer>
+    </InfoContainer>
+
     //To recieve a prop that will change the value from and to inside the schedule form to the value of From/to Date that has been created here  
     props.SubmitFromDateSelected(fromData)
     props.SubmitToDateSelected(ToData)
+    
     return(calendar)
 }
 
