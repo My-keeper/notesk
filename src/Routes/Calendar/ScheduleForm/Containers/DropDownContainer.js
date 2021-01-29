@@ -3,7 +3,10 @@ import styled from "styled-components";
 import FadeIn  from 'react-fade-in'; 
 import { CalendarOutlined , ClockCircleFilled} from "@ant-design/icons"; 
 import DateSelected from './DataCollection/DateSelected';
+import Inputdata from '../../../../UI/UserInput';
 import TimeSelected from './DataCollection/TimeSelected';
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { Layers } from "@material-ui/icons";
 import { Layout } from "antd";
 
@@ -37,6 +40,31 @@ const CalenderContianer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
+    const [tst, chte] = useState(false)
+    const mero = <Inputdata 
+    // key={NumberOfRepeatedDays.id}
+    inputType={"checkbox"}
+    name="title"
+    widthValue={"15px"}
+    paddingVale={"2px"}
+    outlineValue={"none"}
+    fontSizeValue={"1.2em"}
+    fontFamilyValue={"inherit"}
+    IsCalledValue={"FOCUS"} 
+    borderRadiusValue= {"7px"}
+    // backGroundColorValue={ props.RecievedColor.UserInputBGC}
+    // FontColorValue={props.RecievedColor.UserInputFC}
+    // PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
+    // borderColorValue={props.RecievedColor.BorderColor} 
+    BorderValue={"solid"}
+    borderWidthValue={"thin"}
+    marginLeftValue={"5px"}
+    marginTopValue={"4px"}
+    onClickValue = {() =>chte(!tst)}
+    // onchangeValue={() =>chte(!tst)}
+    // InputValue = {DayValue}
+    ></Inputdata>
+
     //This is for the layout for Year Month Days
     const Layout = ['','Year','Month','Day']
     const layoutValues = <EachateContainer>
@@ -69,8 +97,9 @@ const CalenderContianer = (props) => {
     //All the needed information for craeting the date To 
     const [ToData, ChangeToDate] = useState()
     const toDataCalendar = <EachateContainer>
-        <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "24px"}}>To</span></FadeIn>
-        <DateSelected submitDateValue={(value) => ChangeToDate(value)} RecievedColor={props.ScheduleColor}/>
+        <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "-3px"}}>To </span></FadeIn>
+        {mero}
+        <DateSelected Testing={true} submitDateValue={(value) => ChangeToDate(value)} RecievedColor={props.ScheduleColor}/>
     </EachateContainer>
 
     //This is the returned Date to the calendar
