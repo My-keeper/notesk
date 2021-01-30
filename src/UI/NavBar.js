@@ -5,7 +5,8 @@ import FadeIn from 'react-fade-in';
 import UserIcon from "./UserIcon";
 import { LoginOutlined, LogoutOutlined } from "@ant-design/icons";
 import AppButton from "./Button";
-
+import NotesIcon from '@material-ui/icons/Notes';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 
 const StyledNavBar = styled(FadeIn)` 
     align-items: center; 
@@ -25,7 +26,7 @@ const DisplayedUsername = styled.span`
 `;
 const RightNavBarItems = styled.div`
   display: flex;
-  width: 450px;
+  width: 500px;
   justify-content: flex-end;
 `;
 const LeftNavBarItems = styled.div`
@@ -34,24 +35,29 @@ const LeftNavBarItems = styled.div`
   justify-content: flex-start;
 `;
 const NavBar = (props) => {
+  const IconStyle = {
+    marginRight: "3px",
+    marginTop: "15px",
+    fontSize: "25px"
+  }
 
   return(
-    // <FadeIn>
     <StyledNavBar>
       <LeftNavBarItems>
           Hi! 
       </LeftNavBarItems>
-      <RightNavBarItems>
-        <SwitchIcon OnChangedColor={props.ColorChanged}/>
-          <UserIcon username={"Amr R. Mohamed"} OnChangedColor={props.RecieveColor}/>
-          <DisplayedUsername 
-            TextColorInput={props.RecieveColor.UserIconTextColor}>
-            <bold>{"Amr R. Mohamed"}</bold>
-          </DisplayedUsername>
-        </RightNavBarItems>
-    </StyledNavBar>
-        /* </FadeIn> */
 
+      <RightNavBarItems>
+        <CalendarTodayIcon style={{IconStyle}}/>
+        <NotesIcon style={{IconStyle}}/>
+        <SwitchIcon OnChangedColor={props.ColorChanged}/>
+        <UserIcon username={"Amr R. Mohamed"} OnChangedColor={props.RecieveColor}/>
+        <DisplayedUsername 
+          TextColorInput={props.RecieveColor.UserIconTextColor}>
+          <bold>{"Amr R. Mohamed"}</bold>
+        </DisplayedUsername>
+      </RightNavBarItems>
+    </StyledNavBar>
   ) 
 }
 
