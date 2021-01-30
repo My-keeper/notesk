@@ -30,40 +30,34 @@ const TwelveHourSystemValue = () => {
         )
     return(DayDivided)
 }
-const NumberOfYearsValue = (props) => {
-    //it is values is coming from DataSelected
-    const [isYearDisabled, ChangeisYearDisabled]= useState(props.DisabledYear)
+const NumberOfYearsValue = (props) => { 
     //this is for the years from this year 
     const NumberOfYears = [ 'year','2020','2021', '2022', '2023', '2024','2025', '2026', 
                             '2027', '2028', '2029', '2030', '2031', '2032','2033', 
                             '2034','2035', '2036', '2037', '2038', '2039','2040']
     const YearContainer = (
-        [NumberOfYears.map((year, index) => <option disabled={isYearDisabled}  key={index.id} value={year}>{year}</option>)]
+        [NumberOfYears.map((year, index) => <option disabled={props.DisabledYear}  key={index.id} value={year}>{year}</option>)]
     )
     
     return(
         YearContainer
         )
 }
-const NumberOfMonthsValue = (props) => {
-    //it is values is coming from DataSelected
-    const [isMonthDisabled, ChangeisMonthDisabled]= useState(props.DisabledMonth)
+const NumberOfMonthsValue = (props) => { 
     //this is for the months in a year 
     const NumberOfMonths = ['Months','01','02','03','04','05','06','07','08','09','10','11','12']
     const MonthContainer = (
-        [NumberOfMonths.map((month, index) => <option disabled={isMonthDisabled} key={index.id}  value={month}>{month}</option>)]
+        [NumberOfMonths.map((month, index) => <option disabled={props.DisabledMonth} key={index.id}  value={month}>{month}</option>)]
         )
     return(MonthContainer)
 }
-const NumberOfDaysValue = (props) => {
-    //it is values is coming from DataSelected
-    const [isDaysDisabled, ChangeisDaysDisabled]= useState(props.DisabledDay)
+const NumberOfDaysValue = (props) => { 
     //this is for the days in a Month 
     const NumberOfDays = ['Days','01','02','03','04','05','06','07','08','09','10',
                         '11','12','13','14','15','16','17','18','19','20',
                         '21','22','23','24','25','26','27','28','29','30','31']
     const DayContainer = (
-        [NumberOfDays.map((days,index ) => <option disabled={isDaysDisabled} key={index.id} value={days}>{days}</option>)]
+        [NumberOfDays.map((days,index ) => <option disabled={props.DisabledDay} key={index.id} value={days}>{days}</option>)]
         )
     return(DayContainer)
 }

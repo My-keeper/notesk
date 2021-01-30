@@ -3,12 +3,9 @@ import styled from "styled-components";
 import FadeIn  from 'react-fade-in'; 
 import { CalendarOutlined , ClockCircleFilled} from "@ant-design/icons"; 
 import DateSelected from './DataCollection/DateSelected';
-import Inputdata from '../../../../UI/UserInput';
 import TimeSelected from './DataCollection/TimeSelected';
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import { Layers } from "@material-ui/icons";
-import { Layout } from "antd";
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -40,36 +37,24 @@ const CalenderContianer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
-    const [tst, chte] = useState(true)
-    const mero = <Inputdata 
-    // key={NumberOfRepeatedDays.id}
-    inputType={"checkbox"}
-    name="title"
-    widthValue={"15px"}
-    paddingVale={"2px"}
-    outlineValue={"none"}
-    fontSizeValue={"1.2em"}
-    fontFamilyValue={"inherit"}
-    IsCalledValue={"FOCUS"} 
-    borderRadiusValue= {"7px"}
-    // backGroundColorValue={ props.RecievedColor.UserInputBGC}
-    // FontColorValue={props.RecievedColor.UserInputFC}
-    // PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-    // borderColorValue={props.RecievedColor.BorderColor} 
-    BorderValue={"solid"}
-    borderWidthValue={"thin"}
-    marginLeftValue={"5px"}
-    marginTopValue={"4px"}
-    onClickValue = {() =>chte(!tst)}
-    // onchangeValue={() =>chte(!tst)}
-    // InputValue = {DayValue}
-    ></Inputdata>
+
+    // This is a togole to change the state of the disabled and to change the icion as well 
+    const [isClicked, ChangeisClicked] = useState(true)
+
+    //this is the part where we change the icon based on clicking the div 
+    const mero = <div onClick={()=>ChangeisClicked(!isClicked)}>
+        {isClicked ? 
+            <VisibilityOffIcon style={{marginRight: "4px", marginLeft:"4px",marginTop:"6px" , fontSize: "21px"}} />
+            :
+            <VisibilityIcon style={{marginRight: "4px", marginLeft:"4px",marginTop:"6px" , fontSize: "21px"}} />
+        }
+    </div>
 
     //This is for the layout for Year Month Days
     const Layout = ['','Year','Month','Day']
     const layoutValues = <EachateContainer>
         {Layout.map(value => 
-            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
+            <FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
     </EachateContainer>
 
     //the date that the user clicked on to have it go to the data collection and have the same number 
@@ -84,10 +69,6 @@ const CalenderContianer = (props) => {
     const fromDataCalendar =<EachateContainer>
         <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
         <DateSelected
-            //The first three are used to send these data to DataSlected to be used for Year, Month, Day 
-            ReturnClickedYear={RecievedYear} 
-            ReturnClickedMonth={RecievedMonth} 
-            ReturnClickedDay={RecievedDay} 
             //The incoming dating is used to chagne the format of the date and then send that number to submission button
             submitDateValue={(value) => ChangeFromDate(value)} 
             RecievedColor={props.ScheduleColor}
@@ -98,11 +79,17 @@ const CalenderContianer = (props) => {
     const [ToData, ChangeToDate] = useState()
     const toDataCalendar = <EachateContainer>
         <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "-3px"}}>To </span></FadeIn>
-        {mero}
-    <DateSelected Testing={tst} submitDateValue={(value) => ChangeToDate(value)} RecievedColor={props.ScheduleColor}/>
-        
-       {/* { tst ? "Click if you want to add a due date" :
-        <DateSelected Testing={true} submitDateValue={(value) => ChangeToDate(value)} RecievedColor={props.ScheduleColor}/>} */}
+        {mero} 
+        <DateSelected 
+            //These are used to send these data to DataSlected to be used for Year, Month, Day 
+            ReturnClickedYear="Year" 
+            ReturnClickedMonth="Month" 
+            ReturnClickedDay="Day"
+            //this is to disable the values that are inside and it is going to DataSelected
+            DisabledisClicked={isClicked} 
+            submitDateValue={(value) => ChangeToDate(value)} 
+            RecievedColor={props.ScheduleColor}
+        />
     </EachateContainer>
 
     //This is the returned Date to the calendar

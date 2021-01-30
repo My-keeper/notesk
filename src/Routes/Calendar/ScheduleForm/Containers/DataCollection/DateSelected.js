@@ -5,12 +5,8 @@ import SelectData from '../../../../../UI/Select';
 import {NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue} from './OptionsForm'
 
 const DateSelected = (props) => {
-    // this is the value to disable the Year based on the user's input 
-    const [YearDisabled, ChangeYearDisabled] = useState(true)
-    const t = () =>(
-        props.Testing ? YearDisabled : ChangeYearDisabled(!YearDisabled)
-    )
-    // This part is changed once the user click on the drop down to see other options
+
+    //This part is changed once the user click on the drop down to see other options 
     const [GetUserChangeYear, ChnageUserChangedYear] = useState(true)
     /*
         This part is chicking if the input that the user entered is what is wanted or not 
@@ -22,7 +18,6 @@ const DateSelected = (props) => {
         ChnageUserChangedYear(false)
     )
     const Years = <FadeIn><SelectData 
-        // key={YearsValueInput.id}
         value="as"
         PlaceholderValue="asdfas"
         inputType={"text"}
@@ -44,11 +39,12 @@ const DateSelected = (props) => {
         onchangeValue = {handleYears}
         InputValue = {YearsValueInput}
        >
-       {<NumberOfYearsValue DisabledYear={t} />} 
+       {<NumberOfYearsValue 
+            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
+            DisabledYear={props.DisabledisClicked}
+        />} 
     </SelectData></FadeIn>
 
-    // this is the value to disable the Month based on the user's input 
-    const [MonthDisabled, ChangeMonthDisabled] = useState(props.Testing)
     // This part is changed once the user click on the drop down to see other options
     const [GetUserChangeMonth, ChnageUserChangedMonth] = useState(true)
     /*
@@ -81,11 +77,12 @@ const DateSelected = (props) => {
         onchangeValue = {handleMonths}
         InputValue = {MonthsValueInput}
         >
-        {<NumberOfMonthsValue   DisabledMonth={MonthDisabled}/>}
+        {<NumberOfMonthsValue   
+            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
+            DisabledMonth={props.DisabledisClicked}/>}
     </SelectData></FadeIn>
 
-    // this is the value to disable the Month based on the user's input 
-    const [DayDisabled, ChangeDayDisabled] = useState(false)
+    
     // This part is changed once the user click on the drop down to see other options
     const [GetUserChangeDay, ChnageUserChangedDay] = useState(true)
     /*
@@ -118,15 +115,16 @@ const DateSelected = (props) => {
         onchangeValue = {handleDays}
         InputValue = {DayValueInput}
         >
-        {<NumberOfDaysValue DisabledDay={DayDisabled}/>}
+        {<NumberOfDaysValue 
+            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
+            DisabledDay={props.DisabledisClicked}
+        />}
     </SelectData></FadeIn>
     
     //this is submitted to DropDownContainer
     props.submitDateValue(YearsValueInput+ '-'+ MonthsValueInput + '-' + DayValueInput)
-    return (
-        [ Years, Months, Days]
-        )
-
+    
+    return ([ Years, Months, Days])
 }
 
 export default DateSelected;
