@@ -7,6 +7,27 @@ import Button from '../../../../UI/Button';
 
 const SubmissionContainer = (props) => {
     
+    //Checking the title 
+    const subTitle = () => (
+        // console.log(props.ChangePassTitlePlaceHolder)
+        props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") 
+            // event.preventDefault();
+            // if (props.PassTitleValue === "" )
+            // {  
+            //      return( <FadeIn>{props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") }</FadeIn>)
+            // }
+            // else
+            // {
+            //     // props.AddedTitle(titleValue);
+            //     props.PassTitleValue("")
+            //     // setPlaceHolder("Title")
+            // }
+    )  
+
+// console.log(props.ChangePassTitlePlaceHolder )
+
+
+
     const [IsShown, setIsShown] = useState(false)
     const ButtonIconColor = { 
         color : props.ScheduleColor.IconC, 
@@ -14,7 +35,9 @@ const SubmissionContainer = (props) => {
         marginRight:"9px", 
         marginTop:"4px" 
     }
-    const SubmitButton = <FadeIn><Button
+    const SubmitButton = <FadeIn>
+        <div onClick={props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)")}>
+        <Button
         width={"120px"}
         marginBottomValue={"10px"}
         marginLeftValue={"35%"}
@@ -27,11 +50,13 @@ const SubmissionContainer = (props) => {
         BorderValue="solid"
         borderWidthValue="thin"
         paddingInputValue="2px"
-        onMouseEnter={() => setIsShown(true)}
-        onMouseLeave={() => setIsShown(false)}
+        // onMouseEnter={() => setIsShown(true)}
+        // onMouseLeave={() => setIsShown(false)}
+        onClick={props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") }
         text = {"Submit"} 
         icon = {<LoginOutlined style={ButtonIconColor}/>}
         />
+        </div>
     </FadeIn>
     
     return (SubmitButton)

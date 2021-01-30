@@ -18,22 +18,24 @@ const InfoContainer = styled.div`
 `
 
 const Schedule = (props) => {
+    //This is for submission once it is clicked there will be a toggel
+    const [getSubmitClicked, ChangeSubmitClicked] = useState(true)
     //Clicked Date in the calender
     const [getClickedDate, ChangeClickedDate] = useState(props.SelectedDateClicked)
     //Id for each Event
     const [IdCounter, ChnageIdCounter] = useState([])
     //Title Area
     const [getTitleValue, ChangeTitleValu] = useState()
-    const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title")
+    const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title ...")
     //Description Area
     const [getDescriptionValue, ChangeDescriptionValu] = useState()
-    const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description")
+    const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description ...")
     //TitleDescription Area
     const [getTitleDescriptionValue, ChangeTitleDescriptionValu] = useState()
-    const [TitleDescriptionPlaceHoldervalue,ChangeTitleDescriptionPlaceHolder] = useState("Title Description")
+    const [TitleDescriptionPlaceHoldervalue,ChangeTitleDescriptionPlaceHolder] = useState("Title Description ...")
     //URL Area
     const [getURLValue, ChangegetURLValue] = useState()
-    const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description")
+    const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description ...")
     //Date Value Area From
     const [getFormDateValue, ChangeFormDateValue] = useState()
     //Date Value Area To
@@ -70,7 +72,7 @@ const Schedule = (props) => {
     <FadeIn>
         <NoteContainer
             position= {"relative"}
-            width= {"480px"}
+            width= {"500px"}
             margin= {"30px auto 20px auto"}
             padding= {"15px"}
             boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
@@ -112,9 +114,12 @@ const Schedule = (props) => {
                     SubmitNumberOfRP={(value) => ChangeRDValu(value)} 
                     ScheduleColor={props.ScheduleColor}/>} 
                 {<SubmissionContainer 
+                    //the following props is what we recieve from submission when we click on the button 
+                    SubmitisClicked={()=>ChangeSubmitClicked(false)}
+                    //The following props is used to send data to the calender and we are checking that in the submission
                     PassIdCounter={IdCounter}
                     PassTitleValue={getTitleValue}
-                    ChangePassTitlePlaceHolder={ChangeTitlePlaceHolder}
+                    ChangePassTitlePlaceHolder={(value) => (ChangeTitlePlaceHolder(value))}
                     PassTitleDescriptionValue={getTitleDescriptionValue}
                     ChangePassTitleDescriptionPlaceHolder={ChangeTitleDescriptionPlaceHolder}
                     PassDescriptionValue={getDescriptionValue}
@@ -132,7 +137,8 @@ const Schedule = (props) => {
                     // PassTextColor={}
                     // PassbackgroundColor={}
                     // Passdisplay={}
-                    ScheduleColor={props.ScheduleColor}/>}
+                    ScheduleColor={props.ScheduleColor}
+                    />}
         </NoteContainer>
     </FadeIn>
     )

@@ -31,6 +31,7 @@ const DateContainer = styled.div`
 
 
 const CalenderContianer = (props) => {
+    //All Component Color Stle
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
         fontSize:"25px", 
@@ -38,16 +39,21 @@ const CalenderContianer = (props) => {
         marginTop:"4px" 
     }
 
+    //Visable and unvisable color style 
+    const VisibilityStle = {
+        marginRight: "4px", 
+        marginLeft:"4px",
+        marginTop:"6px" , 
+        fontSize: "21px", 
+        color : props.ScheduleColor.IconC
+    }
+    
     // This is a togole to change the state of the disabled and to change the icion as well 
     const [isClicked, ChangeisClicked] = useState(true)
 
     //this is the part where we change the icon based on clicking the div 
     const mero = <div onClick={()=>ChangeisClicked(!isClicked)}>
-        {isClicked ? 
-            <VisibilityOffIcon style={{marginRight: "4px", marginLeft:"4px",marginTop:"6px" , fontSize: "21px"}} />
-            :
-            <VisibilityIcon style={{marginRight: "4px", marginLeft:"4px",marginTop:"6px" , fontSize: "21px"}} />
-        }
+        {isClicked ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
     </div>
 
     //This is for the layout for Year Month Days

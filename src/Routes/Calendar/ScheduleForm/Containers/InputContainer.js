@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import UserInput from '../../../../UI/UserInput'
+import TextArea from '../../../../UI/TextArea';
 import FadeIn  from 'react-fade-in';
 import { LinkOutlined} from "@ant-design/icons";
 import { Title, ImportContacts } from '@material-ui/icons';
@@ -24,19 +25,6 @@ const TitleContainer = (props) => {
 
     const [titleValue, ChangeTitle] = useState("")
     const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitTitlePlaceHolder)
-    // const subTitle = (event) => {
-    //     event.preventDefault();
-    //     if (titleValue === "" )
-    //     {  
-    //          return( <FadeIn>{setPlaceHolder("Please Enter A Title ....(-_-)") }</FadeIn>)
-    //     }
-    //     else
-    //     {
-    //         props.AddedTitle(titleValue);
-    //         ChangeTitle("")
-    //         setPlaceHolder("Title")
-    //     }
-    // }    
     const title = <InfoContainer>
         <FadeIn><Title style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
@@ -116,10 +104,11 @@ const DescriptionContainer = (props) => {
   
     const Description = <InfoContainer>
         <FadeIn><DescriptionIcon style={IconColor}/></FadeIn>
-        <FadeIn><UserInput
+        <FadeIn><TextArea
         key={`Description`+1} 
         inputType={DescriptionValue}
         PlaceholderValue={CurrentPlaceHolde}
+        rows={3}
         name="title"
         widthValue={"402px"}
         paddingVale={"4px"}
@@ -133,6 +122,7 @@ const DescriptionContainer = (props) => {
         PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
         borderColorValue={props.ScheduleColor.BorderColor}  
         BorderValue={"solid"}
+        resizeValue={"vertical"}
         borderWidthValue="thin"
         marginRightValue={"10px"}
         /></FadeIn>
