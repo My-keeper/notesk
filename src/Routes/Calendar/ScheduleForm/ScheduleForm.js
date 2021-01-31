@@ -7,7 +7,7 @@ import {CalenderContianer, TimerContainer} from './Containers/DropDownContainer'
 import {FontColorContainer} from './Containers/ColorContainer';
 import {SubmissionContainer} from './Containers/submitButtonContainer'; 
 import {RDContainer} from './Containers/DaysContainer';
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined, CloseCircleOutlined} from "@ant-design/icons";
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -19,16 +19,29 @@ const InfoContainer = styled.div`
 `
 
 const Schedule = (props) => {
-    //Visable and unvisable color style 
-    const VisibilityStle = {
+    //Close is not hovered on color style 
+    const VisibilityStle1 = {
         marginRight: "4px", 
         marginLeft:"95%",
-        marginbottom:"12px" , 
+        marginBottom:"15px" , 
         fontSize: "21px", 
         color : props.ScheduleColor.IconC
     }
+    //Close is hovered on color style 
+    const VisibilityStle2 = {
+        marginRight: "4px", 
+        marginLeft:"95%",
+        marginBottom:"15px" , 
+        fontSize: "26px", 
+        color : props.ScheduleColor.IconC
+    }
+    // //to close submit component
+    // const [isClosedClicked, ChnageIsClosedClicked] = useState(true)
+    // //send Back that close is clicked 
+    // props.ClosedClicked(isClosedClicked)
+    // props.CloseIsCliced()
     //This is for submission once it is clicked there will be a toggel
-    const [getSubmitClicked, ChangeSubmitClicked] = useState(true)
+    const [getSubmitClicked, ChangeSubmitClicked] = useState(props.ClosedValue)
     //Clicked Date in the calender
     const [getClickedDate, ChangeClickedDate] = useState(props.SelectedDateClicked)
     //Id for each Event
@@ -75,11 +88,13 @@ const Schedule = (props) => {
         }
     )
 
+    const [isClode, ChangeIsClosed] = useState(true)
+
    return(
     <FadeIn>
         <NoteContainer
             position= {"relative"}
-            width= {"500px"}
+            width= {"520px"}
             margin= {"30px auto 20px auto"}
             padding= {"15px"}
             boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
@@ -88,16 +103,15 @@ const Schedule = (props) => {
             backGroundColorValue={props.ScheduleColor.NotekBGC}
             FontColorValue={props.ScheduleColor.NoteFC}
             >
-                <CloseOutlined style={VisibilityStle}/>
-
+                {isClode ? 
+                    <CloseOutlined onMouseEnter={() =>ChangeIsClosed(false)} style={VisibilityStle1}/> 
+                : 
+                    <CloseCircleOutlined onClick={()=> props.CloseIsCliced(false)} onMouseLeave={() =>ChangeIsClosed(true)} style={VisibilityStle2}/>
+                }
                 {<TitleContainer 
                     SubmitTitle={(value) => ChangeTitleValu(value)}
                     SubmitTitlePlaceHolder={TitlePlaceHoldervalue}
                     ScheduleColor={props.ScheduleColor}/>}
-                {/* {<TitleDescriptionContainer 
-                    TitleDescription={(value) => ChangeTitleDescriptionValu(value)}
-                    SubmitTitleDescriptionPlaceHolder={TitleDescriptionPlaceHoldervalue}
-                    ScheduleColor={props.ScheduleColor}/>} */}
                 {<DescriptionContainer 
                     Description={(value) => ChangeDescriptionValu(value)}
                     SubmitDescriptionPlaceHolder={DescriptionPlaceHoldervalue}

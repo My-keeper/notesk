@@ -22,8 +22,10 @@ const CalenderContainer = styled.div`
 const CalendarForm= (props) => {
     //this part to collect list of the Events that is created and passed down once submitted
     const [GetPassedDownEvents, ChangePassedDownEvents] = useState([])
-
+    //This two values are used to toggle the values to change the state to show the schedule
     const [DataClicked, ChangeDataClicked]= useState(false)
+    const [CloseIsCllicked, ChangeCloseIsClicked]= useState(true)
+    
 
     const [ClickedDate, ChangeClickedDate] = useState()
     const IconColor =  props.RecieveColor.CalendarColorTable
@@ -101,11 +103,17 @@ const CalendarForm= (props) => {
     />
 
     return(
-        <CalenderContainer CalendarColorSelected = {props.RecieveColor.CalendarColorTable} >
-            {DataClicked == false ? CalenderTable :<Schedule SelectedDateClicked={ClickedDate} ScheduleColor={props.RecieveColor}/> }
-            {/* {CalenderTable} */}
-            {/* <Schedule SelectedDateClicked={ClickedDate} ScheduleColor={props.RecieveColor}/> */}
-        </CalenderContainer>
+      <CalenderContainer CalendarColorSelected = {props.RecieveColor.CalendarColorTable} >
+        {DataClicked == false ? 
+          CalenderTable 
+          :
+          <Schedule 
+            ClosedValue={CloseIsCllicked} 
+            CloseIsCliced={(value) => (ChangeCloseIsClicked(value), ChangeDataClicked(value))}
+            SelectedDateClicked={ClickedDate} 
+            ScheduleColor={props.RecieveColor}/> 
+        }
+      </CalenderContainer>
     )
 };
 

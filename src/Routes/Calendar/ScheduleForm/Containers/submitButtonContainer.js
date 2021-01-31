@@ -9,24 +9,20 @@ const SubmissionContainer = (props) => {
     console.log()
     const subNote = (event) => {
         event.preventDefault(props.PassDescriptionValue);
-        if (props.PassTitleValue === "" && props.PassDescriptionValue === "" )
-        {   
-        return( <FadeIn>{
-            props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") 
-            , props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
-        </FadeIn> )
-        } 
-        else  if (props.PassTitleValue === "")
-        {  
-        return( <FadeIn>{
-            props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)")}
-        </FadeIn>)
-                
-        } else if (props.PassDescriptionValue === "" ){
-        return( <FadeIn>{
-            props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
-        </FadeIn>)
-        }
+        (props.PassTitleValue === "" && props.PassDescriptionValue === "" ) ?
+            ( <FadeIn>
+                {props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") 
+                , props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
+            </FadeIn> )
+        : (props.PassTitleValue === "") ? 
+            ( <FadeIn>
+                {props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)")}
+            </FadeIn>)
+        : (props.PassDescriptionValue === "" )?
+            ( <FadeIn>
+                {props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
+            </FadeIn>)
+        : console.log("mero")
         // else
         // {
         //     props.AddedNote(CurrentNote);
@@ -67,8 +63,7 @@ const SubmissionContainer = (props) => {
         paddingInputValue="2px"
         // onMouseEnter={() => setIsShown(true)}
         // onMouseLeave={() => setIsShown(false)}
-        onClick={()=>( props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") 
-        , props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)"))}
+        onClick={subNote} 
         text = {"Submit"} 
         icon = {<LoginOutlined style={ButtonIconColor}/>}
         />

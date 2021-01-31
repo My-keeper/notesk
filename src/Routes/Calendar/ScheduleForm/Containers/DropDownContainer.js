@@ -82,6 +82,11 @@ const CalenderContianer = (props) => {
             <EachateContainer>
                 <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
                 <DateSelected
+                    //These are used to send these data to DataSlected to be used for Year, Month, Day 
+                    ReturnFrom="From"
+                    ReturnClickedFromYear={RecievedYear}
+                    ReturnClickedFromMonth={RecievedMonth} 
+                    ReturnClickedFromDay={RecievedDay}
                     //The incoming dating is used to chagne the format of the date and then send that number to submission button
                     submitDateValue={(value) => ChangeFromDate(value)} 
                     RecievedColor={props.ScheduleColor}
@@ -92,9 +97,10 @@ const CalenderContianer = (props) => {
 
                 <DateSelected 
                     //These are used to send these data to DataSlected to be used for Year, Month, Day 
-                    ReturnClickedYear="Year" 
-                    ReturnClickedMonth="Month" 
-                    ReturnClickedDay="Day"
+                    ReturnFrom="To"
+                    ReturnClickedToYear="Year" 
+                    ReturnClickedToMonth="Month" 
+                    ReturnClickedToDay="Day"
                     //this is to disable the values that are inside and it is going to DataSelected
                     DisabledisClicked={isClicked} 
                     submitDateValue={(value) => ChangeToDate(value)} 
@@ -117,7 +123,7 @@ const TimerContainer = (props) => {
         color : props.ScheduleColor.IconC, 
         fontSize:"25px", 
         marginRight:"15px", 
-        marginTop:"4px" 
+        marginTop:"4px"
     }
     
     //Visable and unvisable color style 
