@@ -24,9 +24,6 @@ const TitleContainer = (props) => {
     }
 
     const [titleValue, ChangeTitle] = useState("")
-    const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitTitlePlaceHolder)
-    console.log("this is the props  " + props.SubmitTitlePlaceHolder)
-    console.log("ttesting  " + CurrentPlaceHolde)
 
     const title = <InfoContainer>
         <FadeIn><Title style={IconColor}/></FadeIn>
@@ -65,14 +62,14 @@ const DescriptionContainer = (props) => {
         marginTop:"4px" 
     }
     const [DescriptionValue, ChangeDescription] = useState("")
-    const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitDescriptionPlaceHolder)
   
     const Description = <InfoContainer>
         <FadeIn><DescriptionIcon style={IconColor}/></FadeIn>
         <FadeIn><TextArea
         key={`Description`+1} 
         inputType={DescriptionValue}
-        PlaceholderValue={CurrentPlaceHolde}
+        //This is the Props that is coming from Schedule From once I click on submit
+        PlaceholderValue={props.SubmitDescriptionPlaceHolder}
         rows={3}
         name="title"
         widthValue={"402px"}

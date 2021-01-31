@@ -27,10 +27,11 @@ const Schedule = (props) => {
     //Title Area
     const [getTitleValue, ChangeTitleValu] = useState()
     const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title ...")
+    console.log(TitlePlaceHoldervalue)
     //Description Area
     const [getDescriptionValue, ChangeDescriptionValu] = useState()
     const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description ...")
-    
+    console.log(DescriptionPlaceHoldervalue)
     //URL Area
     const [getURLValue, ChangegetURLValue] = useState()
     const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description ...")
@@ -119,9 +120,10 @@ const Schedule = (props) => {
                     //Title part
                     PassTitleValue={getTitleValue}
                     ChangePassTitlePlaceHolder={(value) => (ChangeTitlePlaceHolder(value))}
-
+                    //Description Par
                     PassDescriptionValue={getDescriptionValue}
-                    ChangeDescriptionPlaceHolder={ChangeDescriptionPlaceHolder}
+                    ChangeDescriptionPlaceHolder={(value) => ChangeDescriptionPlaceHolder(value)}
+                    //Url
                     PassURLValue={getURLValue}
                     PassFromDateValue={getFormDateValue}
                     PassToDateValue={getToDateValue}

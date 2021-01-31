@@ -6,27 +6,42 @@ import {LoginOutlined} from "@ant-design/icons";
 import Button from '../../../../UI/Button';
 
 const SubmissionContainer = (props) => {
-    const [thi, ct] = useState(true)
-    const m = thi ? "Title ..." :  "Please Enter A Title ....(-_-)"
-    //Checking the title 
-    const subTitle = () => (
-        // console.log(props.ChangePassTitlePlaceHolder)
-        props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") 
-            // event.preventDefault();
-            // if (props.PassTitleValue === "" )
-            // {  
-            //      return( <FadeIn>{props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") }</FadeIn>)
-            // }
-            // else
-            // {
-            //     // props.AddedTitle(titleValue);
-            //     props.PassTitleValue("")
-            //     // setPlaceHolder("Title")
-            // }
-    )  
-
-// console.log(props.ChangePassTitlePlaceHolder )
-
+    console.log()
+    const subNote = (event) => {
+        event.preventDefault(props.PassDescriptionValue);
+        if (props.PassTitleValue === "" && props.PassDescriptionValue === "" )
+        {   
+        return( <FadeIn>{
+            props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") 
+            , props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
+        </FadeIn> )
+        } 
+        else  if (props.PassTitleValue === "")
+        {  
+        return( <FadeIn>{
+            props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)")}
+        </FadeIn>)
+                
+        } else if (props.PassDescriptionValue === "" ){
+        return( <FadeIn>{
+            props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
+        </FadeIn>)
+        }
+        // else
+        // {
+        //     props.AddedNote(CurrentNote);
+        //     setNote({
+        //         title: "",
+        //         content: ""
+        //     })
+        //     setPlaceHolder({
+        //         titlePH: "Title" , 
+        //         contentPH: "Take a note ..."
+        //     })
+        //     setSubmit(false);
+        // }
+            
+    }
 
 
     const [IsShown, setIsShown] = useState(false)
@@ -52,7 +67,8 @@ const SubmissionContainer = (props) => {
         paddingInputValue="2px"
         // onMouseEnter={() => setIsShown(true)}
         // onMouseLeave={() => setIsShown(false)}
-        onClick={() => (ct(!thi), props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)"))}
+        onClick={()=>( props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") 
+        , props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)"))}
         text = {"Submit"} 
         icon = {<LoginOutlined style={ButtonIconColor}/>}
         />
