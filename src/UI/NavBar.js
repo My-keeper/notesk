@@ -48,8 +48,8 @@ const NavBar = (props) => {
       </LeftNavBarItems>
 
       <RightNavBarItems>
-        <CalendarTodayIcon style={{IconStyle}}/>
-        <NotesIcon style={{IconStyle}}/>
+        <CalendarTodayIcon style={IconStyle}/>
+        <NotesIcon style={IconStyle}/>
         <SwitchIcon OnChangedColor={props.ColorChanged}/>
         <UserIcon username={"Amr R. Mohamed"} OnChangedColor={props.RecieveColor}/>
         <DisplayedUsername 
