@@ -6,7 +6,8 @@ import {LoginOutlined} from "@ant-design/icons";
 import Button from '../../../../UI/Button';
 
 const SubmissionContainer = (props) => {
-    
+    const [thi, ct] = useState(true)
+    const m = thi ? "Title ..." :  "Please Enter A Title ....(-_-)"
     //Checking the title 
     const subTitle = () => (
         // console.log(props.ChangePassTitlePlaceHolder)
@@ -36,7 +37,6 @@ const SubmissionContainer = (props) => {
         marginTop:"4px" 
     }
     const SubmitButton = <FadeIn>
-        <div onClick={props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)")}>
         <Button
         width={"120px"}
         marginBottomValue={"10px"}
@@ -52,11 +52,10 @@ const SubmissionContainer = (props) => {
         paddingInputValue="2px"
         // onMouseEnter={() => setIsShown(true)}
         // onMouseLeave={() => setIsShown(false)}
-        onClick={props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") }
+        onClick={() => (ct(!thi), props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)"))}
         text = {"Submit"} 
         icon = {<LoginOutlined style={ButtonIconColor}/>}
         />
-        </div>
     </FadeIn>
     
     return (SubmitButton)

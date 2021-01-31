@@ -25,12 +25,16 @@ const TitleContainer = (props) => {
 
     const [titleValue, ChangeTitle] = useState("")
     const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitTitlePlaceHolder)
+    console.log("this is the props  " + props.SubmitTitlePlaceHolder)
+    console.log("ttesting  " + CurrentPlaceHolde)
+
     const title = <InfoContainer>
         <FadeIn><Title style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
         key={`title` + 1}
         inputType={titleValue}
-        PlaceholderValue={CurrentPlaceHolde}
+        //This is the Props that is coming from Schedule From once I click on submit
+        PlaceholderValue={props.SubmitTitlePlaceHolder}
         name="title"
         widthValue={"402px"}
         paddingVale={"4px"}
@@ -51,45 +55,6 @@ const TitleContainer = (props) => {
 
     props.SubmitTitle(titleValue)
     return(title)
-}
-
-const TitleDescriptionContainer = (props) => {
-    const IconColor = { 
-        color : props.ScheduleColor.IconC, 
-        fontSize:"25px", 
-        marginRight:"9px", 
-        marginTop:"4px" 
-    }
-    const [titleDescriptionValue, ChangetitleDescription] = useState("")
-    const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitTitleDescriptionPlaceHolder)
-  
-    const titleDescription = <InfoContainer>
-        <FadeIn><ImportContacts style={IconColor}/></FadeIn>
-        <FadeIn><UserInput
-        key={`titleDescription`+1} 
-        inputType={titleDescriptionValue}
-        PlaceholderValue={CurrentPlaceHolde}
-        name="title"
-        widthValue={"402px"}
-        paddingVale={"4px"}
-        outlineValue={"none"}
-        fontSizeValue={"1.2em"}
-        fontFamilyValue={"inherit"}
-        IsCalledValue={"FOCUS"} 
-        borderRadiusValue= {"7px"}
-        backGroundColorValue={props.ScheduleColor.UserInputBGC}
-        FontColorValue={props.ScheduleColor.UserInputFC}
-        PlaceHolderColorValue={props.ScheduleColor.UserInputPHC}
-        borderColorValue={props.ScheduleColor.BorderColor}  
-        BorderValue={"solid"}
-        borderWidthValue="thin"
-        marginRightValue={"10px"}
-        /></FadeIn>
-    </InfoContainer>
-
-    props.TitleDescription(titleDescriptionValue)
-
-    return (titleDescription)
 }
 
 const DescriptionContainer = (props) => {
@@ -172,4 +137,4 @@ const URLContainer = (props) => {
     return (URL)
 }
 
-export  {TitleContainer, TitleDescriptionContainer, DescriptionContainer, URLContainer};
+export  {TitleContainer, DescriptionContainer, URLContainer};

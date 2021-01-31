@@ -30,9 +30,7 @@ const Schedule = (props) => {
     //Description Area
     const [getDescriptionValue, ChangeDescriptionValu] = useState()
     const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description ...")
-    //TitleDescription Area
-    const [getTitleDescriptionValue, ChangeTitleDescriptionValu] = useState()
-    const [TitleDescriptionPlaceHoldervalue,ChangeTitleDescriptionPlaceHolder] = useState("Title Description ...")
+    
     //URL Area
     const [getURLValue, ChangegetURLValue] = useState()
     const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description ...")
@@ -63,8 +61,7 @@ const Schedule = (props) => {
             backgroundColor:`${props.backGroundColorInput ? props.backGroundColorInput : "black"}`,
             daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
             startTime: '10:45:00',
-            endTime: '12:45:00',
-            textColor: 'black'
+            endTime: '12:45:00', 
         }
     )
 
@@ -85,10 +82,10 @@ const Schedule = (props) => {
                     SubmitTitle={(value) => ChangeTitleValu(value)}
                     SubmitTitlePlaceHolder={TitlePlaceHoldervalue}
                     ScheduleColor={props.ScheduleColor}/>}
-                {<TitleDescriptionContainer 
+                {/* {<TitleDescriptionContainer 
                     TitleDescription={(value) => ChangeTitleDescriptionValu(value)}
                     SubmitTitleDescriptionPlaceHolder={TitleDescriptionPlaceHoldervalue}
-                    ScheduleColor={props.ScheduleColor}/>}
+                    ScheduleColor={props.ScheduleColor}/>} */}
                 {<DescriptionContainer 
                     Description={(value) => ChangeDescriptionValu(value)}
                     SubmitDescriptionPlaceHolder={DescriptionPlaceHoldervalue}
@@ -116,12 +113,13 @@ const Schedule = (props) => {
                 {<SubmissionContainer 
                     //the following props is what we recieve from submission when we click on the button 
                     SubmitisClicked={()=>ChangeSubmitClicked(false)}
+
                     //The following props is used to send data to the calender and we are checking that in the submission
                     PassIdCounter={IdCounter}
+                    //Title part
                     PassTitleValue={getTitleValue}
                     ChangePassTitlePlaceHolder={(value) => (ChangeTitlePlaceHolder(value))}
-                    PassTitleDescriptionValue={getTitleDescriptionValue}
-                    ChangePassTitleDescriptionPlaceHolder={ChangeTitleDescriptionPlaceHolder}
+
                     PassDescriptionValue={getDescriptionValue}
                     ChangeDescriptionPlaceHolder={ChangeDescriptionPlaceHolder}
                     PassURLValue={getURLValue}
