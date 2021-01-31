@@ -22,7 +22,7 @@ const DateSelected = (props) => {
         PlaceholderValue="asdfas"
         inputType={"text"}
         name="title"
-        widthValue={"105px"}
+        widthValue={"112px"}
         paddingVale={"4px"}
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
@@ -60,7 +60,7 @@ const DateSelected = (props) => {
         // key={MonthsValueInput.id}
         inputType={"text"}
         name="title"
-        widthValue={"105px"}
+        widthValue={"112px"}
         paddingVale={"4px"}
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
@@ -98,7 +98,7 @@ const DateSelected = (props) => {
         // key={DayValueInput.id}
         inputType={"text"}
         name="title"
-        widthValue={"105px"}
+        widthValue={"112px"}
         paddingVale={"4px"}
         outlineValue={"none"}
         fontSizeValue={"1.2em"}

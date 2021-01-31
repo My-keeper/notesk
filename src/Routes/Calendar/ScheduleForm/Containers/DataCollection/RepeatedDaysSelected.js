@@ -14,6 +14,7 @@ const RepeatDaySelected = (props) => {
     const [isSunday,ChangeisSunday]= useState(false)
     const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
+    //This is to check The value that is clicked is which day 
     const handleRepeatedDays = (e) =>{
         const onchangeValue = e.target.value
         return ( 
@@ -123,7 +124,7 @@ const RepeatDaySelected = (props) => {
             key={NumberOfRepeatedDays.id}
             inputType={"checkbox"}
             name="title"
-            widthValue={"15px"}
+            widthValue={"20px"}
             paddingVale={"2px"}
             outlineValue={"none"}
             fontSizeValue={"1.2em"}
@@ -162,8 +163,8 @@ const RepeatDaySelected = (props) => {
             display: "flex",
             width: "50px", 
             flexDirection: "row", 
-            marginTop: "5px", 
-            marginLeft: "90px", 
+            marginTop: "10px", 
+            marginLeft: "70px", 
             marginBottom: "8px"}}
         >
              {LineTwo} 

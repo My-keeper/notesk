@@ -20,7 +20,7 @@ const RDContainer = (props) => {
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
         fontSize:"30px", 
-        marginRight:"10px", 
+        marginRight:"15px", 
         marginTop:"4px",
         marginLeft:"5px"
     }

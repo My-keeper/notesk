@@ -11,7 +11,7 @@ const OptionForm = (props) => {
         key={HourValueInput.id}
         inputType={"text"}
         name="title"
-        widthValue={"105px"}
+        widthValue={"112px"}
         paddingVale={"4px"}
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
@@ -28,7 +28,10 @@ const OptionForm = (props) => {
         onchangeValue = {handle}
         InputValue = {HourValueInput}
         >
-        {<HourValue/>}
+        {<HourValue 
+            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
+            DisabledHour={props.DisabledisClicked}
+        />}
     </SelectData></FadeIn>
 
     const [MinutsValueInput, ChangeMinutsValue] = useState("")
@@ -37,7 +40,7 @@ const OptionForm = (props) => {
         key={MinutsValueInput.id}
         inputType={"text"}
         name="title"
-        widthValue={"105px"}
+        widthValue={"112px"}
         paddingVale={"4px"}
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
@@ -54,7 +57,10 @@ const OptionForm = (props) => {
         onchangeValue = {handleMinuts}
         InputValue = {MinutsValueInput}
         >
-        {<MinutsValue/>}
+        {<MinutsValue 
+            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
+            DisabledMinuts={props.DisabledisClicked}
+        />}
     </SelectData></FadeIn>
 
     const [DaytimeValueInput, ChangeDaytimeValue] = useState("")
@@ -66,7 +72,7 @@ const OptionForm = (props) => {
         key={DaytimeValueInput.id}
         inputType={"text"}
         name="title"
-        widthValue={"105px"}
+        widthValue={"112px"}
         paddingVale={"4px"}
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
@@ -83,7 +89,10 @@ const OptionForm = (props) => {
         onchangeValue = {handleDaytime}
         InputValue = {DaytimeValueInput}
         >
-        {<TwelveHourSystemValue/>}
+        {<TwelveHourSystemValue 
+            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
+            DisabledHourSystem={props.DisabledisClicked}
+        />}
     </SelectData></FadeIn>
 
     props.submitHourValue(HourValueInput)

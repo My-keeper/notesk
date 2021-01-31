@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import NoteContainer from '../../../UI/Modal'; 
 import FadeIn  from 'react-fade-in'; 
-import {TitleContainer, TitleDescriptionContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
+import {TitleContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
 import {CalenderContianer, TimerContainer} from './Containers/DropDownContainer';
 import {FontColorContainer} from './Containers/ColorContainer';
 import {SubmissionContainer} from './Containers/submitButtonContainer'; 
 import {RDContainer} from './Containers/DaysContainer';
+import { CloseOutlined } from "@ant-design/icons";
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -18,6 +19,14 @@ const InfoContainer = styled.div`
 `
 
 const Schedule = (props) => {
+    //Visable and unvisable color style 
+    const VisibilityStle = {
+        marginRight: "4px", 
+        marginLeft:"95%",
+        marginbottom:"12px" , 
+        fontSize: "21px", 
+        color : props.ScheduleColor.IconC
+    }
     //This is for submission once it is clicked there will be a toggel
     const [getSubmitClicked, ChangeSubmitClicked] = useState(true)
     //Clicked Date in the calender
@@ -79,6 +88,8 @@ const Schedule = (props) => {
             backGroundColorValue={props.ScheduleColor.NotekBGC}
             FontColorValue={props.ScheduleColor.NoteFC}
             >
+                <CloseOutlined style={VisibilityStle}/>
+
                 {<TitleContainer 
                     SubmitTitle={(value) => ChangeTitleValu(value)}
                     SubmitTitlePlaceHolder={TitlePlaceHoldervalue}

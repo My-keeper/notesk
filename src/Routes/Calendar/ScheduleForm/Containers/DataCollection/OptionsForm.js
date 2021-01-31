@@ -1,32 +1,32 @@
 import React, { useState } from "react";
 
 //this is for the hour input 
-const HourValue = () => {
+const HourValue = (props) => {
 
     const Hours = ['Hour','01','02','03','04','05','06','07','08','09','10','11','12']
     const DailyHours = (
         [Hours.map((Hour, index) => 
-            <option  key={index.id} value={Hour}>{Hour}</option>)]
+            <option disabled={props.DisabledHour}  key={index.id} value={Hour}>{Hour}</option>)]
         )
     return(DailyHours)
 }
-const MinutsValue = () => {
+const MinutsValue = (props) => {
 
     //this is for the hour input 
     const Minuts = ['Minuts','05','10','15','20','25','30','35','40','45','50','55']
     const DailyMinut =(
         [Minuts.map((Minut, index) => 
-            <option key={index.id} value={Minut}>{Minut}</option>)]
+            <option disabled={props.DisabledMinuts} key={index.id} value={Minut}>{Minut}</option>)]
         )
     return(DailyMinut)
 }
-const TwelveHourSystemValue = () => {
+const TwelveHourSystemValue = (props) => {
 
     //this for either AM or PM
     const TwelveHourSystem = ['..','AM','PM']
     const DayDivided =(
         [TwelveHourSystem.map((DayTime, index) => 
-            <option key={index.id} value={DayTime}>{DayTime}</option>)]
+            <option disabled={props.DisabledHourSystem} key={index.id} value={DayTime}>{DayTime}</option>)]
         )
     return(DayDivided)
 }

@@ -4,7 +4,7 @@ import UserInput from '../../../../UI/UserInput'
 import TextArea from '../../../../UI/TextArea';
 import FadeIn  from 'react-fade-in';
 import { LinkOutlined} from "@ant-design/icons";
-import { Title, ImportContacts } from '@material-ui/icons';
+import { Title } from '@material-ui/icons';
 import DescriptionIcon from '@material-ui/icons/Description';
 const InfoContainer = styled.div`
     width: 440px;
@@ -19,7 +19,7 @@ const TitleContainer = (props) => {
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
         fontSize:"25px", 
-        marginRight:"9px", 
+        marginRight:"15px", 
         marginTop:"4px" 
     }
 
@@ -33,7 +33,7 @@ const TitleContainer = (props) => {
         //This is the Props that is coming from Schedule From once I click on submit
         PlaceholderValue={props.SubmitTitlePlaceHolder}
         name="title"
-        widthValue={"402px"}
+        widthValue={"425px"}
         paddingVale={"4px"}
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
@@ -58,7 +58,7 @@ const DescriptionContainer = (props) => {
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
         fontSize:"25px", 
-        marginRight:"9px", 
+        marginRight:"15px", 
         marginTop:"4px" 
     }
     const [DescriptionValue, ChangeDescription] = useState("")
@@ -72,7 +72,7 @@ const DescriptionContainer = (props) => {
         PlaceholderValue={props.SubmitDescriptionPlaceHolder}
         rows={3}
         name="title"
-        widthValue={"402px"}
+        widthValue={"425px"}
         paddingVale={"4px"}
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
@@ -99,7 +99,7 @@ const URLContainer = (props) => {
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
         fontSize:"25px", 
-        marginRight:"9px", 
+        marginRight:"15px", 
         marginTop:"4px" 
     }
     const [URLValue, ChangeURL] = useState("")
@@ -112,7 +112,7 @@ const URLContainer = (props) => {
         inputType={URLValue}
         PlaceholderValue={CurrentPlaceHolde}
         name="Url"
-        widthValue={"402px"}
+        widthValue={"425px"}
         paddingVale={"4px"}
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
