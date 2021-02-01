@@ -36,7 +36,7 @@ const Schedule = (props) => {
         color : props.ScheduleColor.IconC
     }
     //This is for submission once it is clicked there will be a toggel
-    const [getSubmitClicked, ChangeSubmitClicked] = useState(props.ClosedValue)
+    const [getSubmitClicked, ChangeSubmitClicked] = useState(props.SubmitIsClicked)
     //Clicked Date in the calender
     const [getClickedDate, ChangeClickedDate] = useState(props.SelectedDateClicked)
     //Id for each Event
@@ -65,21 +65,22 @@ const Schedule = (props) => {
     //Values of Repeated Days
     const [getRDValue, ChangeRDValu] = useState()
     //The collection of Data to create the Event
-    const [CreateEvent, ChnageEventInfo]=useState(
-        {
-            id: `$ChnageIdCounter(prevCount => prevCount + 1)`,  
-            title: 'Testoing for more ', 
-            start: '2021-01-30T12:30:00Z',
-            textColor:"pink", 
-            end: '2021-02-02T13:30:00Z',
-            description: 'lets play some game s', 
-            display: 'list-item', 
-            backgroundColor:`${props.backGroundColorInput ? props.backGroundColorInput : "black"}`,
-            daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
-            startTime: '10:45:00',
-            endTime: '12:45:00', 
-        }
-    )
+    const [CreateEvent, ChnageEventInfo]=useState()
+    console.log(CreateEvent)
+    //     {
+    //         id: `$ChnageIdCounter(prevCount => prevCount + 1)`,  
+    //         title: 'Testoing for more ', 
+    //         start: '2021-01-30T12:30:00Z',
+    //         textColor:"pink", 
+    //         end: '2021-02-02T13:30:00Z',
+    //         description: 'lets play some game s', 
+    //         display: 'list-item', 
+    //         backgroundColor:`${props.backGroundColorInput ? props.backGroundColorInput : "black"}`,
+    //         daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
+    //         startTime: '10:45:00',
+    //         endTime: '12:45:00', 
+    //     }
+    // )
 
     const [isClode, ChangeIsClosed] = useState(true)
 
@@ -130,9 +131,9 @@ const Schedule = (props) => {
                     SubmitNumberOfRP={(value) => ChangeRDValu(value)} 
                     ScheduleColor={props.ScheduleColor}/>} 
                 {<SubmissionContainer 
-                    //the following props is what we recieve from submission when we click on the button 
-                    SubmitisClicked={()=>ChangeSubmitClicked(false)}
-
+                    //the following props is what we recieve from submission when we click on the button and it is coming from calendar file
+                    SubmitisClicked={(value)=>props.SubmitIsClicked(value)}
+                    SubmissionEvent={(value)=> props.GetEventValues(value)}
                     //The following props is used to send data to the calender and we are checking that in the submission
                     PassIdCounter={IdCounter}
                     //Title part

@@ -18,37 +18,51 @@ const SubmissionContainer = (props) => {
             display: '', 
             backgroundColor:`${props.backGroundColorInput ? props.backGroundColorInput : "black"}`,
             daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
-            startTime: '',
-            endTime: ''
+            start: '2021-02-12T10:30:00',
+            end: '2021-02-12T11:30:00',
         }
     )
+    props.SubmissionEvent(CreateEvent)
     const subNote = (event) => {
         event.preventDefault(props.PassDescriptionValue);
-        (props.PassTitleValue === "" && props.PassDescriptionValue === "" ) ?
-            ( <FadeIn>
-                {props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") 
-                , props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
-            </FadeIn> )
-        : (props.PassTitleValue === "") ? 
-            ( <FadeIn>
-                {props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)")}
-            </FadeIn>)
-        : (props.PassDescriptionValue === "" )?
-            ( <FadeIn>
-                {props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
-            </FadeIn>)
-        : (
-            ChanageEventInfo({ 
-                Id: props.PassIdCounter + 1 , 
-                titles: props.PassTitleValue,
-                description: props.PassDescriptionValue,
-                Url: props.PassURLValue,
-            }) 
-        )
+        // (props.PassTitleValue === "" && props.PassDescriptionValue === "" ) ?
+        //     ( <FadeIn>
+        //         {props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)") 
+        //         , props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
+        //     </FadeIn> )
+        // : (props.PassTitleValue === "") ? 
+        //     ( <FadeIn>
+        //         {props.ChangePassTitlePlaceHolder("Please Enter A Title ....(-_-)")}
+        //     </FadeIn>)
+        // : (props.PassDescriptionValue === "" )?
+        //     ( <FadeIn>
+        //         {props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
+        //     </FadeIn>)
+        // : (
+            <FadeIn>{
+                ChanageEventInfo(
+                    {
+                        
+                            start: '2021-02-13',textColor:"pink", end: '2021-02-14',
+                        daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
+                        startTime: '10:45:00',
+                          endTime: '12:45:00'
+                          , display: 'list-item',
+                          textColor: 'blue'
+                      
+                      }
+                //     { 
+                //     Id: props.PassIdCounter + 1 , 
+                //     titles: props.PassTitleValue,
+                //     description: props.PassDescriptionValue,
+                //     Url: props.PassURLValue,
+                // }
+                ) ,
+                props.SubmitisClicked(false)
+
+            }</FadeIn>
+        // )
     }
-    console.log(CreateEvent)
-
-
     const [IsShown, setIsShown] = useState(false)
     const ButtonIconColor = { 
         color : props.ScheduleColor.IconC, 

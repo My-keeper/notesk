@@ -15,17 +15,20 @@ const CalenderContainer = styled.div`
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     min-height: 100%;
     font-size: 16px;
-    color: cornflowerblue 
+    // color: cornflowerblue 
     
 `
 
 const CalendarForm= (props) => {
     //this part to collect list of the Events that is created and passed down once submitted
-    const [GetPassedDownEvents, ChangePassedDownEvents] = useState([])
+    const [GetPassedDownEvents, ChangePassedDownEvents] = useState([{}])
+    console.log(GetPassedDownEvents)
     //This two values are used to toggle the values to change the state to show the schedule
     const [DataClicked, ChangeDataClicked]= useState(false)
+    //This is for submit is clicked
+    const[getSubmitIsClicked, ChangeSubmitIsClicked]= useState(false)
+    //This is used to toggle to close the schedule form and show the calender 
     const [CloseIsCllicked, ChangeCloseIsClicked]= useState(true)
-    
 
     const [ClickedDate, ChangeClickedDate] = useState()
     const IconColor =  props.RecieveColor.CalendarColorTable
@@ -34,8 +37,9 @@ const CalendarForm= (props) => {
       }
     const [getEvent, ChangeEventInfo] = useState([{}])
       const EventTest = [
-        {id: 'a', title: 'Testoing for more ', start: '2021-01-30T12:30:00Z',textColor:"pink", end: '2021-02-02T13:30:00Z',description: 'lets play some game s', display: 'list-item', backgroundColor:"black"},
+        {id: 'a', title: 'Testoing for more ', start: '2021-02-13T12:30:00Z',textColor:"pink", end: '2021-02-14T13:30:00Z',description: 'lets play some game s', display: 'list-item', backgroundColor:"black"},
         {
+          start: '2021-02-13',textColor:"pink", end: '2021-02-14',
       daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
       startTime: '10:45:00',
         endTime: '12:45:00'
@@ -72,18 +76,20 @@ const CalendarForm= (props) => {
         //we can pass here the event that will be created and we need title and date
         //we can as well add onclick once the event is created then the info will show somehting
         events={[
-            {
-              title: 'BCH237',
-              start: '2021-01-12T10:30:00',
-              end: '2021-01-12T11:30:00',
-              extendedProps: {
-                department: 'BioChemistry'
-              },
-              description: 'Lecture'
-            }
+          GetPassedDownEvents
+        ]}
+            // {
+            //   title: 'BCH237',
+            //   start: '2021-02-12T10:30:00',
+            //   end: '2021-02-12T11:30:00',
+            //   extendedProps: {
+            //     department: 'BioChemistry'
+            //   },
+            //   description: 'Lecture'
+            // }
             // more events ...
-          ]
-        }
+        //   ]
+        // }
         
         //if clicked then it shall show the inofrmation inside the data that is setected 
         dateClick={handleDateClick}
@@ -108,8 +114,13 @@ const CalendarForm= (props) => {
           CalenderTable 
           :
           <Schedule 
-            ClosedValue={CloseIsCllicked} 
+            //this is for creating the Event
+            GetEventValues={(value)=>ChangePassedDownEvents(value)}
+            //this is for submission 
+            SubmitIsClicked={(value)=> (ChangeSubmitIsClicked(value), ChangeDataClicked(value))} 
+            //this is for close button
             CloseIsCliced={(value) => (ChangeCloseIsClicked(value), ChangeDataClicked(value))}
+            //this is for the data is clicked on the calendar
             SelectedDateClicked={ClickedDate} 
             ScheduleColor={props.RecieveColor}/> 
         }
