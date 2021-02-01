@@ -6,7 +6,22 @@ import {LoginOutlined} from "@ant-design/icons";
 import Button from '../../../../UI/Button';
 
 const SubmissionContainer = (props) => {
-    console.log()
+    const [CreateEvent, ChanageEventInfo] = useState(
+        {
+            Id: '',  
+            title: '', 
+            description: '', 
+            Url: '',
+            textColor:"pink", 
+            start: '',
+            end: '',
+            display: '', 
+            backgroundColor:`${props.backGroundColorInput ? props.backGroundColorInput : "black"}`,
+            daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
+            startTime: '',
+            endTime: ''
+        }
+    )
     const subNote = (event) => {
         event.preventDefault(props.PassDescriptionValue);
         (props.PassTitleValue === "" && props.PassDescriptionValue === "" ) ?
@@ -22,22 +37,16 @@ const SubmissionContainer = (props) => {
             ( <FadeIn>
                 {props.ChangeDescriptionPlaceHolder("Please Enter A Title ....(-_-)")}
             </FadeIn>)
-        : console.log("mero")
-        // else
-        // {
-        //     props.AddedNote(CurrentNote);
-        //     setNote({
-        //         title: "",
-        //         content: ""
-        //     })
-        //     setPlaceHolder({
-        //         titlePH: "Title" , 
-        //         contentPH: "Take a note ..."
-        //     })
-        //     setSubmit(false);
-        // }
-            
+        : (
+            ChanageEventInfo({ 
+                Id: props.PassIdCounter + 1 , 
+                titles: props.PassTitleValue,
+                description: props.PassDescriptionValue,
+                Url: props.PassURLValue,
+            }) 
+        )
     }
+    console.log(CreateEvent)
 
 
     const [IsShown, setIsShown] = useState(false)

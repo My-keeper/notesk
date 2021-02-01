@@ -35,25 +35,18 @@ const Schedule = (props) => {
         fontSize: "26px", 
         color : props.ScheduleColor.IconC
     }
-    // //to close submit component
-    // const [isClosedClicked, ChnageIsClosedClicked] = useState(true)
-    // //send Back that close is clicked 
-    // props.ClosedClicked(isClosedClicked)
-    // props.CloseIsCliced()
     //This is for submission once it is clicked there will be a toggel
     const [getSubmitClicked, ChangeSubmitClicked] = useState(props.ClosedValue)
     //Clicked Date in the calender
     const [getClickedDate, ChangeClickedDate] = useState(props.SelectedDateClicked)
     //Id for each Event
-    const [IdCounter, ChnageIdCounter] = useState([])
+    const [IdCounter, ChnageIdCounter] = useState(0)
     //Title Area
     const [getTitleValue, ChangeTitleValu] = useState()
     const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title ...")
-    console.log(TitlePlaceHoldervalue)
     //Description Area
     const [getDescriptionValue, ChangeDescriptionValu] = useState()
     const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description ...")
-    console.log(DescriptionPlaceHoldervalue)
     //URL Area
     const [getURLValue, ChangegetURLValue] = useState()
     const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description ...")
@@ -150,14 +143,19 @@ const Schedule = (props) => {
                     ChangeDescriptionPlaceHolder={(value) => ChangeDescriptionPlaceHolder(value)}
                     //Url
                     PassURLValue={getURLValue}
+                    //From Data
                     PassFromDateValue={getFormDateValue}
+                    //To Data
                     PassToDateValue={getToDateValue}
+                    //Start Time
                     PassStartHour={GetStartHoursValue}
                     PassStartMinut={GetStartMinutsValue}
-                    PassStartSec={GetStartDayValue}
+                    PassStartDayValue={GetStartDayValue}
+                    //EndTime
                     PassEndHour={GetEndHoursValue}
                     PassEndMinut={GetEndMinutsValue}
-                    PassEndSec={GetEndDayValue}
+                    PassEndDayValue={GetEndDayValue}
+                    //Repeated Days
                     PassRepeatedDaysValue={getRDValue}
                     // PassTextColor={}
                     // PassbackgroundColor={}

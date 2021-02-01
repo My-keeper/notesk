@@ -24,15 +24,16 @@ const TitleContainer = (props) => {
     }
 
     const [titleValue, ChangeTitle] = useState("")
-
     const title = <InfoContainer>
         <FadeIn><Title style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
         key={`title` + 1}
-        inputType={titleValue}
+        // This is to change the Value of Title based on the input 
+        onchangeValue={e => ChangeTitle(e.target.value)}
         //This is the Props that is coming from Schedule From once I click on submit
         PlaceholderValue={props.SubmitTitlePlaceHolder}
         name="title"
+        inputType={"text"} 
         widthValue={"425px"}
         paddingVale={"4px"}
         outlineValue={"none"}
@@ -62,16 +63,17 @@ const DescriptionContainer = (props) => {
         marginTop:"4px" 
     }
     const [DescriptionValue, ChangeDescription] = useState("")
-  
     const Description = <InfoContainer>
         <FadeIn><DescriptionIcon style={IconColor}/></FadeIn>
         <FadeIn><TextArea
         key={`Description`+1} 
-        inputType={DescriptionValue}
+        // This is to change the Value of Title based on the input 
+        onchangeValue={e => ChangeDescription(e.target.value)}
         //This is the Props that is coming from Schedule From once I click on submit
         PlaceholderValue={props.SubmitDescriptionPlaceHolder}
         rows={3}
-        name="title"
+        name="Description"
+        inputType={"text"} 
         widthValue={"425px"}
         paddingVale={"4px"}
         outlineValue={"none"}
@@ -103,15 +105,16 @@ const URLContainer = (props) => {
         marginTop:"4px" 
     }
     const [URLValue, ChangeURL] = useState("")
-    const [CurrentPlaceHolde, setPlaceHolder]= useState(props.SubmitURLPlaceHolder)
-
     const URL = <InfoContainer>
         <FadeIn><LinkOutlined style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
         key={`AttachedLinkDescription` }
-        inputType={URLValue}
-        PlaceholderValue={CurrentPlaceHolde}
+        // This is to change the Value of Title based on the input 
+        onchangeValue={e => ChangeURL(e.target.value)}
+        //This is the Props that is coming from Schedule From once I click on submit
+        PlaceholderValue={props.SubmitURLPlaceHolder}
         name="Url"
+        inputType={"text"} 
         widthValue={"425px"}
         paddingVale={"4px"}
         outlineValue={"none"}

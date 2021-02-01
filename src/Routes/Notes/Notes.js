@@ -17,9 +17,9 @@ class Notes extends Component {
   }
   
   deleteNote = (id) => {
-    const test = [...this.state.notes] 
-    test.splice(id,1)
-    this.setState({notes: test})
+    const Delete = [...this.state.notes] 
+    Delete.splice(id,1)
+    this.setState({notes: Delete})
   }
   onChangeTitle = (id, newTitle) =>{
     const newNoteTitle = [...this.state.notes].filter((_,index) => {
