@@ -15,9 +15,12 @@ const CalenderContainer = styled.div`
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     min-height: 100%;
     font-size: 16px;
-    // color: cornflowerblue 
+    color: cornflowerblue 
     
 `
+//https://codepen.io/pen/?&editors=001
+//https://fullcalendar.io/docs/resource-parsing
+//https://fullcalendar.io/docs/event-object
 
 const CalendarForm= (props) => {
     //this part to collect list of the Events that is created and passed down once submitted
@@ -54,7 +57,7 @@ const CalendarForm= (props) => {
         headerToolbar={{
             left: 'prev,next today',
             center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+            right: "dayGridMonth,timeGridWeek,timeGridDay,list",
         }}
         //this is for the tile what should be there for the user
         titleFormat= {{ month: 'short',year: 'numeric',day: 'numeric'}}
@@ -71,6 +74,11 @@ const CalendarForm= (props) => {
         dayMaxEvents={true}
         height="850px"
         contentHeight="800px"
+        //this is for the styling of the text for each event
+        eventTextColor="red"
+        eventBackgroundColor="Yellow"
+        eventBorderColor="blue"
+        initialEvents={INITIAL_EVENTS}
         //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it 
         timeZone= 'canada/nl'
         //we can pass here the event that will be created and we need title and date
