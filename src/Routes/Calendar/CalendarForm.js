@@ -6,6 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { INITIAL_EVENTS, createEventId } from './event-utils'
 import styled from 'styled-components';
+import Schedule from './ScheduleForm/ScheduleForm'
 const CalenderContainer = styled.div`
     margin: 10px;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
@@ -18,11 +19,13 @@ export default class DemoApp extends React.Component {
 
   state = {
     weekendsVisible: true,
-    currentEvents: []
+    currentEvents: [], 
+    DataIsClicked: false
   }
    
   render() {
     return ( 
+        this.state.DataIsClicked === false ?
         <CalenderContainer  >
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
@@ -48,45 +51,15 @@ export default class DemoApp extends React.Component {
             eventBackgroundColor="cornflowerblue" //This is for the background of each event
             eventBorderColor="pink" //The border color
             initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
-            select={this.handleDateSelect}
+            select={()=> this.setState({DataIsClicked : true})}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
             eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
           />
-        </CalenderContainer> 
-    )
-  }
+        </CalenderContainer> :<Schedule /> 
 
-  // renderSidebar() {
-  //   return (
-  //     <div className='demo-app-sidebar'>
-  //       <div className='demo-app-sidebar-section'>
-  //         <h2>Instructions</h2>
-  //         <ul>
-  //           <li>Select dates and you will be prompted to create a new event</li>
-  //           <li>Drag, drop, and resize events</li>
-  //           <li>Click an event to delete it</li>
-  //         </ul>
-  //       </div>
-  //       <div className='demo-app-sidebar-section'>
-  //         <label>
-  //           <input
-  //             type='checkbox'
-  //             checked={this.state.weekendsVisible}
-  //             onChange={this.handleWeekendsToggle}
-  //           ></input>
-  //           toggle weekends
-  //         </label>
-  //       </div>
-  //       <div className='demo-app-sidebar-section'>
-  //         <h2>All Events ({this.state.currentEvents.length})</h2>
-  //         <ul>
-  //           {this.state.currentEvents.map(renderSidebarEvent)}
-  //         </ul>
-  //       </div>
-  //     </div>
-  //   )
-  // }
+    )
+  } 
 
   handleWeekendsToggle = () => {
     this.setState({
@@ -95,20 +68,21 @@ export default class DemoApp extends React.Component {
   }
 
   handleDateSelect = (selectInfo) => {
-    let title = prompt('Please enter a new title for your event')
-    let calendarApi = selectInfo.view.calendar
+    // let title = prompt('Please enter a new title for your event')
+    // let calendarApi = selectInfo.view.calendar
 
-    calendarApi.unselect() // clear date selection
-
-    if (title) {
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      })
-    }
+    // calendarApi.unselect() // clear date selection
+    return <Schedule 
+    /> 
+    // if (title) {
+    //   calendarApi.addEvent({
+    //     id: createEventId(),
+    //     title,
+    //     start: selectInfo.startStr,
+    //     end: selectInfo.endStr,
+    //     allDay: selectInfo.allDay
+    //   })
+    // }
   }
 
   handleEventClick = (clickInfo) => {

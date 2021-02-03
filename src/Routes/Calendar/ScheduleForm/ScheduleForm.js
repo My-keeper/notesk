@@ -25,7 +25,7 @@ const Schedule = (props) => {
         marginLeft:"95%",
         marginBottom:"15px" , 
         fontSize: "21px", 
-        color : props.ScheduleColor.IconC
+        // color : props.ScheduleColor.IconC
     }
     //Close is hovered on color style 
     const VisibilityStle2 = {
@@ -33,7 +33,7 @@ const Schedule = (props) => {
         marginLeft:"95%",
         marginBottom:"15px" , 
         fontSize: "26px", 
-        color : props.ScheduleColor.IconC
+        // color : props.ScheduleColor.IconC
     }
     //This is for submission once it is clicked there will be a toggel
     const [getSubmitClicked, ChangeSubmitClicked] = useState(props.SubmitIsClicked)
@@ -94,8 +94,8 @@ const Schedule = (props) => {
             boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
             borderRadiusValue= {"7px"}
             resizeValue={"both"}
-            backGroundColorValue={props.ScheduleColor.NotekBGC}
-            FontColorValue={props.ScheduleColor.NoteFC}
+            // backGroundColorValue={props.ScheduleColor.NotekBGC}
+            // FontColorValue={props.ScheduleColor.NoteFC}
             >
                 {isClode ? 
                     <CloseOutlined onMouseEnter={() =>ChangeIsClosed(false)} style={VisibilityStle1}/> 
@@ -105,20 +105,24 @@ const Schedule = (props) => {
                 {<TitleContainer 
                     SubmitTitle={(value) => ChangeTitleValu(value)}
                     SubmitTitlePlaceHolder={TitlePlaceHoldervalue}
-                    ScheduleColor={props.ScheduleColor}/>}
+                    // // ScheduleColor={props.ScheduleColor}
+                    />}
                 {<DescriptionContainer 
                     Description={(value) => ChangeDescriptionValu(value)}
                     SubmitDescriptionPlaceHolder={DescriptionPlaceHoldervalue}
-                    ScheduleColor={props.ScheduleColor}/>}
+                    // // ScheduleColor={props.ScheduleColor}
+                    />}
                 {<URLContainer 
                     URLOption={(value) => ChangegetURLValue(value)}
                     SubmitURLPlaceHolder={URLPlaceHolder}
-                    ScheduleColor={props.ScheduleColor}/>}
+                    // // ScheduleColor={props.ScheduleColor}
+                    />}
                 {<CalenderContianer 
                     SubmitFromDateSelected={(value) => ChangeFormDateValue(value)} 
                     SubmitToDateSelected={(value) => ChangeToDateValue(value)} 
                     RetrunClickedDate={getClickedDate}
-                    ScheduleColor={props.ScheduleColor}/>}
+                    // // ScheduleColor={props.ScheduleColor}
+                    />}
                 {<TimerContainer
                     SubmitFromHourSelected={(value) => ChangeGetStartHourValue(value)}
                     SubmitToHourlected={(value) => ChangeGetEndHourValue(value)}
@@ -126,10 +130,12 @@ const Schedule = (props) => {
                     SubmitToMinutsSelected={(value) => ChangeGetEndMinutsValue(value)}
                     SubmitFromDayValueSelected={(value) => ChangeGetStartDayValue(value)}
                     SubmitToDayValueSelected={(value) => ChangeGetEndDayValue(value)} 
-                    ScheduleColor={props.ScheduleColor}/>}
+                    // // ScheduleColor={props.ScheduleColor}
+                    />}
                 {<RDContainer 
                     SubmitNumberOfRP={(value) => ChangeRDValu(value)} 
-                    ScheduleColor={props.ScheduleColor}/>} 
+                    // // ScheduleColor={props.ScheduleColor}
+                    />} 
                 {<SubmissionContainer 
                     //the following props is what we recieve from submission when we click on the button and it is coming from calendar file
                     SubmitisClicked={(value)=>props.SubmitIsClicked(value)}
@@ -161,7 +167,7 @@ const Schedule = (props) => {
                     // PassTextColor={}
                     // PassbackgroundColor={}
                     // Passdisplay={}
-                    ScheduleColor={props.ScheduleColor}
+                    // // ScheduleColor={props.ScheduleColor}
                     />}
         </NoteContainer>
     </FadeIn>
