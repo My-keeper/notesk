@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import NoteContainer from '../../../UI/Modal'; 
 import FadeIn  from 'react-fade-in'; 
-import {TitleContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
-import {CalenderContianer, TimerContainer} from './Containers/DropDownContainer';
-import {FontColorContainer} from './Containers/ColorContainer';
+// import {TitleContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
+// import {CalenderContianer, TimerContainer} from './Containers/DropDownContainer';
+// import {FontColorContainer} from './Containers/ColorContainer';
 import {SubmissionContainer} from './Containers/submitButtonContainer'; 
-import {RDContainer} from './Containers/DaysContainer';
+// import {RDContainer} from './Containers/DaysContainer';
 import { CloseOutlined, CloseCircleOutlined} from "@ant-design/icons";
 
 const InfoContainer = styled.div`
@@ -35,38 +35,38 @@ const Schedule = (props) => {
         fontSize: "26px", 
         color : props.ScheduleColor.IconC
     }
-    //This is for submission once it is clicked there will be a toggel
+    // //This is for submission once it is clicked there will be a toggel
     const [getSubmitClicked, ChangeSubmitClicked] = useState(props.SubmitIsClicked)
-    //Clicked Date in the calender
-    const [getClickedDate, ChangeClickedDate] = useState(props.SelectedDateClicked)
-    //Id for each Event
-    const [IdCounter, ChnageIdCounter] = useState(0)
-    //Title Area
-    const [getTitleValue, ChangeTitleValu] = useState()
-    const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title ...")
-    //Description Area
-    const [getDescriptionValue, ChangeDescriptionValu] = useState()
-    const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description ...")
-    //URL Area
-    const [getURLValue, ChangegetURLValue] = useState()
-    const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description ...")
-    //Date Value Area From
-    const [getFormDateValue, ChangeFormDateValue] = useState()
-    //Date Value Area To
-    const [getToDateValue, ChangeToDateValue] = useState()
-    //Time Values Area Started
-    const [GetStartHoursValue, ChangeGetStartHourValue ]= useState()
-    const [GetStartMinutsValue, ChangeGetStartMinutsValue ]= useState()
-    const [GetStartDayValue, ChangeGetStartDayValue ]= useState()
-    //Time Values Area Ended
-    const [GetEndHoursValue, ChangeGetEndHourValue ]= useState()
-    const [GetEndMinutsValue, ChangeGetEndMinutsValue ]= useState()
-    const [GetEndDayValue, ChangeGetEndDayValue ]= useState()
-    //Values of Repeated Days
-    const [getRDValue, ChangeRDValu] = useState()
-    //The collection of Data to create the Event
-    const [CreateEvent, ChnageEventInfo]=useState()
-    console.log(CreateEvent)
+    // //Clicked Date in the calender
+    // const [getClickedStartDate, ChangeClickedStartDate] = useState(props.SelectedStartDateClicked)
+    // const [getClickedEndDate, ChangeClickedEndDate] = useState(props.SelectedEndDateClicked)
+    // //Id for each Event
+    // const [IdCounter, ChnageIdCounter] = useState(0)
+    // //Title Area
+    // const [getTitleValue, ChangeTitleValu] = useState()
+    // const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title ...")
+    // //Description Area
+    // const [getDescriptionValue, ChangeDescriptionValu] = useState()
+    // const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description ...")
+    // //URL Area
+    // const [getURLValue, ChangegetURLValue] = useState()
+    // const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description ...")
+    // //Date Value Area From
+    // const [getFormDateValue, ChangeFormDateValue] = useState()
+    // //Date Value Area To
+    // const [getToDateValue, ChangeToDateValue] = useState()
+    // //Time Values Area Started
+    // const [GetStartHoursValue, ChangeGetStartHourValue ]= useState()
+    // const [GetStartMinutsValue, ChangeGetStartMinutsValue ]= useState()
+    // const [GetStartDayValue, ChangeGetStartDayValue ]= useState()
+    // //Time Values Area Ended
+    // const [GetEndHoursValue, ChangeGetEndHourValue ]= useState()
+    // const [GetEndMinutsValue, ChangeGetEndMinutsValue ]= useState()
+    // const [GetEndDayValue, ChangeGetEndDayValue ]= useState()
+    // //Values of Repeated Days
+    // const [getRDValue, ChangeRDValu] = useState()
+    // //The collection of Data to create the Event
+    // const [CreateEvent, ChnageEventInfo]=useState()
     //     {
     //         id: `$ChnageIdCounter(prevCount => prevCount + 1)`,  
     //         title: 'Testoing for more ', 
@@ -102,23 +102,28 @@ const Schedule = (props) => {
                 : 
                     <CloseCircleOutlined onClick={()=> props.CloseIsCliced(false)} onMouseLeave={() =>ChangeIsClosed(true)} style={VisibilityStle2}/>
                 }
-                {<TitleContainer 
+                {/* {<TitleContainer 
                     SubmitTitle={(value) => ChangeTitleValu(value)}
                     SubmitTitlePlaceHolder={TitlePlaceHoldervalue}
-                    ScheduleColor={props.ScheduleColor}/>}
-                {<DescriptionContainer 
+                    ScheduleColor={props.ScheduleColor}
+                    />} */}
+                {/* {<DescriptionContainer 
                     Description={(value) => ChangeDescriptionValu(value)}
                     SubmitDescriptionPlaceHolder={DescriptionPlaceHoldervalue}
-                    ScheduleColor={props.ScheduleColor}/>}
+                    ScheduleColor={props.ScheduleColor}
+                    />}
                 {<URLContainer 
                     URLOption={(value) => ChangegetURLValue(value)}
                     SubmitURLPlaceHolder={URLPlaceHolder}
-                    ScheduleColor={props.ScheduleColor}/>}
+                    ScheduleColor={props.ScheduleColor}
+                    />}
                 {<CalenderContianer 
                     SubmitFromDateSelected={(value) => ChangeFormDateValue(value)} 
                     SubmitToDateSelected={(value) => ChangeToDateValue(value)} 
-                    RetrunClickedDate={getClickedDate}
-                    ScheduleColor={props.ScheduleColor}/>}
+                    RetrunClickedDate={getClickedStartDate}
+                    RetrunClickedEndDate={getClickedEndDate}
+                    ScheduleColor={props.ScheduleColor}
+                    />}
                 {<TimerContainer
                     SubmitFromHourSelected={(value) => ChangeGetStartHourValue(value)}
                     SubmitToHourlected={(value) => ChangeGetEndHourValue(value)}
@@ -129,40 +134,43 @@ const Schedule = (props) => {
                     ScheduleColor={props.ScheduleColor}/>}
                 {<RDContainer 
                     SubmitNumberOfRP={(value) => ChangeRDValu(value)} 
-                    ScheduleColor={props.ScheduleColor}/>} 
+                    ScheduleColor={props.ScheduleColor}/>} */}
                 {<SubmissionContainer 
+
+                    
+
                     //the following props is what we recieve from submission when we click on the button and it is coming from calendar file
-                    SubmitisClicked={(value)=>props.SubmitIsClicked(value)}
-                    SubmissionEvent={(value)=> props.GetEventValues(value)}
-                    //The following props is used to send data to the calender and we are checking that in the submission
-                    PassIdCounter={IdCounter}
-                    //Title part
-                    PassTitleValue={getTitleValue}
-                    ChangePassTitlePlaceHolder={(value) => (ChangeTitlePlaceHolder(value))}
-                    //Description Par
-                    PassDescriptionValue={getDescriptionValue}
-                    ChangeDescriptionPlaceHolder={(value) => ChangeDescriptionPlaceHolder(value)}
-                    //Url
-                    PassURLValue={getURLValue}
-                    //From Data
-                    PassFromDateValue={getFormDateValue}
-                    //To Data
-                    PassToDateValue={getToDateValue}
-                    //Start Time
-                    PassStartHour={GetStartHoursValue}
-                    PassStartMinut={GetStartMinutsValue}
-                    PassStartDayValue={GetStartDayValue}
-                    //EndTime
-                    PassEndHour={GetEndHoursValue}
-                    PassEndMinut={GetEndMinutsValue}
-                    PassEndDayValue={GetEndDayValue}
-                    //Repeated Days
-                    PassRepeatedDaysValue={getRDValue}
-                    // PassTextColor={}
-                    // PassbackgroundColor={}
-                    // Passdisplay={}
-                    ScheduleColor={props.ScheduleColor}
-                    />}
+                    SubmitisClicked={(value)=>(props.SubmitIsClicked(value))}
+                    // SubmissionEvent={(value)=> props.GetEventValues(value)}
+                    // //The following props is used to send data to the calender and we are checking that in the submission
+                    // PassIdCounter={IdCounter}
+                    // //Title part
+                    // PassTitleValue={getTitleValue}
+                    // ChangePassTitlePlaceHolder={(value) => (ChangeTitlePlaceHolder(value))}
+                    // //Description Par
+                    // PassDescriptionValue={getDescriptionValue}
+                    // ChangeDescriptionPlaceHolder={(value) => ChangeDescriptionPlaceHolder(value)}
+                    // //Url
+                    // PassURLValue={getURLValue}
+                    // //From Data
+                    // PassFromDateValue={getFormDateValue}
+                    // //To Data
+                    // PassToDateValue={getToDateValue}
+                    // //Start Time
+                    // PassStartHour={GetStartHoursValue}
+                    // PassStartMinut={GetStartMinutsValue}
+                    // PassStartDayValue={GetStartDayValue}
+                    // //EndTime
+                    // PassEndHour={GetEndHoursValue}
+                    // PassEndMinut={GetEndMinutsValue}
+                    // PassEndDayValue={GetEndDayValue}
+                    // //Repeated Days
+                    // PassRepeatedDaysValue={getRDValue}
+                    // // PassTextColor={}
+                    // // PassbackgroundColor={}
+                    // // Passdisplay={}
+                    // ScheduleColor={props.ScheduleColor}
+                    />} 
         </NoteContainer>
     </FadeIn>
     )

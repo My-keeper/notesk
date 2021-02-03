@@ -6,23 +6,23 @@ import {LoginOutlined} from "@ant-design/icons";
 import Button from '../../../../UI/Button';
 
 const SubmissionContainer = (props) => {
-    const [CreateEvent, ChanageEventInfo] = useState(
-        {
-            Id: '',  
-            title: '', 
-            description: '', 
-            Url: '',
-            textColor:"pink", 
-            start: '',
-            end: '',
-            display: '', 
-            backgroundColor:`${props.backGroundColorInput ? props.backGroundColorInput : "black"}`,
-            daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
-            start: '2021-02-12T10:30:00',
-            end: '2021-02-12T11:30:00',
-        }
-    )
-    props.SubmissionEvent(CreateEvent)
+    const [CreateEvent, ChanageEventInfo] = useState()
+    //     {
+    //         Id: '',  
+    //         title: '', 
+    //         description: '', 
+    //         Url: '',
+    //         // textColor:"pink", 
+    //         start: '',
+    //         end: '',
+    //         display: '', 
+    //         // backgroundColor:`${props.backGroundColorInput ? props.backGroundColorInput : "black"}`,
+    //         // daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
+    //         start: '2021-02-12T10:30:00',
+    //         end: '2021-02-12T11:30:00',
+    //     }
+    // )
+    // props.SubmissionEvent(CreateEvent)
     const subNote = (event) => {
         event.preventDefault(props.PassDescriptionValue);
         // (props.PassTitleValue === "" && props.PassDescriptionValue === "" ) ?
@@ -44,11 +44,10 @@ const SubmissionContainer = (props) => {
                     {
                         
                             start: '2021-02-13',textColor:"pink", end: '2021-02-14',
-                        daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
+                        // daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
                         startTime: '10:45:00',
                           endTime: '12:45:00'
-                          , display: 'list-item',
-                          textColor: 'blue'
+                          , display: 'list-item'
                       
                       }
                 //     { 
@@ -65,7 +64,7 @@ const SubmissionContainer = (props) => {
     }
     const [IsShown, setIsShown] = useState(false)
     const ButtonIconColor = { 
-        color : props.ScheduleColor.IconC, 
+        // color : props.ScheduleColor.IconC, 
         fontSize:"20px", 
         marginRight:"9px", 
         marginTop:"4px" 
@@ -77,16 +76,16 @@ const SubmissionContainer = (props) => {
         marginLeftValue={"35%"}
         fontSizeValue={"20px"}
         borderRadiusValue={"15px"}
-        backGroundColorValue={IsShown ? props.ScheduleColor.LogSignColor : props.ScheduleColor.UserInputBGC }
-        FontColorValue={props.ScheduleColor.IconC}
-        borderColorValue={props.ScheduleColor.BorderColor}
+        // backGroundColorValue={IsShown ? props.ScheduleColor.LogSignColor : props.ScheduleColor.UserInputBGC }
+        // FontColorValue={props.ScheduleColor.IconC}
+        // borderColorValue={props.ScheduleColor.BorderColor}
         IsCalledValue={"hover"} 
         BorderValue="solid"
         borderWidthValue="thin"
         paddingInputValue="2px"
         // onMouseEnter={() => setIsShown(true)}
         // onMouseLeave={() => setIsShown(false)}
-        onClick={subNote} 
+        onClick={()=>props.SubmitisClicked(false)} 
         text = {"Submit"} 
         icon = {<LoginOutlined style={ButtonIconColor}/>}
         />

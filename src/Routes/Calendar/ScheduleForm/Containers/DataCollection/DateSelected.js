@@ -12,7 +12,7 @@ const DateSelected = (props) => {
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
     */
-    const [YearsValueInput, ChangeYearsValueInput] = useState(GetUserChangeYear ? (props.ReturnFrom==="From" ? props.ReturnClickedFromYear : "props.ReturnClickedToYear") : "")
+    const [YearsValueInput, ChangeYearsValueInput] = useState(GetUserChangeYear ? (props.ReturnFrom==="From" ? props.ReturnClickedFromYear : props.ReturnClickedToYear) : "")
     const handleYears = (e) =>(
         ChangeYearsValueInput(e.target.value ),
         ChnageUserChangedYear(false)
@@ -51,7 +51,7 @@ const DateSelected = (props) => {
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
     */
-    const [MonthsValueInput, ChangeMonthsValue] = useState(GetUserChangeMonth ? props.ReturnClickedFromMonth : "")
+    const [MonthsValueInput, ChangeMonthsValue] = useState(GetUserChangeMonth ? (props.ReturnFrom==="From" ? props.ReturnClickedFromMonth : props.ReturnClickedToMonth) : "")
     const handleMonths = (e) =>(
         ChangeMonthsValue(e.target.value ),
         ChnageUserChangedMonth(false)
@@ -89,7 +89,7 @@ const DateSelected = (props) => {
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
     */
-    const [DayValueInput, ChangeDayValue] = useState(GetUserChangeDay ? props.ReturnClickedFromDay : "")
+    const [DayValueInput, ChangeDayValue] = useState(GetUserChangeDay ? (props.ReturnFrom==="From" ? props.ReturnClickedFromDay : props.ReturnClickedToDay) : "")
     const handleDays = (e) =>(
         ChangeDayValue(e.target.value ),
         ChnageUserChangedDay(false)

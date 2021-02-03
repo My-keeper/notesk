@@ -34,9 +34,11 @@ const CalendarForm= (props) => {
     const [CloseIsCllicked, ChangeCloseIsClicked]= useState(true)
 
     const [ClickedDate, ChangeClickedDate] = useState()
+    const [getSelectedEndData, ChangeSelectedEndData] = useState() //this is to get the data from Select
     const IconColor =  props.RecieveColor.CalendarColorTable
     const handleDateClick = (arg) => { 
-        return (ChangeClickedDate(arg.dateStr.split("-")),ChangeDataClicked(true))
+      console.log(arg.endStr+ "  as   " + arg.startStr)
+        return (ChangeClickedDate(arg.startStr.split("-")),ChangeSelectedEndData(arg.endStr.split("-")),ChangeDataClicked(true))
       }
     const [getEvent, ChangeEventInfo] = useState([{}])
       const EventTest = [
@@ -59,6 +61,8 @@ const CalendarForm= (props) => {
             center: "title",
             right: "dayGridMonth,timeGridWeek,timeGridDay,list",
         }}
+
+        zIndex= "0"
         //this is for the tile what should be there for the user
         titleFormat= {{ month: 'short',year: 'numeric',day: 'numeric'}}
         titleRangeSeparator= " to "
@@ -100,7 +104,7 @@ const CalendarForm= (props) => {
         // }
         
         //if clicked then it shall show the inofrmation inside the data that is setected 
-        dateClick={handleDateClick}
+        select={handleDateClick}
         //this is an event that is created as for demonstration
         // initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
         //to create you own event
@@ -122,6 +126,7 @@ const CalendarForm= (props) => {
           CalenderTable 
           :
           <Schedule 
+          style={{zIndex: 5}}
             //this is for creating the Event
             GetEventValues={(value)=>ChangePassedDownEvents(value)}
             //this is for submission 
@@ -129,7 +134,8 @@ const CalendarForm= (props) => {
             //this is for close button
             CloseIsCliced={(value) => (ChangeCloseIsClicked(value), ChangeDataClicked(value))}
             //this is for the data is clicked on the calendar
-            SelectedDateClicked={ClickedDate} 
+            SelectedStartDateClicked={ClickedDate} 
+            SelectedEndDateClicked={getSelectedEndData} 
             ScheduleColor={props.RecieveColor}/> 
         }
       </CalenderContainer>
