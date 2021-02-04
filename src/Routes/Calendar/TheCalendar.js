@@ -29,8 +29,8 @@ const TheCalendar = (props) => {
       }}
       initialView="dayGridMonth"
       titleFormat={{ month: "short", year: "numeric", day: "numeric" }} //this is for the tile what should be there for the user
-      height="850px"
-      contentHeight="800px"
+      height="850px" //get fixed height for the calendar
+      contentHeight="800px" //get the content height for the calendar 
       handleWindowResize="true"
       locale="En" //this is for the languages option
       timeZone="canada/nl" //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it

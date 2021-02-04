@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import NoteContainer from "../../../UI/Modal";
 import FadeIn from "react-fade-in";
-import { SubmissionContainer } from "./Containers/submitButtonContainer";
+import {TitleContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
 import SubmitButton from "./Containers/SubmitButton";
-// import { createEventId } from '../event-utils';
 import { CloseOutlined, CloseCircleOutlined } from "@ant-design/icons";
+
+const InfoContainer = styled.div`
+    width: 440px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 4px;
+    margin-bottom: 10px;
+`
 
 const Schedule = (props) => {
   //Close is not hovered on color style
@@ -24,6 +32,33 @@ const Schedule = (props) => {
     fontSize: "26px",
     color: props.ScheduleColor.IconC,
   };
+
+  //Title Area
+  const [getTitle, ChangeTitle] = useState()
+  const [TitlePH,ChangeTitlePH] = useState("Title ...")
+  const Title = <TitleContainer 
+    SubmitTitle={(value) => ChangeTitle(value)}
+    SubmitTitlePlaceHolder={TitlePH}
+    ScheduleColor={props.ScheduleColor}
+    />
+
+  //Description Area
+  const [getDescription, ChangeDescription] = useState()
+  const [DescriptionPH,ChangeDescriptionPH] = useState("Description ...")
+  const Description =<DescriptionContainer 
+    SubmitDescription={(value) => ChangeDescription(value)}
+    SubmitDescriptionPlaceHolder={DescriptionPH}
+    ScheduleColor={props.ScheduleColor}
+    />
+  
+  //URL Area
+  const [getURL, ChangeURL] = useState()
+  const [URLPH,ChangeURLPH] = useState("Optional Attached Link For Description ...")
+  const URL = <URLContainer 
+    URLOption={(value) => ChangeURL(value)}
+    SubmitURLPH={URLPH}
+    ScheduleColor={props.ScheduleColor}
+    />
 
   const [isClode, ChangeIsClosed] = useState(true);
   const [getSubmitClicked, ChangeSubmitClicked] = useState();
@@ -45,18 +80,14 @@ const Schedule = (props) => {
         backGroundColorValue={props.ScheduleColor.NotekBGC}
         FontColorValue={props.ScheduleColor.NoteFC}
       >
-        {isClode ? (
-          <CloseOutlined
-            onMouseEnter={() => ChangeIsClosed(false)}
-            style={VisibilityStle1}
-          />
-        ) : (
-          <CloseCircleOutlined
-            onClick={() => props.CloseIsCliced(false)}
-            onMouseLeave={() => ChangeIsClosed(true)}
-            style={VisibilityStle2}
-          />
-        )}
+        {isClode ? 
+          (<CloseOutlined onMouseEnter={() => ChangeIsClosed(false)} style={VisibilityStle1} />)  
+          : 
+          (<CloseCircleOutlined  onClick={() => props.CloseIsCliced(false)}  onMouseLeave={() => ChangeIsClosed(true)} style={VisibilityStle2} />)
+        }
+        {Title}
+        {Description}
+        {URL}
         {
           <SubmitButton
             IsSubmistClicked={(value) => ChangeSubmitClicked(value)}

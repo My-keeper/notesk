@@ -92,7 +92,7 @@ const DescriptionContainer = (props) => {
         /></FadeIn>
     </InfoContainer>
 
-    props.Description(DescriptionValue)
+    props.SubmitDescription(DescriptionValue)
 
     return (Description)
 }
@@ -112,7 +112,7 @@ const URLContainer = (props) => {
         // This is to change the Value of Title based on the input 
         onchangeValue={e => ChangeURL(e.target.value)}
         //This is the Props that is coming from Schedule From once I click on submit
-        PlaceholderValue={props.SubmitURLPlaceHolder}
+        PlaceholderValue={props.SubmitURLPH}
         name="Url"
         inputType={"text"} 
         widthValue={"425px"}
