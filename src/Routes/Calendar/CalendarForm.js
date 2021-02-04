@@ -18,38 +18,30 @@ const CalenderContainer = styled.div`
   color: cornflowerblue;
 `;
 const CalendarForm = (props) => {
-  const [currentEvents, ChangecurrentEvents] = useState();
-  console.log("is it the value ....")
-  console.log(  currentEvents)
-
-  const [getIsSubmit, ChangeIsSubmit] = useState(false);
-  const [getIsClose, ChangeIsClose] = useState(true);
-  const [DataClicked, ChangeDataClicked] = useState(false);
-  const [getEndSelectedData, ChangeEndSelectedData] = useState();
-  const [getStartSelectedData, ChangeStartSelectedData] = useState();
-  // const [isGoReady, GetisGo] = useState("")
-  // console.log(isGoReady)
+  const [currentEvents, ChangecurrentEvents] = useState();  // This is the values for events 
+  const [DataClicked, ChangeDataClicked] = useState(false); //This is used for value to change between CalendarForm and the other model
+  const [getIsSubmit, ChangeIsSubmit] = useState(false); //This part is for the submit button
+  const [getIsClose, ChangeIsClose] = useState(true); //This part is for the close button
+  const [getStartData, ChangeStartData] = useState();  //This part is for started Selected Data
+  const [getEndData, ChangeEndData] = useState(); //This part is for started Selected Data 
+  
   return (
     <CalenderContainer>
       {DataClicked == false ? (
-        <TheCalendar
-          // GoReady={isGoReady}
+        <TheCalendar 
+          SendChangedDataClicked={(value) => ChangeDataClicked(value)} //This is used for value to change between CalendarForm and the other model
+          EventList={currentEvents}  // This is the values for events 
+          StartedData={(value)=>ChangeStartData(value)} //This part is for started Selected Data
+          EndedData={(value)=>ChangeEndData(value)} //This part is for started Selected Data
           SendDataClicked={DataClicked}
-          SendChangedDataClicked={(value) => ChangeDataClicked(value)}
-          EventList={currentEvents}
         />
       ) : (
         <ScheduleForm
-          submitEventValues={(value) => ChangecurrentEvents(value)}
-          SubmitIsClicked={(value) => (
-            ChangeIsSubmit(value), ChangeDataClicked(value)
-          )}
-          CloseIsCliced={(value) => (
-            ChangeIsClose(value), ChangeDataClicked(value)
-          )}
-          // SendisGo={value=>GetisGo(value)}
-          // SelectedStartDateClicked={getStartSelectedData}
-          // SelectedEndDateClicked={getEndSelectedData}
+          submitEventValues={(value) => ChangecurrentEvents(value)}  // This is the values for events 
+          SubmitIsClicked={(value) => (ChangeIsSubmit(value), ChangeDataClicked(value))} //This part is for the submit button
+          CloseIsCliced={(value) => (ChangeIsClose(value), ChangeDataClicked(value))} //This part is for the close button
+          StartDateClicked={getStartData} //This part is to send started Selected Data
+          EndDateClicked={getEndData} //This part is to send started Selected Data
           ScheduleColor={props.RecieveColor}
           // SendTitle={(value)=>ChangeTitle(value)}
         />

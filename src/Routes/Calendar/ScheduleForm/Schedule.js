@@ -29,10 +29,9 @@ const Schedule = (props) => {
   const [getSubmitClicked, ChangeSubmitClicked] = useState();
   props.SubmitIsClicked(getSubmitClicked);
   
-  const [getEventValue, ChangeEventValue] = useState()
-  console.log("The list of values are :- ");
-  console.log( getEventValue)
+  const [getEventValue, ChangeEventValue] = useState() 
   props.submitEventValues(getEventValue);
+  
   const ScheduleForm = (
     <FadeIn>
       <NoteContainer

@@ -8,58 +8,17 @@ import { INITIAL_EVENTS, createEventId } from "./event-utils";
 
 const TheCalendar = (props) => {
   const weekendsVisible = true;
+  const [getEvent, ChangegetEvent] = useState(props.EventList ? props.EventList :[]); 
   const [isDataClicked, ChangeDataClicked] = useState(props.SendDataClicked);
-  const [getEndSelectedData, ChangeEndSelectedData] = useState();
-  const [getStartSelectedData, ChangeStartSelectedData] = useState();
+  const [getStartSelectedData, ChangeStartSelectedData] = useState(); //This part is for the submit button
+  const [getEndSelectedData, ChangeEndSelectedData] = useState(); //This part is for the close button
   const handleDateSelect = (selectInfo) => {
     ChangeStartSelectedData(selectInfo.startStr.split("-"));
     ChangeEndSelectedData(selectInfo.endStr.split("-"));
     props.SendChangedDataClicked(true);
   };
 
-  const [EventTest, ChangeEventTest] = useState([
-    {
-      id: "a",
-      title: "Testoing for more ",
-      start: "2021-02-13T12:30:00Z",
-      textColor: "pink",
-      end: "2021-02-14T13:30:00Z",
-      description: "lets play some game s",
-      display: "list-item",
-      backgroundColor: "black",
-    },
-    {
-      start: "2021-02-13",
-      textColor: "pink",
-      end: "2021-02-14",
-      daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events
-      // daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
-      startTime: "10:45:00",
-      endTime: "12:45:00",
-      display: "list-item",
-      textColor: "black",
-    },
-  ]);
-    const [tesyt, changeTest] = useState(props.EventList ? props.EventList :[]);
-    console.log("list reached it distination ..................")
-    console.log(tesyt);
-  // props.SendDataClicked(DataClicked)
-  // props.SendChangedDataClicked(ChangeDataClicked)
-  // props.SendEndSelectedData(getEndSelectedData)
-  // props.SendChangeEndSelectedData(ChangeEndSelectedData)
-  // props.SendgetStartSelectedData(getStartSelectedData)
-  // props.SendChangeStartSelectedData(ChangeStartSelectedData)
-  // const eventvalue = props.EventInfo
-  // console.log("The calednar event value .....")
-  // console.log(eventvalue)
-  //   const GoAddNevEvent = props.GoReady
-  // if (GoAddNevEvent === "GO") {
-
-  //   ChangeEventTest(EventTest.concat (props.EventInfo))
-
-  //   console.log("will the go value work")
-  //   console.log(EventTest)
-  // }
+   
   const FullCalendarForm = (
     <FullCalendar
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
@@ -86,12 +45,16 @@ const TheCalendar = (props) => {
       eventBorderColor="pink" //The border color
       initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
       select={handleDateSelect}
-      events={tesyt}
+      events={getEvent}
       // eventContent={renderEventContent} // custom render function
       // eventClick={handleEventClick}
       // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
     />
   );
+
+  props.StartedData(getStartSelectedData) //This part is for the submit button
+  props.EndedData(getEndSelectedData) //This part is for the close button
+  
   return FullCalendarForm;
 };
 
