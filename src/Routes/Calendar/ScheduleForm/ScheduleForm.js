@@ -142,6 +142,7 @@ const Schedule = (props) => {
                     //the following props is what we recieve from submission when we click on the button and it is coming from calendar file
                     SubmitisClicked={(value)=>(props.SubmitIsClicked(value))}
                     // SubmissionEvent={(value)=> props.GetEventValues(value)}
+                    SendEvemt={(value) =>props.GetEventValues(value) }
                     // //The following props is used to send data to the calender and we are checking that in the submission
                     // PassIdCounter={IdCounter}
                     // //Title part

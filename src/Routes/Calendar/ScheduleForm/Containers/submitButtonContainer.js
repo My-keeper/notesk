@@ -7,6 +7,7 @@ import Button from '../../../../UI/Button';
 
 const SubmissionContainer = (props) => {
     const [CreateEvent, ChanageEventInfo] = useState()
+    console.log(CreateEvent)
     //     {
     //         Id: '',  
     //         title: '', 
@@ -57,8 +58,8 @@ const SubmissionContainer = (props) => {
                 //     Url: props.PassURLValue,
                 // }
                 ) ,
-                props.SubmitisClicked(false)
-
+                props.SubmitisClicked(false),
+                props.SendEvemt(CreateEvent)
             }</FadeIn>
         // )
     }
@@ -85,7 +86,7 @@ const SubmissionContainer = (props) => {
         paddingInputValue="2px"
         // onMouseEnter={() => setIsShown(true)}
         // onMouseLeave={() => setIsShown(false)}
-        onClick={()=>props.SubmitisClicked(false)} 
+        onClick={subNote } 
         text = {"Submit"} 
         icon = {<LoginOutlined style={ButtonIconColor}/>}
         />

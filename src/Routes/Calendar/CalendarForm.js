@@ -29,6 +29,8 @@ const CalendarForm = (props) => {
   const [ getIsClose , ChangeIsClose ] = useState(true)
   const [ isTitle , ChangeTitle ] = useState()
   let [ calendarApi , ChangecalendarApi ] = useState()
+  const [GetPassedDownEvents, ChangePassedDownEvents] = useState([])
+
   const handleDateSelect = (selectInfo) => {
     // let title = prompt('Please enter a new title for your event')
     ChangecalendarApi(selectInfo.view.calendar)
@@ -37,19 +39,19 @@ const CalendarForm = (props) => {
     ChangeEndSelectedData(selectInfo.endStr.split("-"))
     ChangeDataClicked(true)
 
-      if (getIsSubmit == "true" ) {
-        console.log("now submit is clicked")
-        calendarApi.addEvent({
-          id: createEventId(),
-          title: "mero",
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay
-        })
-      }
-      else  {
-        console.log("now the close button is clicked")
-      }
+      // if (getIsSubmit == "true" ) {
+      //   console.log("now submit is clicked")
+      //   calendarApi.addEvent({
+      //     id: createEventId(),
+      //     title: "mero",
+      //     start: selectInfo.startStr,
+      //     end: selectInfo.endStr,
+      //     allDay: selectInfo.allDay
+      //   })
+      // }
+      // else  {
+      //   console.log("now the close button is clicked")
+      // }
     }
 
   const FullCalendarForm = <FullCalendar
@@ -70,6 +72,7 @@ const CalendarForm = (props) => {
     selectable={true} //to enable selection
     selectMirror={true}
     dayMaxEvents={true}
+    events={GetPassedDownEvents}
     weekends={weekendsVisible}
     eventDisplay= 'block' //this is used to high light the event that are created 
     eventTextColor="black" //this is for the styling of the text for each event
@@ -85,6 +88,7 @@ const CalendarForm = (props) => {
   return ( <CalenderContainer  >
       {DataClicked == false ? FullCalendarForm : 
         <Schedule 
+        GetEventValues={(value)=>ChangePassedDownEvents(value)}
           SubmitIsClicked={(value) => (ChangeIsSubmit(value), ChangeDataClicked(value))}
           CloseIsCliced={(value) => (ChangeIsClose(value), ChangeDataClicked(value))}
           SelectedStartDateClicked={getStartSelectedData} 
