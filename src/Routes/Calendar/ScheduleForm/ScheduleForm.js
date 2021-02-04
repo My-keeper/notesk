@@ -37,6 +37,9 @@ const Schedule = (props) => {
     }
     // //This is for submission once it is clicked there will be a toggel
     const [getSubmitClicked, ChangeSubmitClicked] = useState(props.SubmitIsClicked)
+    const [getEvent , ChangeEventInfo] = useState({})
+    // props.GetEventValues(getEvent)
+    console.log("Schedule Form  "+getEvent)
     // //Clicked Date in the calender
     // const [getClickedStartDate, ChangeClickedStartDate] = useState(props.SelectedStartDateClicked)
     // const [getClickedEndDate, ChangeClickedEndDate] = useState(props.SelectedEndDateClicked)
@@ -138,11 +141,12 @@ const Schedule = (props) => {
                     ScheduleColor={props.ScheduleColor}/>} */}
                 {<SubmissionContainer 
 
-                    
+                    // SendAddedEvent={props.AddedEvent}
 
                     //the following props is what we recieve from submission when we click on the button and it is coming from calendar file
                     SubmitisClicked={(value)=>(props.SubmitIsClicked(value))}
                     // SubmissionEvent={(value)=> props.GetEventValues(value)}
+                    SendEvemt={(value) =>(ChangeEventInfo(value), console.log("ww" +value)) }
                     // //The following props is used to send data to the calender and we are checking that in the submission
                     // PassIdCounter={IdCounter}
                     // //Title part
