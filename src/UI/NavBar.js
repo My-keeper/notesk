@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import SwitchIcon from './Switch'
 import FadeIn from 'react-fade-in';
@@ -38,9 +38,22 @@ const NavBar = (props) => {
   const IconStyle = {
     marginRight: "3px",
     marginTop: "15px",
-    fontSize: "25px"
+    fontSize: "25px" 
   }
-
+  const [CalendarSize, changeCalendarSize] = useState(true) 
+  const HandlerFalse = () => (changeCalendarSize(false), console.log(CalendarSize))
+  const HandlerTrue = () => (changeCalendarSize(true), console.log(CalendarSize))
+  const CalendarStyle = {
+    marginRight: "3px",
+    marginTop: "15px",
+    fontSize: CalendarSize?"25px" : "30px"
+  }
+  const [NoteSize, changeNoteSize] = useState(true) 
+  const NoteStyle = {
+    marginRight: "3px",
+    marginTop: "15px",
+    fontSize: NoteSize ? "25px" : "30px"
+  }
   return(
     <StyledNavBar>
       <LeftNavBarItems>
@@ -48,8 +61,8 @@ const NavBar = (props) => {
       </LeftNavBarItems>
 
       <RightNavBarItems>
-        <CalendarTodayIcon style={IconStyle}/>
-        <NotesIcon style={IconStyle}/>
+        <div onMouseEnter={HandlerFalse} onMouseOver={HandlerTrue}><CalendarTodayIcon style={CalendarStyle}/></div>
+        <NotesIcon style={NoteStyle}/>
         <SwitchIcon OnChangedColor={props.ColorChanged}/>
         <UserIcon username={"Amr R. Mohamed"} OnChangedColor={props.RecieveColor}/>
         <DisplayedUsername 

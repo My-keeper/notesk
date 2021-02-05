@@ -59,10 +59,11 @@ const SubmitButton = (props) => {
         display: "list-item",
         textColor: "red"
       }
+      ChanageEventInfo({...CreateEvent,NewItem}) 
       console.log(CreateEvent)
-      ChanageEventInfo(prevc=> {return{...prevc,NewItem}}) 
+      ChangeEventList(EventList.concat(NewItem))
+      // AddEvent(NewItem)  
       console.log(EventList)
-      AddEvent(CreateEvent)  
       ChangeIsSubmit(false)
     }
   };
@@ -70,10 +71,10 @@ const SubmitButton = (props) => {
     // const prevEvent = [...EventList]
     // prevEvent.unshift(Events)
     ChangeEventList([...EventList,Events])
-    console.log(EventList)
     // ChangeEventList(EventList.concat(Events))
-
+    
   }
+  console.log(EventList)
 
   
   const ButtonIconColor = {
