@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import FadeIn from "react-fade-in";
 import { LoginOutlined } from "@ant-design/icons";
 import Button from "../../../../UI/Button";
 import { createEventId } from "../../event-utils";
+import { Title } from "@material-ui/icons";
 
 const SubmitButton = (props) => {
   //pre created list of event is created as an example 
@@ -31,52 +32,47 @@ const SubmitButton = (props) => {
     },
   ]);
   const RecieveTitle = props.isTitle
-  
-  const [CreateEvent, ChanageEventInfo] = useState({ 
-          id: "",
-          title:  "",
-          start: "",
+  console.log(props.isTitle)
+  const CreateEvent= { 
+          id: createEventId(),
+          title:  RecieveTitle,
+          start: "2021-02-21",
           // startTime: "10:45:00",
           // endTime: "12:45:00", 
-          display: "",
-          textColor: ""
+          display: "list-item",
+          textColor: "red"
     }
-  );
-  const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked 
-  const subNote = () => {
-    if(props.isTitle === ""){
-      <FadeIn>
-        {props.CheckTitlePH("Please Enter A Title ....(-_-)")}
-      </FadeIn>  
-    } else {
-      console.log(CreateEvent)
-      const NewItem ={
-        id: createEventId(),
-        title:  RecieveTitle,
-        start: "2021-02-21",
-        // startTime: "10:45:00",
-        // endTime: "12:45:00", 
-        display: "list-item",
-        textColor: "red"
-      }
-      ChanageEventInfo({...CreateEvent,NewItem}) 
-      console.log(CreateEvent)
-      ChangeEventList(EventList.concat(NewItem))
-      // AddEvent(NewItem)  
-      console.log(EventList)
-      ChangeIsSubmit(false)
-    }
-  };
-  const AddEvent = ( Events ) => {
-    // const prevEvent = [...EventList]
-    // prevEvent.unshift(Events)
-    ChangeEventList([...EventList,Events])
-    // ChangeEventList(EventList.concat(Events))
-    
-  }
-  console.log(EventList)
-
   
+    // ChanageEventInfo({title : RecieveTitle})
+    console.log("This is from the const    :----" )
+    console.log(CreateEvent)
+    
+    const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked 
+    const subNote = () => { 
+    console.log("Before merging the new object    -_-_-_-_-_-_-" + EventList)
+    // console.log(CreateEvent)
+    // const mero = {
+    //   id: createEventId(),
+    //     title:  RecieveTitle,
+    //     start: "2021-02-21",
+    //     display: "list-item",
+    //     textColor: "red"
+    // }
+    // ChanageEventInfo({...CreateEvent,
+    //     id: createEventId(),
+    //     title:  RecieveTitle,
+    //     start: "2021-02-21",
+    //     display: "list-item",
+    //     textColor: "red"
+    // } 
+    // )
+    ChangeEventList(EventList.concat(CreateEvent))
+    
+    ChangeIsSubmit(false)
+  }  
+  console.log("After merging the new object    ././" + EventList)
+  console.log(CreateEvent)
+   
   const ButtonIconColor = {
     fontSize: "20px",
     marginRight: "9px",

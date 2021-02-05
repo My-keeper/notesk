@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import NoteContainer from '../../../UI/Modal'; 
 import FadeIn  from 'react-fade-in'; 
-// import {TitleContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
+import {TitleContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
 // import {CalenderContianer, TimerContainer} from './Containers/DropDownContainer';
 // import {FontColorContainer} from './Containers/ColorContainer';
 import {SubmissionContainer} from './Containers/submitButtonContainer'; 
@@ -40,35 +40,35 @@ const Schedule = (props) => {
     const [getEvent , ChangeEventInfo] = useState({})
     // props.GetEventValues(getEvent)
     console.log("Schedule Form  "+getEvent)
-    // //Clicked Date in the calender
-    // const [getClickedStartDate, ChangeClickedStartDate] = useState(props.SelectedStartDateClicked)
-    // const [getClickedEndDate, ChangeClickedEndDate] = useState(props.SelectedEndDateClicked)
-    // //Id for each Event
-    // const [IdCounter, ChnageIdCounter] = useState(0)
-    // //Title Area
-    // const [getTitleValue, ChangeTitleValu] = useState()
-    // const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title ...")
-    // //Description Area
-    // const [getDescriptionValue, ChangeDescriptionValu] = useState()
-    // const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description ...")
-    // //URL Area
-    // const [getURLValue, ChangegetURLValue] = useState()
-    // const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description ...")
-    // //Date Value Area From
-    // const [getFormDateValue, ChangeFormDateValue] = useState()
-    // //Date Value Area To
-    // const [getToDateValue, ChangeToDateValue] = useState()
-    // //Time Values Area Started
-    // const [GetStartHoursValue, ChangeGetStartHourValue ]= useState()
-    // const [GetStartMinutsValue, ChangeGetStartMinutsValue ]= useState()
-    // const [GetStartDayValue, ChangeGetStartDayValue ]= useState()
-    // //Time Values Area Ended
-    // const [GetEndHoursValue, ChangeGetEndHourValue ]= useState()
-    // const [GetEndMinutsValue, ChangeGetEndMinutsValue ]= useState()
-    // const [GetEndDayValue, ChangeGetEndDayValue ]= useState()
-    // //Values of Repeated Days
-    // const [getRDValue, ChangeRDValu] = useState()
-    // //The collection of Data to create the Event
+    //Clicked Date in the calender
+    const [getClickedStartDate, ChangeClickedStartDate] = useState(props.SelectedStartDateClicked)
+    const [getClickedEndDate, ChangeClickedEndDate] = useState(props.SelectedEndDateClicked)
+    //Id for each Event
+    const [IdCounter, ChnageIdCounter] = useState(0)
+    //Title Area
+    const [getTitleValue, ChangeTitleValu] = useState()
+    const [TitlePlaceHoldervalue,ChangeTitlePlaceHolder] = useState("Title ...")
+    //Description Area
+    const [getDescriptionValue, ChangeDescriptionValu] = useState()
+    const [DescriptionPlaceHoldervalue,ChangeDescriptionPlaceHolder] = useState("Description ...")
+    //URL Area
+    const [getURLValue, ChangegetURLValue] = useState()
+    const [URLPlaceHolder,ChangeURLPlaceHolder] = useState("Optional Attached Link For Description ...")
+    //Date Value Area From
+    const [getFormDateValue, ChangeFormDateValue] = useState()
+    //Date Value Area To
+    const [getToDateValue, ChangeToDateValue] = useState()
+    //Time Values Area Started
+    const [GetStartHoursValue, ChangeGetStartHourValue ]= useState()
+    const [GetStartMinutsValue, ChangeGetStartMinutsValue ]= useState()
+    const [GetStartDayValue, ChangeGetStartDayValue ]= useState()
+    //Time Values Area Ended
+    const [GetEndHoursValue, ChangeGetEndHourValue ]= useState()
+    const [GetEndMinutsValue, ChangeGetEndMinutsValue ]= useState()
+    const [GetEndDayValue, ChangeGetEndDayValue ]= useState()
+    //Values of Repeated Days
+    const [getRDValue, ChangeRDValu] = useState()
+    //The collection of Data to create the Event
     // const [CreateEvent, ChnageEventInfo]=useState()
     //     {
     //         id: `$ChnageIdCounter(prevCount => prevCount + 1)`,  
@@ -105,11 +105,11 @@ const Schedule = (props) => {
                 : 
                     <CloseCircleOutlined onClick={()=> props.CloseIsCliced(false)} onMouseLeave={() =>ChangeIsClosed(true)} style={VisibilityStle2}/>
                 }
-                {/* {<TitleContainer 
+                {<TitleContainer 
                     SubmitTitle={(value) => ChangeTitleValu(value)}
                     SubmitTitlePlaceHolder={TitlePlaceHoldervalue}
                     ScheduleColor={props.ScheduleColor}
-                    />} */}
+                    />}
                 {/* {<DescriptionContainer 
                     Description={(value) => ChangeDescriptionValu(value)}
                     SubmitDescriptionPlaceHolder={DescriptionPlaceHoldervalue}

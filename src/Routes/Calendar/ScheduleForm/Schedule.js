@@ -78,8 +78,7 @@ const Schedule = (props) => {
     CheckTitlePH={(value)=>ChangeTitlePH(value)} //This is to check the title place holder and then change it based on the user input 
     />
 
-  const ScheduleForm = (<FadeIn>
-      <NoteContainer
+  const ScheduleForm = (<FadeIn> <NoteContainer
         position={"relative"}
         width={"520px"}
         margin={"30px auto 20px auto"}
