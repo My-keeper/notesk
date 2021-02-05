@@ -32,17 +32,16 @@ const SubmitButton = (props) => {
   ]);
   const RecieveTitle = props.isTitle
   
-  const [CreateEvent, ChanageEventInfo] = useState()
-    // { 
-    //       id: createEventId(),
-    //       title:  RecieveTitle,
-    //       start: "2021-02-21",
-    //       // startTime: "10:45:00",
-    //       // endTime: "12:45:00", 
-    //       display: "list-item",
-    //       textColor: "red"
-    // }
-  // );
+  const [CreateEvent, ChanageEventInfo] = useState({ 
+          id: "",
+          title:  "",
+          start: "",
+          // startTime: "10:45:00",
+          // endTime: "12:45:00", 
+          display: "",
+          textColor: ""
+    }
+  );
   const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked 
   const subNote = () => {
     if(props.isTitle === ""){
@@ -50,27 +49,29 @@ const SubmitButton = (props) => {
         {props.CheckTitlePH("Please Enter A Title ....(-_-)")}
       </FadeIn>  
     } else {
-      ChanageEventInfo({ 
+      console.log(CreateEvent)
+      const NewItem ={
         id: createEventId(),
         title:  RecieveTitle,
         start: "2021-02-21",
         // startTime: "10:45:00",
         // endTime: "12:45:00", 
         display: "list-item",
-        textColor: "red",
-      })
-    //   console.log("the value of created event")
-    //   console.log(CreateEvent)
-    //   ChangeIsSubmit(false)
-    //   AddEvent(CreateEvent) 
-    ChangeEventList(EventList.concat(CreateEvent))
-    ChangeIsSubmit(false)
+        textColor: "red"
+      }
+      console.log(CreateEvent)
+      ChanageEventInfo(prevc=> {return{...prevc,NewItem}}) 
+      console.log(EventList)
+      AddEvent(CreateEvent)  
+      ChangeIsSubmit(false)
     }
-};
+  };
   const AddEvent = ( Events ) => {
-    const prevEvent = [...EventList]
-    prevEvent.unshift(Events)
-    ChangeEventList(prevEvent)
+    // const prevEvent = [...EventList]
+    // prevEvent.unshift(Events)
+    ChangeEventList([...EventList,Events])
+    console.log(EventList)
+    // ChangeEventList(EventList.concat(Events))
 
   }
 
@@ -93,7 +94,6 @@ const SubmitButton = (props) => {
         borderWidthValue="thin"
         paddingInputValue="2px"
         onClick={ subNote}
-          // ()=> (ChangeIsSubmit(false), console.log(ChangeEventList))}
         text={"Submit"}
         icon={<LoginOutlined style={ButtonIconColor} />}
       />
