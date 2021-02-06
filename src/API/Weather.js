@@ -6,7 +6,7 @@ const Weather = () => {
     // const LocationV= ""
     console.log(LocationV)
     return(
-        <div>
+        <div style={{margin:"20px"}}>
             <InputArea 
                 PlaceholderValue="Location"
                 onchangeValue={event=>ChnageLocationV(event.target.value)}
@@ -18,8 +18,12 @@ const Weather = () => {
                 fontFamilyValue={"inherit"}
                 IsCalledValue={"FOCUS"} 
                 borderRadiusValue= {"7px"}
+                BorderValue={"solid"}
+                borderWidthValue="thin"
+                marginRightValue={"10px"} 
             />
             <button
+                style={{margin:"10px"}}
                 onClick={()=>API.WeatherApp(LocationV)}
             >
                 Search
