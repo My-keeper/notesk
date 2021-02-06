@@ -80,16 +80,21 @@ const Schedule = (props) => {
   />
 
   //This is for the time
-
-  // const Time = <TimerContainer
-  // SubmitFromHourSelected={(value) => ChangeGetStartHourValue(value)}
-  // SubmitToHourlected={(value) => ChangeGetEndHourValue(value)}
-  // SubmitFromMinutsSelected={(value) => ChangeGetStartMinutsValue(value)}
-  // SubmitToMinutsSelected={(value) => ChangeGetEndMinutsValue(value)}
-  // SubmitFromDayValueSelected={(value) => ChangeGetStartDayValue(value)}
-  // SubmitToDayValueSelected={(value) => ChangeGetEndDayValue(value)} 
-  // // // ScheduleColor={props.ScheduleColor}
-  // />
+  const [StartHours, ChangeStartHour ]= useState()
+  const [StartMinuts, ChangeStartMinuts ]= useState()
+  const [StartDay, ChangeStartDay ]= useState()
+  const [EndHours, ChangeEndHour ]= useState()
+  const [EndMinuts, ChangeEndMinuts ]= useState()
+  const [EndDay, ChangeEndDay ]= useState()
+  const Time = <TimerContainer
+  FromHourSelected={(value) => ChangeStartHour(value)}
+  ToHourlected={(value) => ChangeEndHour(value)}
+  FromMinutsSelected={(value) => ChangeStartMinuts(value)}
+  ToMinutsSelected={(value) => ChangeEndMinuts(value)}
+  FromDayValueSelected={(value) => ChangeStartDay(value)}
+  ToDayValueSelected={(value) => ChangeEndDay(value)} 
+  ScheduleColor={props.ScheduleColor}
+  />
 
   //Submit Buton
   const [getSubmitClicked, ChangeSubmitClicked] = useState();
@@ -124,6 +129,7 @@ const Schedule = (props) => {
         {Description}
         {URL}
         {Data}
+        {Time}
         {Submit}
       </NoteContainer>
     </FadeIn>

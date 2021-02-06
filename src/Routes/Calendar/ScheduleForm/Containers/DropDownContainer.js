@@ -147,7 +147,7 @@ const TimerContainer = (props) => {
     const [isClicked, ChangeisClicked] = useState(true)
     
     //this is the part where we change the icon based on clicking the div 
-    const mero = <div onClick={()=>ChangeisClicked(!isClicked)}>
+    const ShowData = <div onClick={()=>ChangeisClicked(!isClicked)}>
         {isClicked ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
     </div>
     //This is for the layout for Hour Minuts Day system
@@ -163,7 +163,7 @@ const TimerContainer = (props) => {
     const time =<InfoContainer>
         <div style={{display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
             <FadeIn><ClockCircleOutlined style={IconColor}/>  </FadeIn>
-            <FadeIn>{mero}</FadeIn>
+            <FadeIn>{ShowData}</FadeIn>
         </div>
         <DateContainer>
             <EachateContainer>
@@ -194,12 +194,12 @@ const TimerContainer = (props) => {
         </DateContainer>
         </InfoContainer>
 
-    props.SubmitFromHourSelected(StartHoursValue)
-    props.SubmitToHourlected(EndHoursValue)
-    props.SubmitFromMinutsSelected(StartMinutsValue)
-    props.SubmitToMinutsSelected(EndMinutsValue)
-    props.SubmitFromDayValueSelected(StartDayValue)
-    props.SubmitToDayValueSelected(EndDayValue)
+    props.FromHourSelected(StartHoursValue)
+    props.ToHourlected(EndHoursValue)
+    props.FromMinutsSelected(StartMinutsValue)
+    props.ToMinutsSelected(EndMinutsValue)
+    props.FromDayValueSelected(StartDayValue)
+    props.ToDayValueSelected(EndDayValue)
 
     return (time)
 }
