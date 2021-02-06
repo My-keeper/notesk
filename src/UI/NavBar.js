@@ -71,7 +71,7 @@ const NavBar = (props) => {
   const GoToNote = isNote ? 
       (<NoteAddOutlinedIcon onMouseEnter={() => ChangeIsNote(false)} style={VisibilityStle1} />)  
       : 
-      (<Link to={"/notes"}>
+      (<Link to={"/notes"} >
       <NotesIcon   onMouseLeave={() => ChangeIsNote(true)} style={VisibilityStle2} />
       </Link>)
 

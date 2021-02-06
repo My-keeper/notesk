@@ -63,22 +63,16 @@ class App extends Component {
     return ( 
       <BrowserRouter>
         <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
-        <Route 
-          path="/calendar" exact render={(props) =>
-            <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        <Route path="/calendar" exact render={(props) => <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
-        <Route 
-          path="/login" exact render={(props) =>
-            <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        <Route path="/login" exact render={(props) => <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
-        <Route 
-          path="/signup" exact render={(props) =>
-            <Signup Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        <Route path="/signup" exact render={(props) => <Signup Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
-          <Route 
-            path="/notes" exact render={(props) =>
-              <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-          />
+        <Route path="/notes" exact render={(props) => <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        />
+        <Route path="/weather" exact render={(props) => <Weather/>}
+        />
         </ContainerDiv>
       </BrowserRouter>  
     )
