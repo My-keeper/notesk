@@ -10,11 +10,11 @@ const TheCalendar = (props) => {
   const weekendsVisible = true;
   const [getEvent, ChangegetEvent] = useState(props.EventList ? props.EventList :[]); 
   const [isDataClicked, ChangeDataClicked] = useState(props.SendDataClicked);
-  const [getStartSelectedData, ChangeStartSelectedData] = useState(); //This part is for the submit button
-  const [getEndSelectedData, ChangeEndSelectedData] = useState(); //This part is for the close button
+  const [isStartData, ChangeStartData] = useState(); //This part is for the submit button
+  const [isGetEnd, ChangeEndData] = useState(); //This part is for the close button
   const handleDateSelect = (selectInfo) => {
-    ChangeStartSelectedData(selectInfo.startStr.split("-"));
-    ChangeEndSelectedData(selectInfo.endStr.split("-"));
+    ChangeStartData(selectInfo.startStr.split("-"));
+    ChangeEndData(selectInfo.endStr.split("-"));
     props.SendChangedDataClicked(true);
   };
 
@@ -52,8 +52,8 @@ const TheCalendar = (props) => {
     />
   );
 
-  props.StartedData(getStartSelectedData) //This part is for the submit button
-  props.EndedData(getEndSelectedData) //This part is for the close button
+  props.StartedData(isStartData) //This part is for the submit button
+  props.EndedData(isGetEnd) //This part is for the close button
   
   return FullCalendarForm;
 };

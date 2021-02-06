@@ -106,8 +106,8 @@ const CalenderContianer = (props) => {
                     //These are used to send these data to DataSlected to be used for Year, Month, Day 
                     ReturnFrom="To"
                     ReturnClickedToYear={RecievedToYear} 
-                    ReturnClickedToMonth={recievedClickedDateTo} 
-                    ReturnClickedToDay={recievedClickedDateTo}
+                    ReturnClickedToMonth={RecievedToMonth} 
+                    ReturnClickedToDay={RecievedToDay}
                     //this is to disable the values that are inside and it is going to DataSelected
                     DisabledisClicked={isClicked} 
                     submitDateValue={(value) => ChangeToDate(value)} 
@@ -118,8 +118,8 @@ const CalenderContianer = (props) => {
     </InfoContainer>
 
     //To recieve a prop that will change the value from and to inside the schedule form to the value of From/to Date that has been created here  
-    props.SubmitFromDateSelected(fromData)
-    props.SubmitToDateSelected(ToData)
+    props.GetFromDate(fromData)
+    props.GetToDate(ToData)
     
     return(calendar)
 }

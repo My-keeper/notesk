@@ -39,21 +39,39 @@ const SubmitButton = (props) => {
   const [idCounter, ChangeidCounter] = useState(0)
   const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked 
   const CreateEvent= { 
-          id:  idCounter,
+          id:  createEventId(),
           title:  isSubmit ? props.isTitle : "",
-          description: isSubmit ? : "",
-          start: "2021-02-21",
+          description: isSubmit ? props.isDescription : "",
+          Url: isSubmit ? props.isURL : "",
+          start: isSubmit ? props.isFromData :"",
           // startTime: "10:45:00",
           // endTime: "12:45:00", 
           display: "list-item",
           textColor: "red"
     } 
 
-    const subNote = () => {  
-    ChangeEventList(EventList.concat(CreateEvent))
-    ChangeidCounter(idCounter + 1)
-    ChangeIsSubmit(false)
-  }   
+    const subNote = () => { 
+      if(props.isTitle === "" && props.isDescription === "" ) {
+        <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)") 
+        , props.CheckDescriptionPH("Please Enter A Description ....(-_-)")} </FadeIn> 
+      }
+      else if (props.isTitle === "") {
+        <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)") }</FadeIn>
+      }
+      else if (props.isDescription === "") {
+        <FadeIn>{props.CheckDescriptionPH("Please Enter A Description ....(-_-)") }</FadeIn>
+      }
+      else {
+        props.CheckTitlePH("") 
+        props.CheckDescriptionPH("")
+        const test = EventList
+        test.push(CreateEvent)
+        ChangeEventList(test)
+        ChangeidCounter(idCounter + 1)
+        ChangeIsSubmit(false)
+      }
+    }
+    console.log(EventList)   
   const SubmitButton = (
     <FadeIn>
       <Button

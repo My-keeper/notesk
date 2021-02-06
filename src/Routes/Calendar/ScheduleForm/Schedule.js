@@ -3,9 +3,9 @@ import styled from "styled-components";
 import NoteContainer from "../../../UI/Modal";
 import FadeIn from "react-fade-in";
 import {TitleContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
+import {CalenderContianer, TimerContainer} from './Containers/DropDownContainer';
 import SubmitButton from "./Containers/SubmitButton";
 import { CloseOutlined, CloseCircleOutlined } from "@ant-design/icons";
-
 const InfoContainer = styled.div`
     width: 440px;
     display: flex;
@@ -66,6 +66,33 @@ const Schedule = (props) => {
     ScheduleColor={props.ScheduleColor}
     />
 
+  // Data From and To 
+  const [getFormDate, ChangeFormDate] = useState()
+  const [getToDate, ChangeToDate] = useState()
+  console.log(getFormDate)
+  console.log(getToDate)
+  const [StartDate, ChangeClickedStartDate] = useState(props.StartDateClicked) //This is the selected data in calendar
+  const [EndDate, ChangeClickedEndDate] = useState(props.EndDateClicked) //This is the selected data in calendar
+  const Data = <CalenderContianer 
+    GetFromDate={(value) => ChangeFormDate(value)} 
+    GetToDate={(value) => ChangeToDate(value)} 
+    RetrunClickedDate={StartDate}
+    RetrunClickedEndDate={EndDate}
+    ScheduleColor={props.ScheduleColor}
+  />
+
+  //This is for the time
+
+  // const Time = <TimerContainer
+  // SubmitFromHourSelected={(value) => ChangeGetStartHourValue(value)}
+  // SubmitToHourlected={(value) => ChangeGetEndHourValue(value)}
+  // SubmitFromMinutsSelected={(value) => ChangeGetStartMinutsValue(value)}
+  // SubmitToMinutsSelected={(value) => ChangeGetEndMinutsValue(value)}
+  // SubmitFromDayValueSelected={(value) => ChangeGetStartDayValue(value)}
+  // SubmitToDayValueSelected={(value) => ChangeGetEndDayValue(value)} 
+  // // // ScheduleColor={props.ScheduleColor}
+  // />
+
   //Submit Buton
   const [getSubmitClicked, ChangeSubmitClicked] = useState();
   props.SubmitIsClicked(getSubmitClicked);
@@ -76,8 +103,14 @@ const Schedule = (props) => {
     GetEvent={(value) => ChangeEventValue(value)} //This is to get the event values after the submission button has been clicked
     isTitle={getTitle} //This is to pass down the title value
     CheckTitlePH={(value)=>ChangeTitlePH(value)} //This is to check the title place holder and then change it based on the user input 
+    isDescription={getDescription} //This is to pass down the Description value
+    CheckDescriptionPH={(value)=>ChangeDescriptionPH(value)} //This is to check the Description place holder and then change it based on the user input 
+    isURL={getURL} //This is to pass down the URL value
+    CheckURLPH={(value)=>ChangeURLPH(value)} //This is to check the URL place holder and then change it based on the user input 
+    isFromData={getFormDate} //This is to pass down the from data that is clicked 
+    isToData={getToDate} //This is to pass down the to data that is clicked 
     />
-
+    
   const ScheduleForm = (<FadeIn> <NoteContainer
         position={"relative"}
         width={"520px"}
@@ -93,6 +126,7 @@ const Schedule = (props) => {
         {Title}
         {Description}
         {URL}
+        {Data}
         {Submit}
       </NoteContainer>
     </FadeIn>
