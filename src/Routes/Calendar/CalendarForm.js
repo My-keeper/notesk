@@ -1,11 +1,4 @@
-import React, { useState } from "react";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
-import listPlugin from "@fullcalendar/list";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import Schedule from "./ScheduleForm/ScheduleForm";
-import { INITIAL_EVENTS, createEventId } from "./event-utils";
+import React, { useState } from "react"; 
 import TheCalendar from "./TheCalendar";
 import ScheduleForm from "./ScheduleForm/Schedule";
 import styled from "styled-components";
@@ -61,13 +54,13 @@ const CalendarForm = (props) => {
         />
       ) : (
         <ScheduleForm
-          // submitEventValues={(value) => ChangecurrentEvents(value)}  // This is the values for events 
+          submitEventValues={(value)=>ChangeEventList(value)}  // This is the values for events 
           SubmitIsClicked={(value) => (ChangeIsSubmit(value), ChangeDataClicked(value))} //This part is for the submit button
           CloseIsCliced={(value) => (ChangeIsClose(value), ChangeDataClicked(value))} //This part is for the close button
           StartDateClicked={getStartData} //This part is to send started Selected Data
           EndDateClicked={getEndData} //This part is to send started Selected Data
           ScheduleColor={props.RecieveColor}
-          TestChangeEvet={(value)=>ChangeEventList(value)}
+          // TestChangeEvet={(value)=>ChangeEventList(value)}
           // SendTitle={(value)=>ChangeTitle(value)}
         />
       )}

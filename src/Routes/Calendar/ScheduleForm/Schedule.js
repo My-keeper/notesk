@@ -32,7 +32,7 @@ const Schedule = (props) => {
     fontSize: "26px",
     color: props.ScheduleColor.IconC,
   };
- 
+  //Closed Button
   const [isClode, ChangeIsClosed] = useState(true);
   const CloseIcon = isClode ? 
     (<CloseOutlined onMouseEnter={() => ChangeIsClosed(false)} style={VisibilityStle1} />)  
@@ -93,12 +93,10 @@ const Schedule = (props) => {
 
   //Submit Buton
   const [getSubmitClicked, ChangeSubmitClicked] = useState();
-  props.SubmitIsClicked(getSubmitClicked);
-  const [getEventValue, ChangeEventValue] = useState() 
-  // props.submitEventValues(getEventValue);
+  props.SubmitIsClicked(getSubmitClicked); 
   const Submit =<SubmitButton
     IsSubmistClicked={(value) => ChangeSubmitClicked(value)} //This is for the submit button to be clicked 
-    GetEvent={(value) => ChangeEventValue(value)} //This is to get the event values after the submission button has been clicked
+    GetEvent={props.submitEventValues} //This is to get the event values after the submission button has been clicked
     isTitle={getTitle} //This is to pass down the title value
     CheckTitlePH={(value)=>ChangeTitlePH(value)} //This is to check the title place holder and then change it based on the user input 
     isDescription={getDescription} //This is to pass down the Description value
@@ -108,7 +106,6 @@ const Schedule = (props) => {
     isFromData={getFormDate} //This is to pass down the from data that is clicked 
     isToData={getToDate} //This is to pass down the to data that is clicked 
 
-    testingChangeevent={props.TestChangeEvet}
     />
     
   const ScheduleForm = (<FadeIn> <NoteContainer

@@ -21,7 +21,9 @@ const SwitchIcion = (props) => {
     const changedBackGround = () => {
         const toReturn = {}
         if(isClicked === 1)
-        {
+        {   
+            //Nav Icon Color
+            toReturn.NavIconColor = '#999999';
             //Login/Signup color 
             toReturn.LogSignColor = "#999999";
             //BodyColor
@@ -50,6 +52,8 @@ const SwitchIcion = (props) => {
         //this is the meddle mode
         else if(isClicked === 2) 
         {   
+            //Nav Icon Color
+            toReturn.NavIconColor = '#282828';
             //Login/Signup color  F0F0F0
             toReturn.LogSignColor = "#282828";
             //BodyColor
@@ -77,7 +81,9 @@ const SwitchIcion = (props) => {
         } 
         // this is in the drakest mode
         else if (isClicked === 3)
-{
+        {
+            //Nav Icon Color
+            toReturn.NavIconColor = '#fff';
             //Login/Signup color 
             toReturn.LogSignColor = "#999999";
             //BodyColor

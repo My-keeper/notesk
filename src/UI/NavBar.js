@@ -3,10 +3,13 @@ import styled from "styled-components";
 import SwitchIcon from './Switch'
 import FadeIn from 'react-fade-in';
 import UserIcon from "./UserIcon";
-import { LoginOutlined, LogoutOutlined } from "@ant-design/icons";
+import { LoginOutlined, LogoutOutlined,AlipayOutlined } from "@ant-design/icons";
 import AppButton from "./Button";
 import NotesIcon from '@material-ui/icons/Notes';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import NoteAddOutlinedIcon from '@material-ui/icons/NoteAddOutlined';
+import { Link } from "react-router-dom";
 
 const StyledNavBar = styled(FadeIn)` 
     align-items: center; 
@@ -36,38 +39,56 @@ const LeftNavBarItems = styled.div`
 `;
 const NavBar = (props) => {
   const IconStyle = {
-    marginRight: "3px",
-    marginTop: "15px",
-    fontSize: "25px" 
+    marginLeft: "5px",
+    fontSize: "28px" ,
+    color: props.RecieveColor.NavIconColor
   }
-  const [CalendarSize, changeCalendarSize] = useState(true) 
-  const HandlerFalse = () => (changeCalendarSize(false), console.log(CalendarSize))
-  const HandlerTrue = () => (changeCalendarSize(true), console.log(CalendarSize))
-  const CalendarStyle = {
-    marginRight: "3px",
-    marginTop: "15px",
-    fontSize: CalendarSize?"25px" : "30px"
-  }
-  const [NoteSize, changeNoteSize] = useState(true) 
-  const NoteStyle = {
-    marginRight: "3px",
-    marginTop: "15px",
-    fontSize: NoteSize ? "25px" : "30px"
-  }
+  //Close is not hovered on color style
+  const VisibilityStle1 = {
+    marginTop: "13px",
+    marginRight: "8px",
+    fontSize: "28px",
+    color: props.RecieveColor.NavIconColor
+ };
+  //Close is hovered on color style
+  const VisibilityStle2 = {
+      marginTop: "13px",
+      marginRight: "4px",
+      fontSize: "34px",
+      color: props.RecieveColor.NavIconColor
+  };
+  //This is for change to calendar link
+  const [isCalendar, ChangeIsCalendar] = useState(true);
+  const GoToCalendar = isCalendar ? 
+      (<CalendarTodayIcon onMouseEnter={() => ChangeIsCalendar(false)} style={VisibilityStle1} />)  
+      : 
+      (<Link to={"/calendar"}> 
+        <EventAvailableIcon  onMouseLeave={() => ChangeIsCalendar(true)} style={VisibilityStle2} />
+        </Link>)
+    
+  //This is for change to Notes link
+  const [isNote, ChangeIsNote] = useState(true);
+  const GoToNote = isNote ? 
+      (<NoteAddOutlinedIcon onMouseEnter={() => ChangeIsNote(false)} style={VisibilityStle1} />)  
+      : 
+      (<Link to={"/notes"}>
+      <NotesIcon   onMouseLeave={() => ChangeIsNote(true)} style={VisibilityStle2} />
+      </Link>)
+
   return(
     <StyledNavBar>
       <LeftNavBarItems>
-          Hi! 
+        <FadeIn><AlipayOutlined style={IconStyle}/></FadeIn>
       </LeftNavBarItems>
 
       <RightNavBarItems>
-        <div onMouseEnter={HandlerFalse} onMouseOver={HandlerTrue}><CalendarTodayIcon style={CalendarStyle}/></div>
-        <NotesIcon style={NoteStyle}/>
+        {GoToCalendar}
+        {GoToNote}
         <SwitchIcon OnChangedColor={props.ColorChanged}/>
         <UserIcon username={"Amr R. Mohamed"} OnChangedColor={props.RecieveColor}/>
         <DisplayedUsername 
           TextColorInput={props.RecieveColor.UserIconTextColor}>
-          <bold>{"Amr R. Mohamed"}</bold>
+          <span style={{ fontWeight: "bold"}}>{"Amr R. Mohamed"}</span>
         </DisplayedUsername>
       </RightNavBarItems>
     </StyledNavBar>

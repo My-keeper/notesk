@@ -69,16 +69,7 @@ const CalenderContianer = (props) => {
     const RecievedToDay = recievedClickedDateTo[2]
 
     //All the needed information for craeting the date From 
-    const [fromData, ChangeFromDate] = useState("")
-    // const handlerChange = (event) => {
-    //     console.log(event.target)
-    //     const {name , value} = event.target ;
-    //     ChangeEV(prevNote => { return {...prevNote, [name]: value};});
-    //   }
-    // console.log("did it work")
-    // console.log(fromData)
-    // props.test(fromData)
-    //All the needed information for craeting the date To 
+    const [fromData, ChangeFromDate] = useState("") 
     const [ToData, ChangeToDate] = useState()
 
     //This is the returned Date to the calendar
@@ -91,7 +82,7 @@ const CalenderContianer = (props) => {
         </div>
         <DateContainer>
             <EachateContainer>
-                {Layout.map(value =><FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> ) }
+                {Layout.map((value, index) => <FadeIn><span key={index+1} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> ) }
             </EachateContainer>
             <EachateContainer>
                 <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
