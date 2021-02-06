@@ -38,11 +38,10 @@ const SubmitButton = (props) => {
   ]);
   const [idCounter, ChangeidCounter] = useState(0)
   const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked 
-  const RecieveTitle = props.isTitle
   const CreateEvent= { 
           id:  idCounter,
-          title:  isSubmit ? RecieveTitle : "",
-          // description:,
+          title:  isSubmit ? props.isTitle : "",
+          description: isSubmit ? : "",
           start: "2021-02-21",
           // startTime: "10:45:00",
           // endTime: "12:45:00", 
