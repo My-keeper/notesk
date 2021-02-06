@@ -69,8 +69,15 @@ const CalenderContianer = (props) => {
     const RecievedToDay = recievedClickedDateTo[2]
 
     //All the needed information for craeting the date From 
-    const [fromData, ChangeFromDate] = useState()
-
+    const [fromData, ChangeFromDate] = useState("")
+    // const handlerChange = (event) => {
+    //     console.log(event.target)
+    //     const {name , value} = event.target ;
+    //     ChangeEV(prevNote => { return {...prevNote, [name]: value};});
+    //   }
+    // console.log("did it work")
+    // console.log(fromData)
+    // props.test(fromData)
     //All the needed information for craeting the date To 
     const [ToData, ChangeToDate] = useState()
 
@@ -94,6 +101,8 @@ const CalenderContianer = (props) => {
                     ReturnClickedFromYear={RecievedYear}
                     ReturnClickedFromMonth={RecievedMonth} 
                     ReturnClickedFromDay={RecievedDay}
+                    name="start"
+                    // gethandler={props.test}
                     //The incoming dating is used to chagne the format of the date and then send that number to submission button
                     submitDateValue={(value) => ChangeFromDate(value)} 
                     RecievedColor={props.ScheduleColor}
@@ -108,6 +117,7 @@ const CalenderContianer = (props) => {
                     ReturnClickedToYear={RecievedToYear} 
                     ReturnClickedToMonth={RecievedToMonth} 
                     ReturnClickedToDay={RecievedToDay}
+                    name="end"
                     //this is to disable the values that are inside and it is going to DataSelected
                     DisabledisClicked={isClicked} 
                     submitDateValue={(value) => ChangeToDate(value)} 

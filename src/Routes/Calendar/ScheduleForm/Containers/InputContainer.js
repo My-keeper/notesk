@@ -21,15 +21,13 @@ const TitleContainer = (props) => {
         fontSize:"25px", 
         marginRight:"15px", 
         marginTop:"4px" 
-    }
-
-    const [titleValue, ChangeTitle] = useState("")
+    } 
     const title = <InfoContainer>
         <FadeIn><Title style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
         key={`title` + 1}
-        // This is to change the Value of Title based on the input 
-        onchangeValue={e => ChangeTitle(e.target.value)}
+        // This is to change the Value of Title based on the input coming from schedule
+        onchangeValue={props.SubmitTitle}
         //This is the Props that is coming from Schedule From once I click on submit
         PlaceholderValue={props.SubmitTitlePlaceHolder}
         name="title"
@@ -51,7 +49,6 @@ const TitleContainer = (props) => {
         /></FadeIn>
     </InfoContainer>
 
-    props.SubmitTitle(titleValue)
     return(title)
 }
 
@@ -62,13 +59,12 @@ const DescriptionContainer = (props) => {
         marginRight:"15px", 
         marginTop:"4px" 
     }
-    const [DescriptionValue, ChangeDescription] = useState("")
     const Description = <InfoContainer>
         <FadeIn><DescriptionIcon style={IconColor}/></FadeIn>
         <FadeIn><TextArea
         key={`Description`+1} 
         // This is to change the Value of Title based on the input 
-        onchangeValue={e => ChangeDescription(e.target.value)}
+        onchangeValue={props.SubmitDescription}
         //This is the Props that is coming from Schedule From once I click on submit
         PlaceholderValue={props.SubmitDescriptionPlaceHolder}
         rows={3}
@@ -92,7 +88,6 @@ const DescriptionContainer = (props) => {
         /></FadeIn>
     </InfoContainer>
 
-    props.SubmitDescription(DescriptionValue)
 
     return (Description)
 }
@@ -104,13 +99,12 @@ const URLContainer = (props) => {
         marginRight:"15px", 
         marginTop:"4px" 
     }
-    const [URLValue, ChangeURL] = useState("")
     const URL = <InfoContainer>
         <FadeIn><LinkOutlined style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
         key={`AttachedLinkDescription` }
         // This is to change the Value of Title based on the input 
-        onchangeValue={e => ChangeURL(e.target.value)}
+        onchangeValue={props.URLOption}
         //This is the Props that is coming from Schedule From once I click on submit
         PlaceholderValue={props.SubmitURLPH}
         name="Url"
@@ -132,7 +126,6 @@ const URLContainer = (props) => {
         /></FadeIn>
     </InfoContainer>
 
-    props.URLOption(URLValue)
 
     return (URL)
 }

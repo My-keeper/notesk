@@ -18,13 +18,37 @@ const CalenderContainer = styled.div`
   color: cornflowerblue;
 `;
 const CalendarForm = (props) => {
-  const [currentEvents, ChangecurrentEvents] = useState();  // This is the values for events 
+  // const [currentEvents, ChangecurrentEvents] = useState();  // This is the values for events 
   const [DataClicked, ChangeDataClicked] = useState(false); //This is used for value to change between CalendarForm and the other model
   const [getIsSubmit, ChangeIsSubmit] = useState(false); //This part is for the submit button
   const [getIsClose, ChangeIsClose] = useState(true); //This part is for the close button
   const [getStartData, ChangeStartData] = useState();  //This part is for started Selected Data
   const [getEndData, ChangeEndData] = useState(); //This part is for started Selected Data 
-  
+  const [currentEvents, ChangeEventList] = useState([ 
+    {
+      id: "a",
+      title: "Testoing for more ",
+      start: "2021-02-13T12:30:00Z",
+      textColor: "pink",
+      end: "2021-02-14T13:30:00Z",
+      description: "lets play some game s",
+      display: "list-item",
+      backgroundColor: "black",
+    },
+    {
+      title:"Doc appoinmnet ",
+      start: "2021-02-13",
+      textColor: "pink",
+      end: "2021-02-14",
+      daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events
+      // daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
+      startTime: "10:45:00",
+      endTime: "12:45:00",
+      display: "list-item",
+      textColor: "black",
+    },
+  ]);
+  console.log(currentEvents)
   return (
     <CalenderContainer>
       {DataClicked == false ? (
@@ -37,12 +61,13 @@ const CalendarForm = (props) => {
         />
       ) : (
         <ScheduleForm
-          submitEventValues={(value) => ChangecurrentEvents(value)}  // This is the values for events 
+          // submitEventValues={(value) => ChangecurrentEvents(value)}  // This is the values for events 
           SubmitIsClicked={(value) => (ChangeIsSubmit(value), ChangeDataClicked(value))} //This part is for the submit button
           CloseIsCliced={(value) => (ChangeIsClose(value), ChangeDataClicked(value))} //This part is for the close button
           StartDateClicked={getStartData} //This part is to send started Selected Data
           EndDateClicked={getEndData} //This part is to send started Selected Data
           ScheduleColor={props.RecieveColor}
+          TestChangeEvet={(value)=>ChangeEventList(value)}
           // SendTitle={(value)=>ChangeTitle(value)}
         />
       )}

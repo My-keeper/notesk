@@ -30,7 +30,7 @@ const DateSelected = (props) => {
         value="as"
         PlaceholderValue="asdfas"
         inputType={"text"}
-        name="title"
+        name={props.name == "start" ? "start" : "end"}
         widthValue={"112px"}
         paddingVale={"4px"}
         outlineValue={"none"}
@@ -81,7 +81,7 @@ const DateSelected = (props) => {
       <SelectData
         // key={MonthsValueInput.id}
         inputType={"text"}
-        name="title"
+        name={props.name == "start" ? "start" : "end"}
         widthValue={"112px"}
         paddingVale={"4px"}
         outlineValue={"none"}
@@ -125,14 +125,16 @@ const DateSelected = (props) => {
       : ""
   );
   const handleDays = (e) => (
+    console.log(e.target),
     ChangeDayValue(e.target.value), ChnageUserChangedDay(false)
   );
+  const name = props.name == "start" ? "start" : "end"
   const Days = (
     <FadeIn>
       <SelectData
         // key={DayValueInput.id}
         inputType={"text"}
-        name="title"
+        name={props.name == "start" ? "start" : "end"}
         widthValue={"112px"}
         paddingVale={"4px"}
         outlineValue={"none"}
