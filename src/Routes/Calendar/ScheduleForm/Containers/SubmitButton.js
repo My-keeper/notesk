@@ -6,6 +6,11 @@ import { createEventId } from "../../event-utils";
 import { Title } from "@material-ui/icons";
 
 const SubmitButton = (props) => {
+  const ButtonIconColor = {
+    fontSize: "20px",
+    marginRight: "9px",
+    marginTop: "4px",
+  };
   //pre created list of event is created as an example 
   const [EventList, ChangeEventList] = useState([
     {
@@ -31,53 +36,25 @@ const SubmitButton = (props) => {
       textColor: "black",
     },
   ]);
+  const [idCounter, ChangeidCounter] = useState(0)
+  const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked 
   const RecieveTitle = props.isTitle
-  console.log(props.isTitle)
   const CreateEvent= { 
-          id: createEventId(),
-          title:  RecieveTitle,
+          id:  idCounter,
+          title:  isSubmit ? RecieveTitle : "",
+          // description:,
           start: "2021-02-21",
           // startTime: "10:45:00",
           // endTime: "12:45:00", 
           display: "list-item",
           textColor: "red"
-    }
-  
-    // ChanageEventInfo({title : RecieveTitle})
-    console.log("This is from the const    :----" )
-    console.log(CreateEvent)
-    
-    const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked 
-    const subNote = () => { 
-    console.log("Before merging the new object    -_-_-_-_-_-_-" + EventList)
-    // console.log(CreateEvent)
-    // const mero = {
-    //   id: createEventId(),
-    //     title:  RecieveTitle,
-    //     start: "2021-02-21",
-    //     display: "list-item",
-    //     textColor: "red"
-    // }
-    // ChanageEventInfo({...CreateEvent,
-    //     id: createEventId(),
-    //     title:  RecieveTitle,
-    //     start: "2021-02-21",
-    //     display: "list-item",
-    //     textColor: "red"
-    // } 
-    // )
+    } 
+
+    const subNote = () => {  
     ChangeEventList(EventList.concat(CreateEvent))
-    
+    ChangeidCounter(idCounter + 1)
     ChangeIsSubmit(false)
-  }  
-  console.log("After merging the new object    ././" + EventList)
-  console.log(CreateEvent)
-   
-  const ButtonIconColor = {
-    fontSize: "20px",
-    marginRight: "9px",
-    marginTop: "4px",
-  };
+  }   
   const SubmitButton = (
     <FadeIn>
       <Button
