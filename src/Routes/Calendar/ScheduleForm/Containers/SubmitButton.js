@@ -55,28 +55,23 @@ const SubmitButton = (props) => {
   } 
   
   const subNote = () => { 
-    // if(props.collectedData.title === "" && props.Description.isDescription === "" ) {
-      //   <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)") 
-      //   , props.CheckDescriptionPH("Please Enter A Description ....(-_-)")} </FadeIn> 
-      // }
-      // else if (props.isTitle === "") {
-        //   <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)") }</FadeIn>
-        // }
-        // else if (props.isDescription === "") {
-          //   <FadeIn>{props.CheckDescriptionPH("Please Enter A Description ....(-_-)") }</FadeIn>
-          // }
-          // else {
+    if(props.isTitle === "" && props.isDescription === "" ) {
+        <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)") 
+        , props.CheckDescriptionPH("Please Enter A Description ....(-_-)")} </FadeIn> 
+      }
+      else if (props.isTitle === "") {
+          <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)") }</FadeIn>
+        }
+        else if (props.isDescription === "") {
+            <FadeIn>{props.CheckDescriptionPH("Please Enter A Description ....(-_-)") }</FadeIn>
+          }
+          else {
             // props.CheckTitlePH("") 
             // props.CheckDescriptionPH("")
-            // changetestevent(props.collectedData) 
-            props.testingChangeevent(oldarr => [...oldarr,CreateEvent])
-            // props.testingChangeevent(oldarr => [...oldarr,props.collectedData])
-            // console.log(EventList)
-            // ChangeEventList(oldarr => [...oldarr,props.collectedData])
+            props.testingChangeevent(oldarr => [...oldarr,CreateEvent]) 
             ChangeIsSubmit(false)
-            // }
-          } 
-          // console.log(EventList)
+            }
+          }  
 
   const SubmitButton = (
     <FadeIn>

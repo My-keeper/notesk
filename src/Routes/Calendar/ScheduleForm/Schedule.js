@@ -32,29 +32,7 @@ const Schedule = (props) => {
     fontSize: "26px",
     color: props.ScheduleColor.IconC,
   };
-
-  const [colectingEV, ChangeEV]=  useState({
-    id:  "",
-    title:  "",
-    Description: "",
-    Url: "",
-    start:"2021-02-21",
-    end:""
-  })
-  // console.log(colectingEV)
-  const handlerChange = (event) => {
-    // console.log(event.target)
-    const {name , value} = event.target ;
-    ChangeEV(prevNote => { return {...prevNote, [name]: value};});
-  }
-  // const handleDate = (e) =>{ 
-  //   const s = {...colectingEV} 
-  //   s.start = e 
-
-  //   ChangeEV(colectingEV.map(value=> value));
-  // }
-  // console.log(colectingEV)
-  // Close Icons 
+ 
   const [isClode, ChangeIsClosed] = useState(true);
   const CloseIcon = isClode ? 
     (<CloseOutlined onMouseEnter={() => ChangeIsClosed(false)} style={VisibilityStle1} />)  
@@ -62,19 +40,19 @@ const Schedule = (props) => {
     (<CloseCircleOutlined  onClick={() => props.CloseIsCliced(false)}  onMouseLeave={() => ChangeIsClosed(true)} style={VisibilityStle2} />)
   
   //Title Area
-  const [getTitle, ChangeTitle] = useState()
+  const [getTitle, ChangeTitle] = useState("")
   const [TitlePH,ChangeTitlePH] = useState("Title ...")
   const Title = <TitleContainer 
-    SubmitTitle={handlerChange}
+    SubmitTitle={(value)=>ChangeTitle(value)}
     SubmitTitlePlaceHolder={TitlePH}
     ScheduleColor={props.ScheduleColor}
     />
 
   //Description Area
-  const [getDescription, ChangeDescription] = useState()
+  const [getDescription, ChangeDescription] = useState("")
   const [DescriptionPH,ChangeDescriptionPH] = useState("Description ...")
   const Description =<DescriptionContainer 
-    SubmitDescription={handlerChange}
+    SubmitDescription={(value)=>ChangeDescription(value)}
     SubmitDescriptionPlaceHolder={DescriptionPH}
     ScheduleColor={props.ScheduleColor}
     />
@@ -83,7 +61,7 @@ const Schedule = (props) => {
   const [getURL, ChangeURL] = useState()
   const [URLPH,ChangeURLPH] = useState("Optional Attached Link For Description ...")
   const URL = <URLContainer 
-    URLOption={handlerChange}
+    URLOption={(value)=>ChangeURL(value)}
     SubmitURLPH={URLPH}
     ScheduleColor={props.ScheduleColor}
     />
@@ -98,9 +76,7 @@ const Schedule = (props) => {
     GetToDate={(value) => ChangeToDate(value)} 
     RetrunClickedDate={StartDate}
     RetrunClickedEndDate={EndDate}
-    ScheduleColor={props.ScheduleColor}
-
-    // test={handleDate}
+    ScheduleColor={props.ScheduleColor} 
   />
 
   //This is for the time
@@ -132,7 +108,6 @@ const Schedule = (props) => {
     isFromData={getFormDate} //This is to pass down the from data that is clicked 
     isToData={getToDate} //This is to pass down the to data that is clicked 
 
-    collectedData={colectingEV}
     testingChangeevent={props.TestChangeEvet}
     />
     

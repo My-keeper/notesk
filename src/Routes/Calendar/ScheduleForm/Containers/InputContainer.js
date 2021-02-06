@@ -27,7 +27,7 @@ const TitleContainer = (props) => {
         <FadeIn><UserInput 
         key={`title` + 1}
         // This is to change the Value of Title based on the input coming from schedule
-        onchangeValue={props.SubmitTitle}
+        onchangeValue={(event)=>props.SubmitTitle(event.target.value)}
         //This is the Props that is coming from Schedule From once I click on submit
         PlaceholderValue={props.SubmitTitlePlaceHolder}
         name="title"
@@ -64,7 +64,7 @@ const DescriptionContainer = (props) => {
         <FadeIn><TextArea
         key={`Description`+1} 
         // This is to change the Value of Title based on the input 
-        onchangeValue={props.SubmitDescription}
+        onchangeValue={(event)=>props.SubmitDescription(event.target.value)}
         //This is the Props that is coming from Schedule From once I click on submit
         PlaceholderValue={props.SubmitDescriptionPlaceHolder}
         rows={3}
@@ -104,7 +104,7 @@ const URLContainer = (props) => {
         <FadeIn><UserInput 
         key={`AttachedLinkDescription` }
         // This is to change the Value of Title based on the input 
-        onchangeValue={props.URLOption}
+        onchangeValue={(event)=>props.URLOption(event.target.value)}
         //This is the Props that is coming from Schedule From once I click on submit
         PlaceholderValue={props.SubmitURLPH}
         name="Url"
