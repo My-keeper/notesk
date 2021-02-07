@@ -98,7 +98,7 @@ const Schedule = (props) => {
 
   //Submit Buton
   const [getSubmitClicked, ChangeSubmitClicked] = useState();
-  props.SubmitIsClicked(getSubmitClicked); 
+  // props.SubmitIsClicked(getSubmitClicked); 
   const Submit =<SubmitButton
     IsSubmistClicked={(value) => ChangeSubmitClicked(value)} //This is for the submit button to be clicked 
     GetEvent={props.submitEventValues} //This is to get the event values after the submission button has been clicked
@@ -112,11 +112,13 @@ const Schedule = (props) => {
     isToData={getToDate} //This is to pass down the to data that is clicked 
 
     />
+  console.log("props.isShow")
+  console.log(props.isShow)
     
   const ScheduleForm = (<FadeIn> <ScheduleContainer
-        ZindexValue={"3"}
-        // TransformValue= {props.ShowModel ? 'translateY(0)' : 'translateY(-100vh)'}
-        // OpacityValue= {props.ShowModel ? '1' : '0'}
+        TransformValue={props.isShow ? 'translateY(0)' : 'translateY(-100vh)'}
+        // TransformValue= {props.isShow ? 'translateY(0)' : 'translateY(-100vh)'}
+        // OpacityValue= {props.isShow ? '1' : '0'}
         position={"absolute"}
         LeftValue={"450px"}
         TopValue={"150px"}
@@ -133,8 +135,8 @@ const Schedule = (props) => {
         {Title}
         {Description}
         {URL}
-        {Data}
-        {Time}
+        {/* {Data}
+        {Time} */}
         {Submit}
       </ScheduleContainer>
     </FadeIn>
