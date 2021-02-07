@@ -121,7 +121,7 @@ const RepeatDaySelected = (props) => {
 
     const RepeatedDayContainer = (DayValue,OnChangeInputValue) => {
         return [<Inputdata 
-            key={NumberOfRepeatedDays.id}
+            key={NumberOfRepeatedDays.id + 1}
             inputType={"checkbox"}
             name="title"
             widthValue={"20px"}

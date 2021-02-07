@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import NoteContainer from "../../../UI/Modal";
+import ScheduleContainer from "../../../UI/Modal";
 import FadeIn from "react-fade-in";
 import {TitleContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
 import {CalenderContianer, TimerContainer} from './Containers/DropDownContainer';
@@ -113,8 +113,13 @@ const Schedule = (props) => {
 
     />
     
-  const ScheduleForm = (<FadeIn> <NoteContainer
-        position={"relative"}
+  const ScheduleForm = (<FadeIn> <ScheduleContainer
+        ZindexValue={"3"}
+        // TransformValue= {props.ShowModel ? 'translateY(0)' : 'translateY(-100vh)'}
+        // OpacityValue= {props.ShowModel ? '1' : '0'}
+        position={"absolute"}
+        LeftValue={"450px"}
+        TopValue={"150px"}
         width={"520px"}
         margin={"30px auto 20px auto"}
         padding={"15px"}
@@ -131,7 +136,7 @@ const Schedule = (props) => {
         {Data}
         {Time}
         {Submit}
-      </NoteContainer>
+      </ScheduleContainer>
     </FadeIn>
   );
 

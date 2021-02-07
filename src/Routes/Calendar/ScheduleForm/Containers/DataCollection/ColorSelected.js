@@ -12,7 +12,7 @@ const ColorSelected = (props) => {
   const Colors = (
     <FadeIn>
       <SelectData
-        key={ColorValueInput.id}
+        key={ColorValueInput.id + 1}
         inputType={"text"}
         name="title"
         widthValue={"160px"}

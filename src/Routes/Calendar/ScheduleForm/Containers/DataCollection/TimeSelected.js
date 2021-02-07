@@ -11,7 +11,7 @@ const OptionForm = (props) => {
   const Hours = (
     <FadeIn>
       <SelectData
-        key={HourValueInput.id}
+        key={HourValueInput.id + 1}
         inputType={"text"}
         name="title"
         widthValue={"112px"}
@@ -50,7 +50,7 @@ const OptionForm = (props) => {
   const Minuts = (
     <FadeIn>
       <SelectData
-        key={MinutsValueInput.id}
+        key={MinutsValueInput.id + 1}
         inputType={"text"}
         name="title"
         widthValue={"112px"}
@@ -90,7 +90,7 @@ const OptionForm = (props) => {
   const DayTime = (
     <FadeIn>
       <SelectData
-        key={DaytimeValueInput.id}
+        key={DaytimeValueInput.id + 1}
         inputType={"text"}
         name="title"
         widthValue={"112px"}

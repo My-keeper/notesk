@@ -15,14 +15,12 @@ const ModelContainer = styled.div`
     padding: ${(props) => (props.paddingInput ? props.paddingInput : null)};
     box-shadow: ${(props) => (props.boxShadowInput ? props.boxShadowInput : null)};
     border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
-    opacity: ${(props) => (props.OpacityInput ? props.OpacityInput : null)};
     float: ${(props) => (props.floatInput ? props.floatInput : null)};
     display: ${(props) => (props.displayInput ? props.displayInput :null)};
     flex-direction: ${(props) => (props.flexDirectionInput ? props.flexDirectionInput : null)};
     resize: ${(props) => (props.resizeInput ? props.resizeInput : "none")};
     flex-grow: ${(props) => (props.flexGrowInput ? props.flexGrowInput : "none")};
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : "none")};
-    z-index: 3;
     background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
     color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
     &::placeholder{
@@ -34,6 +32,12 @@ const ModelContainer = styled.div`
     &:focus { 
         ${(props) => (props.IsCalled === "FOCUS" ? borderStyling : "none")};
     };
+    z-index: ${(props) => (props.Zindex ? props.Zindex : "")};
+    transition: all 0.3s ease-out;
+    transform: ${(props) => (props.transformInput ? props.transformInput : null)};
+    opacity: ${(props) => (props.OpacityInput ? props.OpacityInput : null)};
+    left: ${(props) => (props.LeftInput ? props.LeftInput : "auto")};
+    top: ${(props) => (props.TopInput ? props.TopInput : "auto")};
 `
 
 export default function Model (props) {
@@ -47,7 +51,6 @@ export default function Model (props) {
             heightInput={props.heightValue}
             marginInput={props.margin}
             paddingInput={props.padding}
-            OpacityInput={props.Opacity}
             floatInput={props.float}
             displayInput={props.display}
             resizeInput={props.resizeValue}
@@ -59,6 +62,11 @@ export default function Model (props) {
             backGroundColorInput={props.backGroundColorValue}
             FontColorInput={props.FontColorValue}
             PlaceHolderColorInput={props.PlaceHolderColorValue}
+            OpacityInput={props.OpacityValue}
+            transformInput={props.TransformValue}
+            LeftInput={props.LeftValue}
+            TopInput={props.TopValue}
+            Zindex={props.ZindexValue}
         >
             {props.children}
         </ModelContainer>

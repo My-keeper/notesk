@@ -27,6 +27,7 @@ const DateSelected = (props) => {
   const Years = (
     <FadeIn>
       <SelectData
+        key={YearsValueInput + 1}
         value="as"
         PlaceholderValue="asdfas"
         inputType={"text"}
@@ -79,7 +80,7 @@ const DateSelected = (props) => {
   const Months = (
     <FadeIn>
       <SelectData
-        // key={MonthsValueInput.id}
+        key={MonthsValueInput.id +1}
         inputType={"text"}
         name={props.name == "start" ? "start" : "end"}
         widthValue={"112px"}
@@ -132,7 +133,7 @@ const DateSelected = (props) => {
   const Days = (
     <FadeIn>
       <SelectData
-        // key={DayValueInput.id}
+        key={DayValueInput.id  +1}
         inputType={"text"}
         name={props.name == "start" ? "start" : "end"}
         widthValue={"112px"}

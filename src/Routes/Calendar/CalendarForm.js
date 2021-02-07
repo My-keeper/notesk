@@ -1,70 +1,98 @@
-import React, { useState } from "react"; 
-import TheCalendar from "./TheCalendar";
-import ScheduleForm from "./ScheduleForm/Schedule";
-import styled from "styled-components";
+import React, { useState } from "react";
+import FullCalendar, { formatDate } from "@fullcalendar/react";
+import listPlugin from "@fullcalendar/list";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { INITIAL_EVENTS, createEventId } from "./event-utils";
+const TheCalendar = (props) => {
+  const weekendsVisible = true;
+  const [getEvent, ChangegetEvent] = useState(props.EventList ? props.EventList :[]); 
+  const [isDataClicked, ChangeDataClicked] = useState(props.SendDataClicked);
+  const [isStartData, ChangeStartData] = useState(); //This part is for the submit button
+  const [isGetEnd, ChangeEndData] = useState(); //This part is for the close button
+  const handleDateSelect = (selectInfo) => {
+    ChangeStartData(selectInfo.startStr.split("-"));
+    ChangeEndData(selectInfo.endStr.split("-"));
+    props.SendChangedDataClicked(true);
+  };
 
-const CalenderContainer = styled.div`
-  margin: 10px;
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  min-height: 100%;
-  font-size: 16px;
-  color: cornflowerblue;
-`;
-const CalendarForm = (props) => {
-  // const [currentEvents, ChangecurrentEvents] = useState();  // This is the values for events 
-  const [DataClicked, ChangeDataClicked] = useState(false); //This is used for value to change between CalendarForm and the other model
-  const [getIsSubmit, ChangeIsSubmit] = useState(false); //This part is for the submit button
-  const [getIsClose, ChangeIsClose] = useState(true); //This part is for the close button
-  const [getStartData, ChangeStartData] = useState();  //This part is for started Selected Data
-  const [getEndData, ChangeEndData] = useState(); //This part is for started Selected Data 
-  const [currentEvents, ChangeEventList] = useState([ 
-    {
-      id: "a",
-      title: "Testoing for more ",
-      start: "2021-02-13T12:30:00Z",
-      textColor: "pink",
-      end: "2021-02-14T13:30:00Z",
-      description: "lets play some game s",
-      display: "list-item",
-      backgroundColor: "black",
-    },
-    {
-      title:"Doc appoinmnet ",
-      start: "2021-02-13",
-      textColor: "pink",
-      end: "2021-02-14",
-      daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events
-      // daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
-      startTime: "10:45:00",
-      endTime: "12:45:00",
-      display: "list-item",
-      textColor: "black",
-    },
-  ]);
-  console.log(currentEvents)
-  return (
-    <CalenderContainer>
-      {DataClicked == false ? (
-        <TheCalendar 
-          SendChangedDataClicked={(value) => ChangeDataClicked(value)} //This is used for value to change between CalendarForm and the other model
-          EventList={currentEvents}  // This is the values for events 
-          StartedData={(value)=>ChangeStartData(value)} //This part is for started Selected Data
-          EndedData={(value)=>ChangeEndData(value)} //This part is for started Selected Data
-          SendDataClicked={DataClicked}
-        />
-      ) : (
-        <ScheduleForm
-          submitEventValues={(value)=>ChangeEventList(value)}  // This is the values for events 
-          SubmitIsClicked={(value) => (ChangeIsSubmit(value), ChangeDataClicked(value))} //This part is for the submit button
-          CloseIsCliced={(value) => (ChangeIsClose(value), ChangeDataClicked(value))} //This part is for the close button
-          StartDateClicked={getStartData} //This part is to send started Selected Data
-          EndDateClicked={getEndData} //This part is to send started Selected Data
-          ScheduleColor={props.RecieveColor}
-          // TestChangeEvet={(value)=>ChangeEventList(value)}
-          // SendTitle={(value)=>ChangeTitle(value)}
-        />
-      )}
-    </CalenderContainer>
+   
+  const FullCalendarForm = (
+    <FullCalendar
+      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
+      headerToolbar={{
+        left: "prev,next today",
+        center: "title",
+        right: "dayGridMonth,timeGridWeek,timeGridDay,list",
+      }}
+      initialView="dayGridMonth"
+      titleFormat={{ month: "short", year: "numeric", day: "numeric" }} //this is for the tile what should be there for the user
+      height="850px" //get fixed height for the calendar
+      contentHeight="800px" //get the content height for the calendar 
+      handleWindowResize="true"
+      locale="En" //this is for the languages option
+      timeZone="canada/nl" //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it
+      editable={true} //to edit the info
+      selectable={true} //to enable selection
+      selectMirror={true}
+      dayMaxEvents={true}
+      weekends={weekendsVisible}
+      eventDisplay="block" //this is used to high light the event that are created
+      eventTextColor="black" //this is for the styling of the text for each event
+      eventBackgroundColor="cornflowerblue" //This is for the background of each event
+      eventBorderColor="pink" //The border color
+      initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+      select={handleDateSelect}
+      events={getEvent}
+      // eventContent={renderEventContent} // custom render function
+      // eventClick={handleEventClick}
+      // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
+    />
   );
+
+  props.StartedData(isStartData) //This part is for the submit button
+  props.EndedData(isGetEnd) //This part is for the close button
+  
+  return <div style={{zIndex :"-1"}}>{FullCalendarForm}</div>;
 };
-export default CalendarForm;
+
+export default TheCalendar;
+
+// handleWeekendsToggle = () => {
+//   setState({
+//     weekendsVisible: !state.weekendsVisible
+//   })
+// }
+
+// handleEventClick = (clickInfo) => {
+//   if (alert(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+//     clickInfo.event.remove()
+//   }
+// }
+
+//   handleEvents = (events) => {
+//     setState({
+//       currentEvents: events
+//     })
+//   }
+
+// }
+
+// function renderEventContent(eventInfo) {
+//   return (
+//     <>
+//       <b>{eventInfo.timeText}</b>
+//       <i>{eventInfo.event.title}</i>
+//     </>
+//   )
+// }
+
+// function renderSidebarEvent(event) {
+//   return (
+//     <li key={event.id}>
+//       <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
+//       <i>{event.title}</i>
+//     </li>
+//   )
+// }
