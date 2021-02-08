@@ -8,15 +8,16 @@ import { INITIAL_EVENTS, createEventId } from "./event-utils";
 const TheCalendar = (props) => {
   const weekendsVisible = true;
   const [getEvent, ChangegetEvent] = useState(props.EventList ? props.EventList :[]); 
+  console.log(props.EventList)
   const [isStartData, ChangeStartData] = useState(); //This part is for the submit button
   const [isGetEnd, ChangeEndData] = useState(); //This part is for the close button
-  const [test, istest] = useState(props.SendChangedDataClicked)
-  console.log("test")
-  console.log(test)
+  console.log("starting")
+  console.log(props.EventList)
   const handleDateSelect = (selectInfo) => {
     ChangeStartData(selectInfo.startStr.split("-"));
     ChangeEndData(selectInfo.endStr.split("-"));
     props.SendChangedDataClicked(true); 
+    props.testclicked(true)
   };
 
    

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FadeIn from "react-fade-in";
 import SelectData from "../../../../../UI/Select";
 import { HourValue, MinutsValue, TwelveHourSystemValue } from "./OptionsForm";
+import { createEventId } from "../../../event-utils";
 
 const OptionForm = (props) => {
   const [HourValueInput, ChangeHourValue] = useState("");
@@ -11,7 +12,7 @@ const OptionForm = (props) => {
   const Hours = (
     <FadeIn>
       <SelectData
-        key={HourValueInput.id + 1}
+        key={HourValueInput.id + createEventId()}
         inputType={"text"}
         name="title"
         widthValue={"112px"}
@@ -50,7 +51,7 @@ const OptionForm = (props) => {
   const Minuts = (
     <FadeIn>
       <SelectData
-        key={MinutsValueInput.id + 1}
+        key={MinutsValueInput.id + createEventId()}
         inputType={"text"}
         name="title"
         widthValue={"112px"}
@@ -90,7 +91,7 @@ const OptionForm = (props) => {
   const DayTime = (
     <FadeIn>
       <SelectData
-        key={DaytimeValueInput.id + 1}
+        key={DaytimeValueInput.id + createEventId()}
         inputType={"text"}
         name="title"
         widthValue={"112px"}

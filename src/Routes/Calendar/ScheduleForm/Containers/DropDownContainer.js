@@ -6,6 +6,7 @@ import DateSelected from './DataCollection/DateSelected';
 import TimeSelected from './DataCollection/TimeSelected';
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import { createEventId } from "../../event-utils";
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -82,7 +83,7 @@ const CalenderContianer = (props) => {
         </div>
         <DateContainer>
             <EachateContainer>
-                {Layout.map((value, index) => <FadeIn><span key={index+1} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> ) }
+                {Layout.map((value, index) => <FadeIn><span key={index+ createEventId()} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> ) }
             </EachateContainer>
             <EachateContainer>
                 <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
@@ -167,7 +168,7 @@ const TimerContainer = (props) => {
         </div>
         <DateContainer>
             <EachateContainer>
-                {Layout.map(value =><FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
+                {Layout.map((value, index) =><FadeIn><span  key={index+ createEventId()} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
             </EachateContainer>
             <EachateContainer>
                 <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>Start</span></FadeIn>

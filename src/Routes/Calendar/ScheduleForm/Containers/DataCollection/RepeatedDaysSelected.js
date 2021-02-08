@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FadeIn  from 'react-fade-in';
 import Inputdata from '../../../../../UI/UserInput';
+import { createEventId } from "../../../event-utils";
 
 
 const RepeatDaySelected = (props) => {
@@ -121,7 +122,7 @@ const RepeatDaySelected = (props) => {
 
     const RepeatedDayContainer = (DayValue,OnChangeInputValue) => {
         return [<Inputdata 
-            key={NumberOfRepeatedDays.id + 1}
+            key={NumberOfRepeatedDays.id + createEventId()}
             inputType={"checkbox"}
             name="title"
             widthValue={"20px"}

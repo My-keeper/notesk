@@ -6,6 +6,7 @@ import {
   NumberOfMonthsValue,
   NumberOfDaysValue,
 } from "./OptionsForm";
+import { createEventId } from "../../../event-utils";
 
 const DateSelected = (props) => {
   //This part is changed once the user click on the drop down to see other options
@@ -27,7 +28,7 @@ const DateSelected = (props) => {
   const Years = (
     <FadeIn>
       <SelectData
-        key={YearsValueInput + 1}
+        key={YearsValueInput + createEventId()}
         value="as"
         PlaceholderValue="asdfas"
         inputType={"text"}
@@ -80,7 +81,7 @@ const DateSelected = (props) => {
   const Months = (
     <FadeIn>
       <SelectData
-        key={MonthsValueInput.id +1}
+        key={MonthsValueInput.id + createEventId()}
         inputType={"text"}
         name={props.name == "start" ? "start" : "end"}
         widthValue={"112px"}
@@ -133,7 +134,7 @@ const DateSelected = (props) => {
   const Days = (
     <FadeIn>
       <SelectData
-        key={DayValueInput.id  +1}
+        key={DayValueInput.id  + createEventId()}
         inputType={"text"}
         name={props.name == "start" ? "start" : "end"}
         widthValue={"112px"}

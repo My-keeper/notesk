@@ -41,34 +41,36 @@ const CalendarForm = (props) => {
       textColor: "black",
     },
   ]);
-  console.log(DataClicked)
+  const [test, chtest] = useState(false)
   const calendarForm = <TheCalendar 
+    testclicked={value=>chtest(value)}
     SendChangedDataClicked={(value) => ChangeDataClicked(value)} //This is used for value to change between CalendarForm and the other model
     EventList={currentEvents}  // This is the values for events 
     StartedData={(value)=>ChangeStartData(value)} //This part is for started Selected Data
     EndedData={(value)=>ChangeEndData(value)} //This part is for started Selected Data
   />
   const scheduleForm = <ScheduleForm
-    isShow={DataClicked}
+    // isShow={DataClicked}
     CloseIsCliced={(value) => (ChangeIsClose(value), ChangeDataClicked(value))} //This part is for the close button
-    submitEventValues={(value)=>ChangeEventList(value)}  // This is the values for events 
-    // SubmitIsClicked={(value) => (ChangeIsSubmit(value), ChangeDataClicked(value))} //This part is for the submit button
+    // submitEventValues={(value)=>ChangeEventList(value)}  // This is the values for events 
+    SubmitIsClicked={(value) => (ChangeIsSubmit(value), ChangeDataClicked(value))} //This part is for the submit button
     StartDateClicked={getStartData} //This part is to send started Selected Data
     EndDateClicked={getEndData} //This part is to send started Selected Data
     ScheduleColor={props.RecieveColor}
-    // TestChangeEvet={(value)=>ChangeEventList(value)}
+    TestChangeEvet={(value)=>ChangeEventList(value)}
     // SendTitle={(value)=>ChangeTitle(value)}
   />
-  console.log("DataClicked")
-  console.log(DataClicked)
   return (
     <CalenderContainer>
-      <div style={{zIndex:"2" , position:"absolute" }}>{scheduleForm}</div>
-      <div style={{zIndex:"1" , }}>{calendarForm}</div>
-  {/* {DataClicked == false ? calendarForm : scheduleForm}
-      <div style={{zIndex:"2" , position:"absolute",transform: `${!DataClicked ? 'translateY(0)' : `translateY(-100vh)`}` ,opacity: `${!DataClicked ? '1' : `0`}` }}>{scheduleForm}</div>
-    
-    {calendarForm} */}
+      {/* <div style={{
+          zIndex:"2" , 
+         position:"absolute",
+         transform: !DataClicked? "translateY(0)" : "translateY(-100vh)",
+         opacity:!DataClicked? "1" : "0"
+         }}>{scheduleForm}</div>
+      <div style={{zIndex:"1" , }}>{calendarForm}</div> */}
+      {DataClicked == false ? calendarForm : scheduleForm}    
+    {/* {calendarForm}  */}
     {/* {scheduleForm} */}
     </CalenderContainer>
   );

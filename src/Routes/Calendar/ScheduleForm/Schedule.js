@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ScheduleContainer from "../../../UI/Modal";
+import NoteContainer from "../../../UI/Modal";
 import FadeIn from "react-fade-in";
 import {TitleContainer, DescriptionContainer, URLContainer} from './Containers/InputContainer';
 import {CalenderContianer, TimerContainer} from './Containers/DropDownContainer';
@@ -32,7 +32,7 @@ const Schedule = (props) => {
     fontSize: "26px",
     color: props.ScheduleColor.IconC,
   };
-  //Closed Button
+ 
   const [isClode, ChangeIsClosed] = useState(true);
   const CloseIcon = isClode ? 
     (<CloseOutlined onMouseEnter={() => ChangeIsClosed(false)} style={VisibilityStle1} />)  
@@ -80,28 +80,25 @@ const Schedule = (props) => {
   />
 
   //This is for the time
-  const [StartHours, ChangeStartHour ]= useState()
-  const [StartMinuts, ChangeStartMinuts ]= useState()
-  const [StartDay, ChangeStartDay ]= useState()
-  const [EndHours, ChangeEndHour ]= useState()
-  const [EndMinuts, ChangeEndMinuts ]= useState()
-  const [EndDay, ChangeEndDay ]= useState()
-  const Time = <TimerContainer
-  FromHourSelected={(value) => ChangeStartHour(value)}
-  ToHourlected={(value) => ChangeEndHour(value)}
-  FromMinutsSelected={(value) => ChangeStartMinuts(value)}
-  ToMinutsSelected={(value) => ChangeEndMinuts(value)}
-  FromDayValueSelected={(value) => ChangeStartDay(value)}
-  ToDayValueSelected={(value) => ChangeEndDay(value)} 
-  ScheduleColor={props.ScheduleColor}
-  />
+
+  // const Time = <TimerContainer
+  // SubmitFromHourSelected={(value) => ChangeGetStartHourValue(value)}
+  // SubmitToHourlected={(value) => ChangeGetEndHourValue(value)}
+  // SubmitFromMinutsSelected={(value) => ChangeGetStartMinutsValue(value)}
+  // SubmitToMinutsSelected={(value) => ChangeGetEndMinutsValue(value)}
+  // SubmitFromDayValueSelected={(value) => ChangeGetStartDayValue(value)}
+  // SubmitToDayValueSelected={(value) => ChangeGetEndDayValue(value)} 
+  // // // ScheduleColor={props.ScheduleColor}
+  // />
 
   //Submit Buton
   const [getSubmitClicked, ChangeSubmitClicked] = useState();
-  // props.SubmitIsClicked(getSubmitClicked); 
+  props.SubmitIsClicked(getSubmitClicked);
+  const [getEventValue, ChangeEventValue] = useState() 
+  // props.submitEventValues(getEventValue);
   const Submit =<SubmitButton
     IsSubmistClicked={(value) => ChangeSubmitClicked(value)} //This is for the submit button to be clicked 
-    GetEvent={props.submitEventValues} //This is to get the event values after the submission button has been clicked
+    GetEvent={(value) => ChangeEventValue(value)} //This is to get the event values after the submission button has been clicked
     isTitle={getTitle} //This is to pass down the title value
     CheckTitlePH={(value)=>ChangeTitlePH(value)} //This is to check the title place holder and then change it based on the user input 
     isDescription={getDescription} //This is to pass down the Description value
@@ -111,17 +108,11 @@ const Schedule = (props) => {
     isFromData={getFormDate} //This is to pass down the from data that is clicked 
     isToData={getToDate} //This is to pass down the to data that is clicked 
 
+    testingChangeevent={props.TestChangeEvet}
     />
-  console.log("props.isShow")
-  console.log(props.isShow)
     
-  const ScheduleForm = (<FadeIn> <ScheduleContainer
-        TransformValue={props.isShow ? 'translateY(0)' : 'translateY(-100vh)'}
-        // TransformValue= {props.isShow ? 'translateY(0)' : 'translateY(-100vh)'}
-        // OpacityValue= {props.isShow ? '1' : '0'}
-        position={"absolute"}
-        LeftValue={"450px"}
-        TopValue={"150px"}
+  const ScheduleForm = (<FadeIn> <NoteContainer
+        position={"relative"}
         width={"520px"}
         margin={"30px auto 20px auto"}
         padding={"15px"}
@@ -135,10 +126,9 @@ const Schedule = (props) => {
         {Title}
         {Description}
         {URL}
-        {/* {Data}
-        {Time} */}
+        {/* {Data} */}
         {Submit}
-      </ScheduleContainer>
+      </NoteContainer>
     </FadeIn>
   );
 
