@@ -17,9 +17,8 @@ const TheCalendar = (props) => {
     ChangeStartData(selectInfo.startStr.split("-"));
     ChangeEndData(selectInfo.endStr.split("-"));
     props.SendChangedDataClicked(true); 
-    props.testclicked(true)
+    props.SendChangedDataClicked(true);
   };
-
    
   const FullCalendarForm = (
     <FullCalendar

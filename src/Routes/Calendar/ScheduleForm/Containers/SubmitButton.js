@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import FadeIn from "react-fade-in";
 import { LoginOutlined } from "@ant-design/icons";
 import Button from "../../../../UI/Button";
@@ -11,67 +11,40 @@ const SubmitButton = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   };
-  //pre created list of event is created as an example 
-  const [EventList, ChangeEventList] = useState([])
-  //   {
-  //     id: "a",
-  //     title: "Testoing for more ",
-  //     start: "2021-02-13T12:30:00Z",
-  //     textColor: "pink",
-  //     end: "2021-02-14T13:30:00Z",
-  //     description: "lets play some game s",
-  //     display: "list-item",
-  //     backgroundColor: "black",
-  //   },
-  //   {
-  //     title:"Doc appoinmnet ",
-  //     start: "2021-02-13",
-  //     textColor: "pink",
-  //     end: "2021-02-14",
-  //     daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events
-  //     // daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
-  //     startTime: "10:45:00",
-  //     endTime: "12:45:00",
-  //     display: "list-item",
-  //     textColor: "black",
-  //   },
-  // ]);
-  // console.log(EventList)
-  const [testevent, changetestevent] = useState() 
-  // const sss =props.collectedData
-  // console.log(props.collectedData)
-  const [idCounter, ChangeidCounter] = useState(0)
-  const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked 
-  const CreateEvent= { 
-    id:  createEventId(),
-    title:  isSubmit ? props.isTitle : "",
+  const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked
+  const CreateEvent = {
+    id: createEventId(),
+    title: isSubmit ? props.isTitle : "",
     description: isSubmit ? props.isDescription : "",
     Url: isSubmit ? props.isURL : "",
-    start: isSubmit ? props.isFromData :"",
+    start: isSubmit ? props.isFromData : "",
     // startTime: "10:45:00",
-    // endTime: "12:45:00", 
+    // endTime: "12:45:00",
     display: "list-item",
-    textColor: "red"
-  } 
-  
-  const subNote = () => { 
-    if(props.isTitle === "" && props.isDescription === "" ) {
-        <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)") 
-        , props.CheckDescriptionPH("Please Enter A Description ....(-_-)")} </FadeIn> 
-      }
-      else if (props.isTitle === "") {
-          <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)") }</FadeIn>
+    textColor: "red",
+  };
+
+  const subNote = () => {
+    if (props.isTitle === "" && props.isDescription === "") {
+      <FadeIn>
+        {
+          (props.CheckTitlePH("Please Enter A Title ....(-_-)"),
+          props.CheckDescriptionPH("Please Enter A Description ....(-_-)"))
         }
-        else if (props.isDescription === "") {
-            <FadeIn>{props.CheckDescriptionPH("Please Enter A Description ....(-_-)") }</FadeIn>
-          }
-          else {
-            // props.CheckTitlePH("") 
-            // props.CheckDescriptionPH("")
-            props.testingChangeevent(oldarr => [...oldarr,CreateEvent]) 
-            ChangeIsSubmit(false)
-            }
-          }  
+      </FadeIn>;
+    } else if (props.isTitle === "") {
+      <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)")}</FadeIn>;
+    } else if (props.isDescription === "") {
+      <FadeIn>
+        {props.CheckDescriptionPH("Please Enter A Description ....(-_-)")}
+      </FadeIn>;
+    } else {
+      // props.CheckTitlePH("")
+      // props.CheckDescriptionPH("")
+      props.GetEvent((oldarr) => [...oldarr, CreateEvent]);
+      ChangeIsSubmit(false);
+    }
+  };
 
   const SubmitButton = (
     <FadeIn>
@@ -85,15 +58,14 @@ const SubmitButton = (props) => {
         BorderValue="solid"
         borderWidthValue="thin"
         paddingInputValue="2px"
-        onClick={ subNote}
+        onClick={subNote}
         text={"Submit"}
         icon={<LoginOutlined style={ButtonIconColor} />}
       />
     </FadeIn>
   );
 
-  props.GetEvent(EventList); //This is used to send the new list of event after mergeing the new and the old one 
-  props.IsSubmistClicked(isSubmit); //This is values is used to send value that the submit button has been clicked 
+  props.IsSubmistClicked(isSubmit); //This is values is used to send value that the submit button has been clicked
 
   return SubmitButton;
 };
