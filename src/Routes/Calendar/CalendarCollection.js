@@ -12,13 +12,11 @@ const CalenderContainer = styled.div`
 `;
 const CalendarForm = (props) => {
   // const [currentEvents, ChangecurrentEvents] = useState();  // This is the values for events 
-  // const [getIsSubmit, ChangeIsSubmit] = useState(false); //This part is for the submit button
+  const [DataClicked, ChangeDataClicked] = useState(false); //This is used for value to change between CalendarForm and the other model
+  const [getIsSubmit, ChangeIsSubmit] = useState(false); //This part is for the submit button
   const [getIsClose, ChangeIsClose] = useState(true); //This part is for the close button
   const [getStartData, ChangeStartData] = useState();  //This part is for started Selected Data
   const [getEndData, ChangeEndData] = useState(); //This part is for started Selected Data 
-  const [DataClicked, ChangeDataClicked] = useState(false); //This is used for value to change between CalendarForm and the other model
-  const [showSchedule , ChangeCallSchedule]= useState(true)
-  console.log(showSchedule)
   const [currentEvents, ChangeEventList] = useState([ 
     {
       id: "a",
@@ -46,36 +44,35 @@ const CalendarForm = (props) => {
   const [test, chtest] = useState(false)
   const calendarForm = (
     <TheCalendar
-      SendChangedDataClicked={(value) => ChangeCallSchedule(value)} //This is used for value to change between CalendarForm and the other model
+      SendChangedDataClicked={(value) => ChangeDataClicked(value)} //This is used for value to change between CalendarForm and the other model
       EventList={currentEvents} // This is the values for events
       StartedData={(value) => ChangeStartData(value)} //This part is for started Selected Data
       EndedData={(value) => ChangeEndData(value)} //This part is for started Selected Data
       SendDataClicked={DataClicked}
-      // FromCalendar={(value)=>ChangeCallSchedule(value)}
     />
   );
   const scheduleForm = (
     <ScheduleForm
       submitEventValues={(value) => ChangeEventList(value)} // This is the values for events
-      // CloseIsCliced={(value) => ( ChangeIsClose(value), ChangeDataClicked(value) )} //This part is for the close button
-      SubmitIsClicked={(value) => ChangeDataClicked(value) } //This part is for the submit button
+      SubmitIsClicked={(value) => ( ChangeIsSubmit(value), ChangeDataClicked(value) )} //This part is for the submit button
+      CloseIsCliced={(value) => ( ChangeIsClose(value), ChangeDataClicked(value) )} //This part is for the close button
       StartDateClicked={getStartData} //This part is to send started Selected Data
       EndDateClicked={getEndData} //This part is to send started Selected Data
       ScheduleColor={props.RecieveColor}
-      FromCloseButton={value=>ChangeCallSchedule(value)}
     />
   );
   return (
     <CalenderContainer>
-      {/* <div style={{
+      <div style={{
           zIndex:"2" , 
-         position:"absolute",
-         transform: (showSchedule || DataClicked ) ? "translateY(-100vh)" : "translateY(0)",
-        //  opacity: DataClicked == false ? "1" : "0"
+        //  position:"absolute",
+         transform: DataClicked == false? "translateY(-100vh)" : "translateY(0)",
+        //  opacity:!DataClicked? "1" : "0"
          }}>{scheduleForm}</div>
-      <div style={{zIndex:"1" , }}>{calendarForm}</div> */}
-      {DataClicked == false ? calendarForm : scheduleForm}    
-      
+      <div style={{zIndex:"1" , }}>{calendarForm}</div>
+      {/* {DataClicked == false ? calendarForm : scheduleForm}     */}
+    {/* {calendarForm}  */}
+    {/* {scheduleForm} */}
     </CalenderContainer>
   );
 };

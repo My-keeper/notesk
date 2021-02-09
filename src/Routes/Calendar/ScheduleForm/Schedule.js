@@ -41,7 +41,7 @@ const Schedule = (props) => {
     />
   ) : (
     <CloseCircleOutlined
-      onClick={() => props.FromCloseButton(true)}
+      onClick={() => props.CloseIsCliced(false)}
       onMouseLeave={() => ChangeIsClosed(true)}
       style={VisibilityStle2}
     />
@@ -80,7 +80,41 @@ const Schedule = (props) => {
       SubmitURLPH={URLPH}
       ScheduleColor={props.ScheduleColor}
     />
-  ); 
+  );
+
+  // Data From and To
+  const [getFormDate, ChangeFormDate] = useState();
+  const [getToDate, ChangeToDate] = useState();
+  const [StartDate, ChangeClickedStartDate] = useState(props.StartDateClicked); //This is the selected data in calendar
+  const [EndDate, ChangeClickedEndDate] = useState(props.EndDateClicked); //This is the selected data in calendar
+  const Data = (
+    <CalenderContianer
+      GetFromDate={(value) => ChangeFormDate(value)}
+      GetToDate={(value) => ChangeToDate(value)}
+      RetrunClickedDate={StartDate}
+      RetrunClickedEndDate={EndDate}
+      ScheduleColor={props.ScheduleColor}
+    />
+  );
+
+  //This is for the time
+  const [StartHours, ChangeStartHour] = useState();
+  const [StartMinuts, ChangeStartMinuts] = useState();
+  const [StartDay, ChangeStartDay] = useState();
+  const [EndHours, ChangeEndHour] = useState();
+  const [EndMinuts, ChangeEndMinuts] = useState();
+  const [EndDay, ChangeEndDay] = useState();
+  const Time = (
+    <TimerContainer
+      FromHourSelected={(value) => ChangeStartHour(value)}
+      ToHourlected={(value) => ChangeEndHour(value)}
+      FromMinutsSelected={(value) => ChangeStartMinuts(value)}
+      ToMinutsSelected={(value) => ChangeEndMinuts(value)}
+      FromDayValueSelected={(value) => ChangeStartDay(value)}
+      ToDayValueSelected={(value) => ChangeEndDay(value)}
+      ScheduleColor={props.ScheduleColor}
+    />
+  );
 
   //Submit Buton
   const [getSubmitClicked, ChangeSubmitClicked] = useState();
@@ -95,8 +129,8 @@ const Schedule = (props) => {
       CheckDescriptionPH={(value) => ChangeDescriptionPH(value)} //This is to check the Description place holder and then change it based on the user input
       isURL={getURL} //This is to pass down the URL value
       CheckURLPH={(value) => ChangeURLPH(value)} //This is to check the URL place holder and then change it based on the user input
-      isFromData={props.StartDateClicked} //This is to pass down the from data that is clicked
-      isToData={props.EndDateClicked} //This is to pass down the to data that is clicked
+      isFromData={getFormDate} //This is to pass down the from data that is clicked
+      isToData={getToDate} //This is to pass down the to data that is clicked
     />
   );
 
@@ -116,7 +150,9 @@ const Schedule = (props) => {
         {CloseIcon}
         {Title}
         {Description}
-        {URL} 
+        {URL}
+        {/* {Data}
+        {Time} */}
         {Submit}
       </NoteContainer>
     </FadeIn>
