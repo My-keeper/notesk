@@ -11,13 +11,10 @@ const TheCalendar = (props) => {
   console.log(props.EventList)
   const [isStartData, ChangeStartData] = useState(); //This part is for the submit button
   const [isGetEnd, ChangeEndData] = useState(); //This part is for the close button
-  console.log("starting")
-  console.log(props.EventList)
   const handleDateSelect = (selectInfo) => {
-    ChangeStartData(selectInfo.startStr.split("-"));
-    ChangeEndData(selectInfo.endStr.split("-"));
-    props.SendChangedDataClicked(true); 
-    props.SendChangedDataClicked(true);
+    ChangeStartData(selectInfo.startStr);
+    ChangeEndData(selectInfo.endStr);
+    props.SendChangedDataClicked(false);
   };
    
   const FullCalendarForm = (

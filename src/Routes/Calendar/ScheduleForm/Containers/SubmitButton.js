@@ -11,13 +11,14 @@ const SubmitButton = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   };
-  const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked
+  const [isSubmit, ChangeIsSubmit] = useState(false); //This is values is used to send value that the submit button has been clicked
   const CreateEvent = {
     id: createEventId(),
     title: isSubmit ? props.isTitle : "",
     description: isSubmit ? props.isDescription : "",
     Url: isSubmit ? props.isURL : "",
     start: isSubmit ? props.isFromData : "",
+    end: isSubmit ? props.isToData : "",
     // startTime: "10:45:00",
     // endTime: "12:45:00",
     display: "list-item",
@@ -42,7 +43,7 @@ const SubmitButton = (props) => {
       // props.CheckTitlePH("")
       // props.CheckDescriptionPH("")
       props.GetEvent((oldarr) => [...oldarr, CreateEvent]);
-      ChangeIsSubmit(false);
+      ChangeIsSubmit(true);
     }
   };
 
