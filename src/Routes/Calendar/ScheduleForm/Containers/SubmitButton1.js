@@ -11,17 +11,20 @@ const SubmitButton = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   };
-  // const CreateEvent = {
-  //   id: createEventId(),
-  //   title: isSubmit ? props.isTitle : "",
-  //   description: isSubmit ? props.isDescription : "",
-  //   Url: isSubmit ? props.isURL : "",
-  //   start: isSubmit ? props.isFromData : "",
-  //   // startTime: "10:45:00",
-  //   // endTime: "12:45:00",
-  //   display: "list-item",
-  //   textColor: "red",
-  // };
+  // // const CreateEvent = { 
+    //   id: createEventId(),
+    //   title: isSubmit ? props.isTitle : "",
+    //   description: isSubmit ? props.isDescription : "",
+    //   Url: isSubmit ? props.isURL : "",
+    //   start: isSubmit ? props.isFromData : "",
+    //     end: "2021-02-14",
+    //     startTime: "10:45:00",
+    //     endTime: "12:45:00", 
+    //   display: "list-item",
+    //   textColor: "red",
+    //     daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events
+    //     // daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
+    // };
 
   const subNote = () => { 
   };
