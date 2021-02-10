@@ -20,7 +20,7 @@ const EachateContainer = styled.div`
     width: 400px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: ${props => props.JustifyContentCalue};
     margin: 4px;
 `
 const DateContainer = styled.div`
@@ -29,8 +29,6 @@ const DateContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
 `
-
-
 const CalenderContianer = (props) => {
     //All Component Color Stle
     const IconColor = { 
@@ -50,51 +48,70 @@ const CalenderContianer = (props) => {
     }
     
     // This is a togole to change the state of the disabled and to change the icion as well 
-    const [isClicked, ChangeisClicked] = useState(true)
+    const [isStartedData, ChangeisStartedData] = useState(false)
+    const StartingDataIcion = <FadeIn><div  onClick={()=>ChangeisStartedData(!isStartedData)}>
+            {isStartedData ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
+        </div></FadeIn>
+    const [isEndedData, ChangeisEndedData] = useState(false)
+    const EndingDataIcion = <FadeIn><div  onClick={()=>ChangeisEndedData(!isEndedData)}>
+            {isEndedData ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
+        </div></FadeIn>
+
+    const InconArea = <div style={{display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+            <FadeIn><CalendarOutlined style={IconColor}/> </FadeIn>
+            {StartingDataIcion}
+            {EndingDataIcion}
+        </div>
 
     //This is for the layout for Year Month Days
     const Layout = ['','Year','Month','Day'] 
-    //All the needed information for craeting the date From 
-    const [fromData, ChangeFromDate] = useState("") 
-    const [ToData, ChangeToDate] = useState()
+    const InfoArea = <EachateContainer JustifyContentCalue={"space-between" }>
+            {(isStartedData || isEndedData ) ? Layout.map((value, index) => 
+                <FadeIn><span key={index+ createEventId()} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> 
+            ) : <FadeIn><span key={"empty" + createEventId()} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}></span></FadeIn>}
+        </EachateContainer>
 
+    //Starting Data Area
+    const [fromData, ChangeFromDate] = useState("") 
+    const StartingData = <EachateContainer JustifyContentCalue={isStartedData ? "space-between" : ""}>
+        <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
+        {!isStartedData ? 
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC}}>{props.SendSD}</span></FadeIn>
+        :
+            <DateSelected   
+                //The incoming dating is used to chagne the format of the date and then send that number to submission button
+                submitDateValue={(value) => ChangeFromDate(value)} 
+                RecievedColor={props.ScheduleColor}
+        />}
+    </EachateContainer>
+    
+    // End Data Area
+    const [ToData, ChangeToDate] = useState()
+    const EndingingData = <EachateContainer JustifyContentCalue={isEndedData ? "space-between" : ""}>
+        <FadeIn><span style={{  padding: "4px" , fontSize: "1.2em", marginRight: "25px"}}>To</span></FadeIn>
+        {!isEndedData ? 
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC }}>{props.SendED}</span></FadeIn>
+        :
+            <DateSelected   
+                //The incoming dating is used to chagne the format of the date and then send that number to submission button
+                submitDateValue={(value) => ChangeToDate(value)} 
+                RecievedColor={props.ScheduleColor}
+        />}
+    </EachateContainer>
+    
     //This is the returned Date to the calendar
     const calendar = <InfoContainer>
-        <div style={{display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
-        <FadeIn><CalendarOutlined style={IconColor}/>  </FadeIn>
-        <FadeIn><div style={{marginTop: "40px"}} onClick={()=>ChangeisClicked(!isClicked)}>
-                    {isClicked ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
-                </div></FadeIn>
-        </div>
-        <DateContainer>
-            <EachateContainer>
-                {Layout.map((value, index) => <FadeIn><span key={index+ createEventId()} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> ) }
-            </EachateContainer>
-            <EachateContainer>
-                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
-                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
-                <DateSelected  
-                    //The incoming dating is used to chagne the format of the date and then send that number to submission button
-                    submitDateValue={(value) => ChangeFromDate(value)} 
-                    RecievedColor={props.ScheduleColor}
-                />
-            </EachateContainer>
-            <EachateContainer>
-                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "25px"}}>To </span></FadeIn>
-
-                <DateSelected  
-                    //this is to disable the values that are inside and it is going to DataSelected
-                    DisabledisClicked={isClicked} 
-                    submitDateValue={(value) => ChangeToDate(value)} 
-                    RecievedColor={props.ScheduleColor}
-                />
-            </EachateContainer>
-        </DateContainer>
-    </InfoContainer>
+            {InconArea}
+            <DateContainer>
+                {InfoArea}
+                {StartingData}
+                {EndingingData}
+            </DateContainer>
+        </InfoContainer>
 
     //To recieve a prop that will change the value from and to inside the schedule form to the value of From/to Date that has been created here  
-    props.GetFromDate(fromData)
-    props.GetToDate(ToData)
+    props.GetFromDate(!isStartedData ?  props.SendSD : fromData)
+    props.GetToDate(!isEndedData ? props.SendED :ToData)
     
     return(calendar)
 }

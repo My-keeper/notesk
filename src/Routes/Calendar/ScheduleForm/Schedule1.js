@@ -21,20 +21,18 @@ const Schedule = (props) => {
 
     //Closed Button
     const [isClode, ChangeIsClosed] = useState(true);
-    const CloseIcon = isClode 
-        ? 
-        (<CloseOutlined
+    const CloseIcon = isClode ? 
+    (<CloseOutlined
             onMouseEnter={() => ChangeIsClosed(false)}
             style={{marginRight: "4px", marginLeft: "95%", marginBottom: "15px",
                 fontSize: "21px", color: props.ScheduleColor.IconC}}
-        />)
-        : 
-        (<CloseCircleOutlined
-            onClick={() => props.CallingCalendar(false)}
-            onMouseLeave={() => ChangeIsClosed(true)}
-            style={{marginRight: "4px", marginLeft: "95%", marginBottom: "15px",
-                fontSize: "26px", color: props.ScheduleColor.IconC}}
-        />);
+    />) :  
+    (<CloseCircleOutlined
+        onClick={() => props.CallingCalendar(false)}
+        onMouseLeave={() => ChangeIsClosed(true)}
+        style={{marginRight: "4px", marginLeft: "95%", marginBottom: "15px",
+            fontSize: "26px", color: props.ScheduleColor.IconC}}
+    />)
 
     //Title Area
     const [getTitle, ChangeTitle] = useState("");
@@ -47,15 +45,19 @@ const Schedule = (props) => {
     
     // Data From and To
     const [getFormDate, ChangeFormDate] = useState();
+    console.log("schedule from")
+    console.log(getFormDate)
     const [getToDate, ChangeToDate] = useState();
-    const [StartDate, ChangeClickedStartDate] = useState(props.StartDateClicked); //This is the selected data in calendar
-    const [EndDate, ChangeClickedEndDate] = useState(props.EndDateClicked); //This is the selected data in calendar
+    console.log("schedule to")
+    console.log(getToDate)
+    const StartDate= props.SendSelectedSD //This is the selected data in calendar
+    const EndDate= props.SendSelectedED//This is the selected data in calendar  
     const Data = (
         <CalenderContianer
+        SendSD={StartDate} //This is to send back the selected started data
+        SendED={EndDate} //This is to send back the selected ended data
         GetFromDate={(value) => ChangeFormDate(value)}
         GetToDate={(value) => ChangeToDate(value)}
-        RetrunClickedDate={StartDate}
-        RetrunClickedEndDate={EndDate}
         ScheduleColor={props.ScheduleColor}
         />
     );
@@ -81,6 +83,7 @@ const Schedule = (props) => {
                 >
             {CloseIcon}
             {Title} 
+            {Data}
             {Submit}
             </NoteContainer> 
         </FadeIn>

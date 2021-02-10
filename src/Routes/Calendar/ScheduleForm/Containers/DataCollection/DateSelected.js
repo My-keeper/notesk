@@ -15,16 +15,10 @@ const DateSelected = (props) => {
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
     */
-  const [YearsValueInput, ChangeYearsValueInput] = useState(
-    GetUserChangeYear
-      ? props.ReturnFrom === "From"
-        ? props.ReturnClickedFromYear
-        : props.ReturnClickedToYear
-      : ""
-  );
+  const [YearsValueInput, ChangeYearsValueInput] = useState("");
   const handleYears = (e) => (
-    ChangeYearsValueInput(e.target.value), ChnageUserChangedYear(false)
-  );
+    ChangeYearsValueInput(e.target.value)
+    )
   const Years = (
     <FadeIn>
       <SelectData
@@ -38,14 +32,12 @@ const DateSelected = (props) => {
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
         fontFamilyValue={"inherit"}
-        IsCalledValue={props.DisabledisClicked ? "" : "FOCUS"}
+        IsCalledValue={"FOCUS"}
         borderRadiusValue={"7px"}
         backGroundColorValue={props.RecievedColor.UserInputBGC}
         FontColorValue={props.RecievedColor.UserInputFC}
         PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-        borderColorValue={
-          props.DisabledisClicked ? "#A9A9A9" : props.RecievedColor.BorderColor
-        }
+        borderColorValue={props.RecievedColor.BorderColor}
         BorderValue={"solid"}
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
@@ -53,10 +45,7 @@ const DateSelected = (props) => {
         InputValue={YearsValueInput}
       >
         {
-          <NumberOfYearsValue
-            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
-            DisabledYear={props.DisabledisClicked}
-          />
+          <NumberOfYearsValue/>
         }
       </SelectData>
     </FadeIn>
@@ -68,15 +57,9 @@ const DateSelected = (props) => {
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
     */
-  const [MonthsValueInput, ChangeMonthsValue] = useState(
-    GetUserChangeMonth
-      ? props.ReturnFrom === "From"
-        ? props.ReturnClickedFromMonth
-        : props.ReturnClickedToMonth
-      : ""
-  );
+  const [MonthsValueInput, ChangeMonthsValue] = useState("");
   const handleMonths = (e) => (
-    ChangeMonthsValue(e.target.value), ChnageUserChangedMonth(false)
+    ChangeMonthsValue(e.target.value) 
   );
   const Months = (
     <FadeIn>
@@ -94,9 +77,7 @@ const DateSelected = (props) => {
         backGroundColorValue={props.RecievedColor.UserInputBGC}
         FontColorValue={props.RecievedColor.UserInputFC}
         PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-        borderColorValue={
-          props.DisabledisClicked ? "#A9A9A9" : props.RecievedColor.BorderColor
-        }
+        borderColorValue={props.RecievedColor.BorderColor}
         BorderValue={"solid"}
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
@@ -104,10 +85,7 @@ const DateSelected = (props) => {
         InputValue={MonthsValueInput}
       >
         {
-          <NumberOfMonthsValue
-            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
-            DisabledMonth={props.DisabledisClicked}
-          />
+          <NumberOfMonthsValue/>
         }
       </SelectData>
     </FadeIn>
@@ -119,16 +97,10 @@ const DateSelected = (props) => {
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
     */
-  const [DayValueInput, ChangeDayValue] = useState(
-    GetUserChangeDay
-      ? props.ReturnFrom === "From"
-        ? props.ReturnClickedFromDay
-        : props.ReturnClickedToDay
-      : ""
-  );
+  const [DayValueInput, ChangeDayValue] = useState("");
   const handleDays = (e) => (
     console.log(e.target),
-    ChangeDayValue(e.target.value), ChnageUserChangedDay(false)
+    ChangeDayValue(e.target.value) 
   );
   const name = props.name == "start" ? "start" : "end"
   const Days = (
@@ -147,9 +119,7 @@ const DateSelected = (props) => {
         backGroundColorValue={props.RecievedColor.UserInputBGC}
         FontColorValue={props.RecievedColor.UserInputFC}
         PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-        borderColorValue={
-          props.DisabledisClicked ? "#A9A9A9" : props.RecievedColor.BorderColor
-        }
+        borderColorValue={props.RecievedColor.BorderColor}
         BorderValue={"solid"}
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
@@ -157,10 +127,7 @@ const DateSelected = (props) => {
         InputValue={DayValueInput}
       >
         {
-          <NumberOfDaysValue
-            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
-            DisabledDay={props.DisabledisClicked}
-          />
+          <NumberOfDaysValue/>
         }
       </SelectData>
     </FadeIn>

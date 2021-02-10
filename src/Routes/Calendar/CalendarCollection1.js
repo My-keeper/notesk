@@ -40,8 +40,7 @@ const CalendarCollection = (props) => {
 
   const [showSchedule, ChangeShowSchedule ] =useState(false) // to show the shedule model 
   const [SelectedStartedData, ChangeStartedData] = useState() //started selected data 
-  const [SelectedEndedData, ChangeEndedData] = useState(); // ended slected data 
-  
+  const [SelectedEndedData, ChangeEndedData] = useState(); // ended slected data  
   const calendarForm = (
     <CalendarForm
       SendingEvents={currentEvents}
