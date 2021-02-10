@@ -65,7 +65,7 @@ const CalendarCollection = (props) => {
             
        <div 
             onClick={()=>showSchedule?ChangeShowSchedule(false):null} 
-            style={{zIndex : "1" , filter: showSchedule ? "blur(3px)": null }}
+            style={{zIndex : "1" , filter: showSchedule ? "blur(4px)": null }}
         >
             {calendarForm}
         </div>
