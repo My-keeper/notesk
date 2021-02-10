@@ -53,22 +53,7 @@ const CalenderContianer = (props) => {
     const [isClicked, ChangeisClicked] = useState(true)
 
     //This is for the layout for Year Month Days
-    const Layout = ['','Year','Month','Day']
-
-    //the date that the user clicked on to have it go to the data collection and have the same number 
-    const [recievedClickedDate, ChangeRecievedClickedDate] = useState(props.RetrunClickedDate)
-    //Dividing the Recieved Date to Year Month Day and Send them to DateSelected
-    const RecievedYear = recievedClickedDate[0]
-    const RecievedMonth = recievedClickedDate[1]
-    const RecievedDay = recievedClickedDate[2]
-    // =====> TO
-    //the date that the user clicked on to have it go to the data collection and have the same number 
-    const [recievedClickedDateTo, ChangeRecievedClickedDateTo] = useState(props.RetrunClickedEndDate)
-    //Dividing the Recieved Date to Year Month Day and Send them to DateSelected
-    const RecievedToYear = recievedClickedDateTo[0]
-    const RecievedToMonth = recievedClickedDateTo[1]
-    const RecievedToDay = recievedClickedDateTo[2]
-
+    const Layout = ['','Year','Month','Day'] 
     //All the needed information for craeting the date From 
     const [fromData, ChangeFromDate] = useState("") 
     const [ToData, ChangeToDate] = useState()
@@ -87,14 +72,8 @@ const CalenderContianer = (props) => {
             </EachateContainer>
             <EachateContainer>
                 <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
-                <DateSelected
-                    //These are used to send these data to DataSlected to be used for Year, Month, Day 
-                    ReturnFrom="From"
-                    ReturnClickedFromYear={RecievedYear}
-                    ReturnClickedFromMonth={RecievedMonth} 
-                    ReturnClickedFromDay={RecievedDay}
-                    name="start"
-                    // gethandler={props.test}
+                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
+                <DateSelected  
                     //The incoming dating is used to chagne the format of the date and then send that number to submission button
                     submitDateValue={(value) => ChangeFromDate(value)} 
                     RecievedColor={props.ScheduleColor}
@@ -103,13 +82,7 @@ const CalenderContianer = (props) => {
             <EachateContainer>
                 <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "25px"}}>To </span></FadeIn>
 
-                <DateSelected 
-                    //These are used to send these data to DataSlected to be used for Year, Month, Day 
-                    ReturnFrom="To"
-                    ReturnClickedToYear={RecievedToYear} 
-                    ReturnClickedToMonth={RecievedToMonth} 
-                    ReturnClickedToDay={RecievedToDay}
-                    name="end"
+                <DateSelected  
                     //this is to disable the values that are inside and it is going to DataSelected
                     DisabledisClicked={isClicked} 
                     submitDateValue={(value) => ChangeToDate(value)} 

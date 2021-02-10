@@ -8,9 +8,14 @@ import { INITIAL_EVENTS, createEventId } from "./event-utils";
 const CalendarForm1 = (props) => {
   const weekendsVisible = true;
   const [getEvent, ChangegetEvent] = useState(props.SendingEvents ? props.SendingEvents :[]); 
+  const [StartDate ,ChangeStartData ]=useState("")  // Save Selected Start Data
+  const [EndDate ,ChangeEndData ]=useState("") // Save Selected End Data
+  props.GetStartDate(StartDate); // Send Selected Start Data
+  props.GetEndDate(EndDate); // Send Selected End Data
   const handleDateSelect = (selectInfo) => {
-    console.log("Calender")
-    props.CallingSchedule(true)
+    ChangeStartData(selectInfo.startStr); // Selected Start Data 
+    ChangeEndData(selectInfo.endStr); // Selected End Data
+    props.CallingSchedule(true);
   };
    
   const FullCalendarForm = <FullCalendar

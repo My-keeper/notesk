@@ -8,9 +8,10 @@ const CalenderContainer = styled.div`
     margin: 10px;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 16px;
-    color: cornflowerblue; 
+    color: cornflowerblue;  
 `;
 const CalendarCollection = (props) => {
+  //Collection of Events
   const [currentEvents, ChangeEventList] = useState([
     {
       id: "1",
@@ -38,35 +39,50 @@ const CalendarCollection = (props) => {
   ]);
 
   const [showSchedule, ChangeShowSchedule ] =useState(false) // to show the shedule model 
-
+  const [SelectedStartedData, ChangeStartedData] = useState() //started selected data 
+  const [SelectedEndedData, ChangeEndedData] = useState(); // ended slected data 
+  
   const calendarForm = (
     <CalendarForm
       SendingEvents={currentEvents}
       CallingSchedule={(value) => ChangeShowSchedule(value)}
+      GetStartDate={(value) => ChangeStartedData(value)}
+      GetEndDate={(value) => ChangeEndedData(value)}
     />
   );
     const scheduleForm = (
-        <ScheduleForm 
+      <ScheduleForm
         ScheduleColor={props.RecieveColor}
-        CallingCalendar={value => ChangeShowSchedule(value)}
-    />
-  );
+        CallingCalendar={(value) => ChangeShowSchedule(value)}
+        SendSelectedSD={SelectedStartedData} //Selected Start Data
+        SendSelectedED={SelectedEndedData} //Selected End Data
+      />
+    );
   return (
-      <CalenderContainer  > 
-        <div style={{zIndex : "10" , position:"absolute",
-            left: "35%", transition: " all 0.3s easee-out",
-            transform: showSchedule ? "translateY(0)" : "translateY(-100vh)",
-            opacity: scheduleForm ? "1" : "0", backdropFilter: "blur(1.4)"
-        }}>
-            {scheduleForm} 
-        </div> 
-            
-       <div 
-            onClick={()=>showSchedule?ChangeShowSchedule(false):null} 
-            style={{zIndex : "1" , filter: showSchedule ? "blur(4px)": null }}
-        >
-            {calendarForm}
-        </div>
+    <CalenderContainer>
+      <div
+        style={{
+          zIndex: "10",
+          position: "absolute",
+          left: "35%",
+          transition: " all 0.3s easee-out",
+          transform: showSchedule ? "translateY(0)" : "translateY(-100vh)",
+          opacity: showSchedule ? "1" : "0",
+          backdropFilter: "blur(1.4)"
+        }}
+      >
+        {scheduleForm}
+      </div>
+      <div
+        onClick={() => (showSchedule ? ChangeShowSchedule(false) : null)}
+        style={{
+          zIndex: "1",
+          filter: showSchedule ? "blur(6px)" : null,
+          opacity: showSchedule ? "0.2" : "1",
+        }}
+      >
+        {calendarForm}
+      </div>
     </CalenderContainer>
   );
 };

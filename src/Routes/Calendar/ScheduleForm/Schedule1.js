@@ -44,7 +44,22 @@ const Schedule = (props) => {
             SubmitTitlePlaceHolder={TitlePH}
             ScheduleColor={props.ScheduleColor}
         />  
-  
+    
+    // Data From and To
+    const [getFormDate, ChangeFormDate] = useState();
+    const [getToDate, ChangeToDate] = useState();
+    const [StartDate, ChangeClickedStartDate] = useState(props.StartDateClicked); //This is the selected data in calendar
+    const [EndDate, ChangeClickedEndDate] = useState(props.EndDateClicked); //This is the selected data in calendar
+    const Data = (
+        <CalenderContianer
+        GetFromDate={(value) => ChangeFormDate(value)}
+        GetToDate={(value) => ChangeToDate(value)}
+        RetrunClickedDate={StartDate}
+        RetrunClickedEndDate={EndDate}
+        ScheduleColor={props.ScheduleColor}
+        />
+    );
+
     //Submit Buton 
     const Submit = (
         <SubmitButton 
