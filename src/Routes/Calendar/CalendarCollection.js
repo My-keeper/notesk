@@ -63,14 +63,14 @@ const CalendarForm = (props) => {
   );
   return (
     <CalenderContainer>
-      <div style={{
+      {/* <div style={{
           zIndex:"2" , 
         //  position:"absolute",
          transform: DataClicked == false? "translateY(-100vh)" : "translateY(0)",
         //  opacity:!DataClicked? "1" : "0"
          }}>{scheduleForm}</div>
-      <div style={{zIndex:"1" , }}>{calendarForm}</div>
-      {/* {DataClicked == false ? calendarForm : scheduleForm}     */}
+      <div style={{zIndex:"1" , }}>{calendarForm}</div> */}
+      {DataClicked == false ? calendarForm : scheduleForm}    
     {/* {calendarForm}  */}
     {/* {scheduleForm} */}
     </CalenderContainer>

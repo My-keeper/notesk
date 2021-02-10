@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Nav from "../../UI/NavBar";
-import CalendarForm from "./CalendarCollection";
+import CalendarForm from "./CalendarCollection1";
 class CalendarList extends Component {
   
   state = {
