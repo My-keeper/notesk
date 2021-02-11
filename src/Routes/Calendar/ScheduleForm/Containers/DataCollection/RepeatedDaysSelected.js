@@ -7,13 +7,13 @@ import { createEventId } from "../../../event-utils";
 const RepeatDaySelected = (props) => {
     const [NumberOfRepeatedDays,ChangeNumberOfRepeatedDays] = useState([]) 
     const [Days,changeDays] = useState({
-        Monday: {id: "0", value: false},
+        Sunday: {id: "0", value: false},
+        Monday: {id: "1", value: false},
         Tuesday: {id: "1", value: false},
-        Wednesday: {id: "2", value: false},
-        Thursday: {id: "3", value: false},
-        Friday: {id: "4", value: false},
-        Saturday: {id: "5", value: false},
-        Sunday: {id: "6", value: false},
+        Wednesday: {id: "3", value: false},
+        Thursday: {id: "4", value: false},
+        Friday: {id: "5", value: false},
+        Saturday: {id: "6", value: false}
     })
     const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] 
     const handleRepeatedDays = (e) => {
@@ -26,9 +26,7 @@ const RepeatDaySelected = (props) => {
             if (item.value) return item.id
         }).filter(item => item))
     }
-     props.ReturnRDSTO ? null : ChangeNumberOfRepeatedDays(Object.values(Days).map(item => {
-            if (item.value) return item.value=false
-        }).filter(item => item))
+    
     const RepeatedDayContainer = (DayValue,OnChangeInputValue) => {
         return [<Inputdata 
             key={NumberOfRepeatedDays.id + createEventId()}

@@ -11,26 +11,43 @@ const SubmitButton = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   };
-  // // const CreateEvent = { 
-    //   id: createEventId(),
-    //   title: isSubmit ? props.isTitle : "",
-    //   description: isSubmit ? props.isDescription : "",
-    //   Url: isSubmit ? props.isURL : "",
-    //   start: isSubmit ? props.isFromData : "",
-    //     end: "2021-02-14",
-    //     startTime: "10:45:00",
-    //     endTime: "12:45:00", 
-    //   display: "list-item",
-    //   textColor: "red",
-    //     daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events
-    //     // daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
-    // };
+  console.log(props.isTitle)
+  console.log(props.isDescription)
+  console.log(props.isURL)
+  console.log(props.isStartingDate)
+  console.log( props.isEndingData)
+  console.log()
+  console.log()
+  console.log()
+  const CreateEvent = { 
+      id: createEventId(),
+      title: "Doc appoinmnet ",
+      textColor: "black",
+      start: "2021-02-16",
+      end: "2021-02-18",
+      startTime: "11:45:00",
+      endTime: "14:45:00",
+      textColor: "pink",
+      // daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events 
+      display: "list-item",
+      // title:  props.isTitle ? props.isTitle : "" ,
+      // description:  props.isDescription ? props.isDescription : "" ,
+      // Url:  props.isURL ?  props.isURL : "" ,
+      // start:  props.isStartingDate ,
+      // end: props.isEndingData,
+      // startTime: "10:45:00",
+      // endTime: "12:45:00", 
+      // display: "list-item",
+      // textColor: "red",
+    };
+    // daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events
+    // daysOfWeek: props.isRepeatedDays,
 
   const SubmitEvent = () => { 
     return(
-        props.isCallingCalendar(false), 
-        props.SendChangeIsStarted(false), 
-        props.SendChangeIsEnded(false))
+      props.isCallingCalendar(false),
+      props.isEvent((oldarr) => [...oldarr, CreateEvent])
+    )
   };
 
   const SubmitButton = (

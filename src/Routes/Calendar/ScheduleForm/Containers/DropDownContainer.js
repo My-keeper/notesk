@@ -48,15 +48,16 @@ const CalenderContianer = (props) => {
     }
     
     // This is a togole to change the state of the disabled and to change the icion as well 
-    const isStartedData = props.SendIsStarted
-    const StartingDataIcion = <FadeIn><div  onClick={()=>props.SendChangeIsStarted(!isStartedData)}>
+    const [isStartedData, ChangeisStartedData] = useState(false) //to show the option to change the data that the user selected
+
+    const StartingDataIcion = <FadeIn><div  onClick={()=>ChangeisStartedData(!isStartedData)}>
             {isStartedData ?  
                 <VisibilityOffIcon style={VisibilityStle} /> 
             : 
                 <VisibilityIcon style={VisibilityStle} />}
         </div></FadeIn>
-    const isEndedData = props.SendIsEnded
-    const EndingDataIcion = <FadeIn><div  onClick={()=>props.SendChangeIsEnded(!isEndedData)}>
+    const [isEndedData, ChangeisEndedData] = useState(false) //to show the option to change the data that the user selected
+    const EndingDataIcion = <FadeIn><div  onClick={()=>ChangeisEndedData(!isEndedData)}>
             {isEndedData ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
         </div></FadeIn>
 
@@ -71,7 +72,7 @@ const CalenderContianer = (props) => {
     const InfoArea = <EachateContainer JustifyContentCalue={"space-between" }>
             {(isStartedData || isEndedData ) ? Layout.map((value, index) => 
                 <FadeIn key={index+ createEventId()} ><span  style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> 
-            ) : <FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}></span></FadeIn>}
+            ) : <FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginLeft: "150px"}}>Selected Data</span></FadeIn>}
         </EachateContainer>
 
     //Starting Data Area
@@ -138,11 +139,10 @@ const TimerContainer = (props) => {
     }
 
     
-    const isClicked = props.SendIsShowTime // This is a togole to change the state of the disabled and to change the icion as well 
-    
+    const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
     //this is the part where we change the icon based on clicking the div 
-    const ShowData = <div onClick={()=>props.SendChangeIsShowTime(!isClicked)}>
-        {isClicked ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
+    const ShowData = <div onClick={()=>ChangeisShowTime(!isShowTime)}>
+        {isShowTime ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
     </div>
     const IcionArea = <div style={{display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
             <FadeIn><ClockCircleOutlined style={IconColor}/>  </FadeIn>
@@ -152,7 +152,7 @@ const TimerContainer = (props) => {
     //This is for the layout for Hour Minuts Day system
     const Layout = ['','Hour','Minuts','AM / PM']
     const InfoArea = (<EachateContainer JustifyContentCalue={"space-between" }>
-        { isClicked ? 
+        { isShowTime ? 
             <FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginLeft: "150px"}}>Optional Time Area</span></FadeIn> 
         :
             Layout.map((value, index) =>
@@ -172,7 +172,7 @@ const TimerContainer = (props) => {
                 submitDayValue={(value) => ChangeStartDayValue(value)}
                 RecievedColor={props.ScheduleColor}
                 //this is to disable the values that are inside and it is going to DataSelected
-                DisabledisClicked={isClicked} 
+                DisabledisClicked={isShowTime} 
                 />
         </EachateContainer>
 
@@ -188,7 +188,7 @@ const TimerContainer = (props) => {
                 submitDayValue={(value) => ChangeEndDayValue(value)}
                 RecievedColor={props.ScheduleColor}
                 //this is to disable the values that are inside and it is going to DataSelected
-                DisabledisClicked={isClicked} 
+                DisabledisClicked={isShowTime} 
                 />
         </EachateContainer>
         

@@ -18,29 +18,11 @@ const InfoContainer = styled.div`
 `;
 
 const Schedule = (props) => {
-    //This is for Data and time to return to false on click
-    const [isStartedData, ChangeisStartedData] = useState(false) //to show the option to change the data that the user selected
-    const [isEndedData, ChangeisEndedData] = useState(false) //to show the option to change the data that the user selected
-    const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
-    //this part is to have number of repeated days to pass down 
-    const [ReturnRDTO , ChangeRDTO] = useState(true) //this is to return repeated Days to orignal form 
-    //Closed Button
-    const [isClode, ChangeIsClosed] = useState(true);
-    const ClosedHandler = () => (
-        props.CallingCalendar(false),
-        ChangeisStartedData(false), 
-        ChangeisEndedData(false), 
-        ChangeisShowTime(true), 
-        ChangeRDTO(false)
-    )
-    const CloseIcon = isClode ? 
-    (<CloseOutlined
-            onMouseEnter={() => ChangeIsClosed(false)}
-            style={{marginRight: "4px", marginLeft: "95%", marginBottom: "15px",
-                fontSize: "21px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
-    />) :  
+    
+    //Close ICion Area
+    const CloseIcon = 
     (<CloseCircleOutlined
-        onClick={ClosedHandler} onMouseLeave={() => ChangeIsClosed(true)}
+        onClick={()=> props.CallingCalendar(false)} 
         style={{marginRight: "4px", marginLeft: "95%", marginBottom: "15px",
             fontSize: "26px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
     />)
@@ -78,6 +60,7 @@ const Schedule = (props) => {
     
     // Data From and To
     const [getFormDate, ChangeFormDate] = useState(); //this is the data that will be send to submit model to be added to the event list 
+    console.log(getFormDate)
     const [getToDate, ChangeToDate] = useState();  //this is the data that will be send to submit model to be added to the event list 
     const StartDate= props.SendSelectedSD //This is the selected data in calendar
     const EndDate= props.SendSelectedED//This is the selected data in calendar  
@@ -87,11 +70,7 @@ const Schedule = (props) => {
         SendED={EndDate} //This is to send back the selected ended data
         GetFromDate={(value) => ChangeFormDate(value)} //Returning the selected data that the user chose 
         GetToDate={(value) => ChangeToDate(value)} //Returning the selected data that the user chose 
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file 
-        SendIsStarted={isStartedData} //send the option to enable the user to change the date
-        SendChangeIsStarted={value=>ChangeisStartedData(value)} //return the option's value that the user has made
-        SendIsEnded={isEndedData} //send the option to enable the user to change the date
-        SendChangeIsEnded={value=>ChangeisEndedData(value)} //return the option's value that the user has made
+        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
         />
     );
 
@@ -106,24 +85,30 @@ const Schedule = (props) => {
         FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed
         ToHourlected={(value) => ChangeEndHour(value)} // return ending hour if time is needed
         ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return ending minut if time is needed 
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file 
-        SendIsShowTime={isShowTime} //send the option to enable the user to add the time slot
-        SendChangeIsShowTime={value=>ChangeisShowTime(value)} //return the option's value that the user has made
+        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
         />
     );
 
     //this is for number of rebeated days 
+    const [GetRepeatedDays, ChangeRepeatedDays] = useState()
     const RepeatedDays =(<RDContainer
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file 
-        SendRDTO={ReturnRDTO}
+        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+        SubmitNumberOfRP={(value) => ChangeRepeatedDays(value)} //returning the value of repeated days 
         />
     );
     //Submit Buton 
     const Submit = (
         <SubmitButton 
-            isCallingCalendar={value=> props.CallingCalendar(value)} //return the close value to return to calender from the submit model
-            SendChangeIsStarted={value=>ChangeisStartedData(value)} //return the option's value that the user has made
-            SendChangeIsEnded={value=>ChangeisEndedData(value)} //return the option's value that the user has made
+            isCallingCalendar={value=> props.CallingCalendar(value)} //return the close value to return to calender from the submit model 
+            isTitle={getTitle} //the Title value 
+            CheckTitlePH={value => ChangeTitlePH(value)} //this is to change the title place holder if there is no title 
+            isDescription={getDescription} //the Description value
+            CheckDescriptionPH={value => ChangeDescriptionPH(value)} //this is to change the description placeholder if there is no placeholder
+            isURL={getURL} //the URL value
+            isStartingDate={getFormDate} //the value of the Starting data
+            isEndingData={getToDate} //the value of Ending data
+            isRepeatedDays={GetRepeatedDays} //Values of Repeated Days
+            isEvent={props.submitEventValues}
         />
     );
     const ScheduleForm = (
