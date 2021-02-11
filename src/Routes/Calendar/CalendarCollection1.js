@@ -76,7 +76,7 @@ const CalendarCollection = (props) => {
         onClick={() => (showSchedule ? ChangeShowSchedule(false) : null)}
         style={{
           zIndex: "1",
-          filter: showSchedule ? "blur(6px)" : null,
+          filter: showSchedule ? "blur(1px)" : null,
           opacity: showSchedule ? "0.2" : "1",
         }}
       >

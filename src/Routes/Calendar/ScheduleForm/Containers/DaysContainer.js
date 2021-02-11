@@ -16,7 +16,9 @@ const InfoContainer = styled.div`
 
 const RDContainer = (props) => {
 
-    const [GetNumberOfRD, ChangeGetNumberOfRD] = useState(0) 
+    const [GetNumberOfRD, ChangeGetNumberOfRD] = useState()
+    console.log("GetNumberOfRD") 
+    console.log(GetNumberOfRD) 
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
         fontSize:"30px", 

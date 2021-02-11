@@ -18,9 +18,12 @@ const InfoContainer = styled.div`
 `;
 
 const Schedule = (props) => {
-    //This is for Data to return to false on click
+    //This is for Data and time to return to false on click
     const [isStartedData, ChangeisStartedData] = useState(false) //to show the option to change the data that the user selected
     const [isEndedData, ChangeisEndedData] = useState(false) //to show the option to change the data that the user selected
+    const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the data that the user selected
+    //this part is to have number of repeated days to pass down 
+    const [NumberOfRepeatedDays,ChangeNumberOfRepeatedDays] = useState([])
     
     //Closed Button
     const [isClode, ChangeIsClosed] = useState(true);
@@ -31,7 +34,7 @@ const Schedule = (props) => {
                 fontSize: "21px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
     />) :  
     (<CloseCircleOutlined
-        onClick={() => (props.CallingCalendar(false), ChangeisStartedData(false), ChangeisEndedData(false))}
+        onClick={() => (props.CallingCalendar(false), ChangeisStartedData(false), ChangeisEndedData(false), ChangeisShowTime(true))}
         onMouseLeave={() => ChangeIsClosed(true)}
         style={{marginRight: "4px", marginLeft: "95%", marginBottom: "15px",
             fontSize: "26px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
@@ -99,6 +102,8 @@ const Schedule = (props) => {
         ToHourlected={(value) => ChangeEndHour(value)} // return ending hour if time is needed
         ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return ending minut if time is needed 
         ScheduleColor={props.ScheduleColor} // send the color list from the parent App file 
+        SendIsShowTime={isShowTime} //send the option to enable the user to add the time slot
+        SendChangeIsShowTime={value=>ChangeisShowTime(value)} //return the option's value that the user has made
         />
     );
 

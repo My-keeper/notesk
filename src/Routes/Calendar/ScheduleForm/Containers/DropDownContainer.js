@@ -48,7 +48,6 @@ const CalenderContianer = (props) => {
     }
     
     // This is a togole to change the state of the disabled and to change the icion as well 
-
     const isStartedData = props.SendIsStarted
     const StartingDataIcion = <FadeIn><div  onClick={()=>props.SendChangeIsStarted(!isStartedData)}>
             {isStartedData ?  
@@ -138,54 +137,67 @@ const TimerContainer = (props) => {
         color : props.ScheduleColor.IconC
     }
 
-    // This is a togole to change the state of the disabled and to change the icion as well 
-    const [isClicked, ChangeisClicked] = useState(true)
+    
+    const isClicked = props.SendIsShowTime // This is a togole to change the state of the disabled and to change the icion as well 
     
     //this is the part where we change the icon based on clicking the div 
-    const ShowData = <div onClick={()=>ChangeisClicked(!isClicked)}>
+    const ShowData = <div onClick={()=>props.SendChangeIsShowTime(!isClicked)}>
         {isClicked ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
     </div>
-    //This is for the layout for Hour Minuts Day system
-    const Layout = ['','Hour','Minuts','AM / PM']
-
-    const [StartHoursValue, ChangeStartHourValue ]= useState() //save the Starting Hour
-    const [StartMinutsValue, ChangeStartMinutsValue ]= useState() //save the starting Minuts
-    const [StartDayValue, ChangeStartDayValue ]= useState() //save starting if it is AM or PM
-    const [EndHoursValue, ChangeEndHourValue ]= useState() //save the ending Hour
-    const [EndMinutsValue, ChangeEndMinutsValue ]= useState() //save the ending Minuts
-    const [EndDayValue, ChangeEndDayValue ]= useState() //save ending if it is AM or PM
-    
-    const time =<InfoContainer>
-        <div style={{display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
+    const IcionArea = <div style={{display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
             <FadeIn><ClockCircleOutlined style={IconColor}/>  </FadeIn>
             <FadeIn>{ShowData}</FadeIn>
         </div>
+
+    //This is for the layout for Hour Minuts Day system
+    const Layout = ['','Hour','Minuts','AM / PM']
+    const InfoArea = (<EachateContainer JustifyContentCalue={"space-between" }>
+        { isClicked ? 
+            <FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginLeft: "150px"}}>Optional Time Area</span></FadeIn> 
+        :
+            Layout.map((value, index) =>
+                <FadeIn key={index+ createEventId()} ><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
+    </EachateContainer>
+    );
+    
+    //collection of stating time for event
+    const [StartHoursValue, ChangeStartHourValue ]= useState() //save the Starting Hour
+    const [StartMinutsValue, ChangeStartMinutsValue ]= useState() //save the starting Minuts
+    const [StartDayValue, ChangeStartDayValue ]= useState() //save starting if it is AM or PM
+    const StartingTime = <EachateContainer JustifyContentCalue={"space-between" }>
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>Start</span></FadeIn>
+            <TimeSelected 
+                submitHourValue={(value) => ChangeStartHourValue(value)}
+                submitMinutsValue={(value) => ChangeStartMinutsValue(value)}
+                submitDayValue={(value) => ChangeStartDayValue(value)}
+                RecievedColor={props.ScheduleColor}
+                //this is to disable the values that are inside and it is going to DataSelected
+                DisabledisClicked={isClicked} 
+                />
+        </EachateContainer>
+
+    //collection of ending time for event
+    const [EndHoursValue, ChangeEndHourValue ]= useState() //save the ending Hour
+    const [EndMinutsValue, ChangeEndMinutsValue ]= useState() //save the ending Minuts
+    const [EndDayValue, ChangeEndDayValue ]= useState() //save ending if it is AM or PM
+    const EndingTime = <EachateContainer JustifyContentCalue={"space-between" }>
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "12px"}}>End</span></FadeIn>
+            <TimeSelected 
+                submitHourValue={(value) => ChangeEndHourValue(value)}
+                submitMinutsValue={(value) => ChangeEndMinutsValue(value)}
+                submitDayValue={(value) => ChangeEndDayValue(value)}
+                RecievedColor={props.ScheduleColor}
+                //this is to disable the values that are inside and it is going to DataSelected
+                DisabledisClicked={isClicked} 
+                />
+        </EachateContainer>
+        
+    const time =<InfoContainer>
+        {IcionArea}
         <DateContainer> 
-            <EachateContainer>
-                {Layout.map((value, index) =><FadeIn key={index+ createEventId()} ><span   style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
-            </EachateContainer>
-            <EachateContainer>
-                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>Start</span></FadeIn>
-                <TimeSelected 
-                    submitHourValue={(value) => ChangeStartHourValue(value)}
-                    submitMinutsValue={(value) => ChangeStartMinutsValue(value)}
-                    submitDayValue={(value) => ChangeStartDayValue(value)}
-                    RecievedColor={props.ScheduleColor}
-                    //this is to disable the values that are inside and it is going to DataSelected
-                    DisabledisClicked={isClicked} 
-                    />
-            </EachateContainer>
-            <EachateContainer>
-                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "12px"}}>End</span></FadeIn>
-                <TimeSelected 
-                    submitHourValue={(value) => ChangeEndHourValue(value)}
-                    submitMinutsValue={(value) => ChangeEndMinutsValue(value)}
-                    submitDayValue={(value) => ChangeEndDayValue(value)}
-                    RecievedColor={props.ScheduleColor}
-                    //this is to disable the values that are inside and it is going to DataSelected
-                    DisabledisClicked={isClicked} 
-                    />
-            </EachateContainer>
+            {InfoArea}
+            {StartingTime}
+            {EndingTime}
         </DateContainer>
         </InfoContainer>
 
