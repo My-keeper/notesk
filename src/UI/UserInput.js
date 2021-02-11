@@ -102,7 +102,7 @@ export default function UserInput(props) {
         marginRightInput={props.marginRightValue}
         marginLeftInput={props.marginLeftValue}
         marginTopInput={props.marginTopValue}
-        
+        checked={props.checked}
       >
         
       </InputContainer>

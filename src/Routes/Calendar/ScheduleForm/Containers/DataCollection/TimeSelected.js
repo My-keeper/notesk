@@ -85,7 +85,6 @@ const OptionForm = (props) => {
 
   const [DaytimeValueInput, ChangeDaytimeValue] = useState("");
   const handleDaytime = (e) => {
-    console.log(e.target.value);
     ChangeDaytimeValue(e.target.value);
   };
   const DayTime = (

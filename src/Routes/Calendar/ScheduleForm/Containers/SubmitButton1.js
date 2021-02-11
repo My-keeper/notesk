@@ -26,7 +26,11 @@ const SubmitButton = (props) => {
     //     // daysOfWeek: [ '1','4','5' ], //https://fullcalendar.io/docs/recurring-events
     // };
 
-  const subNote = () => { 
+  const SubmitEvent = () => { 
+    return(
+        props.isCallingCalendar(false), 
+        props.SendChangeIsStarted(false), 
+        props.SendChangeIsEnded(false))
   };
 
   const SubmitButton = (
@@ -41,7 +45,7 @@ const SubmitButton = (props) => {
         BorderValue="solid"
         borderWidthValue="thin"
         paddingInputValue="2px"
-        onClick={()=>props.isCallingCalendar(false)}
+        onClick={SubmitEvent}
         text={"Submit"}
         icon={<LoginOutlined style={ButtonIconColor} />}
       />

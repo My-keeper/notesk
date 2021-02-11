@@ -9,8 +9,6 @@ import {
 import { createEventId } from "../../../event-utils";
 
 const DateSelected = (props) => {
-  //This part is changed once the user click on the drop down to see other options
-  const [GetUserChangeYear, ChnageUserChangedYear] = useState(true);
   /*
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
@@ -51,8 +49,6 @@ const DateSelected = (props) => {
     </FadeIn>
   );
 
-  // This part is changed once the user click on the drop down to see other options
-  const [GetUserChangeMonth, ChnageUserChangedMonth] = useState(true);
   /*
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
@@ -91,8 +87,6 @@ const DateSelected = (props) => {
     </FadeIn>
   );
 
-  // This part is changed once the user click on the drop down to see other options
-  const [GetUserChangeDay, ChnageUserChangedDay] = useState(true);
   /*
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 

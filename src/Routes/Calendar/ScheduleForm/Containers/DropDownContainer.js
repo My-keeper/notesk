@@ -48,12 +48,16 @@ const CalenderContianer = (props) => {
     }
     
     // This is a togole to change the state of the disabled and to change the icion as well 
-    const [isStartedData, ChangeisStartedData] = useState(false)
-    const StartingDataIcion = <FadeIn><div  onClick={()=>ChangeisStartedData(!isStartedData)}>
-            {isStartedData ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
+
+    const isStartedData = props.SendIsStarted
+    const StartingDataIcion = <FadeIn><div  onClick={()=>props.SendChangeIsStarted(!isStartedData)}>
+            {isStartedData ?  
+                <VisibilityOffIcon style={VisibilityStle} /> 
+            : 
+                <VisibilityIcon style={VisibilityStle} />}
         </div></FadeIn>
-    const [isEndedData, ChangeisEndedData] = useState(false)
-    const EndingDataIcion = <FadeIn><div  onClick={()=>ChangeisEndedData(!isEndedData)}>
+    const isEndedData = props.SendIsEnded
+    const EndingDataIcion = <FadeIn><div  onClick={()=>props.SendChangeIsEnded(!isEndedData)}>
             {isEndedData ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
         </div></FadeIn>
 
@@ -67,8 +71,8 @@ const CalenderContianer = (props) => {
     const Layout = ['','Year','Month','Day'] 
     const InfoArea = <EachateContainer JustifyContentCalue={"space-between" }>
             {(isStartedData || isEndedData ) ? Layout.map((value, index) => 
-                <FadeIn><span key={index+ createEventId()} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> 
-            ) : <FadeIn><span key={"empty" + createEventId()} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}></span></FadeIn>}
+                <FadeIn key={index+ createEventId()} ><span  style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> 
+            ) : <FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}></span></FadeIn>}
         </EachateContainer>
 
     //Starting Data Area
@@ -110,8 +114,8 @@ const CalenderContianer = (props) => {
         </InfoContainer>
 
     //To recieve a prop that will change the value from and to inside the schedule form to the value of From/to Date that has been created here  
-    props.GetFromDate(!isStartedData ?  props.SendSD : fromData)
-    props.GetToDate(!isEndedData ? props.SendED :ToData)
+    props.GetFromDate(!isStartedData ?  props.SendSD : fromData) //Return either the selected data from the calendar form or the changed data by the user
+    props.GetToDate(!isEndedData ? props.SendED :ToData) //Return either the selected data from the calendar form or the changed data by the user
     
     return(calendar)
 }
@@ -144,21 +148,21 @@ const TimerContainer = (props) => {
     //This is for the layout for Hour Minuts Day system
     const Layout = ['','Hour','Minuts','AM / PM']
 
-    const [StartHoursValue, ChangeStartHourValue ]= useState()
-    const [StartMinutsValue, ChangeStartMinutsValue ]= useState()
-    const [StartDayValue, ChangeStartDayValue ]= useState()
-    const [EndHoursValue, ChangeEndHourValue ]= useState()
-    const [EndMinutsValue, ChangeEndMinutsValue ]= useState()
-    const [EndDayValue, ChangeEndDayValue ]= useState()
+    const [StartHoursValue, ChangeStartHourValue ]= useState() //save the Starting Hour
+    const [StartMinutsValue, ChangeStartMinutsValue ]= useState() //save the starting Minuts
+    const [StartDayValue, ChangeStartDayValue ]= useState() //save starting if it is AM or PM
+    const [EndHoursValue, ChangeEndHourValue ]= useState() //save the ending Hour
+    const [EndMinutsValue, ChangeEndMinutsValue ]= useState() //save the ending Minuts
+    const [EndDayValue, ChangeEndDayValue ]= useState() //save ending if it is AM or PM
     
     const time =<InfoContainer>
         <div style={{display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
             <FadeIn><ClockCircleOutlined style={IconColor}/>  </FadeIn>
             <FadeIn>{ShowData}</FadeIn>
         </div>
-        <DateContainer>
+        <DateContainer> 
             <EachateContainer>
-                {Layout.map((value, index) =><FadeIn><span  key={index+ createEventId()} style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
+                {Layout.map((value, index) =><FadeIn key={index+ createEventId()} ><span   style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
             </EachateContainer>
             <EachateContainer>
                 <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>Start</span></FadeIn>
@@ -185,12 +189,10 @@ const TimerContainer = (props) => {
         </DateContainer>
         </InfoContainer>
 
-    props.FromHourSelected(StartHoursValue)
-    props.ToHourlected(EndHoursValue)
+    props.FromHourSelected(StartDayValue === "PM" ? String(parseInt(StartHoursValue,10) + 12) : StartHoursValue) //this where we convert the returned hour from 12 hour system to 24 hour system 
+    props.ToHourlected(StartDayValue === "PM" ? String(parseInt(EndHoursValue,10) + 12) : EndHoursValue) //this where we convert the returned hour from 12 hour system to 24 hour system 
     props.FromMinutsSelected(StartMinutsValue)
-    props.ToMinutsSelected(EndMinutsValue)
-    props.FromDayValueSelected(StartDayValue)
-    props.ToDayValueSelected(EndDayValue)
+    props.ToMinutsSelected(EndMinutsValue) 
 
     return (time)
 }
