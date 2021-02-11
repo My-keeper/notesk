@@ -23,7 +23,6 @@ const Schedule = (props) => {
     const [isEndedData, ChangeisEndedData] = useState(false) //to show the option to change the data that the user selected
     const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
     //this part is to have number of repeated days to pass down 
-    const [NumberOfRepeatedDays,ChangeNumberOfRepeatedDays] = useState([])
     const [ReturnRDTO , ChangeRDTO] = useState(true) //this is to return repeated Days to orignal form 
     //Closed Button
     const [isClode, ChangeIsClosed] = useState(true);
@@ -116,7 +115,7 @@ const Schedule = (props) => {
     //this is for number of rebeated days 
     const RepeatedDays =(<RDContainer
         ScheduleColor={props.ScheduleColor} // send the color list from the parent App file 
-        // SendRDTO={ReturnRDTO}
+        SendRDTO={ReturnRDTO}
         />
     );
     //Submit Buton 
