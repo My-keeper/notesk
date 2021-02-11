@@ -27,10 +27,20 @@ const RDContainer = (props) => {
         marginLeft:"5px"
     }
     // props.SubmitNumberOfRP(GetNumberOfRD)
-    const RepeatedDays = <InfoContainer>
-        <FadeIn><RepeatIcon style={IconColor}/></FadeIn>
-        <FadeIn><RepeatDaySelected ValueOfRepeatedDays={(value) => ChangeGetNumberOfRD(value)} RecievedColor={props.ScheduleColor}/></FadeIn>
-    </InfoContainer>
+    const RepeatedDays = (
+      <InfoContainer>
+        <FadeIn>
+          <RepeatIcon style={IconColor} />
+        </FadeIn>
+        <FadeIn>
+          <RepeatDaySelected
+            // ReturnRDSTO={props.SendRDTO}
+            ValueOfRepeatedDays={(value) => ChangeGetNumberOfRD(value)}
+            RecievedColor={props.ScheduleColor}
+          />
+        </FadeIn>
+      </InfoContainer>
+    );
 
     return (RepeatedDays)
 }

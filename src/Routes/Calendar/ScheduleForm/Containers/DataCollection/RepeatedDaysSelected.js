@@ -26,7 +26,8 @@ const RepeatDaySelected = (props) => {
             if (item.value) return item.id
         }).filter(item => item))
     }
-  
+    props.ReturnRDSTO ? null : ChangeNumberOfRepeatedDays(values => {...values , });
+    console.log(NumberOfRepeatedDays);
     const RepeatedDayContainer = (DayValue,OnChangeInputValue) => {
         return [<Inputdata 
             key={NumberOfRepeatedDays.id + createEventId()}

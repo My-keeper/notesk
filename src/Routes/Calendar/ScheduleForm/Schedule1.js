@@ -21,12 +21,19 @@ const Schedule = (props) => {
     //This is for Data and time to return to false on click
     const [isStartedData, ChangeisStartedData] = useState(false) //to show the option to change the data that the user selected
     const [isEndedData, ChangeisEndedData] = useState(false) //to show the option to change the data that the user selected
-    const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the data that the user selected
+    const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
     //this part is to have number of repeated days to pass down 
     const [NumberOfRepeatedDays,ChangeNumberOfRepeatedDays] = useState([])
-    
+    const [ReturnRDTO , ChangeRDTO] = useState(true) //this is to return repeated Days to orignal form 
     //Closed Button
     const [isClode, ChangeIsClosed] = useState(true);
+    const ClosedHandler = () => (
+        props.CallingCalendar(false),
+        ChangeisStartedData(false), 
+        ChangeisEndedData(false), 
+        ChangeisShowTime(true), 
+        ChangeRDTO(false)
+    )
     const CloseIcon = isClode ? 
     (<CloseOutlined
             onMouseEnter={() => ChangeIsClosed(false)}
@@ -34,8 +41,7 @@ const Schedule = (props) => {
                 fontSize: "21px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
     />) :  
     (<CloseCircleOutlined
-        onClick={() => (props.CallingCalendar(false), ChangeisStartedData(false), ChangeisEndedData(false), ChangeisShowTime(true))}
-        onMouseLeave={() => ChangeIsClosed(true)}
+        onClick={ClosedHandler} onMouseLeave={() => ChangeIsClosed(true)}
         style={{marginRight: "4px", marginLeft: "95%", marginBottom: "15px",
             fontSize: "26px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
     />)
@@ -110,6 +116,7 @@ const Schedule = (props) => {
     //this is for number of rebeated days 
     const RepeatedDays =(<RDContainer
         ScheduleColor={props.ScheduleColor} // send the color list from the parent App file 
+        // SendRDTO={ReturnRDTO}
         />
     );
     //Submit Buton 
