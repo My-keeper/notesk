@@ -4,6 +4,7 @@ import { LoginOutlined } from "@ant-design/icons";
 import Button from "../../../../UI/Button";
 import { createEventId } from "../../event-utils";
 import { Title } from "@material-ui/icons";
+let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
 
 const SubmitButton = (props) => {
   const ButtonIconColor = {
@@ -12,13 +13,13 @@ const SubmitButton = (props) => {
     marginTop: "4px",
   };  
   const CreateEvent = { 
-      id: createEventId(), 
-      title:  props.isTitle ? props.isTitle : "" ,
-      description:  props.isDescription ? props.isDescription : "" ,
-      Url:  props.isURL ?  props.isURL : "" ,
+      id: createEventId(),  
+      title:  props.isTitle ,
+      description:  props.isDescription ,
+      Url:  props.isURL ,
       start:  props.isStartingDate ,
       end: props.isEndingData, 
-      daysOfWeek: props.isRepeatedDays,
+      // daysOfWeek: props.isRepeatedDays,
       display: "list-item",
       textColor: "red",
     };
@@ -48,6 +49,8 @@ const SubmitButton = (props) => {
       />
     </FadeIn>
   );
+
+
   return SubmitButton;
 };
 

@@ -175,36 +175,17 @@ const TimerContainer = (props) => {
                 DisabledisClicked={isShowTime} 
                 />
         </EachateContainer>
-
-    //collection of ending time for event
-    const [EndHoursValue, ChangeEndHourValue ]= useState() //save the ending Hour
-    const [EndMinutsValue, ChangeEndMinutsValue ]= useState() //save the ending Minuts
-    const [EndDayValue, ChangeEndDayValue ]= useState() //save ending if it is AM or PM
-    const EndingTime = <EachateContainer JustifyContentCalue={"space-between" }>
-            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "12px"}}>End</span></FadeIn>
-            <TimeSelected 
-                submitHourValue={(value) => ChangeEndHourValue(value)}
-                submitMinutsValue={(value) => ChangeEndMinutsValue(value)}
-                submitDayValue={(value) => ChangeEndDayValue(value)}
-                RecievedColor={props.ScheduleColor}
-                //this is to disable the values that are inside and it is going to DataSelected
-                DisabledisClicked={isShowTime} 
-                />
-        </EachateContainer>
-        
+ 
     const time =<InfoContainer>
         {IcionArea}
         <DateContainer> 
             {InfoArea}
-            {StartingTime}
-            {EndingTime}
+            {StartingTime} 
         </DateContainer>
         </InfoContainer>
 
     props.FromHourSelected(StartDayValue === "PM" ? String(parseInt(StartHoursValue,10) + 12) : StartHoursValue) //this where we convert the returned hour from 12 hour system to 24 hour system 
-    props.ToHourlected(StartDayValue === "PM" ? String(parseInt(EndHoursValue,10) + 12) : EndHoursValue) //this where we convert the returned hour from 12 hour system to 24 hour system 
     props.FromMinutsSelected(StartMinutsValue)
-    props.ToMinutsSelected(EndMinutsValue) 
     props.isTime(isShowTime)
     return (time)
 }
