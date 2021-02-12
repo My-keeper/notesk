@@ -60,7 +60,6 @@ const Schedule = (props) => {
     
     // Data From and To
     const [getFormDate, ChangeFormDate] = useState(); //this is the data that will be send to submit model to be added to the event list 
-    console.log(getFormDate)
     const [getToDate, ChangeToDate] = useState();  //this is the data that will be send to submit model to be added to the event list 
     const StartDate= props.SendSelectedSD //This is the selected data in calendar
     const EndDate= props.SendSelectedED//This is the selected data in calendar  
@@ -76,16 +75,12 @@ const Schedule = (props) => {
 
     //This is for the time
     const [StartHours, ChangeStartHour] = useState(); //have returned starting hour if time is needed
-    const [StartMinuts, ChangeStartMinuts] = useState(); //have returned starting minut if time is needed
-    const [EndHours, ChangeEndHour] = useState();  //have returned ending hour if time is needed
-    const [EndMinuts, ChangeEndMinuts] = useState(); //have returned ending minut if time is needed 
+    const [StartMinuts, ChangeStartMinuts] = useState(); //have returned starting minut if time is needed 
     const [TimeClicked, ChangeTimeClicked] = useState() //this to make sure that time is included or not 
     const Time = (
         <TimerContainer
         FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
-        FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed
-        ToHourlected={(value) => ChangeEndHour(value)} // return ending hour if time is needed
-        ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return ending minut if time is needed 
+        FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed 
         ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
         isTime={(value) => ChangeTimeClicked(value)}
         />

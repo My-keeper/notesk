@@ -36,7 +36,6 @@ const CalendarCollection = (props) => {
       textColor: "black",
     },
   ]);
-console.log(currentEvents)
   const [showSchedule, ChangeShowSchedule ] =useState(false) // to show the shedule model 
   const [SelectedStartedData, ChangeStartedData] = useState() //started selected data 
   const [SelectedEndedData, ChangeEndedData] = useState(); // ended slected data  
@@ -59,33 +58,8 @@ console.log(currentEvents)
     );
   return (
     <CalenderContainer>
-      {showSchedule ?    
-        <div
-          style={{
-            zIndex: "10",
-            position: "absolute",
-            left: "35%",
-            transition: " all 0.3s easee-out",
-            transform: showSchedule ? "translateY(0)" : "translateY(-100vh)",
-            backdropFilter: "blur(1.4)"
-          }}
-        >
-          {scheduleForm}
-        </div> :null
-      }
-      {showSchedule ? null 
-        :
-      <div
-      onClick={() => (showSchedule ? ChangeShowSchedule(false) : null)}
-      style={{
-        zIndex: "1",
-        filter: showSchedule ? "blur(1px)" : null,
-        opacity: showSchedule ? "0.2" : "1",
-      }}
-      >
-        {calendarForm}
-      </div>
-      }
+      {showSchedule ? scheduleForm : null  }
+      {showSchedule ? null : calendarForm }
     </CalenderContainer>
   );
 };

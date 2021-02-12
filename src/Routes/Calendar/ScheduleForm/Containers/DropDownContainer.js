@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components"; 
 import FadeIn  from 'react-fade-in'; 
 import { CalendarOutlined , ClockCircleOutlined} from "@ant-design/icons"; 
-import DateSelected from './DataCollection/DateSelected';
 import TimeSelected from './DataCollection/TimeSelected';
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
@@ -48,60 +47,26 @@ const CalenderContianer = (props) => {
     }
     
     // This is a togole to change the state of the disabled and to change the icion as well 
-    const [isStartedData, ChangeisStartedData] = useState(false) //to show the option to change the data that the user selected
-
-    const StartingDataIcion = <FadeIn><div  onClick={()=>ChangeisStartedData(!isStartedData)}>
-            {isStartedData ?  
-                <VisibilityOffIcon style={VisibilityStle} /> 
-            : 
-                <VisibilityIcon style={VisibilityStle} />}
-        </div></FadeIn>
-    const [isEndedData, ChangeisEndedData] = useState(false) //to show the option to change the data that the user selected
-    const EndingDataIcion = <FadeIn><div  onClick={()=>ChangeisEndedData(!isEndedData)}>
-            {isEndedData ?  <VisibilityOffIcon style={VisibilityStle} /> : <VisibilityIcon style={VisibilityStle} />}
-        </div></FadeIn>
-
     const InconArea = <div style={{display: "flex", flexDirection: "column", justifyContent: "flex-start"}}>
-            <FadeIn><CalendarOutlined style={IconColor}/> </FadeIn>
-            {StartingDataIcion}
-            {EndingDataIcion}
+            <FadeIn><CalendarOutlined style={IconColor}/> </FadeIn> 
         </div>
 
-    //This is for the layout for Year Month Days
-    const Layout = ['','Year','Month','Day'] 
+    //This is for the layout for Year Month Days 
     const InfoArea = <EachateContainer JustifyContentCalue={"space-between" }>
-            {(isStartedData || isEndedData ) ? Layout.map((value, index) => 
-                <FadeIn key={index+ createEventId()} ><span  style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "30px"}}>{value}</span></FadeIn> 
-            ) : <FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginLeft: "150px"}}>Selected Data</span></FadeIn>}
+            {<FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginLeft: "150px"}}>Selected Data</span></FadeIn>}
         </EachateContainer>
 
     //Starting Data Area
-    const [fromData, ChangeFromDate] = useState("") 
-    const StartingData = <EachateContainer JustifyContentCalue={isStartedData ? "space-between" : ""}>
-        <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
-        {!isStartedData ? 
-            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC}}>{props.SendSD}</span></FadeIn>
-        :
-            <DateSelected   
-                //The incoming dating is used to chagne the format of the date and then send that number to submission button
-                submitDateValue={(value) => ChangeFromDate(value)} 
-                RecievedColor={props.ScheduleColor}
-        />}
-    </EachateContainer>
+    const StartingData = <EachateContainer JustifyContentCalue={ ""}>
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
+            { <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC}}>{props.SendSD}</span></FadeIn> }
+        </EachateContainer>
     
     // End Data Area
-    const [ToData, ChangeToDate] = useState()
-    const EndingingData = <EachateContainer JustifyContentCalue={isEndedData ? "space-between" : ""}>
-        <FadeIn><span style={{  padding: "4px" , fontSize: "1.2em", marginRight: "25px"}}>To</span></FadeIn>
-        {!isEndedData ? 
-            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC }}>{props.SendED}</span></FadeIn>
-        :
-            <DateSelected   
-                //The incoming dating is used to chagne the format of the date and then send that number to submission button
-                submitDateValue={(value) => ChangeToDate(value)} 
-                RecievedColor={props.ScheduleColor}
-        />}
-    </EachateContainer>
+    const EndingingData = <EachateContainer JustifyContentCalue={ ""}>
+            <FadeIn><span style={{  padding: "4px" , fontSize: "1.2em", marginRight: "25px"}}>To</span></FadeIn>
+            { <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC }}>{props.SendED}</span></FadeIn> }
+        </EachateContainer>
     
     //This is the returned Date to the calendar
     const calendar = <InfoContainer>
@@ -114,8 +79,8 @@ const CalenderContianer = (props) => {
         </InfoContainer>
 
     //To recieve a prop that will change the value from and to inside the schedule form to the value of From/to Date that has been created here  
-    props.GetFromDate(!isStartedData ?  props.SendSD : fromData) //Return either the selected data from the calendar form or the changed data by the user
-    props.GetToDate(!isEndedData ? props.SendED :ToData) //Return either the selected data from the calendar form or the changed data by the user
+    props.GetFromDate(props.SendSD) //Return either the selected data from the calendar form or the changed data by the user
+    props.GetToDate(props.SendED) //Return either the selected data from the calendar form or the changed data by the user
     
     return(calendar)
 }
@@ -152,10 +117,7 @@ const TimerContainer = (props) => {
     //This is for the layout for Hour Minuts Day system
     const Layout = ['','Hour','Minuts','AM / PM']
     const InfoArea = (<EachateContainer JustifyContentCalue={"space-between" }>
-        { isShowTime ? 
-            <FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginLeft: "150px"}}>Optional Time Area</span></FadeIn> 
-        :
-            Layout.map((value, index) =>
+        { Layout.map((value, index) =>
                 <FadeIn key={index+ createEventId()} ><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginRight: "1px"}}>{value}</span></FadeIn> ) }
     </EachateContainer>
     );
