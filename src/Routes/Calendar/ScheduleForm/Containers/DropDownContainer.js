@@ -205,7 +205,7 @@ const TimerContainer = (props) => {
     props.ToHourlected(StartDayValue === "PM" ? String(parseInt(EndHoursValue,10) + 12) : EndHoursValue) //this where we convert the returned hour from 12 hour system to 24 hour system 
     props.FromMinutsSelected(StartMinutsValue)
     props.ToMinutsSelected(EndMinutsValue) 
-
+    props.isTime(isShowTime)
     return (time)
 }
 

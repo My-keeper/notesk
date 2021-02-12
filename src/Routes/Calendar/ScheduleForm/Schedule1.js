@@ -79,6 +79,7 @@ const Schedule = (props) => {
     const [StartMinuts, ChangeStartMinuts] = useState(); //have returned starting minut if time is needed
     const [EndHours, ChangeEndHour] = useState();  //have returned ending hour if time is needed
     const [EndMinuts, ChangeEndMinuts] = useState(); //have returned ending minut if time is needed 
+    const [TimeClicked, ChangeTimeClicked] = useState() //this to make sure that time is included or not 
     const Time = (
         <TimerContainer
         FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
@@ -86,6 +87,7 @@ const Schedule = (props) => {
         ToHourlected={(value) => ChangeEndHour(value)} // return ending hour if time is needed
         ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return ending minut if time is needed 
         ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+        isTime={(value) => ChangeTimeClicked(value)}
         />
     );
 
@@ -105,8 +107,8 @@ const Schedule = (props) => {
             isDescription={getDescription} //the Description value
             CheckDescriptionPH={value => ChangeDescriptionPH(value)} //this is to change the description placeholder if there is no placeholder
             isURL={getURL} //the URL value
-            isStartingDate={getFormDate} //the value of the Starting data
-            isEndingData={getToDate} //the value of Ending data
+            isStartingDate={TimeClicked ? getFormDate : (getFormDate+"T"+StartHours+":"+StartMinuts)} //the value of the Starting data
+            isEndingData={TimeClicked ? getToDate : (getToDate+"T"+EndHours+":"+EndMinuts)} //the value of Ending data
             isRepeatedDays={GetRepeatedDays} //Values of Repeated Days
             isEvent={props.submitEventValues}
         />

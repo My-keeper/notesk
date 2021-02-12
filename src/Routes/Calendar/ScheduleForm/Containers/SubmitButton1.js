@@ -10,43 +10,23 @@ const SubmitButton = (props) => {
     fontSize: "20px",
     marginRight: "9px",
     marginTop: "4px",
-  };
-  console.log(props.isTitle)
-  console.log(props.isDescription)
-  console.log(props.isURL)
-  console.log(props.isStartingDate)
-  console.log( props.isEndingData)
-  console.log()
-  console.log()
-  console.log()
+  };  
   const CreateEvent = { 
-      id: createEventId(),
-      title: "Doc appoinmnet ",
-      textColor: "black",
-      start: "2021-02-16",
-      end: "2021-02-18",
-      startTime: "11:45:00",
-      endTime: "14:45:00",
-      textColor: "pink",
-      // daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events 
+      id: createEventId(), 
+      title:  props.isTitle ? props.isTitle : "" ,
+      description:  props.isDescription ? props.isDescription : "" ,
+      Url:  props.isURL ?  props.isURL : "" ,
+      start:  props.isStartingDate ,
+      end: props.isEndingData, 
+      daysOfWeek: props.isRepeatedDays,
       display: "list-item",
-      // title:  props.isTitle ? props.isTitle : "" ,
-      // description:  props.isDescription ? props.isDescription : "" ,
-      // Url:  props.isURL ?  props.isURL : "" ,
-      // start:  props.isStartingDate ,
-      // end: props.isEndingData,
-      // startTime: "10:45:00",
-      // endTime: "12:45:00", 
-      // display: "list-item",
-      // textColor: "red",
+      textColor: "red",
     };
-    // daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events
-    // daysOfWeek: props.isRepeatedDays,
 
   const SubmitEvent = () => { 
     return(
-      props.isCallingCalendar(false),
-      props.isEvent((oldarr) => [...oldarr, CreateEvent])
+      props.isEvent((oldarr) => [...oldarr, CreateEvent]),
+      props.isCallingCalendar(false)
     )
   };
 
@@ -68,9 +48,6 @@ const SubmitButton = (props) => {
       />
     </FadeIn>
   );
-
-  // props.IsSubmistClicked(isSubmit); //This is values is used to send value that the submit button has been clicked
-
   return SubmitButton;
 };
 
