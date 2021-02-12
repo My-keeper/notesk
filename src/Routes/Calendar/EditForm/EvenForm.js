@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import NoteContainer from "../../../UI/Modal";
 import FadeIn from "react-fade-in";
-import { SubmissionContainer } from "../ScheduleForm/Containers/submitButtonContainer";
-
+// import { SubmissionContainer } from "../ScheduleForm/Containers/SubmitButton1" ;
 const InfoContainer = styled.div`
   width: 440px;
   display: flex;
@@ -27,7 +26,7 @@ const Schedule = (props) => {
         // backGroundColorValue={props.ScheduleColor.NotekBGC}
         // FontColorValue={props.ScheduleColor.NoteFC}
       >
-        {<SubmissionContainer ScheduleColor={props.ScheduleColor} />}
+        {/* {<SubmissionContainer ScheduleColor={props.ScheduleColor} />} */}
       </NoteContainer>
     </FadeIn>
   );

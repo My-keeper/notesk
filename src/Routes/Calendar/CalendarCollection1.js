@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CalendarForm from "./CalendarForm1";
 import ScheduleForm from "./ScheduleForm/Schedule1";
 import styled from "styled-components";
+import EventForm from "./EditForm/EvenForm"
 import BlurDiv from "../../UI/BlurDiv";
 
 const CalenderContainer = styled.div`
@@ -37,12 +38,14 @@ const CalendarCollection = (props) => {
     },
   ]);
   const [showSchedule, ChangeShowSchedule ] =useState(false) // to show the shedule model 
+  const [ShowEventClicked, ChangeShowEventClicekd ] = useState(true) //to show event clicked
   const [SelectedStartedData, ChangeStartedData] = useState() //started selected data 
   const [SelectedEndedData, ChangeEndedData] = useState(); // ended slected data  
   const calendarForm = (
     <CalendarForm
       SendingEvents={currentEvents} //Pass down the list of events
-      CallingSchedule={(value) => ChangeShowSchedule(value)} //to call schedule 
+      CallingSchedule={(value) => ChangeShowSchedule(value)} //to call schedule
+      CallingClickedEvent={(value) => ChangeShowEventClicekd(value)} //to call model with event clicked info 
       GetStartDate={(value) => ChangeStartedData(value)} //getting started clicked data
       GetEndDate={(value) => ChangeEndedData(value)} //getting ended clicked data
     />
@@ -56,10 +59,12 @@ const CalendarCollection = (props) => {
         SendSelectedED={SelectedEndedData} //Selected End Data
       />
     );
+    const eventform = <EventForm/>
   return (
     <CalenderContainer>
-      {showSchedule ? scheduleForm : null  }
-      {showSchedule ? null : calendarForm }
+      {showSchedule ? scheduleForm : null}
+      {showSchedule ? null : calendarForm}
+      {ShowEventClicked? null : eventform}
     </CalenderContainer>
   );
 };

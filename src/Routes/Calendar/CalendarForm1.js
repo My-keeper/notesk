@@ -4,11 +4,11 @@ import listPlugin from "@fullcalendar/list";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { INITIAL_EVENTS, createEventId } from "./event-utils";
+import { INITIAL_EVENTS } from "./event-utils";
+
 const CalendarForm1 = (props) => {
   const weekendsVisible = true;
   const [getEvent, ChangegetEvent] = useState(props.SendingEvents ? props.SendingEvents :[]); 
-  console.log(getEvent)
   const [StartDate ,ChangeStartData ]=useState("")  // Save Selected Start Data
   const [EndDate ,ChangeEndData ]=useState("") // Save Selected End Data
   props.GetStartDate(StartDate); // Send Selected Start Data
@@ -23,6 +23,7 @@ const CalendarForm1 = (props) => {
     End: "",
     Display: ""
   });
+  //  toggle to show clicked event
   console.log(ClickedEvent);
   //Data Selected function
   const handleDateSelect = (selectInfo) => {
@@ -32,6 +33,7 @@ const CalendarForm1 = (props) => {
   };
   //Event clicked handler 
   const handleEventClick = (clickInfo) => {
+      props.CallingClickedEvent(false)
       ChangeClickedEvent({
         Id: clickInfo.event._def.publicId,
         title: clickInfo.event._def.title,
