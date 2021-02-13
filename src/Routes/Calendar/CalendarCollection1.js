@@ -60,16 +60,10 @@ console.log(currentEvents)
   return (
     <CalenderContainer>
       {showSchedule ?    
-        <div
-          style={{
-            zIndex: "10",
-            position: "absolute",
-            left: "35%",
-            transition: " all 0.3s easee-out",
-            transform: showSchedule ? "translateY(0)" : "translateY(-100vh)",
-            backdropFilter: "blur(1.4)"
-          }}
-        >
+        <div style={{ zIndex: "10", position: "absolute", left: "35%",
+            transition: " all 0.3s easee-out", backdropFilter: "blur(1.4)",
+            transform: showSchedule ? "translateY(0)" : "translateY(-100vh)",            
+          }}>
           {scheduleForm}
         </div> :null
       }
@@ -77,9 +71,7 @@ console.log(currentEvents)
         :
       <div
       onClick={() => (showSchedule ? ChangeShowSchedule(false) : null)}
-      style={{
-        zIndex: "1",
-        filter: showSchedule ? "blur(1px)" : null,
+      style={{ zIndex: "1",  filter: showSchedule ? "blur(1px)" : null,
         opacity: showSchedule ? "0.2" : "1",
       }}
       >
