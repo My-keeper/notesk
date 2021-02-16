@@ -5,6 +5,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { INITIAL_EVENTS } from "./event-utils";
+import EventForm from "./EditForm/EvenForm";
 
 const CalendarForm1 = (props) => {
   const weekendsVisible = true;
@@ -13,6 +14,7 @@ const CalendarForm1 = (props) => {
   const [EndDate ,ChangeEndData ]=useState("") // Save Selected End Data
   props.GetStartDate(StartDate); // Send Selected Start Data
   props.GetEndDate(EndDate); // Send Selected End Data
+  const [ShowEventClicked, ChangeShowEventClicekd ] = useState(true) //to show event clicked
   //Returning the values of the event that is clicked to be showed 
   const [ClickedEvent, ChangeClickedEvent] = useState({
     Id: "",
@@ -23,7 +25,6 @@ const CalendarForm1 = (props) => {
     End: "",
     Display: ""
   }); 
-  console.log(ClickedEvent)
   //Data Selected function
   const handleDateSelect = (selectInfo) => {
     ChangeStartData(selectInfo.startStr); // Selected Start Data 
@@ -32,18 +33,18 @@ const CalendarForm1 = (props) => {
   };
   //Event clicked handler 
   const handleEventClick = (clickInfo) => {
-      props.CallingClickedEvent(false)
+    console.log(clickInfo.event._def.extendedProps.Url);
+      ChangeShowEventClicekd(false)
       ChangeClickedEvent({
         Id: clickInfo.event._def.publicId,
         title: clickInfo.event._def.title,
         description: clickInfo.event._def.extendedProps.description,
-        url: clickInfo.event._def.url,
+        url: clickInfo.event._def.extendedProps.Url,
         Start: clickInfo.event._instance.range.start,
         End: clickInfo.event._instance.range.end,
         Display: clickInfo.event._def.ui.display,
       });
   }
-  props.GetClickedEvent(ClickedEvent)
   const FullCalendarForm = <FullCalendar
     plugins= {[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
     headerToolbar= {{
@@ -74,8 +75,19 @@ const CalendarForm1 = (props) => {
     // eventContent={renderEventContent} // custom render function
     // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
   /> 
-  
-  return  FullCalendarForm;
+    //Event Form that is clicked 
+  const eventform = (
+    <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
+      <EventForm
+        ScheduleColor={props.CalendarColor} //send color form App
+        EventClickedInfo={ShowEventClicked ? null : ClickedEvent} //pass downt the info about the clicked data
+        closedEventForm={(value) => ChangeShowEventClicekd(value)}
+      />
+    </div>
+  );
+
+
+  return (ShowEventClicked ? FullCalendarForm : eventform)
 };
 
 export default CalendarForm1;

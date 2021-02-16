@@ -59,7 +59,7 @@ const EventForm = (props) => {
   //Url Area props.ScheduleColor.IconC
   const isUrl =<EachateContainer JustifyContentCalue={ ""}>
     <TitleStyle Coloring={props.ScheduleColor.IconC}>Url : </TitleStyle> 
-    <ContentStyle >{ props.EventClickedInfo.url ? props.EventClickedInfo.url : "......"  }</ContentStyle> 
+    <ContentStyle >{ !props.EventClickedInfo.url == "" ? props.EventClickedInfo.url : "......"  }</ContentStyle> 
   </EachateContainer>
   //Start Area props.ScheduleColor.IconC
   const isStart =<EachateContainer JustifyContentCalue={ ""}>
