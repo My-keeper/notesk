@@ -74,6 +74,14 @@ const NavBar = (props) => {
       (<Link to={"/notes"} >
       <NotesIcon   onMouseLeave={() => ChangeIsNote(true)} style={VisibilityStle2} />
       </Link>)
+  //This is for the Login
+  const GoToLogin =<Link to={props.CallingPage == "Signin" ? "/login" : "/signup"} >
+    {props.CallingPage == "Signin" ?
+        <LoginOutlined  style={VisibilityStle1} />
+    :
+        <LogoutOutlined style={VisibilityStle1} />
+      }
+    </Link>
 
   return(
     <StyledNavBar>
@@ -85,6 +93,7 @@ const NavBar = (props) => {
         {GoToCalendar}
         {GoToNote}
         <SwitchIcon OnChangedColor={props.ColorChanged}/>
+        {GoToLogin}
         <UserIcon username={"Amr R. Mohamed"} OnChangedColor={props.RecieveColor}/>
         <DisplayedUsername 
           TextColorInput={props.RecieveColor.UserIconTextColor}>

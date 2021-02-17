@@ -8,7 +8,7 @@ const Signup = (props) => {
   return (
     <div>
       <BlurDiv blurDegree={"1.4px"}/>
-      <Nav ColorChanged={props.colorchanged} RecieveColor={props.Color}/>
+      <Nav ColorChanged={props.colorchanged} RecieveColor={props.Color} CallingPage={"Signin"}/>
       <SignupForm ColorChanged={props.colorchanged} RecieveColor={props.Color}/>
     </div>
   );
