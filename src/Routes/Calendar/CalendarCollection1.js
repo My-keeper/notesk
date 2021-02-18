@@ -36,6 +36,8 @@ const CalendarCollection = (props) => {
       textColor: "black",
     },
   ]); 
+  console.log("Calendar")
+  console.log(currentEvents)
   const [showSchedule, ChangeShowSchedule ] =useState(false) // to show the shedule model 
   const [SelectedStartedData, ChangeStartedData] = useState() //started selected data 
   const [SelectedEndedData, ChangeEndedData] = useState(); // ended slected data  
@@ -47,6 +49,7 @@ const CalendarCollection = (props) => {
       CallingSchedule={(value) => ChangeShowSchedule(value)} //to call schedule
       GetStartDate={(value) => ChangeStartedData(value)} //getting started clicked data
       GetEndDate={(value) => ChangeEndedData(value)} //getting ended clicked data 
+      ChangeEvents={(value) => ChangeEventList(value)}
     />
     </div>
   );

@@ -4,6 +4,7 @@ import NoteContainer from "../../../UI/Modal";
 import FadeIn from "react-fade-in"; 
 import { CloseCircleOutlined } from "@ant-design/icons";
 import EditButton from "./EditButton";
+import DeleteButton from "./DeleteButton";
 
 // import { SubmissionContainer } from "../ScheduleForm/Containers/SubmitButton1" ;
 const EachateContainer = styled.div`
@@ -30,8 +31,8 @@ const ContentStyle = styled.span`
   fontSize: 1.2em;
   marginLeft: 20px;
   `
-const EventForm = (props) => {
-  
+const EventForm = (props) => { 
+
   // The Event information 
   const Header=<EachateContainer>
     <span style={{ 
@@ -82,9 +83,18 @@ const EventForm = (props) => {
   </DateContainer>
   
   //The edit button
-  const isEditButton=<EditButton
-  
-  />
+  const isEditButton=
+  <EachateContainer JustifyContentCalue={ ""}>
+    <EditButton ColorChange={props.ScheduleColor}/>
+    <DeleteButton
+      EventsInfoList={props.PassedAllEvent} //list of all the Events created 
+      IDofClickedEvent={props.EventClickedInfo.Id} //the clicked event ID 
+      ReturnNewEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model
+      CloseModel={(value) => props.closedEventForm(value)} //to return true if clicked
+      ColorChange={props.ScheduleColor} //Color list
+      />  
+  </EachateContainer>
+
   const EventInfo= <NoteContainer
         position={"relative"}
         width={"480px"}

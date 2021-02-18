@@ -1,38 +1,38 @@
 import React, { useState } from "react";
 import FadeIn from "react-fade-in";
-import { LoginOutlined } from "@ant-design/icons";
+import { DeleteFilled } from "@ant-design/icons";
 import Button from "../../../UI/Button";  
 
-const EditButton = (props) => {
+const DeleteButton = (props) => {
   const ButtonIconColor = {
     color: props.ColorChange.IconC,
     fontSize: "20px",
     marginRight: "9px",
     marginTop: "4px",
   };   
-
-//   const SubmitEvent = () => { 
-//     return(
-//     //   props.isEvent((oldarr) => [...oldarr, CreateEvent]),
-//     //   props.isCallingCalendar(false)
-//     )
-//   };
+  
+const DeleteButton = () => { 
+    const id = props.IDofClickedEvent //the Event id
+    const Delete = props.EventsInfoList  //copy the Events list
+    props.ReturnNewEvents(Delete.filter(Event => Event.id !== id))
+    props.CloseModel(true)
+  };
 
   const SubmitButton = (
     <FadeIn>
       <Button
         width={"120px"}
         marginBottomValue={"10px"}
-        marginLeftValue={"100px"}
+        marginLeftValue={"10%"}
         fontSizeValue={"20px"}
         borderRadiusValue={"15px"}
         IsCalledValue={"hover"}
         BorderValue="solid"
         borderWidthValue="thin"
         paddingInputValue="2px"
-        // onClick={SubmitEvent}
-        text={"Edit"}
-        icon={<LoginOutlined style={ButtonIconColor} />}
+        onClick={DeleteButton}
+        text={"Delete"}
+        icon={<DeleteFilled style={ButtonIconColor} />}
       />
     </FadeIn>
   );
@@ -41,4 +41,4 @@ const EditButton = (props) => {
   return SubmitButton;
 };
 
-export default EditButton;
+export default DeleteButton;

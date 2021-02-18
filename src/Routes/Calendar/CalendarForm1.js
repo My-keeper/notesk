@@ -9,7 +9,7 @@ import EventForm from "./EditForm/EvenForm";
 
 const CalendarForm1 = (props) => {
   const weekendsVisible = true;
-  const [getEvent, ChangegetEvent] = useState(props.SendingEvents ? props.SendingEvents :[]); 
+  const getEvent = props.SendingEvents; 
   const [StartDate ,ChangeStartData ]=useState("")  // Save Selected Start Data
   const [EndDate ,ChangeEndData ]=useState("") // Save Selected End Data
   props.GetStartDate(StartDate); // Send Selected Start Data
@@ -33,7 +33,6 @@ const CalendarForm1 = (props) => {
   };
   //Event clicked handler 
   const handleEventClick = (clickInfo) => {
-    console.log(clickInfo.event._def.extendedProps.Url);
       ChangeShowEventClicekd(false)
       ChangeClickedEvent({
         Id: clickInfo.event._def.publicId,
@@ -72,7 +71,8 @@ const CalendarForm1 = (props) => {
     select={handleDateSelect}
     events={getEvent}
     eventClick={handleEventClick}
-    // eventContent={renderEventContent} // custom render function
+    eventRemove={value=> console.log(value)} // custom render function
+    // eventContent={value=> console.log(value)} // custom render function
     // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
   /> 
     //Event Form that is clicked 
@@ -80,8 +80,10 @@ const CalendarForm1 = (props) => {
     <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
       <EventForm
         ScheduleColor={props.CalendarColor} //send color form App
-        EventClickedInfo={ShowEventClicked ? null : ClickedEvent} //pass downt the info about the clicked data
         closedEventForm={(value) => ChangeShowEventClicekd(value)}
+        EventClickedInfo={ShowEventClicked ? null : ClickedEvent} //pass downt the info about the clicked data
+        PassedAllEvent={props.SendingEvents} //copy of the event so we can compare the id and delete it 
+        ChangeAllEvents={(value) => props.ChangeEvents(value)} //Delete the selected event
       />
     </div>
   );
@@ -91,55 +93,3 @@ const CalendarForm1 = (props) => {
 };
 
 export default CalendarForm1;
-
-// handleWeekendsToggle = () => {
-//   setState({
-//     weekendsVisible: !state.weekendsVisible
-//   })
-// }
-
-// const handleEventClick = (clickInfo) => {
-//   return console.log(clickInfo), 
-//     console.log(clickInfo.event._instance.range.start),
-//    console.log(clickInfo.event._instance.range.end)
-//     // console.log(clickInfo.event._instance.range.start),
-//     //   console.log(clickInfo.event._instance.range.end);
-//   // console.log(clickInfo.event._def.publicId);
-//     // console.log(clickInfo.event._def.title),
-//     // console.log(clickInfo.event._def.url),
-//     // console.log(clickInfo.event._def.extendedProps.description),
-//     // console.log(clickInfo.event._def.ui.display)
-  
-//     // console.log(clickInfo.event),
-
-//   // if (alert(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-//   //   clickInfo.event.remove()
-//   // }
-// }
-
-//   handleEvents = (events) => {
-//     setState({
-//       currentEvents: events
-//     })
-//   }
-
-// }
-
-// function renderEventContent(eventInfo) {
-//   console.log(eventInfo);
-//   return (
-//     <>
-//       <b>{eventInfo.timeText}</b>
-//       <i>{eventInfo.event.title}</i>
-//     </>
-//   )
-// }
-
-// function renderSidebarEvent(event) {
-//   return (
-//     <li key={event.id}>
-//       <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
-//       <i>{event.title}</i>
-//     </li>
-//   )
-// }

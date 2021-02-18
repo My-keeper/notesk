@@ -19,7 +19,7 @@ const SubmitButton = (props) => {
       Url:  props.isURL ,
       start:  props.isStartingDate ,
       end: props.isEndingData, 
-      // daysOfWeek: props.isRepeatedDays,
+      daysOfWeek: props.isRepeatedDays,
       display: "list-item",
       textColor: "red",
     };
