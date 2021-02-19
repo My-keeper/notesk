@@ -69,7 +69,7 @@ class App extends Component {
         />
         <Route path="/signup" exact render={(props) => <Signup Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
-        <Route path="/notes" exact render={(props) => <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        <Route path="/" exact render={(props) => <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         <Route path="/weather" exact render={(props) => <Weather/>}
         />
