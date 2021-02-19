@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MailOutlined, KeyOutlined, LoginOutlined, UserAddOutlined} from "@ant-design/icons";
+import { MailOutlined, KeyOutlined, LoginOutlined} from "@ant-design/icons";
 import UserInput from "../../UI/UserInput";
 import NoteContainer from '../../UI/Modal';
 import Button from "../../UI/Button";
@@ -96,8 +96,8 @@ const SignupForm = (props) => {
 return (
     <FadeIn><NoteContainer
     position= {"relative"}
-    width= {"450px"}
-    margin= {"300px auto 20px auto"}
+    width= {"470px"}
+    margin= {"200px auto 20px auto"}
     padding= {"15px"}
     boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
     borderRadiusValue= {"20px"}

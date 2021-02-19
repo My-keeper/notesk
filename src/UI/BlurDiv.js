@@ -1,15 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-{/* <BlurDiv style={{ height: "100%" }} blurDegree={"3px"}>
-<StyledImage src={backgroundImage} alt="oops" />
-</BlurDiv> */}
-
 
 const StyledBlurDiv = styled.div`
-backdrop-filter: blur(${(props) => props.blurDegree});
-position: absolute;
-height: 100%;
-width: 100%;
+  filter: blur(${(props) => props.blurDegree + "px"});
 `;
 
 const BlurDiv = (props) => {

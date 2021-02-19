@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MailOutlined, KeyOutlined, LoginOutlined, UserAddOutlined, HomeOutlined} from "@ant-design/icons";
+import { UserOutlined, MailOutlined, KeyOutlined, LoginOutlined, UserAddOutlined, HomeOutlined} from "@ant-design/icons";
 import UserInput from "../../UI/UserInput";
 import NoteContainer from '../../UI/Modal';
 import Button from "../../UI/Button";
@@ -30,6 +30,52 @@ const SignupForm = (props) => {
         marginRight:"9px", 
         marginTop:"4px" }
     
+    const FirstName = <FadeIn><UserInput 
+        inputType={"text"}
+        name="title"
+        PlaceholderValue={"FirstName"}
+        widthValue={"184px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.RecieveColor.UserInputBGC}
+        FontColorValue={props.RecieveColor.UserInputFC}
+        PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+        borderColorValue={props.RecieveColor.BorderColor}
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"10px"}
+        /></FadeIn>
+    
+    const LastName = <FadeIn><UserInput 
+        inputType={"text"}
+        name="title"
+        PlaceholderValue={"LastName"}
+        widthValue={"184px"}
+        paddingVale={"4px"}
+        outlineValue={"none"}
+        fontSizeValue={"1.2em"}
+        fontFamilyValue={"inherit"}
+        IsCalledValue={"FOCUS"} 
+        borderRadiusValue= {"7px"}
+        backGroundColorValue={props.RecieveColor.UserInputBGC}
+        FontColorValue={props.RecieveColor.UserInputFC}
+        PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+        borderColorValue={props.RecieveColor.BorderColor}
+        BorderValue={"solid"}
+        borderWidthValue="thin"
+        marginRightValue={"10px"}
+        /></FadeIn> 
+    
+    const PersonalInfo = <InfoContainer>
+            <FadeIn><UserOutlined style={IconColor}/></FadeIn>
+            {FirstName}
+            {LastName} 
+        </InfoContainer>
+
     const Username = <InfoContainer>
             <FadeIn><UserAddOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
@@ -52,7 +98,7 @@ const SignupForm = (props) => {
             marginRightValue={"10px"}
             /></FadeIn>
         </InfoContainer>
-    
+
     const Email = <InfoContainer>
             <FadeIn><MailOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
@@ -235,14 +281,15 @@ const SignupButton = <FadeIn>
 return (
     <FadeIn><NoteContainer
     position= {"relative"}
-    width= {"450px"}
-    margin= {"300px auto 20px auto"}
+    width= {"470px"}
+    margin= {"220px auto 20px auto"}
     padding= {"15px"}
     boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
     borderRadiusValue= {"20px"}
     resizeValue={"both"}
     backGroundColorValue={props.RecieveColor.NotekBGC}
     >
+        {PersonalInfo}
         {Username}
         {Email}
         {PassWord}
