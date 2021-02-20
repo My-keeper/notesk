@@ -27,7 +27,7 @@ const CalendarCollection = (props) => {
       id: "3",
       title: "Doc appoinmnet ",
       start: "2021-02-13",
-      end: "2021-02-14",
+      end: "2021-02-13",
       startTime: "10:45:00",
       endTime: "12:45:00",
       textColor: "pink",

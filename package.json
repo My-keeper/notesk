@@ -44,9 +44,7 @@
     "DB-Mac": "mongod --dbpath=/Users/mero/mongodb-data",
     "DB-window": "/Users/amohamed/mongodb/bin/mongod.exe --dbpath=/Users/amohamed/mongodb-data",
     "start": "  react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "Backend": "nodemon backend/src/notask.js"
   },
   "eslintConfig": {
     "extends": "react-app"

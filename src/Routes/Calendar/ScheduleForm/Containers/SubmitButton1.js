@@ -12,6 +12,7 @@ const SubmitButton = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   };  
+  console.log(props.isRepeatedDays)
   const CreateEvent = { 
       id: createEventId(),  
       title:  props.isTitle ,

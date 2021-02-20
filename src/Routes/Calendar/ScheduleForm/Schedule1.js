@@ -102,7 +102,8 @@ const Schedule = (props) => {
             isDescription={getDescription} //the Description value
             CheckDescriptionPH={value => ChangeDescriptionPH(value)} //this is to change the description placeholder if there is no placeholder
             isURL={getURL} //the URL value
-            isStartingDate={TimeClicked ? (getFormDate+'T12:00:00') : (getFormDate+"T"+StartHours+":"+StartMinuts+"00")} //the value of the Starting data
+            isStartingDate= {getFormDate}
+            // {TimeClicked ? (getFormDate+'T12:00:00') : (getFormDate+"T"+StartHours+":"+StartMinuts+"00")} //the value of the Starting data
             isEndingData={getToDate } //the value of Ending data
             isRepeatedDays={GetRepeatedDays} //Values of Repeated Days
             isEvent={props.submitEventValues}
