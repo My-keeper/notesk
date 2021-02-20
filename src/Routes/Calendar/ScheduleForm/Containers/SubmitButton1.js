@@ -24,7 +24,6 @@ const SubmitButton = (props) => {
       display: "list-item",
       textColor: "red",
     };
-
   const SubmitEvent = () => { 
     return(
       props.isEvent((oldarr) => [...oldarr, CreateEvent]),
