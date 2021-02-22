@@ -5,22 +5,24 @@
  
 const mongoose = require('mongoose')
    
-const Calendar = mongoose.model('Calendar', {
+const Calendar = mongoose.model('CalendarEvents', {
     id: {
-        type: String, 
+        type: Number, 
         required: true
     },
     title: {
         type: String, 
-        required: true
+        required: true,
+        minlength: 1,
     },
     description: {
         type: String, 
-        required: true
+        required: true,
+        minlength: 1,
     },
     url: {
         type: String, 
-        required: true
+        minlength: 1,
     },
     start: {
         type: String, 
@@ -30,18 +32,16 @@ const Calendar = mongoose.model('Calendar', {
         type: String, 
         required: true
     },
-    daysOfWeek: {
-        type: String, 
-        required: true
-    },
-    display: {
-        type: String, 
-        required: true
-    },
-    textColor: {
-        type: String, 
-        required: true
-    }
+    // daysOfWeek: {
+    //     type: String
+        
+    // },
+    // display: {
+    //     type: String
+    // },
+    // textColor: {
+    //     type: String
+    // }
 })
 
 module.exports = Calendar

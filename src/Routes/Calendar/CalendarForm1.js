@@ -89,7 +89,8 @@ const CalendarForm1 = (props) => {
   );
 
 
-  return (ShowEventClicked ? FullCalendarForm : eventform)
+  return FullCalendarForm 
+  // (ShowEventClicked ? FullCalendarForm : eventform)
 };
 
 export default CalendarForm1;

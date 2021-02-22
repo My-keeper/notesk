@@ -2,6 +2,7 @@ const express = require('express')
 require('./db/mongoose')
 const User = require('./models/user')
 const Note = require('./models/notes')
+const CalendarEvents = require('./models/calendar')
 
 const app = express()
 //to either have the application run either on hurokuapp or our localhost port 
@@ -27,6 +28,16 @@ app.post('/Notes', (req, res) => {
     //saving the info to the database and see if will match the info in the model or not 
     note.save().then(() => {
         res.send(note)
+    }).catch((e) => {
+        res.status(400).send(e)
+    })
+})
+
+app.post('/CalendarEvents', (req, res) => {
+    const calendarEvents = new CalendarEvents(req.body) //take the info from the website and then save it in user
+    //saving the info to the database and see if will match the info in the model or not 
+    calendarEvents.save().then(() => {
+        res.send(calendarEvents)
     }).catch((e) => {
         res.status(400).send(e)
     })
