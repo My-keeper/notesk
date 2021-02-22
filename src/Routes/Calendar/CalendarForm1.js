@@ -5,7 +5,13 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { INITIAL_EVENTS } from "./event-utils";
+import styled from "styled-components";
 import EventForm from "./EditForm/EvenForm";
+
+const CalendarStyle = styled.div`
+  zIndex: "1" 
+  pointer-events: ${(props) => (props.isBlur ? "null" : "none")}
+`;
 
 const CalendarForm1 = (props) => {
   const weekendsVisible = true;
@@ -44,37 +50,41 @@ const CalendarForm1 = (props) => {
         Display: clickInfo.event._def.ui.display,
       });
   }
-  const FullCalendarForm = <FullCalendar
-    plugins= {[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
-    headerToolbar= {{
-      left: "prev,next today",
-      center: "title",
-      right: "dayGridMonth,timeGridWeek,timeGridDay,list",
-    }}
-    initialView="dayGridMonth"
-    titleFormat={{ month: "short", year: "numeric", day: "numeric" }} //this is for the tile what should be there for the user
-    height="850px" //get fixed height for the calendar
-    contentHeight="800px" //get the content height for the calendar 
-    handleWindowResize="true"
-    locale="En" //this is for the languages option
-    timeZone="canada/nl" //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it
-    editable={true} //to edit the info
-    selectable={true} //to enable selection
-    selectMirror={true}
-    dayMaxEvents={true}
-    weekends={weekendsVisible}
-    eventDisplay="block" //this is used to high light the event that are created
-    eventTextColor="black" //this is for the styling of the text for each event
-    eventBackgroundColor="cornflowerblue" //This is for the background of each event
-    eventBorderColor="pink" //The border color
-    initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
-    select={handleDateSelect}
-    events={getEvent}
-    eventClick={handleEventClick}
-    eventRemove={value=> console.log(value)} // custom render function
-    // eventContent={value=> console.log(value)} // custom render function
-    // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-  /> 
+  const FullCalendarForm = (
+    <CalendarStyle   isBlur={ShowEventClicked}>
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
+        headerToolbar={{
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay,list",
+        }}
+        initialView="dayGridMonth"
+        titleFormat={{ month: "short", year: "numeric", day: "numeric" }} //this is for the tile what should be there for the user
+        height="850px" //get fixed height for the calendar
+        contentHeight="800px" //get the content height for the calendar
+        handleWindowResize="true"
+        locale="En" //this is for the languages option
+        timeZone="canada/nl" //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it
+        editable={true} //to edit the info
+        selectable={true} //to enable selection
+        selectMirror={true}
+        dayMaxEvents={true}
+        weekends={weekendsVisible}
+        eventDisplay="block" //this is used to high light the event that are created
+        eventTextColor="black" //this is for the styling of the text for each event
+        eventBackgroundColor="cornflowerblue" //This is for the background of each event
+        eventBorderColor="pink" //The border color
+        initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+        select={handleDateSelect}
+        events={getEvent}
+        eventClick={handleEventClick}
+        eventRemove={(value) => console.log(value)} // custom render function
+        // eventContent={value=> console.log(value)} // custom render function
+        // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
+      />
+    </CalendarStyle>
+  );
     //Event Form that is clicked 
   const eventform = (
     <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
@@ -89,7 +99,12 @@ const CalendarForm1 = (props) => {
   );
 
 
-  return (ShowEventClicked ? FullCalendarForm : eventform)
+  return (
+    <div>
+      {ShowEventClicked ? null : eventform}
+      {FullCalendarForm}
+    </div>
+  );
 };
 
 export default CalendarForm1;
