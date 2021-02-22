@@ -1,27 +1,21 @@
 import React, { useState } from "react";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
+import FullCalendar from "@fullcalendar/react";
 import listPlugin from "@fullcalendar/list";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { INITIAL_EVENTS } from "./event-utils";
-import styled from "styled-components";
 import EventForm from "./EditForm/EvenForm";
-
-const CalendarStyle = styled.div`
-  zIndex: "1" 
-  pointer-events: ${(props) => (props.isBlur ? "null" : "none")}
-`;
 
 const CalendarForm1 = (props) => {
   const weekendsVisible = true;
-  const getEvent = props.SendingEvents; 
-  const [StartDate ,ChangeStartData ]=useState("")  // Save Selected Start Data
-  const [EndDate ,ChangeEndData ]=useState("") // Save Selected End Data
+  const getEvent = props.SendingEvents;
+  const [StartDate, ChangeStartData] = useState(""); // Save Selected Start Data
+  const [EndDate, ChangeEndData] = useState(""); // Save Selected End Data
   props.GetStartDate(StartDate); // Send Selected Start Data
   props.GetEndDate(EndDate); // Send Selected End Data
-  const [ShowEventClicked, ChangeShowEventClicekd ] = useState(true) //to show event clicked
-  //Returning the values of the event that is clicked to be showed 
+  const [ShowEventClicked, ChangeShowEventClicekd] = useState(true); //to show event clicked
+  //Returning the values of the event that is clicked to be showed
   const [ClickedEvent, ChangeClickedEvent] = useState({
     Id: "",
     title: "",
@@ -29,29 +23,35 @@ const CalendarForm1 = (props) => {
     url: "",
     Start: "",
     End: "",
-    Display: ""
-  }); 
+    Display: "",
+  });
   //Data Selected function
   const handleDateSelect = (selectInfo) => {
-    ChangeStartData(selectInfo.startStr); // Selected Start Data 
+    ChangeStartData(selectInfo.startStr); // Selected Start Data
     ChangeEndData(selectInfo.endStr); // Selected End Data
     props.CallingSchedule(true);
   };
-  //Event clicked handler 
+  //Event clicked handler
   const handleEventClick = (clickInfo) => {
-      ChangeShowEventClicekd(false)
-      ChangeClickedEvent({
-        Id: clickInfo.event._def.publicId,
-        title: clickInfo.event._def.title,
-        description: clickInfo.event._def.extendedProps.description,
-        url: clickInfo.event._def.extendedProps.Url,
-        Start: clickInfo.event._instance.range.start,
-        End: clickInfo.event._instance.range.end,
-        Display: clickInfo.event._def.ui.display,
-      });
-  }
+    ChangeShowEventClicekd(false);
+    ChangeClickedEvent({
+      Id: clickInfo.event._def.publicId,
+      title: clickInfo.event._def.title,
+      description: clickInfo.event._def.extendedProps.description,
+      url: clickInfo.event._def.extendedProps.Url,
+      Start: clickInfo.event._instance.range.start,
+      End: clickInfo.event._instance.range.end,
+      Display: clickInfo.event._def.ui.display,
+    });
+  };
   const FullCalendarForm = (
-    <CalendarStyle   isBlur={ShowEventClicked}>
+    <div
+      style={{
+        zIndex: "1",
+        filter: ShowEventClicked ? null : "blur(4px)",
+        pointerEvents: ShowEventClicked ? null : "none",
+      }}
+    >
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
         headerToolbar={{
@@ -83,26 +83,26 @@ const CalendarForm1 = (props) => {
         // eventContent={value=> console.log(value)} // custom render function
         // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
       />
-    </CalendarStyle>
+    </div>
   );
-    //Event Form that is clicked 
+
+  //Event Form that is clicked
   const eventform = (
     <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
       <EventForm
         ScheduleColor={props.CalendarColor} //send color form App
         closedEventForm={(value) => ChangeShowEventClicekd(value)}
         EventClickedInfo={ShowEventClicked ? null : ClickedEvent} //pass downt the info about the clicked data
-        PassedAllEvent={props.SendingEvents} //copy of the event so we can compare the id and delete it 
+        PassedAllEvent={props.SendingEvents} //copy of the event so we can compare the id and delete it
         ChangeAllEvents={(value) => props.ChangeEvents(value)} //Delete the selected event
       />
     </div>
   );
 
-
   return (
     <div>
       {ShowEventClicked ? null : eventform}
-      {FullCalendarForm}
+      {ShowEventClicked ? FullCalendarForm : FullCalendarForm}
     </div>
   );
 };
