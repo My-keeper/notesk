@@ -5,7 +5,7 @@
  
 const mongoose = require('mongoose')
    
-const Calendar = mongoose.model('Calendar', {
+const Calendar = mongoose.model('CalendarEvents', {
     id: {
         type: String, 
         required: true
@@ -19,8 +19,7 @@ const Calendar = mongoose.model('Calendar', {
         required: true
     },
     url: {
-        type: String, 
-        required: true
+        type: String 
     },
     start: {
         type: String, 
