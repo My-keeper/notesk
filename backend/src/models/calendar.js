@@ -21,8 +21,12 @@ const Calendar = mongoose.model('CalendarEvents', {
         minlength: 1,
     },
     url: {
+<<<<<<< HEAD
         type: String, 
         minlength: 1,
+=======
+        type: String 
+>>>>>>> 5b9e18db3ed6504bd537c74a070e4d37d074ae38
     },
     start: {
         type: String, 

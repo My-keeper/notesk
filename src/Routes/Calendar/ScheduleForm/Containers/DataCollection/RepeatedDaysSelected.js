@@ -15,7 +15,7 @@ const RepeatDaySelected = (props) => {
         Friday: {id: "5", value: false},
         Saturday: {id: "6", value: false}
     })
-    const ChoosenDay = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] 
+    const ChoosenDay = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'] 
     const handleRepeatedDays = (e) => {
         const newDays = {...Days}
         const onchangeValue = e.target.value

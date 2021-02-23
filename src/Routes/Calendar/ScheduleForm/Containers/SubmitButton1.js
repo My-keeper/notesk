@@ -11,8 +11,7 @@ const SubmitButton = (props) => {
     fontSize: "20px",
     marginRight: "9px",
     marginTop: "4px",
-  };  
-  console.log(props.isRepeatedDays)
+  };   
   const CreateEvent = { 
       id: createEventId(),  
       title:  props.isTitle ,
@@ -23,11 +22,13 @@ const SubmitButton = (props) => {
       daysOfWeek: props.isRepeatedDays,
       display: "list-item",
       textColor: "red",
+      asd: "as"
     };
   const SubmitEvent = () => { 
     return(
       props.isEvent((oldarr) => [...oldarr, CreateEvent]),
-      props.isCallingCalendar(false)
+      props.isCallingCalendar(false),
+      console.log(CreateEvent)
     )
   };
 

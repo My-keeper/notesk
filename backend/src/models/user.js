@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const validator = require('validator') 
 
 
-const User = mongoose.model('User', {
+const User = mongoose.model('Users', {
     firstName: {
     type: String, 
     required: true,
@@ -68,7 +68,7 @@ const User = mongoose.model('User', {
     // },
     age: {
         type: Number,
-        default: 0,
+        default: 1,
         validate(value) {
             if (value < 0) {
                 throw new Error('Age must be a postive number')

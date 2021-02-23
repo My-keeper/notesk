@@ -21,8 +21,7 @@ const RDContainer = (props) => {
         color : props.ScheduleColor.IconC, 
         fontSize:"30px", 
         marginRight:"15px", 
-        marginTop:"4px",
-        marginLeft:"5px"
+        marginTop:"4px"
     }
     props.SubmitNumberOfRP(GetNumberOfRD)
     const RepeatedDays = (
