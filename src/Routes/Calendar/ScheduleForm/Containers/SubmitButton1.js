@@ -12,18 +12,20 @@ const SubmitButton = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   };   
-  const CreateEvent = { 
-      id: createEventId(),  
-      title:  props.isTitle ,
-      description:  props.isDescription ,
-      Url:  props.isURL ,
-      start:  props.isStartingDate ,
-      end: props.isEndingData, 
-      daysOfWeek: props.isRepeatedDays,
-      display: "list-item",
-      textColor: "red",
-      asd: "as"
-    };
+  const CreateEvent = {
+    id: createEventId(),
+    title: props.isTitle,
+    description: props.isDescription,
+    Url: props.isURL,
+    start: props.isStartingDate,
+    end: props.isEndingData,
+    startTime: props.isStartingTime,
+    endTime: props.isEndingTime,
+    daysOfWeek: props.isRepeatedDays,
+    display: "list-item",
+    textColor: "red",
+    asd: "as",
+  };
   const SubmitEvent = () => { 
     return(
       props.isEvent((oldarr) => [...oldarr, CreateEvent]),

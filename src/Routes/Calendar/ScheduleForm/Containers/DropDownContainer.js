@@ -21,6 +21,7 @@ const EachateContainer = styled.div`
     flex-direction: row;
     justify-content: ${props => props.JustifyContentCalue};
     margin: 4px;
+    margin-left: ${props => props.MarginLeft ? props.MarginLeft : null }
 `
 const DateContainer = styled.div`
     width: 400px;
@@ -144,17 +145,38 @@ const TimerContainer = (props) => {
                 DisabledisClicked={isShowTime} 
                 />
         </EachateContainer>
+    
+    //collection of ending time for event
+    const [EndHoursValue, ChangeEndHourValue ]= useState() //save the Ending Hour
+    const [EndMinutsValue, ChangeEndMinutsValue ]= useState() //save the Ending Minuts
+    const [EndDayValue, ChangeEndDayValue ]= useState() //save Ending if it is AM or PM
+    const EndingTime = isShowTime ? null :<EachateContainer  MarginLeft={"10px"}  JustifyContentCalue={"space-between" }>
+            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>End</span></FadeIn>
+            <TimeSelected 
+                submitHourValue={(value) => ChangeEndHourValue(value)}
+                submitMinutsValue={(value) => ChangeEndMinutsValue(value)}
+                submitDayValue={(value) => ChangeEndDayValue(value)}
+                RecievedColor={props.ScheduleColor}
+                //this is to disable the values that are inside and it is going to DataSelected
+                DisabledisClicked={isShowTime} 
+                />
+        </EachateContainer>
  
-    const time =<InfoContainer>
-            {IcionArea}
-            <DateContainer> 
-                {InfoArea}
-                {StartingTime} 
-            </DateContainer>
-        </InfoContainer>
+    const time = (
+      <InfoContainer>
+        {IcionArea}
+        <DateContainer>
+          {InfoArea}
+          {StartingTime}
+          {EndingTime}
+        </DateContainer>
+      </InfoContainer>
+    );
 
     props.FromHourSelected(StartDayValue === "PM" ? String(parseInt(StartHoursValue,10) + 12) : StartHoursValue) //this where we convert the returned hour from 12 hour system to 24 hour system 
     props.FromMinutsSelected(StartMinutsValue)
+    props.ToHourSelected(EndDayValue === "PM" ? String(parseInt(EndHoursValue,10) + 12) : EndHoursValue) //this where we convert the returned hour To 12 hour system to 24 hour system 
+    props.ToMinutsSelected(EndMinutsValue);
     props.isTime(isShowTime) 
     return (time)
 }

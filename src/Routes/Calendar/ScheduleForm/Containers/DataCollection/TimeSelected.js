@@ -3,8 +3,10 @@ import FadeIn from "react-fade-in";
 import SelectData from "../../../../../UI/Select";
 import { HourValue, MinutsValue, TwelveHourSystemValue } from "./OptionsForm";
 import { createEventId } from "../../../event-utils";
+import { ControlCameraOutlined } from "@material-ui/icons";
 
 const OptionForm = (props) => {
+  const [HourClicked, ChangeHourClicked]= useState(false)
   const [HourValueInput, ChangeHourValue] = useState("");
   const handle = (e) => {
     ChangeHourValue(e.target.value);
@@ -31,6 +33,7 @@ const OptionForm = (props) => {
         BorderValue={"solid"}
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
+        onClickValue={() => ChangeHourClicked(!HourClicked)}
         onchangeValue={handle}
         InputValue={HourValueInput}
       >
@@ -44,6 +47,7 @@ const OptionForm = (props) => {
     </FadeIn>
   );
 
+  const [MinutsClicked, ChangeMinutsClicked] = useState(false)
   const [MinutsValueInput, ChangeMinutsValue] = useState("");
   const handleMinuts = (e) => {
     ChangeMinutsValue(e.target.value);
@@ -71,6 +75,7 @@ const OptionForm = (props) => {
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
         onchangeValue={handleMinuts}
+        onClickValue={() => ChangeMinutsClicked(!MinutsClicked)}
         InputValue={MinutsValueInput}
       >
         {
@@ -83,6 +88,7 @@ const OptionForm = (props) => {
     </FadeIn>
   );
 
+  const [DayTimeClicked, ChangeDayTimeClicked]= useState(false)
   const [DaytimeValueInput, ChangeDaytimeValue] = useState("");
   const handleDaytime = (e) => {
     ChangeDaytimeValue(e.target.value);
@@ -109,6 +115,7 @@ const OptionForm = (props) => {
         BorderValue={"solid"}
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
+        onClickValue={() => ChangeDayTimeClicked(!DayTimeClicked)}
         onchangeValue={handleDaytime}
         InputValue={DaytimeValueInput}
       >
@@ -122,9 +129,9 @@ const OptionForm = (props) => {
     </FadeIn>
   );
 
-  props.submitHourValue(HourValueInput);
-  props.submitMinutsValue(MinutsValueInput);
-  props.submitDayValue(DaytimeValueInput);
+  props.submitHourValue(HourClicked ? HourValueInput : "12");
+  props.submitMinutsValue(MinutsValueInput ? MinutsClicked : "00");
+  props.submitDayValue(DayTimeClicked ? DaytimeValueInput : "AM");
 
   return [Hours, Minuts, DayTime];
 };

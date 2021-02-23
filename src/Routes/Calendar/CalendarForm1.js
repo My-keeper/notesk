@@ -27,6 +27,10 @@ const CalendarForm1 = (props) => {
   });
   //Data Selected function
   const handleDateSelect = (selectInfo) => {
+    /*
+    ih here use splice to check if the ending data is bigger than the starting data just by 
+    one day then return undifiended otherwise return the data
+    */
     ChangeStartData(selectInfo.startStr); // Selected Start Data
     ChangeEndData(selectInfo.endStr); // Selected End Data
     props.CallingSchedule(true);
