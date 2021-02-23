@@ -36,8 +36,13 @@ const CalendarForm1 = (props) => {
     props.CallingSchedule(true);
   };
   //Event clicked handler
+  const [isStartedMonth, ChnageIsStartedMonth] = useState("")
+  console.log(isStartedMonth);
+
   const handleEventClick = (clickInfo) => {
-    ChangeShowEventClicekd(false);
+    console.log(clickInfo)
+    ChnageIsStartedMonth(clickInfo.event._instance.range.start.slice(4, 15))
+    // console.log(months.slice(4, 15));
     ChangeClickedEvent({
       Id: clickInfo.event._def.publicId,
       title: clickInfo.event._def.title,

@@ -11,6 +11,7 @@ const EditButton = (props) => {
     marginTop: "4px",
   };   
 
+
 //   const SubmitEvent = () => { 
 //     return(
 //     //   props.isEvent((oldarr) => [...oldarr, CreateEvent]),
@@ -30,7 +31,7 @@ const EditButton = (props) => {
         BorderValue="solid"
         borderWidthValue="thin"
         paddingInputValue="2px"
-        // onClick={SubmitEvent}
+        onClick={()=>props.isEditClicked(true)}
         text={"Edit"}
         icon={<LoginOutlined style={ButtonIconColor} />}
       />

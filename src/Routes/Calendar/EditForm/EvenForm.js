@@ -5,6 +5,7 @@ import FadeIn from "react-fade-in";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
+import EditEventForm from "./EditEventForm";
 
 // import { SubmissionContainer } from "../ScheduleForm/Containers/SubmitButton1" ;
 const EachateContainer = styled.div`
@@ -33,6 +34,7 @@ const ContentStyle = styled.span`
   `
 const EventForm = (props) => { 
 
+  
   // The Event information 
   const Header=<EachateContainer>
     <span style={{ 
@@ -44,8 +46,8 @@ const EventForm = (props) => {
     <CloseCircleOutlined
       onClick={()=> props.closedEventForm(true)} 
       style={{marginRight: "4px", marginLeft: "180px", marginBottom: "15px",
-          fontSize: "26px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
-    />
+      fontSize: "26px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
+      />
   </EachateContainer>  
   //TItle Area props.ScheduleColor.IconC
   const isTitle =<EachateContainer JustifyContentCalue={""}>
@@ -60,9 +62,10 @@ const EventForm = (props) => {
   //Url Area props.ScheduleColor.IconC
   const isUrl =<EachateContainer JustifyContentCalue={ ""}>
     <TitleStyle Coloring={props.ScheduleColor.IconC}>Url : </TitleStyle> 
-    <ContentStyle >{ !props.EventClickedInfo.url == "" ? props.EventClickedInfo.url : "......"  }</ContentStyle> 
+    <ContentStyle >{  props.EventClickedInfo.url }</ContentStyle> 
   </EachateContainer>
   //Start Area props.ScheduleColor.IconC
+  console.log(props.EventClickedInfo.Start)
   const isStart =<EachateContainer JustifyContentCalue={ ""}>
     <TitleStyle Coloring={props.ScheduleColor.IconC}>Start : </TitleStyle> 
     {/* <ContentStyle >{props.EventClickedInfo.Start}</ContentStyle>  */}
@@ -82,10 +85,15 @@ const EventForm = (props) => {
     {isEnd}
   </DateContainer>
   
+  //EditButton Clicked
+  const [CallEditForm, ChnageEditForm]= useState(false)
   //The edit button
   const isEditButton=
   <EachateContainer JustifyContentCalue={ ""}>
-    <EditButton ColorChange={props.ScheduleColor}/>
+    <EditButton 
+      isEditClicked={value=> ChnageEditForm(value)}
+      ColorChange={props.ScheduleColor}
+      />
     <DeleteButton
       EventsInfoList={props.PassedAllEvent} //list of all the Events created 
       IDofClickedEvent={props.EventClickedInfo.Id} //the clicked event ID 
@@ -96,24 +104,34 @@ const EventForm = (props) => {
   </EachateContainer>
 
   const EventInfo= <NoteContainer
-        position={"relative"}
-        width={"480px"}
-        margin={"30px auto 20px auto"}
-        padding={"15px"}
-        boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-        borderRadiusValue={"7px"}
-        resizeValue={"both"}
-        backGroundColorValue={props.ScheduleColor.NotekBGC}
-        FontColorValue={props.ScheduleColor.NoteFC}
-      > 
-        {Header}
-        {Content}
-        {isEditButton}
-      </NoteContainer>
+      position={"relative"}
+      width={"480px"}
+      margin={"30px auto 20px auto"}
+      padding={"15px"}
+      boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+      borderRadiusValue={"7px"}
+      resizeValue={"both"}
+      backGroundColorValue={props.ScheduleColor.NotekBGC}
+      FontColorValue={props.ScheduleColor.NoteFC}
+    > 
+      {Header}
+      {Content}
+      {isEditButton}
+    </NoteContainer>
+    
+const EditFormInfo =<EditEventForm
+    ScheduleColor={props.ScheduleColor}
+    closedEventForm={props.closedEventForm}
+    getTitle={props.EventClickedInfo.title}
+    getDescription={props.EventClickedInfo.description}
+    getURL={props.EventClickedInfo.url}
+    
+    />
 
   return (
     <FadeIn>
-      {EventInfo}
+      {CallEditForm ? EditFormInfo  :EventInfo}
+
     </FadeIn>
   );
 };

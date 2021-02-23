@@ -20,7 +20,7 @@ const EachateContainer = styled.div`
     margin: 4px;
 `
 
-const Schedule = (props) => {
+const EditEventForm = (props) => {
     //All Component Color Stle
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
@@ -154,7 +154,7 @@ const Schedule = (props) => {
         isEvent={props.submitEventValues} //returning the new event to the array of objects
       />
     );
-    const ScheduleForm = (
+    const EditForm = (
         <FadeIn>
             <NoteContainer
                 position={"relative"}
@@ -180,7 +180,7 @@ const Schedule = (props) => {
         </FadeIn>
     );
 
-  return ScheduleForm;
+  return EditForm;
 };
 
-export default Schedule;
+export default EditEventForm;

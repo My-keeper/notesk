@@ -22,6 +22,8 @@ const CalendarCollection = (props) => {
       description: "lets play some game s",
       display: "list-item",
       backgroundColor: "black",
+      Url: "http://localhost:3000/calendar",
+      description: "lets see if it will work"
     },
     {
       id: "3",
@@ -43,31 +45,35 @@ const CalendarCollection = (props) => {
   const [SelectedEndedData, ChangeEndedData] = useState(); // ended slected data  
   console.log(SelectedEndedData);
   //the calendar form 
-  const calendarForm = (<div style={{zIndex:"1"}}>
-    <CalendarForm
-      CalendarColor={props.RecieveColor} //send color form App
-      SendingEvents={currentEvents} //Pass down the list of eventsRecieveColor
-      CallingSchedule={(value) => ChangeShowSchedule(value)} //to call schedule
-      GetStartDate={(value) => ChangeStartedData(value)} //getting started clicked data
-      GetEndDate={(value) => ChangeEndedData(value)} //getting ended clicked data 
-      ChangeEvents={(value) => ChangeEventList(value)}
-    />
+  const calendarForm = 
+    (<div style={{zIndex:"1", filter: !showSchedule ? null : "blur(4px)",
+          pointerEvents:!showSchedule ? null : "none"}}>
+        <CalendarForm
+          CalendarColor={props.RecieveColor} //send color form App
+          SendingEvents={currentEvents} //Pass down the list of eventsRecieveColor
+          CallingSchedule={(value) => ChangeShowSchedule(value)} //to call schedule
+          GetStartDate={(value) => ChangeStartedData(value)} //getting started clicked data
+          GetEndDate={(value) => ChangeEndedData(value)} //getting ended clicked data 
+          ChangeEvents={(value) => ChangeEventList(value)}
+        />
     </div>
-  );
+    );
   //scheduling event is called 
   const scheduleForm = (
-    <ScheduleForm
-      submitEventValues={(value) => ChangeEventList(value)}
-      ScheduleColor={props.RecieveColor} //send color form App
-      CallingCalendar={(value) => ChangeShowSchedule(value)} //to call calendar back 
-      SendSelectedSD={SelectedStartedData} //Selected Start Data
-      // SendSelectedED={ClickedEvent} //Selected End Data
-    />
+    <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
+      <ScheduleForm
+        submitEventValues={(value) => ChangeEventList(value)}
+        ScheduleColor={props.RecieveColor} //send color form App
+        CallingCalendar={(value) => ChangeShowSchedule(value)} //to call calendar back 
+        SendSelectedSD={SelectedStartedData} //Selected Start Data
+        // SendSelectedED={ClickedEvent} //Selected End Data
+        />
+    </div>
   ); 
   return (
     <CalenderContainer >
       {showSchedule ? scheduleForm : null}  
-      {showSchedule? null : calendarForm} 
+      {showSchedule? calendarForm : calendarForm} 
     </CalenderContainer>
   );
 };
