@@ -6,6 +6,9 @@ import TimeSelected from './DataCollection/TimeSelected';
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { createEventId } from "../../event-utils";
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import { CloseCircleOutlined, CheckCircleOutlined, CheckCircleFilled, EditFilled, EditOutlined } from "@ant-design/icons";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -30,6 +33,14 @@ const DateContainer = styled.div`
     justify-content: flex-start;
 `
 const CalenderContianer = (props) => {
+        //DateStyle and unDateStyle color style 
+    const ShowDateStle = {
+        marginRight: "4px", 
+        marginLeft:"51px",
+        marginTop:"7px" , 
+        fontSize: "18px", 
+        color : props.ScheduleColor.IconC
+    }
     //All Component Color Stle
     const IconColor = { 
         color : props.ScheduleColor.IconC, 
@@ -47,7 +58,25 @@ const CalenderContianer = (props) => {
     const InfoArea = <EachateContainer JustifyContentCalue={"space-between" }>
             {<FadeIn><span style={{ padding: "1px" ,paddingTop: "1px" , fontSize: "1.2em", marginLeft: "150px"}}>Selected Data</span></FadeIn>}
         </EachateContainer>
+    const [isSelectedDate, ChangeSelectedDate]= useState(true)
+    const ChangeSelectedData= isSelectedDate ?  
+        <RadioButtonUncheckedIcon 
+            onClick={()=>ChangeSelectedDate(false)}
+            style={ShowDateStle}
+        /> 
+        : 
+        <CheckCircleFilled 
+            onClick={()=>ChangeSelectedDate(true)}
+            style={ShowDateStle} 
+        />
 
+    const isData = <EachateContainer> 
+            {ChangeSelectedData}
+           { isSelectedDate ? 
+                <span style={{paddingTop: "7px" ,fontSize: "1em", marginLeft: "5px"}}> Chick to Change Selected Date of Event</span>
+                :
+                <span style={{paddingTop: "7px" ,fontSize: "1em", marginLeft: "5px"}}> Chick to Retun to Selected Date of Event</span>}
+        </EachateContainer>
     //Starting Data Area
     const StartingData = <EachateContainer JustifyContentCalue={ ""}>
             <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
@@ -64,7 +93,8 @@ const CalenderContianer = (props) => {
     const calendar = <InfoContainer>
             {InconArea}
             <DateContainer>
-                {InfoArea}
+                {/* {InfoArea} */}
+                {isData}
                 {StartingData}
                 {EndingingData}
             </DateContainer>

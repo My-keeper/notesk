@@ -36,23 +36,31 @@ const CalendarForm1 = (props) => {
     props.CallingSchedule(true);
   };
   //Event clicked handler
-  const [isStartedMonth, ChnageIsStartedMonth] = useState("")
-  console.log(isStartedMonth);
+  const [isStartedDate, ChnageIsStartedDate] = useState("") // The value of the started clicked Data of event
+  const [isEndedDate, ChnageIsEndedDate] = useState("") //The value of the ended clicked Data of event
 
   const handleEventClick = (clickInfo) => {
-    console.log(clickInfo)
-    ChnageIsStartedMonth(clickInfo.event._instance.range.start.slice(4, 15))
-    // console.log(months.slice(4, 15));
+    
+    ChangeShowEventClicekd(false);
+    //save the starting data for edit form event
+    ChnageIsStartedDate(
+      clickInfo.event._instance.range.end.toString().slice(4, 15)
+    ); 
+    //save the starting data for edit form event
+    ChnageIsEndedDate(
+      clickInfo.event._instance.range.start.toString().slice(4, 15)
+    );
     ChangeClickedEvent({
       Id: clickInfo.event._def.publicId,
       title: clickInfo.event._def.title,
       description: clickInfo.event._def.extendedProps.description,
       url: clickInfo.event._def.extendedProps.Url,
-      Start: clickInfo.event._instance.range.start,
-      End: clickInfo.event._instance.range.end,
+      Start: clickInfo.event._instance.range.start.toString().slice(4, 15),
+      End: clickInfo.event._instance.range.end.toString().slice(4, 15),
       Display: clickInfo.event._def.ui.display,
     });
   };
+
   const FullCalendarForm = (
     <div
       style={{
@@ -103,6 +111,8 @@ const CalendarForm1 = (props) => {
         closedEventForm={(value) => ChangeShowEventClicekd(value)}
         EventClickedInfo={ShowEventClicked ? null : ClickedEvent} //pass downt the info about the clicked data
         PassedAllEvent={props.SendingEvents} //copy of the event so we can compare the id and delete it
+        isStartedDateEditEvent={isStartedDate} //The value of the started Clicked Event 
+        isEndedDateEditEvent={isEndedDate} //The value of the Ended Clicked Event 
         ChangeAllEvents={(value) => props.ChangeEvents(value)} //Delete the selected event
       />
     </div>

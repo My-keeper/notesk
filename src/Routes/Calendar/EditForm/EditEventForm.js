@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import NoteContainer from "../../../UI/Modal"; 
-import { CloseCircleOutlined } from "@ant-design/icons";
+import { CloseCircleOutlined, CheckCircleOutlined, CheckCircleFilled, EditFilled, EditOutlined } from "@ant-design/icons";
 import FadeIn from "react-fade-in";
 import {TitleContainer,DescriptionContainer,URLContainer} from "../ScheduleForm/Containers/InputContainer";
 import {CalenderContianer,TimerContainer} from "../ScheduleForm/Containers/DropDownContainer";
@@ -11,7 +11,7 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-
+ 
 const EachateContainer = styled.div`
     width: 500px;
     display: flex;
@@ -24,17 +24,26 @@ const EachateContainer = styled.div`
 const EditEventForm = (props) => {
 
     //All Component Color Stle
-    const IconColor = { 
-        color : props.ScheduleColor.IconC, 
-        fontSize:"24px", 
-        marginLeft:"10px"
-    }
+    const IconColor = {
+      color: props.ScheduleColor.IconC,
+      fontSize: "24px",
+      marginTop: "2px",
+      marginLeft: "60px",
+    };
     //Visable and unvisable color style 
     const VisibilityStle = {
         marginRight: "4px", 
         marginLeft:"4px",
-        marginTop:"6px" , 
+        marginTop:"7px" , 
         fontSize: "21px", 
+        color : props.ScheduleColor.IconC
+    }
+    //DateStyle and unDateStyle color style 
+    const ShowDateStle = {
+        marginRight: "4px", 
+        marginLeft:"60px",
+        marginTop:"7px" , 
+        fontSize: "18px", 
         color : props.ScheduleColor.IconC
     }
     
@@ -83,12 +92,31 @@ const EditEventForm = (props) => {
 
     //This is to show either the data or repeated days
     const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
-    const ShowData = <div onClick={()=>ChangeisShowTime(!isShowTime)}>
-        {isShowTime ?  <RadioButtonUncheckedIcon style={VisibilityStle} /> : <RadioButtonCheckedIcon style={VisibilityStle} /> }
-    </div>
-    const isData = <EachateContainer>
-            <DateRangeIcon style={IconColor}/>   
-            <span style={{paddingTop: "4px" ,fontSize: "1em", marginLeft: "50px"}}>Selected Data of Event</span>
+    const ShowData = isShowTime ?  
+        <EditOutlined  
+            onClick={()=>ChangeisShowTime(false)}
+            style={VisibilityStle} 
+        /> 
+        : 
+        <EditFilled 
+            onClick={()=>ChangeisShowTime(true)}
+            style={VisibilityStle} 
+        />
+    const [isSelectedDate, ChangeSelectedDate]= useState(true)
+    const ChangeSelectedData= isSelectedDate ?  
+        <RadioButtonUncheckedIcon 
+            onClick={()=>ChangeSelectedDate(false)}
+            style={ShowDateStle}
+        /> 
+        : 
+        <CheckCircleFilled 
+            onClick={()=>ChangeSelectedDate(true)}
+            style={ShowDateStle} 
+        />
+    //This is for the layout for Year Month Days 
+    const InfoArea = <EachateContainer>
+            <DateRangeIcon style={IconColor}/>
+            <span style={{paddingTop: "4px" ,fontSize: "1em", marginLeft: "20px"}}>Selected Data</span>
         </EachateContainer>
     const isRepeated = <EachateContainer>
             <AddAlertIcon style={IconColor}/>   
@@ -96,19 +124,19 @@ const EditEventForm = (props) => {
         </EachateContainer>
     const IcionArea = <EachateContainer> 
         {ShowData} 
-        {isShowTime ? isData : isRepeated }
+        {isShowTime ? InfoArea : isRepeated }
         </EachateContainer>
 
     // Data From and To
     const [getFormDate, ChangeFormDate] = useState(); //this is the data that will be send to submit model to be added to the event list 
     const [getToDate, ChangeToDate] = useState();  //this is the data that will be send to submit model to be added to the event list 
 
-    // const StartDate= props.SendSelectedSD //This is the selected data in calendar
-    // const EndDate= props.SendSelectedED//This is the selected data in calendar  
+    const StartDate= props.getStartedClickedEvent //This is the selected data in calendar for edit passing down from EventForm
+    const EndDate= props.getEndededClickedEvent//This is the selected data in calendar  for edit passing down from EventForm
     const Data = ( !isShowTime ? null :
         <CalenderContianer
-        // SendSD={StartDate} //This is to send back the selected started data
-        // SendED={EndDate} //This is to send back the selected ended data
+        SendSD={StartDate} //This is to send back the selected started data
+        SendED={EndDate} //This is to send back the selected ended data
         GetFromDate={(value) => ChangeFormDate(value)} //Returning the selected data that the user chose 
         GetToDate={(value) => ChangeToDate(value)} //Returning the selected data that the user chose 
         ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
