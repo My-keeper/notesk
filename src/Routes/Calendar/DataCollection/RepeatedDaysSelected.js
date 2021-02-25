@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FadeIn  from 'react-fade-in';
-import Inputdata from '../../../../../UI/UserInput';
-import { createEventId } from "../../../event-utils";
+import Inputdata from '../../../UI/UserInput';
+import { createEventId } from "../event-utils";
 
 
 const RepeatDaySelected = (props) => {

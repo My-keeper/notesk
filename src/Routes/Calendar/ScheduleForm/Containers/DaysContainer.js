@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components"; 
 import FadeIn  from 'react-fade-in';  
 import RepeatIcon from '@material-ui/icons/Repeat'; 
-import RepeatDaySelected from './DataCollection/RepeatedDaysSelected';
+import RepeatDaySelected from '../../DataCollection/RepeatedDaysSelected';
 
 
 const InfoContainer = styled.div`

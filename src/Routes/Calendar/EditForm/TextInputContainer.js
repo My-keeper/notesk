@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import UserInput from '../../../../UI/UserInput'
-import TextArea from '../../../../UI/TextArea';
+import UserInput from '../../../UI/UserInput'
+import TextArea from '../../../UI/TextArea';
 import FadeIn  from 'react-fade-in';
 import { LinkOutlined} from "@ant-design/icons";
 import { Title } from '@material-ui/icons';

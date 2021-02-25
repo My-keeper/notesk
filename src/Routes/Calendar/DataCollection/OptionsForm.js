@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createEventId } from "../../../event-utils";
+import { createEventId } from "../event-utils";
 
 //this is for the hour input 
 const HourValue = (props) => {
@@ -7,7 +7,7 @@ const HourValue = (props) => {
     const Hours = ['01','02','03','04','05','06','07','08','09','10','11','12']
     const DailyHours = (
         [Hours.map((Hour, index) => 
-            <option disabled={props.DisabledHour}  key={index.id + createEventId()} value={Hour}>{Hour}</option>)]
+            <option  key={index.id + createEventId()} value={Hour}>{Hour}</option>)]
         )
     return(DailyHours)
 }
@@ -17,7 +17,7 @@ const MinutsValue = (props) => {
     const Minuts = ['05','10','15','20','25','30','35','40','45','50','55']
     const DailyMinut =(
         [Minuts.map((Minut, index) => 
-            <option disabled={props.DisabledMinuts} key={index.id + createEventId()} value={Minut}>{Minut}</option>)]
+            <option key={index.id + createEventId()} value={Minut}>{Minut}</option>)]
         )
     return(DailyMinut)
 }
@@ -27,7 +27,7 @@ const TwelveHourSystemValue = (props) => {
     const TwelveHourSystem = ['AM','PM']
     const DayDivided =(
         [TwelveHourSystem.map((DayTime, index) => 
-            <option disabled={props.DisabledHourSystem} key={index.id + createEventId()} value={DayTime}>{DayTime}</option>)]
+            <option key={index.id + createEventId()} value={DayTime}>{DayTime}</option>)]
         )
     return(DayDivided)
 }
@@ -46,7 +46,7 @@ const NumberOfYearsValue = (props) => {
 }
 const NumberOfMonthsValue = (props) => { 
     //this is for the months in a year 
-    const NumberOfMonths = ['01','02','03','04','05','06','07','08','09','10','11','12']
+    const NumberOfMonths = ['Jan','Feb','March','Apirl','May','June','July','Aug','Sept','Oct','Nov','Dec']
     const MonthContainer = (
         [NumberOfMonths.map((month, index) => <option  key={index.id + createEventId()}  value={month}>{month}</option>)]
         )

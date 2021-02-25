@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import FadeIn from "react-fade-in";
-import SelectData from "../../../../../UI/Select";
+import SelectData from "../../../UI/Select";
 import { HourValue, MinutsValue, TwelveHourSystemValue } from "./OptionsForm";
-import { createEventId } from "../../../event-utils";
+import { createEventId } from "../event-utils";
 import { ControlCameraOutlined } from "@material-ui/icons";
 
 const OptionForm = (props) => {
   const [HourClicked, ChangeHourClicked]= useState(false)
   const [HourValueInput, ChangeHourValue] = useState("");
   const handle = (e) => {
-    ChangeHourValue(e.target.value);
+    ChangeHourValue(e.target.value)
+    ChangeHourClicked(!HourClicked)
   };
   const Hours = (
     <FadeIn>
@@ -27,21 +28,15 @@ const OptionForm = (props) => {
         backGroundColorValue={props.RecievedColor.UserInputBGC}
         FontColorValue={props.RecievedColor.UserInputFC}
         PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-        borderColorValue={
-          props.DisabledisClicked ? "#A9A9A9" : props.RecievedColor.BorderColor
-        }
+        borderColorValue={props.RecievedColor.BorderColor}
         BorderValue={"solid"}
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
-        onClickValue={() => ChangeHourClicked(!HourClicked)}
         onchangeValue={handle}
         InputValue={HourValueInput}
       >
         {
-          <HourValue
-            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
-            DisabledHour={props.DisabledisClicked}
-          />
+          <HourValue />
         }
       </SelectData>
     </FadeIn>
@@ -50,7 +45,8 @@ const OptionForm = (props) => {
   const [MinutsClicked, ChangeMinutsClicked] = useState(false)
   const [MinutsValueInput, ChangeMinutsValue] = useState("");
   const handleMinuts = (e) => {
-    ChangeMinutsValue(e.target.value);
+    ChangeMinutsValue(e.target.value)
+    ChangeMinutsClicked(!MinutsClicked)
   };
   const Minuts = (
     <FadeIn>
@@ -68,21 +64,15 @@ const OptionForm = (props) => {
         backGroundColorValue={props.RecievedColor.UserInputBGC}
         FontColorValue={props.RecievedColor.UserInputFC}
         PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-        borderColorValue={
-          props.DisabledisClicked ? "#A9A9A9" : props.RecievedColor.BorderColor
-        }
+        borderColorValue={props.RecievedColor.BorderColor}
         BorderValue={"solid"}
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
         onchangeValue={handleMinuts}
-        onClickValue={() => ChangeMinutsClicked(!MinutsClicked)}
         InputValue={MinutsValueInput}
       >
         {
-          <MinutsValue
-            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
-            DisabledMinuts={props.DisabledisClicked}
-          />
+          <MinutsValue />
         }
       </SelectData>
     </FadeIn>
@@ -91,7 +81,8 @@ const OptionForm = (props) => {
   const [DayTimeClicked, ChangeDayTimeClicked]= useState(false)
   const [DaytimeValueInput, ChangeDaytimeValue] = useState("");
   const handleDaytime = (e) => {
-    ChangeDaytimeValue(e.target.value);
+    ChangeDaytimeValue(e.target.value)
+    ChangeDayTimeClicked(!DayTimeClicked)
   };
   const DayTime = (
     <FadeIn>
@@ -109,21 +100,15 @@ const OptionForm = (props) => {
         backGroundColorValue={props.RecievedColor.UserInputBGC}
         FontColorValue={props.RecievedColor.UserInputFC}
         PlaceHolderColorValue={props.RecievedColor.UserInputPHC}
-        borderColorValue={
-          props.DisabledisClicked ? "#A9A9A9" : props.RecievedColor.BorderColor
-        }
+        borderColorValue={props.RecievedColor.BorderColor}
         BorderValue={"solid"}
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
-        onClickValue={() => ChangeDayTimeClicked(!DayTimeClicked)}
         onchangeValue={handleDaytime}
         InputValue={DaytimeValueInput}
       >
         {
-          <TwelveHourSystemValue
-            //this is the DisabledisClicked that is coming from DropDown to change every time we click on the icion
-            DisabledHourSystem={props.DisabledisClicked}
-          />
+          <TwelveHourSystemValue />
         }
       </SelectData>
     </FadeIn>

@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import FadeIn from "react-fade-in";
-import SelectData from "../../../../../UI/Select";
+import SelectData from "../../../UI/Select";
 import {
   NumberOfYearsValue,
   NumberOfMonthsValue,
   NumberOfDaysValue,
 } from "./OptionsForm";
-import { createEventId } from "../../../event-utils";
+import { createEventId } from "../event-utils";
 
 const DateSelected = (props) => {
+  //This part is changed once the user click on the drop down to see other options
+  const [GetUserChangeYear, ChnageUserChangedYear] = useState(true);
   /*
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
     */
-  const [YearsValueInput, ChangeYearsValueInput] = useState("");
+  const [YearsValueInput, ChangeYearsValueInput] = useState(
+    GetUserChangeYear
+      ? props.ReturnFrom === "From"
+        ? props.ReturnClickedFromYear
+        : props.ReturnClickedToYear
+      : ""
+    );
   const handleYears = (e) => (
-    ChangeYearsValueInput(e.target.value)
+    ChangeYearsValueInput(e.target.value) , ChnageUserChangedYear(false)
     )
   const Years = (
     <FadeIn>
@@ -48,14 +56,22 @@ const DateSelected = (props) => {
       </SelectData>
     </FadeIn>
   );
-
+  
+  // This part is changed once the user click on the drop down to see other options
+  const [GetUserChangeMonth, ChnageUserChangedMonth] = useState(true);
   /*
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
     */
-  const [MonthsValueInput, ChangeMonthsValue] = useState("");
+  const [MonthsValueInput, ChangeMonthsValue] = useState(
+      GetUserChangeMonth
+        ? props.ReturnFrom === "From"
+          ? props.ReturnClickedFromMonth
+          : props.ReturnClickedToMonth
+        : ""
+    );
   const handleMonths = (e) => (
-    ChangeMonthsValue(e.target.value) 
+    ChangeMonthsValue(e.target.value) , ChnageUserChangedMonth(false)
   );
   const Months = (
     <FadeIn>
@@ -87,14 +103,21 @@ const DateSelected = (props) => {
     </FadeIn>
   );
 
+  // This part is changed once the user click on the drop down to see other options
+  const [GetUserChangeDay, ChnageUserChangedDay] = useState(true);
   /*
         This part is chicking if the input that the user entered is what is wanted or not 
         Once the select is clicked then it will change to normal dropdown with input number 
     */
-  const [DayValueInput, ChangeDayValue] = useState("");
+  const [DayValueInput, ChangeDayValue] = useState(
+      GetUserChangeDay
+        ? props.ReturnFrom === "From"
+          ? props.ReturnClickedFromDay
+          : props.ReturnClickedToDay
+        : ""
+    );
   const handleDays = (e) => (
-    console.log(e.target),
-    ChangeDayValue(e.target.value) 
+    ChangeDayValue(e.target.value) , ChnageUserChangedDay(false)
   );
   const name = props.name == "start" ? "start" : "end"
   const Days = (
