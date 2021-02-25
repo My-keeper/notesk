@@ -6,6 +6,7 @@
 const mongoose = require('mongoose')
    
 const Calendar = mongoose.model('CalendarEvents', {
+    events : [{
     id: {
         type: String, 
         required: true
@@ -41,6 +42,7 @@ const Calendar = mongoose.model('CalendarEvents', {
         type: String, 
         required: true
     }
+    }]
 })
 
 module.exports = Calendar

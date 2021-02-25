@@ -8,7 +8,8 @@
  
 const mongoose = require('mongoose')
 const validator = require('validator') 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -78,25 +79,46 @@ const userSchema = new mongoose.Schema({
                 throw new Error('Age must be a postive number')
             }
         }
-    }
+    },
+    /*  this to allow users to login and logout from different machines using array of objects
+        it an array of objects each has  a token propirty which is the token we are tracking  
+    */
+    tokens: [{
+        token: {
+            type: String,
+            require: true
+        }
+    }]
 })
+/*
+    Create a generateAuthToken so we can check if the user has been logged in before or not 
+    we are going to use Function so we can use "this" and that will help binding 
+*/
+userSchema.methods.generateAuthToken = async function () {
+    const user = this 
+    //gerenating jwt 
+    const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewwebsite')
+    //now add that toke to the token propirty and added to user to be show in the database  
+    user.tokens = user.tokens.concat({ token : token })
+    //saving the token to the database 
+    await user.save()
+    
+    return token
+
+}
 
 //Created a findByCredentials so we can check if the user loggedin with the same credential that we have
 userSchema.statics.findByCredentials = async (email, password) => {
-    const user = await User.findOne({ email })
-    console.log("we are here ")
-
-    if (user) {
-        console.log("it is the email")
-        throw new Error('Unable to login')
+    const user = await User.findOne({ email: email }); //Searching user in monogoos to check if the email is there or not 
+    if (!user) {
+        throw new Error('Unable to login em')
     }
     
     //The first argument is the text password and the second is the hashed one to compare them 
     const isMatch = await bcrypt.compare( password, user.password)
     
     if (!isMatch) {
-        console.log("it is the password")
-        throw new Error('Unable to login')
+        throw new Error('Unable to login pa')
     }
 
     return user
