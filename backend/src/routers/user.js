@@ -1,6 +1,8 @@
 const express = require('express')
 const User = require('../models/user')
+const auth = require('../middleware/auth')
 const router = new express.Router()
+
 //SignUp
 router.post("/Users", async (req, res) => {
   const user = new User(req.body); //take the info from the website and then save it in user
@@ -35,8 +37,8 @@ router.post("/Users/login", async (req, res) => {
 
 })
 
-
-router.get("/Users", async (req, res) => {
+//get the user 
+router.get("/Users", auth , async (req, res) => {
   //we can add the name of the User we are looking for inside the {}
   try{
       const users = await User.find({})
