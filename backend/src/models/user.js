@@ -91,6 +91,20 @@ const userSchema = new mongoose.Schema({
     }]
 })
 /*
+    Using toJSON will help returning the user object without the deleted info  
+
+    this way is better than creating a method and it will work on all routs but if a method was 
+    to be created then we have to mention at which route we are using it 
+*/
+userSchema.methods.toJSON = function () {
+    const user = this 
+    const userObject = user.toObject() //having access to the userObjects and modify it 
+    delete userObject.password //This will help deleting the information about the user's password
+    delete userObject.tokens  //This will help deleting the information about the user's tokens 
+
+    return userObject //returning the new userobject without the the deleted info
+}
+/*
     Create a generateAuthToken so we can check if the user has been logged in before or not 
     we are going to use Function so we can use "this" and that will help binding 
 */
