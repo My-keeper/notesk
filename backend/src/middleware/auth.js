@@ -22,7 +22,8 @@ const auth = async ( req, res, next) => {
         if(!user) {
             throw new Error()
         }
-        //if the user was found 
+        //if the user was found
+        req.token = token //now we have access to the token of the user  
         req.user = user //now we have acess to the user that was fitched from the database 
         next() // running the coding to return to what the route should do 
     }catch (e) {

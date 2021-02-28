@@ -36,7 +36,35 @@ router.post("/Users/login", async (req, res) => {
   }
 
 })
+//Logout
+router.post("/Users/logout", auth , async (req,res) => {
+  
+  try{
+    //this to logout from one machine 
+    req.user.tokens = req.user.tokens.filter((token) => {
+      return token.token !== req.token
+    })
+    await req.user.save()
 
+    res.send("now you are logged out ")
+  } catch (e) {
+    res.status(500).send()
+  }
+
+})
+//Logout from all
+router.post("/Users/logoutAll", auth , async (req,res) => {
+  
+  try{
+    //this to logout from all machine 
+    req.user.tokens = [] //return empty array for that user 
+    await req.user.save()
+    res.status(200).send("now you are logged out from all machines ")
+  } catch (e) {
+    res.status(500).send()
+  }
+
+})
 //get the user 
 router.get("/Users", async (req, res) => {
   //we can add the name of the User we are looking for inside the {}
