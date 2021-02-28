@@ -38,7 +38,7 @@ router.post("/Users/login", async (req, res) => {
 })
 
 //get the user 
-router.get("/Users", auth , async (req, res) => {
+router.get("/Users", async (req, res) => {
   //we can add the name of the User we are looking for inside the {}
   try{
       const users = await User.find({})
@@ -46,6 +46,11 @@ router.get("/Users", auth , async (req, res) => {
   }catch(e){
       res.status(500).send()
   } 
+});
+//For user profile profile 
+router.get("/Users/me", auth , async (req, res) => {
+  //return the information about the user when they are authenticated 
+  res.send(req.user) 
 });
 // we are missing finding user using the email and updaing user if needed and deleteing user 
 //there is  a prob with meddlewear for fixing watch video 104 at 9 mins 
