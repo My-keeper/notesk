@@ -71,15 +71,6 @@ const userSchema = new mongoose.Schema({
     //     trim: true,
     //     min: 5,
     // },
-    age: {
-        type: Number,
-        default: 1,
-        validate(value) {
-            if (value < 0) {
-                throw new Error('Age must be a postive number')
-            }
-        }
-    },
     /*  this to allow users to login and logout from different machines using array of objects
         it an array of objects each has  a token propirty which is the token we are tracking  
     */
@@ -89,6 +80,22 @@ const userSchema = new mongoose.Schema({
             require: true
         }
     }]
+})
+/*
+    creatinga a virtual copy of the  notes for each user 
+*/
+userSchema.virtual('notes', {
+    ref: 'Note',
+    localField: '_id',
+    foreignField: 'Owner'
+})
+/*
+    creatinga a virtual copy of the calendar events  for each user 
+*/
+userSchema.virtual('notes', {
+    ref: 'CalendarEvents',
+    localField: '_id',
+    foreignField: 'Owner'
 })
 /*
     Using toJSON will help returning the user object without the deleted info  

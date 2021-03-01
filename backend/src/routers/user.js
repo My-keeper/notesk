@@ -65,16 +65,6 @@ router.post("/Users/logoutAll", auth , async (req,res) => {
   }
 
 })
-//get the user 
-router.get("/Users", async (req, res) => {
-  //we can add the name of the User we are looking for inside the {}
-  try{
-      const users = await User.find({})
-      res.send(users)
-  }catch(e){
-      res.status(500).send()
-  } 
-});
 //For user profile profile 
 router.get("/Users/me", auth , async (req, res) => {
   //return the information about the user when they are authenticated 
