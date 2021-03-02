@@ -118,7 +118,7 @@ userSchema.methods.toJSON = function () {
 userSchema.methods.generateAuthToken = async function () {
     const user = this 
     //gerenating jwt 
-    const token = jwt.sign({ _id: user._id.toString() }, 'why is it')
+    const token = jwt.sign({ _id: user._id.toString() }, 'MyFirstWebApplication')
     //now add that toke to the token propirty and added to user to be show in the database  
     user.tokens = user.tokens.concat({ token : token })
     //saving the token to the database 

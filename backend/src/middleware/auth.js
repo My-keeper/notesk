@@ -15,7 +15,7 @@ const auth = async ( req, res, next) => {
         //requesting the header token from the user who is called then , Replacing Bearer with nothing8
         const token = req.header('Authorization').replace('Bearer ', '')
         //making sure that the token is valid and created by the server 
-        const decoded = jwt.verify(token, 'why is it')
+        const decoded = jwt.verify(token, 'MyFirstWebApplication')
         //now we are looking for the user with that token id and then confirm that the token is the same 
         const user = await User.findOne({ _id:  decoded._id, 'tokens.token': token })
         //if the user in not that then catch method would be tragered 
