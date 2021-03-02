@@ -9,49 +9,47 @@
 const mongoose = require('mongoose')
    
 const Calendar = mongoose.model('CalendarEvents', {
-    events : [{
     id: {
         type: String, 
-        required: true
+        // required: true
     },
     title: {
         type: String, 
-        required: true
+        // required: true
     },
     description: {
         type: String, 
-        required: true
+        // required: true
     },
     url: {
         type: String 
     },
     start: {
         type: String, 
-        required: true
+        // required: true
     },
     end: {
         type: String, 
-        required: true
+        // required: true
     },
     daysOfWeek: {
         type: String, 
-        required: true
+        // required: true
     },
     display: {
         type: String, 
-        required: true
+        // required: true
     },
     textColor: {
         type: String, 
-        required: true
-    }
-    }],
-    //this where the idea of the user will be saved
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Users' //this is used as a reference so we get access to the whole user profile 
-    }
+        // required: true
+    } 
+    // //this where the idea of the user will be saved
+    // owner: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     required: true,
+    //     ref: 'Users' //this is used as a reference so we get access to the whole user profile 
+    // }
 })
 
 module.exports = Calendar
