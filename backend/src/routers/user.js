@@ -70,14 +70,5 @@ router.get("/Users/me", auth , async (req, res) => {
   //return the information about the user when they are authenticated 
   res.send(req.user) 
 });
-// we are missing finding user using the email and updaing user if needed and deleteing user 
-//there is  a prob with meddlewear for fixing watch video 104 at 9 mins 
-
-//for updating 
-// router.patch("/Users/:email", async (Req, res) => {
-//   const updates = Object.keys
-  
-  
-// })
 
 module.exports = router

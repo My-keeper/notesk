@@ -1,6 +1,6 @@
 const express = require("express");
 const Note = require("../models/notes");
-const Auth = require('../middleware/auth'); 
+const auth = require('../middleware/auth'); 
 const router = new express.Router();
 
 router.post("/Notes", async (req, res) => {

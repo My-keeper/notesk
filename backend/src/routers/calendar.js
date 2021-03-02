@@ -67,7 +67,7 @@ router.patch ("/Calendar/:id", async (req, res) => {
     }
   });
 
-  router.delete("/Notes/:id", async (req, res) => {
+  router.delete("/Notes/:id", Auth , async (req, res) => {
     try{
       const note = await Note.findByIdAndDelete(req.params.id)
   
@@ -80,5 +80,5 @@ router.patch ("/Calendar/:id", async (req, res) => {
       res.status(500).send()
     }
   })
-  
+
 module.exports = router;
