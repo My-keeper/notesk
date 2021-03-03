@@ -5,7 +5,7 @@ import Imag from "../../UI/Imag";
  
 const Signup = (props) => {
   return (
-    <div>
+    <div style={{ height: "800px", overflowY : "auto" }}>
       <Nav ColorChanged={props.colorchanged} RecieveColor={props.Color} CallingPage={"Signin"}/>
       <Imag/>  
       <SignupForm ColorChanged={props.colorchanged} RecieveColor={props.Color}/>
