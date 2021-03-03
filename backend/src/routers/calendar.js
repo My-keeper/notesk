@@ -1,20 +1,18 @@
 const express = require("express");
 const CalendarEvents = require("../models/calendar");
-const Auth = require('../middleware/auth'); 
+const auth = require('../middleware/auth'); 
 const router = new express.Router();
 
 //Creating Calendar Event
-router.post("/Calendar", async (req, res) => {
+router.post("/Calendar",auth, async (req, res) => {
     /*
         take the info from the website and then save it in user
         This way the notes that will be created will be owned by a user
     */
-    // const calendarEvents = new Note({
-    //     ... req.body,
-    //     owner : req.user._id // passing down the user id to the Created now as we created that section in the model
-    // })
-    const calendarEvents = new CalendarEvents(req.body)
-    //saving the info to the database and see if will match the info in the model or not
+    const calendarEvents = new CalendarEvents({
+        ... req.body,
+        owner : req.user._id // passing down the user id to the Created now as we created that section in the model
+    }) 
     try{
         await calendarEvents.save();
         res.status(201).send(calendarEvents);
@@ -23,17 +21,17 @@ router.post("/Calendar", async (req, res) => {
     }
 });
 
-router.get("/Calendar", async (req, res) => {
+router.get("/Calendar",auth , async (req, res) => {
     try{
-        // await req.user.populate('').execPopulate()
-        const calendarEvents = await CalendarEvents.find({}); //we can add the name of the note we are looking for inside the {}
+        // await req.user.populate('calendarEvent').execPopulate()
+        const calendarEvents = await CalendarEvents.find({owner: req.user._id}); //we can add the name of the note we are looking for inside the {}
         res.send(calendarEvents) 
     }catch(e){
         res.status(500).send(e);
     } 
 });
 
-router.patch ("/Calendar/:id", async (req, res) => {
+router.patch ("/Calendar/:id",auth , async (req, res) => {
     /*
       converting my object to an array with propirities 
       take the object and key will return an array of strings 
@@ -53,21 +51,21 @@ router.patch ("/Calendar/:id", async (req, res) => {
     }
   
     try{
-        console.log(req.params.id)
-      const calendar = await CalendarEvents.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-  
+      const calendar = await CalendarEvents.findOne({ _id: req.params.id, owner: req.user._id}); 
+      
       //no calendar
       if (!calendar) {
         return res.status(404).send()
       }
-  
+      updates.forEach((update) => calendar[update] = req.body[update])
+      await calendar.save()
       res.send(calendar)
     }catch(e){
         res.status(400).send(e)
     }
   });
 
-  router.delete("/Notes/:id", Auth , async (req, res) => {
+  router.delete("/Notes/:id", auth , async (req, res) => {
     try{
       const note = await Note.findByIdAndDelete(req.params.id)
   

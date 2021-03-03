@@ -92,7 +92,7 @@ userSchema.virtual('notes', {
 /*
     creatinga a virtual copy of the calendar events  for each user 
 */
-userSchema.virtual('notes', {
+userSchema.virtual('calendarEvent', {
     ref: 'CalendarEvents',
     localField: '_id',
     foreignField: 'Owner'

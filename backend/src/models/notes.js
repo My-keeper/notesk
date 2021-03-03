@@ -16,12 +16,12 @@ const Note = mongoose.model('Note', {
         type: String, 
         required: true
     },
-    // //this where the idea of the user will be saved
-    // owner: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: 'Users' //this is used as a reference so we get access to the whole user profile 
-    // }
+    //this where the idea of the user will be saved
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Users' //this is used as a reference so we get access to the whole user profile 
+    }
 })
 
 module.exports = Note
