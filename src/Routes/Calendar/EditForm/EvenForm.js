@@ -68,7 +68,6 @@ const EventForm = (props) => {
     </EachateContainer>
     
   //Start Area props.ScheduleColor.IconC
-  console.log(props.EventClickedInfo.Start)
   const isStart =<EachateContainer JustifyContentCalue={ ""}>
       <TitleStyle Coloring={props.ScheduleColor.IconC}>Start : </TitleStyle> 
       <ContentStyle >{props.EventClickedInfo.Start}</ContentStyle> 
@@ -128,7 +127,7 @@ const EditFormInfo = (
     IDofClickedEvent={props.EventClickedInfo.Id} //the clicked event ID
     ChangeOldEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model
     CloseModel={(value) => props.closedEventForm(value)} //to return true if clicked
-
+    ReturnNewEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model
     ScheduleColor={props.ScheduleColor}
     closedEventForm={props.closedEventForm}
     getTitle={props.EventClickedInfo.title} //The title

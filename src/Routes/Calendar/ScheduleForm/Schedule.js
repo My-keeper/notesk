@@ -96,7 +96,6 @@ const Schedule = (props) => {
     // Data From and To
     const [getFormDate, ChangeFormDate] = useState(); //this is the data that will be send to submit model to be added to the event list 
     const [getToDate, ChangeToDate] = useState();  //this is the data that will be send to submit model to be added to the event list 
-    console.log(getToDate);
     
     const StartDate= props.SendSelectedSD //This is the selected data in calendar
     const EndDate= props.SendSelectedED//This is the selected data in calendar  

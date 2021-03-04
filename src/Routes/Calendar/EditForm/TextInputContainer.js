@@ -109,7 +109,7 @@ const URLContainer = (props) => {
     }
     const [RecievedURL, ChangeRecievedURL] = useState(props.isEditURL)
     const URLHandler = (event) => {
-        props.SubmitURL(event.target.value)
+        props.URLOption(event.target.value);
         ChangeRecievedURL(event.target.value)
     }
     const URL = <InfoContainer>

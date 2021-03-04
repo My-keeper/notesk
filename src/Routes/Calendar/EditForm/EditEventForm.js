@@ -81,7 +81,7 @@ const EditEventForm = (props) => {
     );
 
      //URL Area
-    const [getURL, ChangeURL] = useState();
+    const [getURL, ChangeURL] = useState("");
     const URL = (
         <URLContainer
         URLOption={(value) => ChangeURL(value)}
@@ -164,6 +164,15 @@ const EditEventForm = (props) => {
         TheIdOfClickedEvent={props.IDofClickedEvent} //the clicked event ID
         ReturnChangedEvents={(value) => props.ChangeOldEvents(value)} //Delete selected event from all event and close model
         isCloseModel={(value) => props.CloseModel(value)} //to return true if clicked
+        isTitle={getTitle} //the Title value
+        isDescription={getDescription} //the Description value
+        isURL={getURL} //the URL value
+        isStartingDate={isShowTime ? getFormDate + "T12:00:00" : undefined} //the value of the Starting data
+        isRepeatedDays={!isShowTime ? GetRepeatedDays : undefined} //Values of Repeated Days
+        isStartingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(StartHours+":"+StartMinuts+":00")) : undefined} //Choose Starting Time of the repeated Event
+        isEndingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
+        ReturnNewEvents={(value) => props.ReturnNewEvents(value)}
+        isEndingData={getToDate} //the value of Ending data
         ColorChange={props.ScheduleColor} 
     />;
 

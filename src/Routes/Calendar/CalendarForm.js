@@ -59,7 +59,6 @@ const CalendarForm = (props) => {
       Display: clickInfo.event._def.ui.display,
     });
   };
-  console.log(props.CalendarColor);
   const FullCalendarForm = (
     <div
       style={{

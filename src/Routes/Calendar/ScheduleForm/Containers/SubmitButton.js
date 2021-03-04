@@ -27,8 +27,7 @@ const SubmitButton = (props) => {
   const SubmitEvent = () => { 
     return(
       props.isEvent((oldarr) => [...oldarr, CreateEvent]),
-      props.isCallingCalendar(false),
-      console.log(CreateEvent)
+      props.isCallingCalendar(false)
     )
   };
 
