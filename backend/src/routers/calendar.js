@@ -65,15 +65,19 @@ router.patch ("/Calendar/:id",auth , async (req, res) => {
     }
   });
 
-  router.delete("/Notes/:id", auth , async (req, res) => {
+  router.delete("/Calendar/:id", auth , async (req, res) => {
     try{
-      const note = await Note.findByIdAndDelete(req.params.id)
+      console.log(req.params.id)
+      console.log(req.user._id)
+      // const calendar = await CalendarEvents.findByIdAndDelete({ _id: req.params.id, owner: req.user._id}); 
+      const calendar = await CalendarEvents.findByIdAndDelete({ _id: req.params.id, owner: req.user._id}); 
+      console.log(calendar)
   
-      if (!note) {
+      if (!calendar) {
         return res.status(404).send()
       }
   
-      res.send(note)
+      res.send(calendar)
     } catch (e) {
       res.status(500).send()
     }

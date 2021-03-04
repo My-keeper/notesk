@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 const Calendar = mongoose.model('CalendarEvents', {
     id: {
         type: String, 
-        // required: true
+        required: true
     },
     title: {
         type: String, 

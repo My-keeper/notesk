@@ -68,7 +68,7 @@ router.patch ("/Notes/:id", auth, async (req, res) => {
 
 router.delete("/Notes/:id", auth, async (req, res) => {
   try{
-    const note = await Note.findByIdAndDelete(req.params.id)
+    const note = await Note.findByIdAndDelete({ _id: req.params.id, owner: req.user._id}); 
 
     if (!note) {
       return res.status(404).send()
