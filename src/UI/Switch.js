@@ -21,20 +21,22 @@ const SwitchIcion = (props) => {
     const changedBackGround = () => {
         const toReturn = {}
         if(isClicked === 1)
-        {   
+        {
+            //calendar text color
+            toReturn.CalendarTC = "#fff";  
             //Nav Icon Color
-            toReturn.NavIconColor = '#999999';
-            //Login/Signup color 
+            toReturn.NavIconColor = "#999999";
+            //Login/Signup color
             toReturn.LogSignColor = "#999999";
             //BodyColor
             toReturn.BodyColor = "#999999";
-            //borderColor 
+            //borderColor
             toReturn.BorderColor = "#999999";
             //IcionColor
             toReturn.IconC = "#f5ba13";
             //UserIconColor
-            toReturn.UserIconColor= "#999999";
-            toReturn.UserIconTextColor= "#282828";
+            toReturn.UserIconColor = "#999999";
+            toReturn.UserIconTextColor = "#282828";
             //ModelArea
             toReturn.NotekBGC = "#fff";
             toReturn.NoteFC = "#000000";
@@ -47,24 +49,26 @@ const SwitchIcion = (props) => {
             toReturn.TextAreaFC = "#000000";
             toReturn.TextAreaPHC = "";
             //Calendar
-            toReturn.TextFC="#fff"
+            toReturn.TextFC = "#fff";
         }
         //this is the meddle mode
         else if(isClicked === 2) 
-        {   
+        {
+            //calendar text color
+            toReturn.CalendarTC = "#fff";
             //Nav Icon Color
-            toReturn.NavIconColor = '#282828';
+            toReturn.NavIconColor = "#282828";
             //Login/Signup color  F0F0F0
             toReturn.LogSignColor = "#282828";
             //BodyColor
             toReturn.BodyColor = "#282828";
-            //borderColor 
+            //borderColor
             toReturn.BorderColor = "#FFD700";
             //IcionColor
             toReturn.IconC = "#f5ba13";
             //UserIconColor
-            toReturn.UserIconColor= "#282828";
-            toReturn.UserIconTextColor= "#F0F0F0";
+            toReturn.UserIconColor = "#282828";
+            toReturn.UserIconTextColor = "#F0F0F0";
             //ModelArea
             toReturn.NotekBGC = "#999999";
             toReturn.NoteFC = "#F8F8F8";
@@ -77,24 +81,26 @@ const SwitchIcion = (props) => {
             toReturn.TextAreaFC = "#F8F8F8";
             toReturn.TextAreaPHC = "#E0E0E0";
             //Calendar
-            toReturn.TextFC="#fff"
+            toReturn.TextFC = "#fff";
         } 
         // this is in the drakest mode
         else if (isClicked === 3)
         {
+            //calendar text color
+            toReturn.CalendarTC = "#6495ed";
             //Nav Icon Color
-            toReturn.NavIconColor = '#fff';
-            //Login/Signup color 
+            toReturn.NavIconColor = "#fff";
+            //Login/Signup color
             toReturn.LogSignColor = "#999999";
             //BodyColor
             toReturn.BodyColor = "#f2f2f2";
-            //borderColor 
+            //borderColor
             toReturn.BorderColor = "#f5ba13";
             //IcionColor
             toReturn.IconC = "#f5ba13";
             //UserIconColor
-            toReturn.UserIconColor= "#fff";
-            toReturn.UserIconTextColor= "#999999";
+            toReturn.UserIconColor = "#fff";
+            toReturn.UserIconTextColor = "#999999";
             //ModelArea
             toReturn.NotekBGC = "#282828";
             toReturn.NoteFC = "#F0F0F0";
@@ -106,7 +112,7 @@ const SwitchIcion = (props) => {
             toReturn.TextAreaBGC = "#282828";
             toReturn.TextAreaFC = "#C8C8C8";
             //Calendar
-            toReturn.TextFC="#282828"
+            toReturn.TextFC = "#282828";
         }
         return toReturn
     }

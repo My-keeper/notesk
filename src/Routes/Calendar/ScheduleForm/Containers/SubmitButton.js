@@ -22,9 +22,7 @@ const SubmitButton = (props) => {
     startTime: props.isStartingTime,
     endTime: props.isEndingTime,
     daysOfWeek: props.isRepeatedDays,
-    display: "list-item",
-    textColor: "red",
-    asd: "as",
+    display: "list-item"  
   };
   const SubmitEvent = () => { 
     return(

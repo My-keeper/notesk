@@ -49,11 +49,13 @@ const EventForm = (props) => {
         fontSize: "26px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
         />
     </EachateContainer>  
+
   //TItle Area props.ScheduleColor.IconC
   const isTitle =<EachateContainer JustifyContentCalue={""}>
       <TitleStyle Coloring={props.ScheduleColor.IconC}>Title : </TitleStyle> 
       <ContentStyle >{props.EventClickedInfo.title}</ContentStyle> 
     </EachateContainer>
+
   //Description Area props.ScheduleColor.IconC
   const isDescription =<EachateContainer JustifyContentCalue={ ""}>
       <TitleStyle Coloring={props.ScheduleColor.IconC}>Description : </TitleStyle> 
@@ -64,12 +66,14 @@ const EventForm = (props) => {
       <TitleStyle Coloring={props.ScheduleColor.IconC}>Url : </TitleStyle> 
       <ContentStyle >{  props.EventClickedInfo.url }</ContentStyle> 
     </EachateContainer>
+    
   //Start Area props.ScheduleColor.IconC
   console.log(props.EventClickedInfo.Start)
   const isStart =<EachateContainer JustifyContentCalue={ ""}>
       <TitleStyle Coloring={props.ScheduleColor.IconC}>Start : </TitleStyle> 
       <ContentStyle >{props.EventClickedInfo.Start}</ContentStyle> 
     </EachateContainer>
+    
   //End Area props.ScheduleColor.IconC
   const isEnd =<EachateContainer JustifyContentCalue={ ""}>
       <TitleStyle Coloring={props.ScheduleColor.IconC}>End : </TitleStyle> 
@@ -120,6 +124,11 @@ const EventForm = (props) => {
     
 const EditFormInfo = (
   <EditEventForm
+    EventsInfoList={props.PassedAllEvent} //list of all the Events created and compare it with the changed one
+    IDofClickedEvent={props.EventClickedInfo.Id} //the clicked event ID
+    ChangeOldEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model
+    CloseModel={(value) => props.closedEventForm(value)} //to return true if clicked
+
     ScheduleColor={props.ScheduleColor}
     closedEventForm={props.closedEventForm}
     getTitle={props.EventClickedInfo.title} //The title

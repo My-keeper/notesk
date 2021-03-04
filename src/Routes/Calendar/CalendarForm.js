@@ -59,13 +59,15 @@ const CalendarForm = (props) => {
       Display: clickInfo.event._def.ui.display,
     });
   };
-
+  console.log(props.CalendarColor);
   const FullCalendarForm = (
     <div
       style={{
         zIndex: "1",
         filter: ShowEventClicked ? null : "blur(4px)",
         pointerEvents: ShowEventClicked ? null : "none",
+        // color: "#6495ed",
+        color: props.CalendarColor.CalendarTC,
       }}
     >
       <FullCalendar
@@ -87,7 +89,6 @@ const CalendarForm = (props) => {
         selectMirror={true}
         dayMaxEvents={true}
         weekends={weekendsVisible}
-        eventDisplay="block" //this is used to high light the event that are created
         eventTextColor="black" //this is for the styling of the text for each event
         eventBackgroundColor="cornflowerblue" //This is for the background of each event
         eventBorderColor="pink" //The border color
