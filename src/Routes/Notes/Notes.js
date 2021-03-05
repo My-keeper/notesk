@@ -84,7 +84,7 @@ class Notes extends Component {
             LeftValue={"70%"}
             backGroundColorValue={this.props.Color.NotekBGC}
           > 
-          <Link to={"/lgoin"}>
+          <Link to={"/login"}>
               <LogoutOutlined style={this.VisibilityStle1} />
               <span style={{color: this.props.Color.UserInputFC,  fontSize: "1.2em"}}>Logout</span>
           </Link>

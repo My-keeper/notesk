@@ -46,46 +46,16 @@ app.post('/Notes', (req, res) => {
     })
 })
 
-<<<<<<< HEAD
 app.post('/CalendarEvents', (req, res) => {
     const calendarEvents = new CalendarEvents(req.body) //take the info from the website and then save it in user
     //saving the info to the database and see if will match the info in the model or not 
     calendarEvents.save().then(() => {
-=======
-app.get('/Notes', (req, res) => {
-    Note.find({}) //we can add the name of the note we are looking for inside the {}
-      .then((Notes) => {
-        res.send(Notes);
-      })
-      .catch((e) => {
-        res.status(500).send(e);
-      });
-})
-
-app.post('/Calendar', (req, res) => {
-    const calendarEvents = new CalendarEvents(req.body); //take the info from the website and then save it in user
-    //saving the info to the database and see if will match the info in the model or not 
-    note.save().then(() => {
->>>>>>> 5b9e18db3ed6504bd537c74a070e4d37d074ae38
         res.send(calendarEvents)
     }).catch((e) => {
         res.status(400).send(e)
     })
 })
 
-<<<<<<< HEAD
-=======
-app.get("/Calendar", (req, res) => {
-  CalendarEvents.find({}) //we can add the name of the note we are looking for inside the {}
-    .then((CalendarList) => {
-      res.send(CalendarList);
-    })
-    .catch((e) => {
-      res.status(500).send(e);
-    });
-});
-
->>>>>>> 5b9e18db3ed6504bd537c74a070e4d37d074ae38
 
 app.listen(port , () => {
     console.log("Server is up and Running on port " + port)
