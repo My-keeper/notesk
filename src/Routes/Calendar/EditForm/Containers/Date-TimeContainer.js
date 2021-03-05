@@ -77,6 +77,7 @@ const CalenderContianer = (props) => {
         </EachateContainer>
     //Starting Data Area
     const [fromData, ChangeFromDate] = useState("") 
+    console.log(props.SendSD)
     const StartingData = <EachateContainer JustifyContentCalue={ ""}>
             <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
             { isSelectedDate ? <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC}}>{props.SendSD}</span></FadeIn> 

@@ -46,7 +46,7 @@ const NumberOfYearsValue = (props) => {
 }
 const NumberOfMonthsValue = (props) => { 
     //this is for the months in a year 
-    const NumberOfMonths = ['Jan','Feb','March','Apirl','May','June','July','Aug','Sept','Oct','Nov','Dec']
+    const NumberOfMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
     const MonthContainer = (
         [NumberOfMonths.map((month, index) => <option  key={index.id + createEventId()}  value={month}>{month}</option>)]
         )

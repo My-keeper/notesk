@@ -119,8 +119,10 @@ const EditEventForm = (props) => {
 
     // Data From and To
     const [getFormDate, ChangeFormDate] = useState(); //this is the data that will be send to submit model to be added to the event list 
+    console.log(getFormDate)
     const [getToDate, ChangeToDate] = useState();  //this is the data that will be send to submit model to be added to the event list 
     const StartDate= props.getStartedClickedEvent //This is the selected data in calendar for edit passing down from EventForm
+    console.log(StartDate)
     const EndDate= props.getEndededClickedEvent//This is the selected data in calendar  for edit passing down from EventForm
     const [EditTime, ChangeEditedTime ] = useState()
     const Data = ( !isShowTime ? null :

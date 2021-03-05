@@ -22,8 +22,9 @@ const DateSelected = (props) => {
         : props.ReturnClickedToYear
       : ""
     );
+  const [isChangedValueYear, changedValueYear]= useState(false)
   const handleYears = (e) => (
-    ChangeYearsValueInput(e.target.value) , ChnageUserChangedYear(false)
+    ChangeYearsValueInput(e.target.value) , ChnageUserChangedYear(false) ,changedValueYear(true)
     )
   const Years = (
     <FadeIn>
@@ -59,24 +60,53 @@ const DateSelected = (props) => {
   
   // This part is changed once the user click on the drop down to see other options
   const [GetUserChangeMonth, ChnageUserChangedMonth] = useState(true);
+  const [isChangedValueMonth, changedValueMonth]= useState(false)
+  const [MonthsValues, ChangeMonths] = useState({
+    Jan: {id: "1", name: "jan"},
+    Feb: {id: "2", name: "Feb"},
+    Mar: {id: "3", name: "Mar"},
+    Apr: {id: "4", name: "Apr"},
+    May: {id: "5", name: "May"},
+    Jun: {id: "6", name: "Jun"},
+    Jul: {id: "7", name: "Jul"},
+    Aug: {id: "8", name: "Aug"},
+    Sep: {id: "9", name: "Sep"},
+    Oct: {id: "10", name: "Oct"},
+    Nov: {id: "11", name: "Nov"},
+    Dec: {id: "12", name: "Dec"}
+  })
   /*
-        This part is chicking if the input that the user entered is what is wanted or not 
-        Once the select is clicked then it will change to normal dropdown with input number 
-    */
-  const [MonthsValueInput, ChangeMonthsValue] = useState(
-      GetUserChangeMonth
-        ? props.ReturnFrom === "From"
-          ? props.ReturnClickedFromMonth
-          : props.ReturnClickedToMonth
-        : ""
-    );
-  const handleMonths = (e) => (
-    ChangeMonthsValue(e.target.value) , ChnageUserChangedMonth(false)
-  );
+  This part is chicking if the input that the user entered is what is wanted or not 
+  Once the select is clicked then it will change to normal dropdown with input number 
+  */
+ const [MonthsNumber, ChangeMonthsNumber] = useState("") //this for when user clicke
+  const RecivingMonthsValueInput = GetUserChangeMonth
+    ? (props.ReturnFrom === "From"
+        ? props.ReturnClickedFromMonth
+        : props.ReturnClickedToMonth)
+    : null
+  // GetUserChangeMonth ?  ChangeMonthsNumber(Object.values(MonthsValues).map( value => {
+  //     if (value.name == RecivingMonthsValueInput) {
+  //       return value.id
+  //     }
+  //   }).filter(item => item)[0]) : null
+  
+  //this part if the user clicked and changed the month
+  const handleMonths = (e) => {
+    ChnageUserChangedMonth(false) 
+    changedValueMonth(true)
+    // ChangeMonthsValue(e.target.value)
+    const MonthValue = e.target.value
+    ChangeMonthsNumber(Object.values(MonthsValues).map( value => {
+      if (value.name == MonthValue) {
+        return value.id
+      }
+    }).filter(item => item)[0])
+  }
   const Months = (
     <FadeIn>
       <SelectData
-        key={MonthsValueInput.id + createEventId()}
+        key={MonthsNumber + createEventId()}
         inputType={"text"}
         name={props.name == "start" ? "start" : "end"}
         widthValue={"112px"}
@@ -94,7 +124,7 @@ const DateSelected = (props) => {
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
         onchangeValue={handleMonths}
-        InputValue={MonthsValueInput}
+        InputValue={MonthsNumber}
       >
         {
           <NumberOfMonthsValue/>
@@ -151,9 +181,14 @@ const DateSelected = (props) => {
   );
 
   //this is submitted to DropDownContainer
-  props.submitDateValue(
-    YearsValueInput + "-" + MonthsValueInput + "-" + DayValueInput
-  );
+  const ReturnYear = (isChangedValueYear ? YearsValueInput : 
+                      (props.ReturnFrom === "From"
+                        ? 
+                        props.ReturnClickedFromYear
+                        : 
+                        props.ReturnClickedToYear))
+  console.log(MonthsNumber)
+  props.submitDateValue(ReturnYear+ "-" + MonthsNumber + "-" + DayValueInput);
 
   return [Years, Months, Days];
 };

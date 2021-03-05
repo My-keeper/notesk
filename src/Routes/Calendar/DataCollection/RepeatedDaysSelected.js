@@ -9,7 +9,7 @@ const RepeatDaySelected = (props) => {
     const [Days,changeDays] = useState({
         Sunday: {id: "0", value: false},
         Monday: {id: "1", value: false},
-        Tuesday: {id: "1", value: false},
+        Tuesday: {id: "2", value: false},
         Wednesday: {id: "3", value: false},
         Thursday: {id: "4", value: false},
         Friday: {id: "5", value: false},
