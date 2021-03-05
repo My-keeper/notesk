@@ -24,7 +24,7 @@ const StyledLetter = styled.p`
 const UserIcon = (props) => {
   return (
     <UserIconDiv
-        backGroundColorInput={props.OnChangedColor.UserIconColor}
+        backGroundColorInput={props.OnChangedColor.UserIconColor} 
     >
       <StyledLetter
         backGroundTextColorInput={props.OnChangedColor.UserIconTextColor}

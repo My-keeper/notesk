@@ -18,6 +18,7 @@ const StyledButton = styled.button`
   border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
   border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
   border-width: ${(props) => (props.borderWidthInput ? props.borderWidthInput : "inherit")};
+  margin-top: ${(props) => (props.marginTopInput ? props.marginTopInput : "none")};
   &::placeholder{
     color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
   };
@@ -59,6 +60,9 @@ const AppButton = (props) => (
     PlaceHolderColorInput={props.PlaceHolderColorValue}
     IsCalled={props.IsCalledValue}
     paddingInput={props.paddingInputValue}
+    marginTopInput={props.marginTopValue}
+    onMouseEnter={props.onMouseEnter}
+    onMouseLeave={props.onMouseLeave}
   >
     <IconStuly>
       {props.icon}

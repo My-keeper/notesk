@@ -76,3 +76,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ##if you received "Could not open a connection to your authentication agent." use 
 eval `ssh-agent -s`
 ssh-add
+
+## For Robo 3T if you have a prob lunching it using mac use the following command 
+sudo xattr -r -d com.apple.quarantine /Applications/Some.app

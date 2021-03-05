@@ -15,6 +15,10 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+/* this is for what the server should do when the user want to get resourse from the URL like sending back html or jason 
+    when visiting the route then the function will tell what send back to them, req: info about in coming request to the server 
+    res: contain some methods allowing us to customize what will be sent back 
+*/
 app.get('/weather',(req,res)=>{
     if(!req.query.address){
         return res.send({error: 'please enter an address'})
