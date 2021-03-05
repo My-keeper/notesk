@@ -127,7 +127,8 @@ const CalendarForm = (props) => {
         initialView="dayGridMonth"
         titleFormat={{ month: "short", year: "numeric", day: "numeric" }} //this is for the tile what should be there for the user
         height="850px" //get fixed height for the calendar
-        contentHeight="800px" //get the content height for the calendar
+        // contentHeight="800px" //get the content height for the calendar
+        contentHeight="100%" //get the content height for the calendar
         handleWindowResize="true"
         locale="En" //this is for the languages option
         timeZone="canada/nl" //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it
@@ -142,10 +143,7 @@ const CalendarForm = (props) => {
         initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
         select={handleDateSelect}
         events={getEvent}
-        eventClick={handleEventClick}
-        // eventRemove={(value) => console.log(value)} // custom render function
-        // eventContent={value=> console.log(value)} // custom render function
-        // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
+        eventClick={handleEventClick} 
       />
     </div>
   );

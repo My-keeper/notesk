@@ -6,13 +6,14 @@ import CreateNote from './CreateNote/CreateNote'
 import FadeIn from 'react-fade-in';
 import { Link } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
+import LogOutcontainer from "../../UI/Modal";
 
 class Notes extends Component {
   //Close is not hovered on color style
   VisibilityStle1 = {
     marginRight: "8px",
     fontSize: "22px",
-    color: props.RecieveColor.NavIconColor
+    color: this.props.Color.NavIconColor
   };
   state = {
     notes: [],
@@ -71,7 +72,7 @@ class Notes extends Component {
   };
    //for Logginout 
   IsLogout = (
-      <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "80%", top: "5%"}}>
+      <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "88%", top: "5%"}}>
         <FadeIn>
           <LogOutcontainer
             position={"relative"}
@@ -80,12 +81,12 @@ class Notes extends Component {
             boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
             borderRadiusValue={"20px"}
             resizeValue={"both"}
-            LeftValue={"80%"}
-            backGroundColorValue={props.RecieveColor.NotekBGC}
+            LeftValue={"70%"}
+            backGroundColorValue={this.props.Color.NotekBGC}
           > 
-          <Link to={"/"}>
-              <LogoutOutlined style={VisibilityStle1} />
-              <span style={{color: props.RecieveColor.UserInputFC,  fontSize: "1.2em"}}>Logout</span>
+          <Link to={"/lgoin"}>
+              <LogoutOutlined style={this.VisibilityStle1} />
+              <span style={{color: this.props.Color.UserInputFC,  fontSize: "1.2em"}}>Logout</span>
           </Link>
           </LogOutcontainer>
         </FadeIn>
@@ -94,6 +95,7 @@ class Notes extends Component {
   render() {
     return (
       <div style={{ height: "100%" }}>
+        {this.state.isLogOut ? this.IsLogout : null}
         <Nav
           username={"Mero"}
           ColorChanged={this.props.colorchanged}

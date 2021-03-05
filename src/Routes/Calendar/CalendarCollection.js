@@ -86,7 +86,7 @@ const CalendarCollection = (props) => {
   ); 
     //for Logginout 
     const IsLogout = (
-      <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "80%", top: "5%"}}>
+      <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "88%", top: "5%"}}>
         <FadeIn>
           <LogOutcontainer
             position={"relative"}
@@ -95,10 +95,10 @@ const CalendarCollection = (props) => {
             boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
             borderRadiusValue={"20px"}
             resizeValue={"both"}
-            LeftValue={"80%"}
+            LeftValue={"70%"}
             backGroundColorValue={props.RecieveColor.NotekBGC}
           > 
-          <Link to={"/"}>
+          <Link to={"/login"}>
               <LogoutOutlined style={VisibilityStle1} />
               <span style={{color: props.RecieveColor.UserInputFC,  fontSize: "1.2em"}}>Logout</span>
           </Link>
