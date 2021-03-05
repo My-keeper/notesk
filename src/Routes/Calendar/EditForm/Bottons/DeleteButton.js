@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FadeIn from "react-fade-in";
 import { DeleteFilled } from "@ant-design/icons";
-import Button from "../../../UI/Button";  
+import Button from "../../../../UI/Button";  
 
 const DeleteButton = (props) => {
   const ButtonIconColor = {

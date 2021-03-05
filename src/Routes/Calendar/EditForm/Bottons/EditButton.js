@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FadeIn from "react-fade-in";
 import { LoginOutlined } from "@ant-design/icons";
-import Button from "../../../UI/Button";  
+import Button from "../../../../UI/Button";  
 
 const EditButton = (props) => {
   const ButtonIconColor = {
@@ -10,6 +10,7 @@ const EditButton = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   };   
+
 
 //   const SubmitEvent = () => { 
 //     return(
@@ -30,7 +31,7 @@ const EditButton = (props) => {
         BorderValue="solid"
         borderWidthValue="thin"
         paddingInputValue="2px"
-        // onClick={SubmitEvent}
+        onClick={()=>props.isEditClicked(true)}
         text={"Edit"}
         icon={<LoginOutlined style={ButtonIconColor} />}
       />

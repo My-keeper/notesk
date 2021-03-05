@@ -21,14 +21,14 @@ const TitleContainer = (props) => {
         fontSize:"25px", 
         marginRight:"15px", 
         marginTop:"4px" 
-    } 
+    }  
     const title = <InfoContainer>
         <FadeIn><Title style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
-        key={`title` + 1}
+        key={`title` + 1} 
         // This is to change the Value of Title based on the input coming from schedule
         onchangeValue={(event)=>props.SubmitTitle(event.target.value)}
-        //This is the Props that is coming from Schedule From once I click on submit
+        //This is the Props that is coming from Schedule From once I click on submit	
         PlaceholderValue={props.SubmitTitlePlaceHolder}
         name="title"
         inputType={"text"} 
@@ -58,14 +58,14 @@ const DescriptionContainer = (props) => {
         fontSize:"25px", 
         marginRight:"15px", 
         marginTop:"4px" 
-    }
+    } 
     const Description = <InfoContainer>
         <FadeIn><DescriptionIcon style={IconColor}/></FadeIn>
         <FadeIn><TextArea
         key={`Description`+1} 
         // This is to change the Value of Title based on the input 
         onchangeValue={(event)=>props.SubmitDescription(event.target.value)}
-        //This is the Props that is coming from Schedule From once I click on submit
+        //This is the Props that is coming from Schedule From once I click on submit	
         PlaceholderValue={props.SubmitDescriptionPlaceHolder}
         rows={3}
         name="Description"
@@ -98,14 +98,14 @@ const URLContainer = (props) => {
         fontSize:"25px", 
         marginRight:"15px", 
         marginTop:"4px" 
-    }
+    } 
     const URL = <InfoContainer>
         <FadeIn><LinkOutlined style={IconColor}/></FadeIn>
         <FadeIn><UserInput 
         key={`AttachedLinkDescription` }
         // This is to change the Value of Title based on the input 
         onchangeValue={(event)=>props.URLOption(event.target.value)}
-        //This is the Props that is coming from Schedule From once I click on submit
+        //This is the Props that is coming from Schedule From once I click on submit	
         PlaceholderValue={props.SubmitURLPH}
         name="Url"
         inputType={"text"} 

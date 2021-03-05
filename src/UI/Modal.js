@@ -38,6 +38,7 @@ const ModelContainer = styled.div`
     opacity: ${(props) => (props.OpacityInput ? props.OpacityInput : null)};
     left: ${(props) => (props.LeftInput ? props.LeftInput : "auto")};
     top: ${(props) => (props.TopInput ? props.TopInput : "auto")};
+    Right: ${(props) => (props.RightInput ? props.RightInput : "auto")};
 `
 
 export default function Model (props) {
@@ -66,6 +67,7 @@ export default function Model (props) {
             transformInput={props.TransformValue}
             LeftInput={props.LeftValue}
             TopInput={props.TopValue}
+            RightInput={props.RightValue}
             Zindex={props.ZindexValue}
         >
             {props.children}

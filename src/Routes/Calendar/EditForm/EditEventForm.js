@@ -1,112 +1,145 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import NoteContainer from "../../../UI/Modal"; 
+import { CloseCircleOutlined, CheckCircleOutlined, CheckCircleFilled, EditFilled, EditOutlined } from "@ant-design/icons";
 import FadeIn from "react-fade-in";
 import {TitleContainer,DescriptionContainer,URLContainer} from "./Containers/TextInputContainer";
 import {CalenderContianer,TimerContainer} from "./Containers/Date-TimeContainer";
-import RDContainer from "./Containers/DaysContainer";
-import SubmitButton from "./Containers/SubmitButton";
-import { CloseCircleOutlined } from "@ant-design/icons"; 
+import RDContainer from "../ScheduleForm/Containers/DaysContainer";
+import SubmitButton from "../ScheduleForm/Containers/SubmitButton";
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
+import SubmitChanges from './Bottons/submitChanges';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 const EachateContainer = styled.div`
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: row;
     justify-content: ${props => props.JustifyContentCalue};
     margin: 4px;
 `
 
-const Schedule = (props) => {
+const EditEventForm = (props) => {
+
     //All Component Color Stle
-    const IconColor = { 
-        color : props.ScheduleColor.IconC, 
-        fontSize:"24px", 
-        marginLeft:"10px"
-    }
+    const IconColor = {
+      color: props.ScheduleColor.IconC,
+      fontSize: "24px",
+      marginTop: "2px",
+      marginLeft: "60px",
+    };
     //Visable and unvisable color style 
     const VisibilityStle = {
         marginRight: "4px", 
         marginLeft:"4px",
-        marginTop:"6px" , 
+        marginTop:"7px" , 
         fontSize: "21px", 
         color : props.ScheduleColor.IconC
     }
-        
-    //Close ICion Area
-    const CloseIcon = 
-    (<CloseCircleOutlined
-        onClick={()=> props.CallingCalendar(false)} 
-        style={{marginRight: "4px", marginLeft: "95%", marginBottom: "15px",
+    //DateStyle and unDateStyle color style 
+    const ShowDateStle = {
+        marginRight: "4px", 
+        marginLeft:"60px",
+        marginTop:"7px" , 
+        fontSize: "18px", 
+        color : props.ScheduleColor.IconC
+    }
+    
+    // The Event information 
+    const Header= <EachateContainer JustifyContentCalue={"flex-end"}>
+        <span style={{ 
+            padding: "1px" ,paddingTop: "1px" , 
+            fontSize: "1.2em", marginLeft: "150px",
+            color: `${props.ScheduleColor.IconC}`}}>
+                Event Info
+        </span> 
+        <CloseCircleOutlined
+            onClick={()=> props.closedEventForm(true)} 
+            style={{marginRight: "12px", marginLeft: "180px", marginBottom: "15px",
             fontSize: "26px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
-    />)
+        />
+    </EachateContainer>  
 
     //Title Area
     const [getTitle, ChangeTitle] = useState("");
-    const [TitlePH, ChangeTitlePH] = useState("Title ...");
     const Title = <TitleContainer
             SubmitTitle={(value) => ChangeTitle(value)} //this is to return input value of the title and then send it to submit model
-            SubmitTitlePlaceHolder={TitlePH} //this is to send the placeholder for the title area
+            isEditTitle={props.getTitle} //this is to send the placeholder for the title area
             ScheduleColor={props.ScheduleColor}  // send the color list from the parent App file 
         />  
-    
-    //Description Area
+
+     //Description Area
     const [getDescription, ChangeDescription] = useState("");
-    const [DescriptionPH, ChangeDescriptionPH] = useState("Description ...");
     const Description = (
         <DescriptionContainer
         SubmitDescription={(value) => ChangeDescription(value)}
-        SubmitDescriptionPlaceHolder={DescriptionPH}
+        isEditDescription={props.getDescription}
         ScheduleColor={props.ScheduleColor}
         />
     );
 
-    //URL Area
-    const [getURL, ChangeURL] = useState();
-    const [URLPH, ChangeURLPH] = useState("Optional Attached Link For Description ...");
+     //URL Area
+    const [getURL, ChangeURL] = useState("");
     const URL = (
         <URLContainer
         URLOption={(value) => ChangeURL(value)}
-        SubmitURLPH={URLPH}
+        isEditURL={props.getURL}
         ScheduleColor={props.ScheduleColor}
         />
     );
-     
+
     //This is to show either the data or repeated days
     const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
-    const ShowData = <div onClick={()=>ChangeisShowTime(!isShowTime)}>
-        {isShowTime ?  <RadioButtonUncheckedIcon style={VisibilityStle} /> : <RadioButtonCheckedIcon style={VisibilityStle} /> }
-    </div>
-    const isData = <EachateContainer>
-            <DateRangeIcon style={IconColor}/>   
-            <span style={{paddingTop: "4px" ,fontSize: "1em", marginLeft: "50px"}}>Selected Data of Event</span>
+    const ShowData = isShowTime ?  
+        <EditOutlined  
+            onClick={()=>ChangeisShowTime(false)}
+            style={VisibilityStle} 
+        /> 
+        : 
+        <EditFilled 
+            onClick={()=>ChangeisShowTime(true)}
+            style={VisibilityStle} 
+        /> 
+    //This is for the layout for Year Month Days 
+    const InfoArea = <EachateContainer>
+            <DateRangeIcon style={IconColor}/>
+            <span style={{paddingTop: "4px" ,fontSize: "1em", marginLeft: "20px"}}>Selected Data</span>
         </EachateContainer>
     const isRepeated = <EachateContainer>
             <AddAlertIcon style={IconColor}/>   
             <span style={{paddingTop: "4px" ,fontSize: "1em", marginLeft: "20px"}}>Select days of repeated Event and its Time</span>
         </EachateContainer>
+    //This is for the Data area or the Repeated Date area
     const IcionArea = <EachateContainer> 
-            {ShowData}
-            {isShowTime ? isData  :isRepeated }
+        {ShowData} 
+        {isShowTime ? InfoArea : isRepeated }
         </EachateContainer>
 
     // Data From and To
     const [getFormDate, ChangeFormDate] = useState(); //this is the data that will be send to submit model to be added to the event list 
     const [getToDate, ChangeToDate] = useState();  //this is the data that will be send to submit model to be added to the event list 
+
+    const StartDate= props.getStartedClickedEvent //This is the selected data in calendar for edit passing down from EventForm
+    const EndDate= props.getEndededClickedEvent//This is the selected data in calendar  for edit passing down from EventForm
     
-    const StartDate= props.SendSelectedSD //This is the selected data in calendar
-    const EndDate= props.SendSelectedED//This is the selected data in calendar  
-    const Data = ( !isShowTime ? null :
-        <CalenderContianer
+    const [EditTime, ChangeEditedTime ] = useState()
+    const Data = !isShowTime ? null : (
+      <CalenderContianer
         SendSD={StartDate} //This is to send back the selected started data
         SendED={EndDate} //This is to send back the selected ended data
-        GetFromDate={(value) => ChangeFormDate(value)} //Returning the selected data that the user chose 
-        GetToDate={(value) => ChangeToDate(value)} //Returning the selected data that the user chose 
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
-        /> 
+        GetFromDate={(value) => ChangeFormDate(value)} //Returning the selected data that the user chose
+        GetToDate={(value) => ChangeToDate(value)} //Returning the selected data that the user chose
+        GetIsSelectedDate={(value) => ChangeEditedTime(value)} //To pass down to Time to show when the user want to chagne time
+        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file
+        PassIsStartedDay={props.isStartedDay} //passing down the data in number from Event Form
+        PassIsStartedMonth={props.isStartedMonth} //passing down the data in number from Event Form
+        PassIsStartedYear={props.isStartedYear} //passing down the data in number from Event Form
+        PassIsEndedDay={props.isEndedDay} //passing down the data in number from Event Form
+        PassIsEndedMonth={props.isEndedMonth} //passing down the data in number from Event Form
+        PassIsEndedYear={props.isEndedYear} //passing down the data in number from Event Form
+      />
     );
 
     //This is for the time
@@ -115,16 +148,13 @@ const Schedule = (props) => {
     const [EndHours, ChangeEndHour] = useState(); //have returned Ending hour if time is needed
     const [EndMinuts, ChangeEndMinuts] = useState(); //have returned Ending minut if time is needed 
     const [TimeClicked, ChangeTimeClicked] = useState() //this to make sure that time is included or not and show the repeated days model
-    const [EditTime, ChangeEditedTime ] = useState("")
-    const Time = (
+    const Time = ( EditTime ? null :
         <TimerContainer
-        SendShowTime={isShowTime}
         FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
         FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed 
         ToHourSelected={(value) => ChangeEndHour(value)} // return Ending hour if time is needed
         ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return Ending minut if time is needed 
         ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
-        GetIsSelectedDate={(value)=>ChangeEditedTime(value)} //To pass down to Time to show when the user want to chagne time
         isTime={(value) => ChangeTimeClicked(value)}
         />
         );
@@ -136,52 +166,52 @@ const Schedule = (props) => {
         SubmitNumberOfRP={(value) => ChangeRepeatedDays(value)} //returning the value of repeated days 
         />
     );
-    //Submit Buton 
-    const Submit = (
-      <SubmitButton
-        isCallingCalendar={(value) => props.CallingCalendar(value)} //return the close value to return to calender from the submit model
+    
+    const submitChanges = <SubmitChanges 
+        PassEventsInfoList={props.EventsInfoList}//list of all the Events created and compare it with the changed one
+        TheIdOfClickedEvent={props.IDofClickedEvent} //the clicked event ID
+        ReturnChangedEvents={(value) => props.ChangeOldEvents(value)} //Delete selected event from all event and close model
+        isCloseModel={(value) => props.CloseModel(value)} //to return true if clicked
         isTitle={getTitle} //the Title value
-        CheckTitlePH={(value) => ChangeTitlePH(value)} //this is to change the title place holder if there is no title
         isDescription={getDescription} //the Description value
-        CheckDescriptionPH={(value) => ChangeDescriptionPH(value)} //this is to change the description placeholder if there is no placeholder
         isURL={getURL} //the URL value
-        // isStartingDate= {TimeClicked ?(getFormDate+'T12:00:00') : (getFormDate+"T"+StartHours+":"+StartMinuts+":00")} //the value of the Starting data
         isStartingDate={isShowTime ? getFormDate + "T12:00:00" : undefined} //the value of the Starting data
         isRepeatedDays={!isShowTime ? GetRepeatedDays : undefined} //Values of Repeated Days
         isStartingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(StartHours+":"+StartMinuts+":00")) : undefined} //Choose Starting Time of the repeated Event
         isEndingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
-
+        ReturnNewEvents={(value) => props.ReturnNewEvents(value)}
         isEndingData={getToDate} //the value of Ending data
-        isEvent={props.submitEventValues} //returning the new event to the array of objects
-      />
-    );
-    const ScheduleForm = (
-        <FadeIn>
-            <NoteContainer
-                position={"relative"}
-                width={"520px"}
-                margin={"30px auto 20px auto"}
-                padding={"15px"}
-                boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-                borderRadiusValue={"7px"}
-                resizeValue={"both"}
-                backGroundColorValue={props.ScheduleColor.NotekBGC} //// send the color list from the parent App file 
-                FontColorValue={props.ScheduleColor.NoteFC} //// send the color list from the parent App file 
-                >
-            {CloseIcon}
-            {Title} 
-            {Description}
-            {URL}
-            {IcionArea}
-            {Data}
-            {Time}
-            {RepeatedDays}
-            {Submit}
-            </NoteContainer> 
-        </FadeIn>
+        ColorChange={props.ScheduleColor} 
+    />;
+
+    const EditForm = (
+      <FadeIn>
+        <NoteContainer
+          position={"relative"}
+          width={"520px"}
+          margin={"30px auto 20px auto"}
+          padding={"15px"}
+          boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+          borderRadiusValue={"7px"}
+          resizeValue={"both"}
+          backGroundColorValue={props.ScheduleColor.NotekBGC} //// send the color list from the parent App file
+          FontColorValue={props.ScheduleColor.NoteFC} //// send the color list from the parent App file
+        >
+          {Header}
+          {Title}
+          {Description}
+          {URL}
+          {IcionArea}
+          {Data}
+          {Time}
+          {RepeatedDays}
+          {submitChanges}
+        </NoteContainer>
+      </FadeIn>
     );
 
-  return ScheduleForm;
-};
+  return EditForm;
 
-export default Schedule;
+}
+
+export default EditEventForm;

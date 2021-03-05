@@ -24,6 +24,8 @@ const ContainerDiv = styled.div`
 class App extends Component {
   state = {
     Color: {
+      //calendar text color 
+      CalendarTC : "#6495ed",
       //Nav Icon color
       NavIconColor : '#fff',
       //Calender Color 

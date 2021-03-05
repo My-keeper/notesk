@@ -4,46 +4,31 @@ import { LoginOutlined } from "@ant-design/icons";
 import Button from "../../../../UI/Button";
 import { createEventId } from "../../event-utils";
 import { Title } from "@material-ui/icons";
+let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
 
 const SubmitButton = (props) => {
   const ButtonIconColor = {
     fontSize: "20px",
     marginRight: "9px",
     marginTop: "4px",
-  };
-  const [isSubmit, ChangeIsSubmit] = useState(true); //This is values is used to send value that the submit button has been clicked
+  };   
   const CreateEvent = {
     id: createEventId(),
-    title: isSubmit ? props.isTitle : "",
-    description: isSubmit ? props.isDescription : "",
-    Url: isSubmit ? props.isURL : "",
-    start: isSubmit ? props.isFromData : "",
-    // startTime: "10:45:00",
-    // endTime: "12:45:00",
-    display: "list-item",
-    textColor: "red",
+    title: props.isTitle,
+    description: props.isDescription,
+    Url: props.isURL,
+    start: props.isStartingDate,
+    end: props.isEndingData,
+    startTime: props.isStartingTime,
+    endTime: props.isEndingTime,
+    daysOfWeek: props.isRepeatedDays,
+    display: "list-item"  
   };
-
-  const subNote = () => {
-    if (props.isTitle === "" && props.isDescription === "") {
-      <FadeIn>
-        {
-          (props.CheckTitlePH("Please Enter A Title ....(-_-)"),
-          props.CheckDescriptionPH("Please Enter A Description ....(-_-)"))
-        }
-      </FadeIn>;
-    } else if (props.isTitle === "") {
-      <FadeIn>{props.CheckTitlePH("Please Enter A Title ....(-_-)")}</FadeIn>;
-    } else if (props.isDescription === "") {
-      <FadeIn>
-        {props.CheckDescriptionPH("Please Enter A Description ....(-_-)")}
-      </FadeIn>;
-    } else {
-      // props.CheckTitlePH("")
-      // props.CheckDescriptionPH("")
-      props.GetEvent((oldarr) => [...oldarr, CreateEvent]);
-      // props.IsSubmistClicked(false);
-    }
+  const SubmitEvent = () => { 
+    return(
+      props.isEvent((oldarr) => [...oldarr, CreateEvent]),
+      props.isCallingCalendar(false)
+    )
   };
 
   const SubmitButton = (
@@ -58,14 +43,13 @@ const SubmitButton = (props) => {
         BorderValue="solid"
         borderWidthValue="thin"
         paddingInputValue="2px"
-        onClick={subNote}
+        onClick={SubmitEvent}
         text={"Submit"}
         icon={<LoginOutlined style={ButtonIconColor} />}
       />
     </FadeIn>
   );
 
-  // props.IsSubmistClicked(isSubmit); //This is values is used to send value that the submit button has been clicked
 
   return SubmitButton;
 };

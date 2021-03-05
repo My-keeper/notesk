@@ -5,6 +5,7 @@ import UserInput from "../../UI/UserInput";
 import NoteContainer from '../../UI/Modal';
 import Button from "../../UI/Button";
 import FadeIn  from "react-fade-in";
+import { Link } from "react-router-dom";
 
 
 const InfoContainer = styled.div`
@@ -278,26 +279,37 @@ const SignupButton = <FadeIn>
         />
     </FadeIn>
 
+const ReturnToLogin =<FadeIn>
+        <span style={{color: props.RecieveColor.UserInputFC , fontSize: "1.2em" }}>
+            Already have an acount? 
+            <Link to={"/login"} style={{color : props.RecieveColor.IconC }}> Login</Link>
+        </span>
+    </FadeIn>
+
 return (
-    <FadeIn><NoteContainer
-    position= {"relative"}
-    width= {"470px"}
-    margin= {"220px auto 20px auto"}
-    padding= {"15px"}
-    boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
-    borderRadiusValue= {"20px"}
-    resizeValue={"both"}
-    backGroundColorValue={props.RecieveColor.NotekBGC}
+  <FadeIn>
+    <NoteContainer
+      position={"relative"}
+      width={"470px"}
+      margin={"220px auto 20px auto"}
+      padding={"15px"}
+      boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+      borderRadiusValue={"20px"}
+      resizeValue={"both"}
+      backGroundColorValue={props.RecieveColor.NotekBGC}
     >
-        {PersonalInfo}
-        {Username}
-        {Email}
-        {PassWord}
-        {ConfirmPassWord}
-        {Location}
-        {SignupButton}
-    </NoteContainer></FadeIn>
-)
+      {PersonalInfo}
+      {Username}
+      {Email}
+      {PassWord}
+      {ConfirmPassWord}
+      {Location}
+      {SignupButton}
+      <hr style={{marginBottom : "10px"}}></hr>
+      {ReturnToLogin}
+    </NoteContainer>
+  </FadeIn>
+);
 };
 
 export default SignupForm; 
