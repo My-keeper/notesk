@@ -3,13 +3,13 @@ import styled from "styled-components";
 import NoteContainer from "../../../UI/Modal"; 
 import { CloseCircleOutlined, CheckCircleOutlined, CheckCircleFilled, EditFilled, EditOutlined } from "@ant-design/icons";
 import FadeIn from "react-fade-in";
-import {TitleContainer,DescriptionContainer,URLContainer} from "./TextInputContainer";
-import {CalenderContianer,TimerContainer} from "./Date-TimeContainer";
+import {TitleContainer,DescriptionContainer,URLContainer} from "./Containers/TextInputContainer";
+import {CalenderContianer,TimerContainer} from "./Containers/Date-TimeContainer";
 import RDContainer from "../ScheduleForm/Containers/DaysContainer";
 import SubmitButton from "../ScheduleForm/Containers/SubmitButton";
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
-import SubmitChanges from './submitChanges';
+import SubmitChanges from './Bottons/submitChanges';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
@@ -122,7 +122,7 @@ const EditEventForm = (props) => {
     const [getToDate, ChangeToDate] = useState();  //this is the data that will be send to submit model to be added to the event list 
     const StartDate= props.getStartedClickedEvent //This is the selected data in calendar for edit passing down from EventForm
     const EndDate= props.getEndededClickedEvent//This is the selected data in calendar  for edit passing down from EventForm
-    const [EditTime, ChangeEditedTime ] = useState("")
+    const [EditTime, ChangeEditedTime ] = useState()
     const Data = ( !isShowTime ? null :
         <CalenderContianer
         SendSD={StartDate} //This is to send back the selected started data

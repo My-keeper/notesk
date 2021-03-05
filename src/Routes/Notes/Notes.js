@@ -61,7 +61,12 @@ class Notes extends Component {
   render() {
     return (
       <div style={{ height: "100%" }} >
-          <Nav ColorChanged={this.props.colorchanged} RecieveColor={this.props.Color}/>     
+          <Nav 
+            username={"Mero"}
+            ColorChanged={this.props.colorchanged} 
+            RecieveColor={this.props.Color} 
+            showLogOutButton={true}
+          />     
           <FadeIn><CreateNote RecieveColor={this.props.Color} AddedNote={this.addNote}/>  </FadeIn> 
           {this.NoteItems()} 
           <Footer/>

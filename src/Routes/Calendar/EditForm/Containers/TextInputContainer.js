@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import UserInput from '../../../UI/UserInput'
-import TextArea from '../../../UI/TextArea';
+import UserInput from '../../../../UI/UserInput'
+import TextArea from '../../../../UI/TextArea';
 import FadeIn  from 'react-fade-in';
 import { LinkOutlined} from "@ant-design/icons";
 import { Title } from '@material-ui/icons';
@@ -23,8 +23,11 @@ const TitleContainer = (props) => {
         marginTop:"4px" 
     } 
     const [RecievedTitle, ChangeRecievedTitle] = useState(props.isEditTitle)
+    const [isChangedValueTitle, changedValueTitle]= useState(false)
+    isChangedValueTitle ? props.SubmitTitle(RecievedTitle) : props.SubmitTitle(props.isEditTitle)
+
     const TitleHandler = (event) => {
-        props.SubmitTitle(event.target.value)
+        changedValueTitle(true)
         ChangeRecievedTitle(event.target.value)
     }
     const title = <InfoContainer>
@@ -64,8 +67,10 @@ const DescriptionContainer = (props) => {
         marginTop:"4px" 
     }
     const [RecievedDescription, ChangeRecievedDescription] = useState(props.isEditDescription)
+    const [isChangedValueDescription, changedValueDescription]= useState(false)
+    isChangedValueDescription ? props.SubmitDescription(RecievedDescription) : props.SubmitDescription(props.isEditDescription)
     const DescriptionHandler = (event) => {
-        props.SubmitDescription(event.target.value)
+        changedValueDescription(true)
         ChangeRecievedDescription(event.target.value)
     }
     const Description = <InfoContainer>
@@ -108,8 +113,10 @@ const URLContainer = (props) => {
         marginTop:"4px" 
     }
     const [RecievedURL, ChangeRecievedURL] = useState(props.isEditURL)
+    const [isChangedValueURL, changedValueURL]= useState(false)
+    isChangedValueURL ? props.URLOption(RecievedURL) : props.URLOption(props.isEditURL)
     const URLHandler = (event) => {
-        props.URLOption(event.target.value);
+        changedValueURL(true)
         ChangeRecievedURL(event.target.value)
     }
     const URL = <InfoContainer>

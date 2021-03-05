@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components"; 
 import FadeIn  from 'react-fade-in'; 
 import { CalendarOutlined , ClockCircleOutlined} from "@ant-design/icons"; 
-import TimeSelected from '../DataCollection/TimeSelected';
-import DateSelected from '../DataCollection/DateSelected';
+import TimeSelected from '../../DataCollection/TimeSelected';
+import DateSelected from '../../DataCollection/DateSelected';
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import DateRangeIcon from '@material-ui/icons/DateRange';

@@ -29,6 +29,7 @@ const DateSelected = (props) => {
     <FadeIn>
       <SelectData
         key={YearsValueInput + createEventId()}
+        InputValue={YearsValueInput}
         value="as"
         PlaceholderValue="asdfas"
         inputType={"text"}
@@ -48,7 +49,6 @@ const DateSelected = (props) => {
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
         onchangeValue={handleYears}
-        InputValue={YearsValueInput}
       >
         {
           <NumberOfYearsValue/>

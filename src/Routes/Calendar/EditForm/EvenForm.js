@@ -3,8 +3,8 @@ import styled from "styled-components";
 import NoteContainer from "../../../UI/Modal";
 import FadeIn from "react-fade-in"; 
 import { CloseCircleOutlined } from "@ant-design/icons";
-import EditButton from "./EditButton";
-import DeleteButton from "./DeleteButton";
+import EditButton from "./Bottons/EditButton";
+import DeleteButton from "./Bottons/DeleteButton";
 import EditEventForm from "./EditEventForm";
 
 // import { SubmissionContainer } from "../ScheduleForm/Containers/SubmitButton1" ;
