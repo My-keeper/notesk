@@ -3,7 +3,13 @@ import styled from "styled-components";
 import SwitchIcon from './Switch'
 import FadeIn from 'react-fade-in';
 import UserIcon from "./UserIcon";
-import { LoginOutlined, LogoutOutlined,AlipayOutlined } from "@ant-design/icons";
+import {
+  LoginOutlined,
+  LogoutOutlined,
+  AlipayOutlined,
+  DownCircleOutlined,
+  UpCircleOutlined,
+} from "@ant-design/icons";
 import NotesIcon from '@material-ui/icons/Notes';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
@@ -29,7 +35,7 @@ const DisplayedUsername = styled.span`
   margin-top: 1px;
 `;
 const RightNavBarItems = styled.div`
-  margin-right: 12px;
+  margin-right: 4px;
   display: flex;
   width: 500px;
   justify-content: flex-end;
@@ -60,13 +66,18 @@ const NavBar = (props) => {
       fontSize: "34px",
       color: props.RecieveColor.NavIconColor
   }; 
+  const LogoutIconStyle = {
+      marginTop: "15px",
+      marginLeft: "8px",
+      fontSize: "18px",
+      color: props.RecieveColor.NavIconColor
+  };  
   const userNameDisplay = localStorage.getItem("guest")
     ? "Welcome Guest User"
     : props.username; 
   let usernameAndAvatar = props.username ? (
     <div style={{ display: "flex", minWidth: "fit-content" }}>
       <UserIcon
-        onMouseEnter={() => props.ShowLogOutButton(!props.ShowLogOutButtonValue)}
         // username={"Amr R. Mohamed"}
         username={props.username}
         OnChangedColor={props.RecieveColor}
@@ -74,6 +85,18 @@ const NavBar = (props) => {
       <DisplayedUsername TextColorInput={props.RecieveColor.UserIconTextColor}>
         <span style={{ fontWeight: "bold" }}>{"Amr R. Mohamed"}</span>
       </DisplayedUsername>
+      {props.showLogOutButton ? (!props.ShowLogOutButtonValue ? (
+        <DownCircleOutlined
+          onClick={() => props.isShowLogOutButton(true)}
+          style={LogoutIconStyle}
+        />
+      ) : (
+        <UpCircleOutlined
+          onClick={() => props.isShowLogOutButton(false)}
+          style={LogoutIconStyle}
+        />
+      )
+      ): null}
       {/* <DisplayedUsername>{userNameDisplay}</DisplayedUsername> */}
     </div>
   ) : null;
@@ -137,21 +160,9 @@ const NavBar = (props) => {
         {GoToNote}
         {buttonsList.map((button) => {
           return (
-            <div
-              style={{
-                display: "flex ",
-                flexDirection: "row",
-                marginLeft: "6px",
-              }}
-            >
+            <div  style={{ display: "flex ", flexDirection: "row",  marginLeft: "6px",  }}  >
               {GoToLogin}
-              <div
-                style={{
-                  color: props.RecieveColor.UserInputFC,
-                  fontSize: "1.2em",
-                  marginTop: "12px",
-                }}
-              >
+              <div style={{ color: props.RecieveColor.UserInputFC,  fontSize: "1.2em",  marginTop: "12px",  }}  >
                 {button.text}
               </div>
             </div>

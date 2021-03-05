@@ -7,69 +7,79 @@ import FadeIn from 'react-fade-in';
 
 class Notes extends Component {
   state = {
-    notes: []
-  }
+    notes: [],
+    isLogOut: false,
+  };
 
   addNote = (note) => {
-    const prevNote =[...this.state.notes]
-    prevNote.unshift(note)
-    this.setState({notes : prevNote})
-  }
-  
-  deleteNote = (id) => {
-    const Delete = [...this.state.notes] 
-    Delete.splice(id,1)
-    this.setState({notes: Delete})
-  }
-  onChangeTitle = (id, newTitle) =>{
-    const newNoteTitle = [...this.state.notes].filter((_,index) => {
-      return index === id
-    })[0]
-    if (newNoteTitle){
-      newNoteTitle.title = newTitle
-      const newNotes = [...this.state.notes]
-      newNotes[id] = newNoteTitle
-      this.setState({notes : newNotes})
-    }
-  }
-  onChangeContent = (id, newContent) =>{
-    const  newNoteContent = [...this.state.notes].filter((_,index) => {
-      return index === id
-    })[0]
-    if (newNoteContent){
-      newNoteContent.content = newContent
-      const newNotes = [...this.state.notes]
-      newNotes[id] = newNoteContent
-      this.setState({notes : newNotes})
-    }
-  }
+    const prevNote = [...this.state.notes];
+    prevNote.unshift(note);
+    this.setState({ notes: prevNote });
+  };
 
-  NoteItems = () =>{
-    return  [...this.state.notes].map((eachItem,i) => {
-      return <Note 
-        RecieveColor={this.props.Color}
-        key = {i}
-        id= {i}
-        title={eachItem.title} 
-        content={eachItem.content}
-        onDelete={this.deleteNote}
-        ChangeTitle={this.onChangeTitle}
-        ChangeContent={this.onChangeContent}
+  deleteNote = (id) => {
+    const Delete = [...this.state.notes];
+    Delete.splice(id, 1);
+    this.setState({ notes: Delete });
+  };
+  onChangeTitle = (id, newTitle) => {
+    const newNoteTitle = [...this.state.notes].filter((_, index) => {
+      return index === id;
+    })[0];
+    if (newNoteTitle) {
+      newNoteTitle.title = newTitle;
+      const newNotes = [...this.state.notes];
+      newNotes[id] = newNoteTitle;
+      this.setState({ notes: newNotes });
+    }
+  };
+  onChangeContent = (id, newContent) => {
+    const newNoteContent = [...this.state.notes].filter((_, index) => {
+      return index === id;
+    })[0];
+    if (newNoteContent) {
+      newNoteContent.content = newContent;
+      const newNotes = [...this.state.notes];
+      newNotes[id] = newNoteContent;
+      this.setState({ notes: newNotes });
+    }
+  };
+
+  NoteItems = () => {
+    return [...this.state.notes].map((eachItem, i) => {
+      return (
+        <Note
+          RecieveColor={this.props.Color}
+          key={i}
+          id={i}
+          title={eachItem.title}
+          content={eachItem.content}
+          onDelete={this.deleteNote}
+          ChangeTitle={this.onChangeTitle}
+          ChangeContent={this.onChangeContent}
         />
-     })
-  }
+      );
+    });
+  };
   render() {
     return (
-      <div style={{ height: "100%" }} >
-          <Nav 
-            username={"Mero"}
-            ColorChanged={this.props.colorchanged} 
-            RecieveColor={this.props.Color} 
-            showLogOutButton={true}
-          />     
-          <FadeIn><CreateNote RecieveColor={this.props.Color} AddedNote={this.addNote}/>  </FadeIn> 
-          {this.NoteItems()} 
-          <Footer/>
+      <div style={{ height: "100%" }}>
+        <Nav
+          username={"Mero"}
+          ColorChanged={this.props.colorchanged}
+          RecieveColor={this.props.Color}
+          showLogOutButton={true}
+          isShowLogOutButton={(value) => this.setState({ isLogOut: value })}
+          ShowLogOutButtonValue={this.state.isLogOut}
+        />
+        <FadeIn>
+          <CreateNote
+            RecieveColor={this.props.Color}
+            AddedNote={this.addNote}
+          />{" "}
+        </FadeIn>
+        {this.NoteItems()}
+        <Footer />
       </div>
     );
   }

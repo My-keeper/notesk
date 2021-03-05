@@ -11,17 +11,17 @@ class CalendarList extends Component {
   };
 
   render() {
-    console.log(this.state.isLogOut)
     return (
-      <div> 
-          <Nav
-            username={"Mero"}
-            ColorChanged={this.props.colorchanged}
-            RecieveColor={this.props.Color}
-            ShowLogOutButtonValue={this.state.isLogOut}
-            ShowLogOutButton={(value)=>this.setState({isLogOut : value})}
-          /> 
-          <CalendarCollection RecieveColor={this.props.Color} /> 
+      <div>
+        <Nav
+          username={"Mero"}
+          ColorChanged={this.props.colorchanged}
+          RecieveColor={this.props.Color}
+          isShowLogOutButton={(value) => this.setState({ isLogOut: value })}
+          ShowLogOutButtonValue={this.state.isLogOut}
+          showLogOutButton={true}
+        />
+        <CalendarCollection isLogOut={this.state.isLogOut} RecieveColor={this.props.Color} />
         <Footer />
       </div>
     );

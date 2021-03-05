@@ -4,6 +4,9 @@ import ScheduleForm from "./ScheduleForm/Schedule";
 import styled from "styled-components";
 import EventForm from "./EditForm/EvenForm"
 import LogOutcontainer from "../../UI/Modal";
+import FadeIn from "react-fade-in";
+import { Link } from "react-router-dom";
+import { LogoutOutlined } from "@ant-design/icons";
 
 const CalenderContainer = styled.div`
   z-index: "1";
@@ -19,24 +22,12 @@ const RightNavBarItems = styled.div`
   justify-content: flex-end;
 `;
 const CalendarCollection = (props) => {
-  //for Logginout 
-    const IsLogout = <RightNavBarItems style={{zIndex:"7" }}>
-    <LogOutcontainer
-      position= {"relative"}
-      width= {"140px"}
-      margin= {"10px"}
-      padding= {"15px"}
-      boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
-      borderRadiusValue= {"20px"}
-      ZindexValue={"100"}
-      resizeValue={"both"}
-      TopValue={"55px"}
-      RightValue={"10px"}
-      backGroundColorValue={props.RecieveColor.NotekBGC}
-    >
-      Mero
-    </LogOutcontainer>
-  </RightNavBarItems>
+  //Close is not hovered on color style
+  const VisibilityStle1 = {
+    marginRight: "8px",
+    fontSize: "22px",
+    color: props.RecieveColor.NavIconColor
+ };
   //Collection of Events
   const [currentEvents, ChangeEventList] = useState([
     {
@@ -93,9 +84,31 @@ const CalendarCollection = (props) => {
         />
     </div>
   ); 
+    //for Logginout 
+    const IsLogout = (
+      <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "80%", top: "5%"}}>
+        <FadeIn>
+          <LogOutcontainer
+            position={"relative"}
+            width={"140px"}
+            padding={"15px"}
+            boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+            borderRadiusValue={"20px"}
+            resizeValue={"both"}
+            LeftValue={"80%"}
+            backGroundColorValue={props.RecieveColor.NotekBGC}
+          > 
+          <Link to={"/"}>
+              <LogoutOutlined style={VisibilityStle1} />
+              <span style={{color: props.RecieveColor.UserInputFC,  fontSize: "1.2em"}}>Logout</span>
+          </Link>
+          </LogOutcontainer>
+        </FadeIn>
+      </div>
+    );
   return (
     <CalenderContainer>
-      {IsLogout}
+      {props.isLogOut ? IsLogout : null}
       {showSchedule ? scheduleForm : null}
       {showSchedule ? calendarForm : calendarForm}
     </CalenderContainer>
