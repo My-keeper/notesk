@@ -4,8 +4,16 @@ import Note from './Note/Note'
 import Footer from '../../UI/Footer'
 import CreateNote from './CreateNote/CreateNote'
 import FadeIn from 'react-fade-in';
+import { Link } from "react-router-dom";
+import { LogoutOutlined } from "@ant-design/icons";
 
 class Notes extends Component {
+  //Close is not hovered on color style
+  VisibilityStle1 = {
+    marginRight: "8px",
+    fontSize: "22px",
+    color: props.RecieveColor.NavIconColor
+  };
   state = {
     notes: [],
     isLogOut: false,
@@ -61,6 +69,28 @@ class Notes extends Component {
       );
     });
   };
+   //for Logginout 
+  IsLogout = (
+      <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "80%", top: "5%"}}>
+        <FadeIn>
+          <LogOutcontainer
+            position={"relative"}
+            width={"140px"}
+            padding={"15px"}
+            boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+            borderRadiusValue={"20px"}
+            resizeValue={"both"}
+            LeftValue={"80%"}
+            backGroundColorValue={props.RecieveColor.NotekBGC}
+          > 
+          <Link to={"/"}>
+              <LogoutOutlined style={VisibilityStle1} />
+              <span style={{color: props.RecieveColor.UserInputFC,  fontSize: "1.2em"}}>Logout</span>
+          </Link>
+          </LogOutcontainer>
+        </FadeIn>
+      </div>
+    );
   render() {
     return (
       <div style={{ height: "100%" }}>
