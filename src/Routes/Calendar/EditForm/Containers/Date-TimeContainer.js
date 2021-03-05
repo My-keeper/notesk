@@ -76,8 +76,9 @@ const CalenderContianer = (props) => {
                 <span style={{paddingTop: "7px" ,fontSize: "1em", marginLeft: "5px"}}> Chick to Retun to Selected Date of Event</span>}
         </EachateContainer>
     //Starting Data Area
+    const RecieveFromDate = props.PassIsStartedYear + "-" + props.PassIsStartedMonth + "-" + props.PassIsStartedDay
     const [fromData, ChangeFromDate] = useState("") 
-    console.log(props.SendSD)
+    console.log(fromData);
     const StartingData = <EachateContainer JustifyContentCalue={ ""}>
             <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
             { isSelectedDate ? <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC}}>{props.SendSD}</span></FadeIn> 
@@ -85,9 +86,9 @@ const CalenderContianer = (props) => {
                 <DateSelected
                 //These are used to send these data to DataSlected to be used for Year, Month, Day 
                 ReturnFrom="From"
-                ReturnClickedFromYear={props.SendSD.toString().slice(7,11)}
-                ReturnClickedFromMonth={props.SendSD.toString().slice(0,3)} 
-                ReturnClickedFromDay={props.SendSD.toString().slice(4,6)}
+                ReturnClickedFromDay={props.PassIsStartedDay} //passing the sliced date from Edit Event Form 
+                ReturnClickedFromMonth={props.PassIsStartedMonth}  //passing the sliced date from Edit Event Form 
+                ReturnClickedFromYear={props.PassIsStartedYear} //passing the sliced date from Edit Event Form 
                 name="start"
                 //The incoming dating is used to chagne the format of the date and then send that number to submission button
                 submitDateValue={(value) => ChangeFromDate(value)} 
@@ -97,7 +98,9 @@ const CalenderContianer = (props) => {
         </EachateContainer>
     
     // End Data Area
+    const RecieveToDate = props.PassIsEndedYear + "-" + props.PassIsEndedMonth + "-" + props.PassIsEndedDay
     const [ToData, ChangeToDate] = useState("")
+    console.log(ToData)
     const EndingingData = <EachateContainer JustifyContentCalue={ ""}>
             <FadeIn><span style={{  padding: "4px" , fontSize: "1.2em", marginRight: "25px"}}>To</span></FadeIn>
             { isSelectedDate ? <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC }}>{props.SendED}</span></FadeIn> 
@@ -105,9 +108,9 @@ const CalenderContianer = (props) => {
                 <DateSelected
                 //These are used to send these data to DataSlected to be used for Year, Month, Day 
                 ReturnFrom="To"
-                ReturnClickedToYear={props.SendED.toString().slice(7,11)}
-                ReturnClickedToMonth={props.SendED.toString().slice(0,3)} 
-                ReturnClickedToDay={props.SendED.toString().slice(4,6)}
+                ReturnClickedToDay={props.PassIsEndedDay}  //passing the sliced date from Edit Event Form 
+                ReturnClickedToMonth={props.PassIsEndedMonth}   //passing the sliced date from Edit Event Form 
+                ReturnClickedToYear={props.PassIsEndedYear}  //passing the sliced date from Edit Event Form 
                 name="end"
                 //The incoming dating is used to chagne the format of the date and then send that number to submission button
                 submitDateValue={(value) => ChangeToDate(value)} 
@@ -127,8 +130,8 @@ const CalenderContianer = (props) => {
         </InfoContainer>
 
     //To recieve a prop that will change the value from and to inside the schedule form to the value of From/to Date that has been created here  
-    props.GetFromDate(props.SendSD) //Return either the selected data from the calendar form or the changed data by the user
-    props.GetToDate(props.SendED) //Return either the selected data from the calendar form or the changed data by the user
+    props.GetFromDate(isSelectedDate ? RecieveFromDate : fromData); //Return either the selected data from the calendar form or the changed data by the user
+    props.GetToDate(isSelectedDate ? RecieveToDate : ToData); //Return either the selected data from the calendar form or the changed data by the user
     
     return(calendar)
 }

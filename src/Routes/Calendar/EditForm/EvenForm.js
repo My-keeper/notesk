@@ -135,6 +135,12 @@ const EditFormInfo = (
     getURL={props.EventClickedInfo.url} //The Url
     getStartedClickedEvent={props.isStartedDateEditEvent} //The started Date that is passed down from the CalendarForm
     getEndededClickedEvent={props.isEndedDateEditEvent} //The Ended Date that is passed down from the CalendarForm
+    isStartedDay={props.StartedDay} //the values of data in numbers passed down from CalendarForm
+    isStartedMonth={props.StartedMonth} //the values of data in numbers passed down from CalendarForm
+    isStartedYear={props.StartedYear} //the values of data in numbers passed down from CalendarForm
+    isEndedDay={props.EndedDay} //the values of data in numbers passed down from CalendarForm
+    isEndedMonth={props.EndedMonth} //the values of data in numbers passed down from CalendarForm
+    isEndedYear={props.EndedYear} //the values of data in numbers passed down from CalendarForm
   />
 );
 

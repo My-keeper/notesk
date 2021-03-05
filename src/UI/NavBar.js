@@ -10,6 +10,7 @@ import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import NoteAddOutlinedIcon from '@material-ui/icons/NoteAddOutlined';
 import { Link } from "react-router-dom";
 import AppButton from "./Button";
+import LogOutcontainer from "./Modal";
 
 const StyledNavBar = styled(FadeIn)` 
     align-items: center; 
@@ -38,6 +39,7 @@ const LeftNavBarItems = styled.div`
   width: 450px;
   justify-content: flex-start;
 `;
+
 const NavBar = (props) => {
   const IconStyle = {
     marginLeft: "5px",
@@ -57,21 +59,21 @@ const NavBar = (props) => {
       marginRight: "4px",
       fontSize: "34px",
       color: props.RecieveColor.NavIconColor
-  };
+  }; 
   const userNameDisplay = localStorage.getItem("guest")
     ? "Welcome Guest User"
     : props.username; 
   let usernameAndAvatar = props.username ? (
     <div style={{ display: "flex", minWidth: "fit-content" }}>
-      <UserIcon 
-      // username={"Amr R. Mohamed"} 
-        username={props.username} 
+      <UserIcon
+        onMouseEnter={() => props.ShowLogOutButton(!props.ShowLogOutButtonValue)}
+        // username={"Amr R. Mohamed"}
+        username={props.username}
         OnChangedColor={props.RecieveColor}
       />
-      <DisplayedUsername 
-          TextColorInput={props.RecieveColor.UserIconTextColor}>
-          <span style={{ fontWeight: "bold"}}>{"Amr R. Mohamed"}</span>
-        </DisplayedUsername>
+      <DisplayedUsername TextColorInput={props.RecieveColor.UserIconTextColor}>
+        <span style={{ fontWeight: "bold" }}>{"Amr R. Mohamed"}</span>
+      </DisplayedUsername>
       {/* <DisplayedUsername>{userNameDisplay}</DisplayedUsername> */}
     </div>
   ) : null;
@@ -86,12 +88,12 @@ const NavBar = (props) => {
       text: "Sing Up",
       linkTo: "/signup",
     });
-  if (props.showLogOutButton)
-    buttonsList.push({
-      text: "Logout",
-      linkTo: "/login",
-      // onClick: handleLogout,
-    });
+  // if (props.showLogOutButton)
+  //   buttonsList.push({
+  //     text: "Logout",
+  //     linkTo: "/login",
+  //     // onClick: handleLogout,
+  //   });
   //This is for change to calendar link
   const [isCalendar, ChangeIsCalendar] = useState(true);
   const GoToCalendar = isCalendar ? 
@@ -121,10 +123,12 @@ const NavBar = (props) => {
   const ColorSwitcher = <div style={{marginRight : "4px"}}>
         <SwitchIcon OnChangedColor={props.ColorChanged} style={{marginRight : "4px"}}/>
       </div>
-  return(
+  return (
     <StyledNavBar>
       <LeftNavBarItems>
-        <FadeIn><AlipayOutlined style={IconStyle}/></FadeIn>
+        <FadeIn>
+          <AlipayOutlined style={IconStyle} />
+        </FadeIn>
       </LeftNavBarItems>
 
       <RightNavBarItems>
@@ -133,9 +137,21 @@ const NavBar = (props) => {
         {GoToNote}
         {buttonsList.map((button) => {
           return (
-            <div style={{display: "flex " , flexDirection: "row", marginLeft: "6px"}}>
+            <div
+              style={{
+                display: "flex ",
+                flexDirection: "row",
+                marginLeft: "6px",
+              }}
+            >
               {GoToLogin}
-              <div style={{color: props.RecieveColor.UserInputFC , fontSize: "1.2em", marginTop: "12px" }}>
+              <div
+                style={{
+                  color: props.RecieveColor.UserInputFC,
+                  fontSize: "1.2em",
+                  marginTop: "12px",
+                }}
+              >
                 {button.text}
               </div>
             </div>
@@ -144,7 +160,7 @@ const NavBar = (props) => {
         {usernameAndAvatar}
       </RightNavBarItems>
     </StyledNavBar>
-  ) 
+  ); 
 }
 
 

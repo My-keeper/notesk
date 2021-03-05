@@ -7,19 +7,22 @@ class CalendarList extends Component {
   state = {
     SelectedDate: true,
     currentEvents: [],
+    isLogOut: false,
   };
 
   render() {
+    console.log(this.state.isLogOut)
     return (
-      <div>
-        <Nav 
-          username={"Mero"}
-          ColorChanged={this.props.colorchanged} 
-          RecieveColor={this.props.Color} 
-          showLogOutButton={true}
-        />
-        <CalendarCollection RecieveColor={this.props.Color}/>
-        <Footer/>
+      <div> 
+          <Nav
+            username={"Mero"}
+            ColorChanged={this.props.colorchanged}
+            RecieveColor={this.props.Color}
+            ShowLogOutButtonValue={this.state.isLogOut}
+            ShowLogOutButton={(value)=>this.setState({isLogOut : value})}
+          /> 
+          <CalendarCollection RecieveColor={this.props.Color} /> 
+        <Footer />
       </div>
     );
   }

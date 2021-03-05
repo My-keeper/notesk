@@ -25,6 +25,8 @@ const UserIcon = (props) => {
   return (
     <UserIconDiv
         backGroundColorInput={props.OnChangedColor.UserIconColor}
+        onClick={props.onClick}
+        onMouseEnter={props.onMouseEnter}
     >
       <StyledLetter
         backGroundTextColorInput={props.OnChangedColor.UserIconTextColor}

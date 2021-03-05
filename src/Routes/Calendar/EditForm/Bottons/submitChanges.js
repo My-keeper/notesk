@@ -30,14 +30,14 @@ const submitChanges = (props) => {
     const newNotes = [...ClickedEvent]; 
     newEvent = {
       ...newEvent,
-      // id: createEventId(),
+      id: createEventId(),
       title: props.isTitle,
       description: props.isDescription,
       Url: props.isURL,
       start: props.isStartingDate,
       end: props.isEndingData,
-      // startTime: props.isStartingTime,
-      // endTime: props.isEndingTime,
+      startTime: props.isStartingTime,
+      endTime: props.isEndingTime,
       daysOfWeek: props.isRepeatedDays,
       display: "list-item",
     };

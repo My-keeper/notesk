@@ -119,21 +119,27 @@ const EditEventForm = (props) => {
 
     // Data From and To
     const [getFormDate, ChangeFormDate] = useState(); //this is the data that will be send to submit model to be added to the event list 
-    console.log(getFormDate)
     const [getToDate, ChangeToDate] = useState();  //this is the data that will be send to submit model to be added to the event list 
+
     const StartDate= props.getStartedClickedEvent //This is the selected data in calendar for edit passing down from EventForm
-    console.log(StartDate)
     const EndDate= props.getEndededClickedEvent//This is the selected data in calendar  for edit passing down from EventForm
+    
     const [EditTime, ChangeEditedTime ] = useState()
-    const Data = ( !isShowTime ? null :
-        <CalenderContianer
+    const Data = !isShowTime ? null : (
+      <CalenderContianer
         SendSD={StartDate} //This is to send back the selected started data
         SendED={EndDate} //This is to send back the selected ended data
-        GetFromDate={(value) => ChangeFormDate(value)} //Returning the selected data that the user chose 
+        GetFromDate={(value) => ChangeFormDate(value)} //Returning the selected data that the user chose
         GetToDate={(value) => ChangeToDate(value)} //Returning the selected data that the user chose
-        GetIsSelectedDate={(value)=>ChangeEditedTime(value)} //To pass down to Time to show when the user want to chagne time 
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
-        /> 
+        GetIsSelectedDate={(value) => ChangeEditedTime(value)} //To pass down to Time to show when the user want to chagne time
+        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file
+        PassIsStartedDay={props.isStartedDay} //passing down the data in number from Event Form
+        PassIsStartedMonth={props.isStartedMonth} //passing down the data in number from Event Form
+        PassIsStartedYear={props.isStartedYear} //passing down the data in number from Event Form
+        PassIsEndedDay={props.isEndedDay} //passing down the data in number from Event Form
+        PassIsEndedMonth={props.isEndedMonth} //passing down the data in number from Event Form
+        PassIsEndedYear={props.isEndedYear} //passing down the data in number from Event Form
+      />
     );
 
     //This is for the time
