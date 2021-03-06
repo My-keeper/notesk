@@ -10,7 +10,7 @@ router.post("/Users", async (req, res) => {
   //saving the info to the database and see if will match the info in the model or not
   try{
     await user.save();
-    sendWelcomeEmail(user.email, user.firstName, user.lastName)
+    // sendWelcomeEmail(user.email, user.firstName, user.lastName)
     /*
     *  Creating a function that we can reuse whenever we want to generate an authentication 
     *  token for a given user where it will be called in user model
