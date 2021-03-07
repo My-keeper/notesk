@@ -12,7 +12,7 @@ class API {
     }
 
     //for signup 
-    static singUp (firstName, lastName, email, password, onSuccess, onFail) {
+    static singUp (firstName, lastName, email, password) {
 
         return axios.post(`http://localhost:9000/Users`, {
             firstName : firstName,
@@ -24,7 +24,6 @@ class API {
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user));
             console.log(res)
-            // onSuccess(res); 
         })
         .catch((e) => {
             // console.log(e.response.data)

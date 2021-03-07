@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { UserOutlined, MailOutlined, KeyOutlined, LoginOutlined, UserAddOutlined, HomeOutlined} from "@ant-design/icons";
 import UserInput from "../../UI/UserInput";
@@ -6,7 +6,8 @@ import NoteContainer from '../../UI/Modal';
 import Button from "../../UI/Button";
 import FadeIn  from "react-fade-in";
 import { Link } from "react-router-dom";
-
+import API from "../../API/API";
+import { useHistory } from "react-router-dom";
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -30,45 +31,51 @@ const SignupForm = (props) => {
         fontSize:"20px", 
         marginRight:"9px", 
         marginTop:"4px" }
-    
+
+    const [FirstNameValue, ChangeFirstName] = useState("")
     const FirstName = <FadeIn><UserInput 
-        inputType={"text"}
-        name="title"
-        PlaceholderValue={"FirstName"}
-        widthValue={"184px"}
-        paddingVale={"4px"}
-        outlineValue={"none"}
-        fontSizeValue={"1.2em"}
-        fontFamilyValue={"inherit"}
-        IsCalledValue={"FOCUS"} 
-        borderRadiusValue= {"7px"}
-        backGroundColorValue={props.RecieveColor.UserInputBGC}
-        FontColorValue={props.RecieveColor.UserInputFC}
-        PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
-        borderColorValue={props.RecieveColor.BorderColor}
-        BorderValue={"solid"}
-        borderWidthValue="thin"
-        marginRightValue={"10px"}
+            InputValue={FirstNameValue}
+            onchangeValue={(v)=>ChangeFirstName(v.target.value)}
+            inputType={"text"}
+            name="title"
+            PlaceholderValue={"FirstName"}
+            widthValue={"184px"}
+            paddingVale={"4px"}
+            outlineValue={"none"}
+            fontSizeValue={"1.2em"}
+            fontFamilyValue={"inherit"}
+            IsCalledValue={"FOCUS"} 
+            borderRadiusValue= {"7px"}
+            backGroundColorValue={props.RecieveColor.UserInputBGC}
+            FontColorValue={props.RecieveColor.UserInputFC}
+            PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+            borderColorValue={props.RecieveColor.BorderColor}
+            BorderValue={"solid"}
+            borderWidthValue="thin"
+            marginRightValue={"10px"}
         /></FadeIn>
     
+    const [LastNameValue, ChangeLastName] = useState("")
     const LastName = <FadeIn><UserInput 
-        inputType={"text"}
-        name="title"
-        PlaceholderValue={"LastName"}
-        widthValue={"184px"}
-        paddingVale={"4px"}
-        outlineValue={"none"}
-        fontSizeValue={"1.2em"}
-        fontFamilyValue={"inherit"}
-        IsCalledValue={"FOCUS"} 
-        borderRadiusValue= {"7px"}
-        backGroundColorValue={props.RecieveColor.UserInputBGC}
-        FontColorValue={props.RecieveColor.UserInputFC}
-        PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
-        borderColorValue={props.RecieveColor.BorderColor}
-        BorderValue={"solid"}
-        borderWidthValue="thin"
-        marginRightValue={"10px"}
+            InputValue={LastNameValue}
+            onchangeValue={(v)=>ChangeLastName(v.target.value)}
+            inputType={"text"}
+            name="title"
+            PlaceholderValue={"LastName"}
+            widthValue={"184px"}
+            paddingVale={"4px"}
+            outlineValue={"none"}
+            fontSizeValue={"1.2em"}
+            fontFamilyValue={"inherit"}
+            IsCalledValue={"FOCUS"} 
+            borderRadiusValue= {"7px"}
+            backGroundColorValue={props.RecieveColor.UserInputBGC}
+            FontColorValue={props.RecieveColor.UserInputFC}
+            PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+            borderColorValue={props.RecieveColor.BorderColor}
+            BorderValue={"solid"}
+            borderWidthValue="thin"
+            marginRightValue={"10px"}
         /></FadeIn> 
     
     const PersonalInfo = <InfoContainer>
@@ -77,9 +84,12 @@ const SignupForm = (props) => {
             {LastName} 
         </InfoContainer>
 
+    const [UserNameValue, ChangeUserName] = useState("")
     const Username = <InfoContainer>
             <FadeIn><UserAddOutlined style={IconColor}/></FadeIn>
-            <FadeIn><UserInput 
+            <FadeIn><UserInput
+            InputValue={UserNameValue}
+            onchangeValue={(v)=>ChangeUserName(v.target.value)} 
             inputType={"text"}
             name="title"
             PlaceholderValue={"UserNamr"}
@@ -100,9 +110,12 @@ const SignupForm = (props) => {
             /></FadeIn>
         </InfoContainer>
 
+    const [EmailValue, ChangeEmail] = useState("")
     const Email = <InfoContainer>
             <FadeIn><MailOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
+            InputValue={EmailValue}
+            onchangeValue={(v)=>ChangeEmail(v.target.value)} 
             inputType={"text"}
             name="title"
             PlaceholderValue={"E-mail"}
@@ -123,10 +136,13 @@ const SignupForm = (props) => {
             /></FadeIn>
         </InfoContainer>
     
+    const [PassWordValue, ChangePassWord] = useState("")
     const PassWord = <InfoContainer>
             <FadeIn><KeyOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
-            inputType={"text"}
+            InputValue={PassWordValue}
+            onchangeValue={(v)=>ChangePassWord(v.target.value)} 
+            inputType={"Password"}
             name="title"
             PlaceholderValue={"Password"}
             widthValue={"380px"}
@@ -146,10 +162,13 @@ const SignupForm = (props) => {
             /></FadeIn>
         </InfoContainer>
 
+    const [ConfirmPasswordValue, ChangeConfirmPassword] = useState("")
     const ConfirmPassWord = <InfoContainer>
             <FadeIn><KeyOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
-            inputType={"text"}
+            InputValue={ConfirmPasswordValue}
+            onchangeValue={(v)=>ChangeConfirmPassword(v.target.value)} 
+            inputType={"Password"}
             name="title"
             PlaceholderValue={"Confirm PassWord"}
             widthValue={"380px"}
@@ -169,7 +188,10 @@ const SignupForm = (props) => {
             /></FadeIn>
         </InfoContainer>   
 
-const Country =<FadeIn><UserInput 
+    const [CountryValue, ChangeCountry] = useState("")
+    const Country =<FadeIn><UserInput 
+        InputValue={CountryValue}
+        onchangeValue={(v)=>ChangeCountry(v.target.value)} 
         inputType={"text"}
         name="title"
         PlaceholderValue={"Country"}
@@ -189,7 +211,10 @@ const Country =<FadeIn><UserInput
         marginRightValue={"10px"}
     /></FadeIn>
 
-const Province = <FadeIn><UserInput 
+    const [ProvinceValue, ChangeProvince] = useState("")
+    const Province = <FadeIn><UserInput 
+        InputValue={ProvinceValue}
+        onchangeValue={(v)=>ChangeProvince(v.target.value)} 
         inputType={"text"}
         name="title"
         PlaceholderValue={"Province"}
@@ -209,7 +234,10 @@ const Province = <FadeIn><UserInput
         marginRightValue={"10px"}
     /></FadeIn>
 
-const City = <FadeIn><UserInput 
+    const [CityValue, ChangeCity] = useState("")
+    const City = <FadeIn><UserInput 
+        InputValue={CityValue}
+        onchangeValue={(v)=>ChangeCity(v.target.value)} 
         inputType={"text"}
         name="title"
         PlaceholderValue={"City"}
@@ -231,7 +259,10 @@ const City = <FadeIn><UserInput
         marginLeftValue={"34px"}
     /></FadeIn>
 
-const ZipCode = <FadeIn><UserInput 
+    const [ZipCodeValue, ChangeZipCode] = useState("")
+    const ZipCode = <FadeIn><UserInput 
+        InputValue={ZipCodeValue}
+        onchangeValue={(v)=>ChangeZipCode(v.target.value)} 
         inputType={"text"}
         name="title"
         PlaceholderValue={"ZipCode"}
@@ -252,13 +283,24 @@ const ZipCode = <FadeIn><UserInput
         marginRightValue={"10px"}
     /></FadeIn>
 
-const Location = <InfoContainer>
+    const Location = <InfoContainer>
         <FadeIn><HomeOutlined style={IconColor}/></FadeIn>
         {Country}
         {Province}
         {City}
         {ZipCode}
     </InfoContainer>
+
+let history = useHistory()
+const SignUp = () => {
+    API.singUp(
+        FirstNameValue,
+        LastNameValue,
+        EmailValue,
+        PassWordValue,
+        history.push("/")
+    )
+}
 
 const SignupButton = <FadeIn>
         <Button
@@ -276,6 +318,7 @@ const SignupButton = <FadeIn>
         paddingInputValue="3px"
         text = {"SignUp"} 
         icon = {<LoginOutlined style={ButtonIconColor}/>}
+        onClick={SignUp}
         />
     </FadeIn>
 
