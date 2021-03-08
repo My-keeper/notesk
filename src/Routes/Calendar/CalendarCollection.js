@@ -4,6 +4,7 @@ import ScheduleForm from "./ScheduleForm/Schedule";
 import styled from "styled-components";
 import EventForm from "./EditForm/EvenForm"
 import LogOutcontainer from "../../UI/Modal";
+import Button from "../../UI/Button";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
@@ -88,21 +89,24 @@ const CalendarCollection = (props) => {
     const IsLogout = (
       <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "88%", top: "5%"}}>
         <FadeIn>
-          <LogOutcontainer
-            position={"relative"}
-            width={"140px"}
-            padding={"15px"}
-            boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-            borderRadiusValue={"20px"}
-            resizeValue={"both"}
-            LeftValue={"70%"}
-            backGroundColorValue={props.RecieveColor.NotekBGC}
-          > 
           <Link to={"/login"}>
-              <LogoutOutlined style={VisibilityStle1} />
-              <span style={{color: props.RecieveColor.UserInputFC,  fontSize: "1.2em"}}>Logout</span>
+            <Button
+              position={"relative"}
+              width={"140px"}
+              padding={"15px"}
+              boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+              borderRadiusValue={"20px"}
+              fontSizeValue={"1.2em"}
+              marginTopValue={"5%"}
+              resizeValue={"both"}
+              LeftValue={"70%"}
+              text = {"Logout"} 
+              backGroundColorValue={props.RecieveColor.LogSignColor}
+              FontColorValue={props.RecieveColor.IconC}
+              borderColorValue={props.RecieveColor.BorderColor}
+              icon={<LogoutOutlined style={VisibilityStle1} />}
+            /> 
           </Link>
-          </LogOutcontainer>
         </FadeIn>
       </div>
     );

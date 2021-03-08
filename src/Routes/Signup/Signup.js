@@ -4,15 +4,21 @@ import Nav from "../../UI/NavBar";
 import SignupForm from "./SignupForm"; 
 import Imag from "../../UI/Imag"; 
 import API from "../../API/API";
- 
+
+
 const Signup = (props) => {
   let history = useHistory()
-  useEffect( async () => {
-    const isLoggedIn = await API.isLoggedIn();
-    if (isLoggedIn) {
-      history.push("/");
+  useEffect( () => {
+    async function CheckingIsLoggedIn() {
+      const isLoggedIn = await API.isLoggedIn();
+      if (isLoggedIn) {
+        history.push("/");
+      }
     }
-  },{}) 
+
+    CheckingIsLoggedIn()
+  } , []) 
+
   return (
     <div style={{ height: "800px", overflowY : "auto" }}>
       <Nav ColorChanged={props.colorchanged} 

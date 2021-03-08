@@ -6,9 +6,21 @@ import CreateNote from './CreateNote/CreateNote'
 import FadeIn from 'react-fade-in';
 import { Link } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
-import LogOutcontainer from "../../UI/Modal";
+import Button from "../../UI/Button"; 
+import API from "../../API/API";
 
 class Notes extends Component {
+
+  //to get the notes from the DB if any
+  async componentWillMount() {
+    const isLoggedIn = await API.isLoggedIn();
+    if (isLoggedIn) {
+      const PrevNotes = [...this.state.notes];
+      const DBNotes = await API.GetNote()
+      const MergedNotes = PrevNotes.concat(DBNotes.data)
+      this.setState({notes : MergedNotes})
+    }
+  }
   //Close is not hovered on color style
   VisibilityStle1 = {
     marginRight: "8px",
@@ -20,7 +32,7 @@ class Notes extends Component {
     isLogOut: false,
   };
 
-  addNote = (note) => {
+  addNote = async (note) => {
     const prevNote = [...this.state.notes];
     prevNote.unshift(note);
     this.setState({ notes: prevNote });
@@ -70,25 +82,33 @@ class Notes extends Component {
       );
     });
   };
-   //for Logginout 
+
+  //for Logginout 
+  // history = useHistory()
   IsLogout = (
       <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "88%", top: "5%"}}>
         <FadeIn>
-          <LogOutcontainer
-            position={"relative"}
-            width={"140px"}
-            padding={"15px"}
-            boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-            borderRadiusValue={"20px"}
-            resizeValue={"both"}
-            LeftValue={"70%"}
-            backGroundColorValue={this.props.Color.NotekBGC}
-          > 
-          <Link to={"/login"}>
-              <LogoutOutlined style={this.VisibilityStle1} />
-              <span style={{color: this.props.Color.UserInputFC,  fontSize: "1.2em"}}>Logout</span>
+          <Link to={"/login"} onclick={console.log("object")}>
+            <Button
+              onClick={()=> API.Logout(() => (this.history.push("/")) , (e) => {
+                console.log(e) 
+            })}
+              position={"relative"}
+              width={"140px"}
+              padding={"15px"}
+              boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+              borderRadiusValue={"20px"}
+              fontSizeValue={"1.2em"}
+              marginTopValue={"5%"}
+              resizeValue={"both"}
+              text = {"Logout"} 
+              LeftValue={"70%"}
+              backGroundColorValue={this.props.Color.LogSignColor}
+              FontColorValue={this.props.Color.IconC}
+              borderColorValue={this.props.Color.BorderColor}
+              icon={<LogoutOutlined style={this.VisibilityStle1} />}
+            />  
           </Link>
-          </LogOutcontainer>
         </FadeIn>
       </div>
     );
@@ -108,7 +128,7 @@ class Notes extends Component {
           <CreateNote
             RecieveColor={this.props.Color}
             AddedNote={this.addNote}
-          />{" "}
+          />
         </FadeIn>
         {this.NoteItems()}
         <Footer />

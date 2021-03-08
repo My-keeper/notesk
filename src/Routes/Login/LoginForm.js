@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
-import { MailOutlined, KeyOutlined, LoginOutlined} from "@ant-design/icons";
+import { MailOutlined, KeyOutlined, LoginOutlined,CloseOutlined} from "@ant-design/icons";
 import UserInput from "../../UI/UserInput";
 import NoteContainer from '../../UI/Modal';
 import Button from "../../UI/Button";
 import FadeIn  from "react-fade-in";
 import { Link } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
+import API from "../../API/API";
+import passwordValidator from "password-validator";
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -16,6 +18,18 @@ const InfoContainer = styled.div`
     margin: 4px;
     margin-bottom: 10px;
 `
+//For validating 
+    var passwordLength = new passwordValidator();
+    passwordLength.is().min(8);
+
+    var passwordLetters = new passwordValidator();
+    passwordLetters.has().uppercase().has().lowercase();
+
+    var passwordNumbers = new passwordValidator();
+    passwordNumbers.has().digits();
+
+    var passwordSymbols = new passwordValidator();
+    passwordSymbols.has().symbols();
 
 const SignupForm = (props) => {
     const IconColor = { 
@@ -29,13 +43,29 @@ const SignupForm = (props) => {
         fontSize:"20px", 
         marginRight:"9px", 
         marginTop:"4px" }
-
+    const [EmailValue, ChangeEmail] = useState("")
+    const [EmailPHValue, ChangeEmailPH] = useState("E-mail")
+    const [PasswordValue, ChangePassword] = useState("")
+    const [PasswordPHValue, ChangePasswordPH] = useState("Password")
+    
+    /***********************************************************/    
+    //For Validating 
+    const[emailValidOrPassword, ChangeEmailValidOrPassword] = useState(false)
+    console.log(emailValidOrPassword)
+    const inCorrectInput = <InfoContainer>
+        <CloseOutlined style={IconColor}/>
+        <span style={{color: props.RecieveColor.IconC, textAlign: "center", marginBottom: "10px"}}>Either the Email or The Password you’ve entered is incorrect</span>
+        </InfoContainer>
+    
+    /***********************************************************/    
     const Email = <InfoContainer>
             <FadeIn><MailOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
+            InputValue={EmailValue}
+            onchangeValue={(v)=>ChangeEmail(v.target.value)}
             inputType={"text"}
             name="title"
-            PlaceholderValue={"E-mail"}
+            PlaceholderValue={EmailPHValue}
             widthValue={"380px"}
             paddingVale={"4px"}
             outlineValue={"none"}
@@ -56,9 +86,11 @@ const SignupForm = (props) => {
     const PassWord = <InfoContainer>
             <FadeIn><KeyOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
-            inputType={"text"}
+            InputValue={PasswordValue}
+            onchangeValue={(v)=>ChangePassword(v.target.value)}
+            inputType={"Password"}
             name="title"
-            PlaceholderValue={"Password"}
+            PlaceholderValue={PasswordPHValue}
             widthValue={"380px"}
             paddingVale={"4px"}
             outlineValue={"none"}
@@ -75,7 +107,29 @@ const SignupForm = (props) => {
             marginRightValue={"10px"}
             /></FadeIn>
         </InfoContainer>
-   
+
+    let history = useHistory()
+    const LoggingIn = () => {
+        if(EmailValue == "" && PasswordValue == "") {
+            ChangeEmailPH("Please Enter an Email. -_-")
+            ChangePasswordPH("PLease Enter a Password. -_-")
+        } else if (EmailValue == "" ) {
+            ChangeEmailPH("Please Enter an Email. -_-")
+        } else if(PasswordValue == "") {
+            ChangePasswordPH("PLease Enter a Password. -_-")
+        }else {
+            API.login( 
+                EmailValue, 
+                PasswordValue,
+                () => (history.push("/")),
+                (e) => {
+                    console.log(e)
+                    ChangeEmailValidOrPassword(true)
+                    console.log(emailValidOrPassword)
+                }
+            )
+        }
+    }   
    const LoginButton = <FadeIn>
             <Button
             width={"120px"}
@@ -89,6 +143,7 @@ const SignupForm = (props) => {
             BorderValue="solid"
             borderWidthValue="thin"
             paddingInputValue="2px"
+            onClick={LoggingIn}
             text = {"Login"} 
             icon = {<LoginOutlined style={ButtonIconColor}/>}
             />
@@ -114,6 +169,7 @@ return <FadeIn>
         >
             {Email}
             {PassWord}
+            {emailValidOrPassword ? inCorrectInput : null}
             {LoginButton}
             <hr style={{marginBottom : "10px"}}></hr>
             {ReturnToLogin}

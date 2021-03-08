@@ -31,8 +31,32 @@ const SignupForm = (props) => {
         fontSize:"20px", 
         marginRight:"9px", 
         marginTop:"4px" }
-
+    /***********************************************************/    
+    //Input Value
     const [FirstNameValue, ChangeFirstName] = useState("")
+    const [LastNameValue, ChangeLastName] = useState("")
+    const [UserNameValue, ChangeUserName] = useState("")
+    const [EmailValue, ChangeEmail] = useState("")
+    const [PassWordValue, ChangePassWord] = useState("")
+    const [ConfirmPasswordValue, ChangeConfirmPassword] = useState("")
+    const [CountryValue, ChangeCountry] = useState("")
+    const [ProvinceValue, ChangeProvince] = useState("")
+    const [CityValue, ChangeCity] = useState("")
+    const [ZipCodeValue, ChangeZipCode] = useState("")
+
+    /***********************************************************/    
+    //For Validating
+    const[usernameValid, ChangeusernameValid] = useState(false)
+    const[emailValid, ChangeemailValid] = useState(false)
+    const[passwordLen, ChangepasswordLen] = useState(false)
+    const[passwordLetter, ChangepasswordLetter] = useState(false)
+    const[passwordNumber, ChangepasswordNumber] = useState(false)
+    const[passwordSpecial, ChangepasswordSpecial] = useState(false)
+    const[confirmPasswordMatched, ChangeconfirmPasswordMatched] = useState(false)
+    const[signUpValid,ChangesignUpValid] = useState(false)
+
+
+    /***********************************************************/  
     const FirstName = <FadeIn><UserInput 
             InputValue={FirstNameValue}
             onchangeValue={(v)=>ChangeFirstName(v.target.value)}
@@ -55,7 +79,6 @@ const SignupForm = (props) => {
             marginRightValue={"10px"}
         /></FadeIn>
     
-    const [LastNameValue, ChangeLastName] = useState("")
     const LastName = <FadeIn><UserInput 
             InputValue={LastNameValue}
             onchangeValue={(v)=>ChangeLastName(v.target.value)}
@@ -84,7 +107,6 @@ const SignupForm = (props) => {
             {LastName} 
         </InfoContainer>
 
-    const [UserNameValue, ChangeUserName] = useState("")
     const Username = <InfoContainer>
             <FadeIn><UserAddOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput
@@ -110,7 +132,6 @@ const SignupForm = (props) => {
             /></FadeIn>
         </InfoContainer>
 
-    const [EmailValue, ChangeEmail] = useState("")
     const Email = <InfoContainer>
             <FadeIn><MailOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
@@ -136,7 +157,6 @@ const SignupForm = (props) => {
             /></FadeIn>
         </InfoContainer>
     
-    const [PassWordValue, ChangePassWord] = useState("")
     const PassWord = <InfoContainer>
             <FadeIn><KeyOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
@@ -162,7 +182,6 @@ const SignupForm = (props) => {
             /></FadeIn>
         </InfoContainer>
 
-    const [ConfirmPasswordValue, ChangeConfirmPassword] = useState("")
     const ConfirmPassWord = <InfoContainer>
             <FadeIn><KeyOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
@@ -188,7 +207,6 @@ const SignupForm = (props) => {
             /></FadeIn>
         </InfoContainer>   
 
-    const [CountryValue, ChangeCountry] = useState("")
     const Country =<FadeIn><UserInput 
         InputValue={CountryValue}
         onchangeValue={(v)=>ChangeCountry(v.target.value)} 
@@ -211,7 +229,6 @@ const SignupForm = (props) => {
         marginRightValue={"10px"}
     /></FadeIn>
 
-    const [ProvinceValue, ChangeProvince] = useState("")
     const Province = <FadeIn><UserInput 
         InputValue={ProvinceValue}
         onchangeValue={(v)=>ChangeProvince(v.target.value)} 
@@ -234,7 +251,6 @@ const SignupForm = (props) => {
         marginRightValue={"10px"}
     /></FadeIn>
 
-    const [CityValue, ChangeCity] = useState("")
     const City = <FadeIn><UserInput 
         InputValue={CityValue}
         onchangeValue={(v)=>ChangeCity(v.target.value)} 
@@ -259,7 +275,6 @@ const SignupForm = (props) => {
         marginLeftValue={"34px"}
     /></FadeIn>
 
-    const [ZipCodeValue, ChangeZipCode] = useState("")
     const ZipCode = <FadeIn><UserInput 
         InputValue={ZipCodeValue}
         onchangeValue={(v)=>ChangeZipCode(v.target.value)} 
@@ -291,16 +306,22 @@ const SignupForm = (props) => {
         {ZipCode}
     </InfoContainer>
 
-let history = useHistory()
-const SignUp = () => {
-    API.singUp(
-        FirstNameValue,
-        LastNameValue,
-        EmailValue,
-        PassWordValue,
-        history.push("/")
-    )
-}
+    let history = useHistory()
+    const SignUp = () => {
+        
+        API.singUp(
+            FirstNameValue,
+            LastNameValue,
+            EmailValue,
+            PassWordValue,
+            ()=> history.push("/"),
+            (err) => {
+                if (err) {
+                    
+                }
+            }
+        )
+    }
 
 const SignupButton = <FadeIn>
         <Button

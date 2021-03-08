@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "./App.css";
 import Notes from "./Routes/Notes/Notes" ;
 import Calendar from "./Routes/Calendar/Calendar";
-import {BrowserRouter, Route,Switch } from "react-router-dom";
+import {BrowserRouter, Route,  } from "react-router-dom";
 import Login from "./Routes/Login/Login";
 import Signup from "./Routes/Signup/Signup";
 import Weather from "./API/Weather";
@@ -64,24 +64,22 @@ class App extends Component {
 
   render() {
     return ( 
-      <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
-        <BrowserRouter>
-          <Switch>
-            <Route path="/" exact render={(props) => <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-            />
-            <Route path="/calendar" render={(props) => <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-            />
-            <Route path="/login" render={(props) => <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-            />
-            <Route path="/signup" render={(props) => <Signup Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-            />
-            <Route path="/weather" render={(props) => <Weather/>}
-            />
-            <Route path="/Test" render={(props) => <Test/>}
-            />
-          </Switch>
-        </BrowserRouter>  
-      </ContainerDiv>
+      <BrowserRouter>
+        <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
+        <Route path="/calendar" exact render={(props) => <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        />
+        <Route path="/login" exact render={(props) => <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        />
+        <Route path="/signup" exact render={(props) => <Signup Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        />
+        <Route path="/" exact render={(props) => <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        />
+        <Route path="/weather" exact render={(props) => <Weather/>}
+        />
+        <Route path="/Test" exact render={(props) => <Test/>}
+        />
+        </ContainerDiv>
+      </BrowserRouter>  
     )
       }
 }

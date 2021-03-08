@@ -12,7 +12,7 @@ class API {
     }
 
     //for signup 
-    static singUp (firstName, lastName, email, password) {
+    static singUp (firstName, lastName, email, password, onSuccess, onFail) {
 
         return axios.post(`http://localhost:9000/Users`, {
             firstName : firstName,
@@ -23,12 +23,10 @@ class API {
         .then((res)=>{
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user));
-            console.log(res)
+            onSuccess(res)
         })
-        .catch((e) => {
-            // console.log(e.response.data)
-            console.log(e)
-            // onFail(e.response.data);
+        .catch((e) => { 
+            onFail(e) 
         })
     }
 
@@ -46,19 +44,86 @@ class API {
     }
 
     //for login
-    static login(email, password) {
-        return axios.post('http://localhost:9000/login', {
+    static login(email, password, onSuccess, onFail) {
+        console.log(localStorage)
+        return axios.post('http://localhost:9000/Users/login', {
             email,
             password
             }).then((res) => {
                 localStorage.setItem("token", res.data.token);
-                localStorage.setItem("user", JSON.stringify(res.data.user));
-                console.log(localStorage.setItem("user", JSON.stringify(res.data.user)))
+                localStorage.setItem("user", JSON.stringify(res.data.user)); 
                 console.log(res)
+                onSuccess(res)
+            }).catch((e) => {
+                console.log("there is a prob")
+                onFail(e)
+            })
+    }
+
+    //For one machine logout 
+    static Logout(onSuccess, onFail) { 
+        return axios.post('http://localhost:9000/Users/logout',{
+            headers: {Authorization: localStorage.getItem("token") },
+        }).then((res) => {
+            console.log("you are logged Out")
+            onSuccess(res);
+        }).catch((e) => {
+            console.log("there is a prob")
+            onFail(e)
+        })
+    }
+
+    //For all machine logout 
+    // static LogoutAll() {
+
+    // }
+
+    /***************************    Notes  ************************************************/
+    //Create Note 
+    static CreateNote(title, content) {
+        return axios
+            .post('http://localhost:9000/Notes', {
+                title,
+                content
+            }, {
+                headers: {Authorization: localStorage.getItem("token") },
+            }).then((res) => {
+                localStorage.setItem("id", res.data._id);
+
             }).catch((e) => {
                 console.log(e)
             })
     }
-
+    //Get Note 
+    static GetNote() {
+        return axios
+            .get('http://localhost:9000/Notes',{
+                headers: {Authorization: localStorage.getItem("token") },
+            }).catch((e) => {
+                console.log(e)
+            })
+    }
+    //Change Note 
+    static UpdateNote(id) {  
+        return axios
+            .patch('http://localhost:9000/Notes',{
+                id,
+            },{
+                headers: {Authorization: localStorage.getItem("token") },
+            }).catch((e) => {
+                console.log(e)
+            })
+    }
+    //Delete Note 
+    static UpdateNote(id) {
+        return axios
+            .delete('http://localhost:9000/Notes',{
+                id,
+            },{
+                headers: {Authorization: localStorage.getItem("token") },
+            }).catch((e) => {
+                console.log(e)
+            })
+    }
 }
 export default API

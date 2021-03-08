@@ -6,6 +6,7 @@ import UserInput from '../../../UI/UserInput';
 import TextArea from '../../../UI/TextArea';
 import NoteContainer from '../../../UI/Modal';
 import { SentimentVeryDissatisfied, Title, ImportContacts ,SentimentVerySatisfied} from '@material-ui/icons';
+import API from "../../../API/API";
 
 const AddNote = styled.div`
     font-size :30px;
@@ -56,6 +57,7 @@ const CreateNote = (props) => {
         }
         else
         {
+            API.CreateNote(CurrentNote.title, CurrentNote.content)
             props.AddedNote(CurrentNote);
             setNote({
                 title: "",
