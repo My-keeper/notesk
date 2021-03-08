@@ -17,7 +17,7 @@ class Notes extends Component {
     if (isLoggedIn) {
       const PrevNotes = [...this.state.notes];
       const DBNotes = await API.GetNote()
-      const MergedNotes = PrevNotes.concat(DBNotes.data)
+      const MergedNotes = DBNotes.data.concat(PrevNotes)
       this.setState({notes : MergedNotes})
     }
   }
