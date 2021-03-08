@@ -10,29 +10,28 @@ import Button from "../../UI/Button";
 import API from "../../API/API";
 
 class Notes extends Component {
-
   //to get the notes from the DB if any
   async componentWillMount() {
     const isLoggedIn = await API.isLoggedIn();
     if (isLoggedIn) {
       const PrevNotes = [...this.state.notes];
-      const DBNotes = await API.GetNote()
-      const MergedNotes = DBNotes.data.concat(PrevNotes)
-      this.setState({notes : MergedNotes})
+      const DBNotes = await API.GetNote();
+      const MergedNotes = DBNotes.data.concat(PrevNotes);
+      this.setState({ notes: MergedNotes });
     }
   }
   //Close is not hovered on color style
   VisibilityStle1 = {
     marginRight: "8px",
     fontSize: "22px",
-    color: this.props.Color.NavIconColor
+    color: this.props.Color.NavIconColor,
   };
   state = {
     notes: [],
     isLogOut: false,
   };
 
-  addNote = async (note) => {
+  addNote = (note) => {
     const prevNote = [...this.state.notes];
     prevNote.unshift(note);
     this.setState({ notes: prevNote });
@@ -66,7 +65,7 @@ class Notes extends Component {
     }
   };
 
-  NoteItems = () => {
+  NoteItems = () => { 
     return [...this.state.notes].map((eachItem, i) => {
       return (
         <Note
@@ -83,35 +82,49 @@ class Notes extends Component {
     });
   };
 
-  //for Logginout 
+  //for Logginout
+  handlerLogout = async () => {
+    const isLoggedIn = await API.isLoggedIn();
+    if (isLoggedIn) {
+      await API.Logout()
+    }
+    // this.history.push("/");
+  };
   // history = useHistory()
   IsLogout = (
-      <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "88%", top: "5%"}}>
-        <FadeIn>
-          <Link to={"/login"} onclick={console.log("object")}>
-            <Button
-              onClick={()=> API.Logout(() => (this.history.push("/")) , (e) => {
-                console.log(e) 
-            })}
-              position={"relative"}
-              width={"140px"}
-              padding={"15px"}
-              boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-              borderRadiusValue={"20px"}
-              fontSizeValue={"1.2em"}
-              marginTopValue={"5%"}
-              resizeValue={"both"}
-              text = {"Logout"} 
-              LeftValue={"70%"}
-              backGroundColorValue={this.props.Color.LogSignColor}
-              FontColorValue={this.props.Color.IconC}
-              borderColorValue={this.props.Color.BorderColor}
-              icon={<LogoutOutlined style={this.VisibilityStle1} />}
-            />  
-          </Link>
-        </FadeIn>
-      </div>
-    );
+    <div
+      style={{
+        zIndex: "7",
+        position: "absolute",
+        display: "flex",
+        justifyContent: "flex-end",
+        left: "88%",
+        top: "5%",
+      }}
+    >
+      <FadeIn>
+        <Link to={"/login"} onclick={console.log("object")}>
+          <Button
+            onClick={this.handlerLogout}
+            position={"relative"}
+            width={"140px"}
+            padding={"15px"}
+            boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+            borderRadiusValue={"20px"}
+            fontSizeValue={"1.2em"}
+            marginTopValue={"5%"}
+            resizeValue={"both"}
+            text={"Logout"}
+            LeftValue={"70%"}
+            backGroundColorValue={this.props.Color.LogSignColor}
+            FontColorValue={this.props.Color.IconC}
+            borderColorValue={this.props.Color.BorderColor}
+            icon={<LogoutOutlined style={this.VisibilityStle1} />}
+          />
+        </Link>
+      </FadeIn>
+    </div>
+  );
   render() {
     return (
       <div style={{ height: "100%" }}>

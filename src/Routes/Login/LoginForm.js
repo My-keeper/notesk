@@ -8,7 +8,7 @@ import FadeIn  from "react-fade-in";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import API from "../../API/API";
-import passwordValidator from "password-validator";
+// import passwordValidator from "password-validator";
 
 const InfoContainer = styled.div`
     width: 440px;
@@ -19,17 +19,17 @@ const InfoContainer = styled.div`
     margin-bottom: 10px;
 `
 //For validating 
-    var passwordLength = new passwordValidator();
-    passwordLength.is().min(8);
+    // var passwordLength = new passwordValidator();
+    // passwordLength.is().min(8);
 
-    var passwordLetters = new passwordValidator();
-    passwordLetters.has().uppercase().has().lowercase();
+    // var passwordLetters = new passwordValidator();
+    // passwordLetters.has().uppercase().has().lowercase();
 
-    var passwordNumbers = new passwordValidator();
-    passwordNumbers.has().digits();
+    // var passwordNumbers = new passwordValidator();
+    // passwordNumbers.has().digits();
 
-    var passwordSymbols = new passwordValidator();
-    passwordSymbols.has().symbols();
+    // var passwordSymbols = new passwordValidator();
+    // passwordSymbols.has().symbols();
 
 const SignupForm = (props) => {
     const IconColor = { 
