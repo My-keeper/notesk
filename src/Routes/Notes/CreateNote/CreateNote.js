@@ -31,7 +31,7 @@ const CreateNote = (props) => {
     // const recieved_ID = API.CreateNote(,,(e)=>)
     // console.log(J)
     const [CurrentNote, setNote] = useState({title: "",content: "", id: ""});
-    console.log(CurrentNote)
+    // console.log(CurrentNote)
     const [CurrentPlaceHolde, setPlaceHolder]= useState({titlePH: "Title" , contentPH: "Take a note ..."})
     const [isHover, SetHover] = useState(true);
     const OnHovering = () => {SetHover(!isHover)}
@@ -60,21 +60,26 @@ const CreateNote = (props) => {
         </FadeIn>)
         }else
         {
-            API.CreateNote(CurrentNote.title, CurrentNote.content ) 
-            if (CurrentNote.id == ""){
-                setNote({id: JSON.stringify(localStorage.getItem("id_note"))  })
-            }
-            props.AddedNote(CurrentNote)
-            setNote({
-                title: "",
-                content: "",
-                id: ""
-            })
-            setPlaceHolder({
-                titlePH: "Title" , 
-                contentPH: "Take a note ..."
-            })
-            setSubmit(false)
+            API.CreateNote(CurrentNote.title, CurrentNote.content, (note)=>{
+                console.log(note)
+                setNote({note})
+                props.AddedNote(note)
+                setNote({
+                    title: "",
+                    content: "",
+                    id: ""
+                })
+                setPlaceHolder({
+                    titlePH: "Title" , 
+                    contentPH: "Take a note ..."
+                })
+                setSubmit(false)
+            } ) 
+            // if (CurrentNote.id == ""){
+            //     setNote({id: JSON.stringify(localStorage.getItem("id_note"))  })
+            // }
+
+            
         }  
         
     }

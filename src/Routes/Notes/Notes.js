@@ -30,7 +30,6 @@ class Notes extends Component {
     notes: [],
     isLogOut: false,
   };
-
   addNote = (note) => {
     const prevNote = [...this.state.notes];
     prevNote.unshift(note);
@@ -129,8 +128,8 @@ class Notes extends Component {
     </div>
   );
   render() {
-    console.log(this.state.notes)
-    console.log(this.state.notes[2])
+    const firstNode = this.state.notes[0]
+    if (firstNode) console.log(firstNode['_id'])
     return (
       <div style={{ height: "100%" }}>
         {this.state.isLogOut ? this.IsLogout : null}

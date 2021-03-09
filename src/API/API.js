@@ -80,7 +80,7 @@ class API {
 
     /***************************    Notes  ************************************************/
     //Create Note 
-    static CreateNote(title, content) {
+    static CreateNote(title, content,onSuccess) {
         return axios
             .post('http://localhost:9000/Notes', {
                 title,
@@ -88,8 +88,9 @@ class API {
             }, {
                 headers: {Authorization: localStorage.getItem("token") },
             }).then((res) => {
-                localStorage.setItem("id_note", res.data._id)
-                // onSuccess(res.data._id)
+                // localStorage.setItem("id_note", res.data._id)
+                onSuccess(res.data)
+                console.log(res)
             }).catch((e) => {
                 console.log(e)
             })
