@@ -126,7 +126,6 @@ const Note = (props) =>
     }       
    return(
     <FadeIn>
-        {console.log(props.RecieveColor.CalendarColorTable)}
         <NoteContainer
             background= {"#fff"}
             borderRadiusValue= {"7px"}

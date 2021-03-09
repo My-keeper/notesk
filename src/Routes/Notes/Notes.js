@@ -11,7 +11,7 @@ import API from "../../API/API";
 
 class Notes extends Component {
   //to get the notes from the DB if any
-  async componentWillMount() {
+  async componentDidMount() {
     const isLoggedIn = await API.isLoggedIn();
     if (isLoggedIn) {
       const PrevNotes = [...this.state.notes];
@@ -86,9 +86,12 @@ class Notes extends Component {
   handlerLogout = async () => {
     const isLoggedIn = await API.isLoggedIn();
     if (isLoggedIn) {
+      console.log("DADADW")
       await API.Logout()
+      console.log("workeing")
+      // () => this.history.push("/");
     }
-    // this.history.push("/");
+    console.log(" NOt workeing")
   };
   // history = useHistory()
   IsLogout = (
@@ -103,7 +106,7 @@ class Notes extends Component {
       }}
     >
       <FadeIn>
-        <Link to={"/login"} onclick={console.log("object")}>
+        {/* <Link to={"/login"} onclick={console.log("object")}> */}
           <Button
             onClick={this.handlerLogout}
             position={"relative"}
@@ -121,11 +124,13 @@ class Notes extends Component {
             borderColorValue={this.props.Color.BorderColor}
             icon={<LogoutOutlined style={this.VisibilityStle1} />}
           />
-        </Link>
+        {/* </Link> */}
       </FadeIn>
     </div>
   );
   render() {
+    console.log(this.state.notes)
+    console.log(this.state.notes[2])
     return (
       <div style={{ height: "100%" }}>
         {this.state.isLogOut ? this.IsLogout : null}

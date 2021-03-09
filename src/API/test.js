@@ -13,7 +13,7 @@ class Test extends React.Component {
     async isLoggedIn() {
         const isLoggedIn = await API.isLoggedIn()
         console.log(isLoggedIn)
-        // this.setState({ loggedin: isLoggedIn.toString() }, () => {
+        this.setState({ loggedin: true } )
 
 
     }
@@ -35,7 +35,7 @@ class Test extends React.Component {
                 />
                 <input
                     type="email"
-                    defaultValue="mark@gmail.com"
+                    defaultValue="masrk@gmail.com"
                     onChange={(event) => this.setState({ email: event.target.value })}
                 /> 
                 <p>Enter your password:</p>
@@ -46,8 +46,8 @@ class Test extends React.Component {
                 />
                 <button onClick={() => API.singUp(this.state.firstName, this.state.lastName ,this.state.email, this.state.password)} > Submit </button>
                 <button onClick={() => this.isLoggedIn()} >isLoggedIn</button>
-                {/* <button onClick={() => API.logout()}>logout</button>
-                <button onClick={() => API.login(this.state.email, this.state.password)}>login</button> */}
+                <button onClick={() => API.logout()}>logout</button>
+                {/* <button onClick={() => API.login(this.state.email, this.state.password)}>login</button> */}
             </div>
         );
     }
