@@ -7,7 +7,7 @@
 */
 const mongoose = require('mongoose')
    
-const Note = mongoose.model('Note', {
+const NoteSchema = new mongoose.Schema({
     title: {
         type: String, 
         required: true
@@ -23,5 +23,8 @@ const Note = mongoose.model('Note', {
         ref: 'Users' //this is used as a reference so we get access to the whole user profile 
     }
 })
+
+
+const Note = mongoose.model('Note', NoteSchema)
 
 module.exports = Note

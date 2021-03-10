@@ -32,7 +32,6 @@ class API {
 
     //for checking if you are logged in 
     static isLoggedIn() {
-        console.log(localStorage.getItem("token"))
         return axios.get('http://localhost:9000/Users/me', {
             headers: {Authorization: localStorage.getItem("token") },
         }).then(()=> {
@@ -88,9 +87,7 @@ class API {
             }, {
                 headers: {Authorization: localStorage.getItem("token") },
             }).then((res) => {
-                // localStorage.setItem("id_note", res.data._id)
                 onSuccess(res.data)
-                console.log(res)
             }).catch((e) => {
                 console.log(e)
             })
@@ -107,20 +104,66 @@ class API {
     //Change Note 
     static UpdateNote(id) {  
         return axios
-            .patch('http://localhost:9000/Notes',{
-                id,
-            },{
+            .patch(`http://localhost:9000/Notes/${id}`,{
                 headers: {Authorization: localStorage.getItem("token") },
+            }).then(()=>{
+                console.log("its changeing ")
             }).catch((e) => {
                 console.log(e)
             })
     }
     //Delete Note 
-    static UpdateNote(id) {
+    static DeleteNote(id) { 
         return axios
-            .delete('http://localhost:9000/Notes',{
-                id,
-            },{
+            .delete(`http://localhost:9000/Notes/${id}`, 
+            {
+                headers: {Authorization: localStorage.getItem("token") },
+            }).catch((e) => {
+                console.log(e)
+            })
+    }
+    
+    /***************************    Events  ************************************************/
+    //Create Events 
+    static CreateEvents(title, description, url, start, end, onSuccess) {
+        console.log("asdfasdf " + title, description, url, start, end)
+        return axios
+            .post('http://localhost:9000/Calendar', {
+                title,
+                description,
+                url,
+                start,
+                end
+            }, {
+                headers: {Authorization: localStorage.getItem("token") },
+            }).then((res) => {
+                onSuccess(res.data)
+            }).catch((e) => {
+                console.log(e)
+            })
+    }
+    //Get Events 
+    static GetEvents() {
+        return axios
+            .get('http://localhost:9000/Calendar',{
+                headers: {Authorization: localStorage.getItem("token") },
+            }).catch((e) => {
+                console.log(e)
+            })
+    }
+    //Change Events 
+    static UpdateEvents(id) {  
+        return axios
+            .patch(`http://localhost:9000/Calendar/${id}`,{
+                headers: {Authorization: localStorage.getItem("token") },
+            }).catch((e) => {
+                console.log(e)
+            })
+    }
+    //Delete Events 
+    static DeleteEvents(id) {
+        return axios
+            .delete(`http://localhost:9000/Calendar/${id}`,{
                 headers: {Authorization: localStorage.getItem("token") },
             }).catch((e) => {
                 console.log(e)

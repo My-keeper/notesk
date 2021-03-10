@@ -40,21 +40,28 @@ class Notes extends Component {
     const Delete = [...this.state.notes];
     Delete.splice(id, 1);
     this.setState({ notes: Delete });
+    if (!this.state.isLogOut) {
+      API.DeleteNote(id)
+    }
   };
   onChangeTitle = (id, newTitle) => {
-    const newNoteTitle = [...this.state.notes].filter((_, index) => {
-      return index === id;
+    const newNoteTitle = [...this.state.notes].filter((NoteId, index) => {
+      return !this.state.isLogOut ? NoteId['_id'] == id : index === id;
     })[0];
+    console.log(newNoteTitle)
     if (newNoteTitle) {
       newNoteTitle.title = newTitle;
       const newNotes = [...this.state.notes];
       newNotes[id] = newNoteTitle;
       this.setState({ notes: newNotes });
+      if (!this.state.isLogOut) {
+        API.UpdateNote(id)
+      }
     }
   };
   onChangeContent = (id, newContent) => {
-    const newNoteContent = [...this.state.notes].filter((_, index) => {
-      return index === id;
+    const newNoteContent = [...this.state.notes].filter((NoteId, index) => {
+      return !this.state.isLogOut ? NoteId['_id'] == id : index === id;
     })[0];
     if (newNoteContent) {
       newNoteContent.content = newContent;
@@ -65,12 +72,13 @@ class Notes extends Component {
   };
 
   NoteItems = () => { 
-    return [...this.state.notes].map((eachItem, i) => {
+    return [...this.state.notes].map((eachItem, i) => { 
+      const id_Value = !this.state.isLogOut ? eachItem['_id'] : i
       return (
         <Note
           RecieveColor={this.props.Color}
           key={i}
-          id={i}
+          id={id_Value}
           title={eachItem.title}
           content={eachItem.content}
           onDelete={this.deleteNote}
@@ -92,7 +100,6 @@ class Notes extends Component {
     }
     console.log(" NOt workeing")
   };
-  // history = useHistory()
   IsLogout = (
     <div
       style={{
@@ -104,8 +111,7 @@ class Notes extends Component {
         top: "5%",
       }}
     >
-      <FadeIn>
-        {/* <Link to={"/login"} onclick={console.log("object")}> */}
+      <FadeIn> 
           <Button
             onClick={this.handlerLogout}
             position={"relative"}
@@ -122,14 +128,11 @@ class Notes extends Component {
             FontColorValue={this.props.Color.IconC}
             borderColorValue={this.props.Color.BorderColor}
             icon={<LogoutOutlined style={this.VisibilityStle1} />}
-          />
-        {/* </Link> */}
+          /> 
       </FadeIn>
     </div>
   );
-  render() {
-    const firstNode = this.state.notes[0]
-    if (firstNode) console.log(firstNode['_id'])
+  render() { 
     return (
       <div style={{ height: "100%" }}>
         {this.state.isLogOut ? this.IsLogout : null}

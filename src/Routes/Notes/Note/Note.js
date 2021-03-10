@@ -42,10 +42,10 @@ const Note = (props) =>
         if (TitleClicked) {
             return(
             <FadeIn>
-            <Container>
-                <FadeIn>{ props.title}</FadeIn>
-                <FadeIn><IcionStyleing><EditOutlined onClick={TitleHandler}/></IcionStyleing></FadeIn>
-            </Container>
+                <Container>
+                    <FadeIn>{ props.title}</FadeIn>
+                    <FadeIn><IcionStyleing><EditOutlined onClick={TitleHandler}/></IcionStyleing></FadeIn>
+                </Container>
             </FadeIn>
             )
         }

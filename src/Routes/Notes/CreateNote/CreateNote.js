@@ -27,11 +27,8 @@ const InfoContainer = styled.div`
 const CreateNote = (props) => {
     const IconColor = { color : props.RecieveColor.IconC }
     const [isExpanded, setExpanded] = useState(false);
-    const [isSubmit, setSubmit] = useState(false);
-    // const recieved_ID = API.CreateNote(,,(e)=>)
-    // console.log(J)
-    const [CurrentNote, setNote] = useState({title: "",content: "", id: ""});
-    // console.log(CurrentNote)
+    const [isSubmit, setSubmit] = useState(false); 
+    const [CurrentNote, setNote] = useState({title: "",content: "", id: ""}); 
     const [CurrentPlaceHolde, setPlaceHolder]= useState({titlePH: "Title" , contentPH: "Take a note ..."})
     const [isHover, SetHover] = useState(true);
     const OnHovering = () => {SetHover(!isHover)}
@@ -61,7 +58,6 @@ const CreateNote = (props) => {
         }else
         {
             API.CreateNote(CurrentNote.title, CurrentNote.content, (note)=>{
-                console.log(note)
                 setNote({note})
                 props.AddedNote(note)
                 setNote({
@@ -75,11 +71,6 @@ const CreateNote = (props) => {
                 })
                 setSubmit(false)
             } ) 
-            // if (CurrentNote.id == ""){
-            //     setNote({id: JSON.stringify(localStorage.getItem("id_note"))  })
-            // }
-
-            
         }  
         
     }
@@ -162,7 +153,7 @@ const CreateNote = (props) => {
         </InfoContainer>}
             {isExpanded && 
             <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering}>
-                <FadeIn>{isHover ? <PlusCircleFilled onClick={subNote}/> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>
+                <FadeIn>{isHover ? <PlusCircleFilled /> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>
             </AddNote>}
         </NoteContainer>
     </FadeIn>

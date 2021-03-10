@@ -3,8 +3,7 @@ import FadeIn from "react-fade-in";
 import { LoginOutlined } from "@ant-design/icons";
 import Button from "../../../../UI/Button";
 import { createEventId } from "../../event-utils";
-import { Title } from "@material-ui/icons";
-let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
+import API from "../../../../API/API";
 
 const SubmitButton = (props) => {
   const ButtonIconColor = {
@@ -12,8 +11,8 @@ const SubmitButton = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   };   
-  const CreateEvent = {
-    id: createEventId(),
+  var CreateEvent = {
+    id: "",
     title: props.isTitle,
     description: props.isDescription,
     Url: props.isURL,
@@ -24,10 +23,15 @@ const SubmitButton = (props) => {
     daysOfWeek: props.isRepeatedDays,
     display: "list-item"  
   };
+  console.log(CreateEvent)
   const SubmitEvent = () => { 
     return(
-      props.isEvent((oldarr) => [...oldarr, CreateEvent]),
-      props.isCallingCalendar(false)
+      API.CreateEvents(props.isTitle, props.description, props.isURL, props.start, props.end, (Event) => {
+        props.isEvent((oldarr) => [...oldarr, CreateEvent])
+        props.isCallingCalendar(false)
+        CreateEvent=Event
+        console.log(CreateEvent)
+      })
     )
   };
 

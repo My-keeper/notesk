@@ -55,7 +55,7 @@ router.patch ("/Notes/:id", auth, async (req, res) => {
     
     //no note
     if (!note) {
-      return res.status(404).send()
+      return res.status(404).send("Note is not here")
     }
     updates.forEach((update) => note[update] = req.body[update])
     await note.save()
