@@ -89,7 +89,8 @@ const EditEventForm = (props) => {
         ScheduleColor={props.ScheduleColor}
         />
     );
-
+    
+    /***************************    Repeat Area  ************************************************/ 
     //This is to show either the data or repeated days
     const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
     const ShowData = isShowTime ?  
@@ -117,6 +118,7 @@ const EditEventForm = (props) => {
         {isShowTime ? InfoArea : isRepeated }
         </EachateContainer>
 
+    /***************************    Date Area  ************************************************/ 
     // Data From and To
     const [getFormDate, ChangeFormDate] = useState(); //this is the data that will be send to submit model to be added to the event list 
     const [getToDate, ChangeToDate] = useState();  //this is the data that will be send to submit model to be added to the event list 
@@ -142,6 +144,7 @@ const EditEventForm = (props) => {
       />
     );
 
+    /***************************    Time Area  ************************************************/ 
     //This is for the time
     const [StartHours, ChangeStartHour] = useState(); //have returned starting hour if time is needed
     const [StartMinuts, ChangeStartMinuts] = useState(); //have returned starting minut if time is needed 
@@ -167,6 +170,7 @@ const EditEventForm = (props) => {
         />
     );
     
+    /***************************    Submit New Changes Area  ************************************************/ 
     const submitChanges = <SubmitChanges 
         PassEventsInfoList={props.EventsInfoList}//list of all the Events created and compare it with the changed one
         TheIdOfClickedEvent={props.IDofClickedEvent} //the clicked event ID

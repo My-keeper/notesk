@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FadeIn from "react-fade-in";
 import { DeleteFilled } from "@ant-design/icons";
 import Button from "../../../../UI/Button";  
+import API from "../../../../API/API";
 
 const DeleteButton = (props) => {
   const ButtonIconColor = {
@@ -11,11 +12,14 @@ const DeleteButton = (props) => {
     marginTop: "4px",
   };   
   
-const DeleteButton = () => { 
+const DeleteButton = async () => { 
     const id = props.IDofClickedEvent //the Event id
-    console.log(props.IDofClickedEvent)
     const Delete = props.EventsInfoList  //copy the Events list
-    props.ReturnNewEvents(Delete.filter(Event => Event.id !== id))
+    const isLoggedIn = await API.isLoggedIn();
+    if (isLoggedIn){
+      API.DeleteEvents(id)
+    }
+    props.ReturnNewEvents(Delete.filter(Event => Event._id !== id))
     props.CloseModel(true)
   };
 

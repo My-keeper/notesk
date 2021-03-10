@@ -78,7 +78,6 @@ const CalenderContianer = (props) => {
     //Starting Data Area
     const RecieveFromDate = props.PassIsStartedYear + "-" + props.PassIsStartedMonth + "-" + props.PassIsStartedDay
     const [fromData, ChangeFromDate] = useState("") 
-    console.log(fromData);
     const StartingData = <EachateContainer JustifyContentCalue={ ""}>
             <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px"}}>From</span></FadeIn>
             { isSelectedDate ? <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC}}>{props.SendSD}</span></FadeIn> 
@@ -100,7 +99,6 @@ const CalenderContianer = (props) => {
     // End Data Area
     const RecieveToDate = props.PassIsEndedYear + "-" + props.PassIsEndedMonth + "-" + props.PassIsEndedDay
     const [ToData, ChangeToDate] = useState("")
-    console.log(ToData)
     const EndingingData = <EachateContainer JustifyContentCalue={ ""}>
             <FadeIn><span style={{  padding: "4px" , fontSize: "1.2em", marginRight: "25px"}}>To</span></FadeIn>
             { isSelectedDate ? <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "1px", color:props.ScheduleColor.IconC }}>{props.SendED}</span></FadeIn> 

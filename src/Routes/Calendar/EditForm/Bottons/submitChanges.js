@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FadeIn from "react-fade-in";
 import { SendOutlined } from "@ant-design/icons";
 import Button from "../../../../UI/Button";
-import { createEventId } from "../../event-utils";
+import API from "../../../../API/API";
 
 const submitChanges = (props) => {
   const ButtonIconColor = {
@@ -13,39 +13,41 @@ const submitChanges = (props) => {
   }  
 
   // this will delete the old event and send the new one
-  const SubmitTheNewEvent = () => { 
-    const ClickedEvent = props.PassEventsInfoList; //copy the Events list
-    const id = props.TheIdOfClickedEvent; //the Event id
-    let newEvent;
-    let indexOfEvent;
-    ClickedEvent.forEach((event, index) => {
-      if (event.id == id) {
-        newEvent = {...event};
-        indexOfEvent = index;
+  const SubmitTheNewEvent = async () => { 
+      const isLoggedIn = await API.isLoggedIn();
+      const ClickedEvent = props.PassEventsInfoList; //copy the Events list
+      const id = props.TheIdOfClickedEvent; //the Event id
+      let newEvent;
+      let indexOfEvent;
+      ClickedEvent.forEach((event, index) => {
+        console.log(index)
+        if (event.id == id) {
+          newEvent = {...event};
+          indexOfEvent = index;
+        }
+      }); 
+      const newNotes = [...ClickedEvent]; 
+      newEvent = {
+        ...newEvent,
+        id: props.TheIdOfClickedEvent,
+        title: props.isTitle,
+        description: props.isDescription,
+        Url: props.isURL,
+        start: props.isStartingDate,
+        end: props.isEndingData,
+        startTime: props.isStartingTime,
+        endTime: props.isEndingTime,
+        daysOfWeek: props.isRepeatedDays,
+        display: "list-item",
+      };
+      newNotes[indexOfEvent] = newEvent
+      console.log(newNotes)
+      props.ReturnNewEvents(newNotes); 
+      if(isLoggedIn){
+        API.UpdateEvents(id)
       }
-    });
-    console.log(props.isStartingDate)
-    console.log(props.isEndingData)
-    // console.log(props.isStartingTime)
-    const newNotes = [...ClickedEvent]; 
-    newEvent = {
-      ...newEvent,
-      id: createEventId(),
-      title: props.isTitle,
-      description: props.isDescription,
-      Url: props.isURL,
-      start: props.isStartingDate,
-      end: props.isEndingData,
-      startTime: props.isStartingTime,
-      endTime: props.isEndingTime,
-      daysOfWeek: props.isRepeatedDays,
-      display: "list-item",
-    };
-    console.error(newEvent)
-    newNotes[indexOfEvent] = newEvent
-    props.ReturnNewEvents(newNotes); 
 
-    props.isCloseModel(true);
+      props.isCloseModel(true);
   };
   const SubmitButton = <FadeIn>
       <Button

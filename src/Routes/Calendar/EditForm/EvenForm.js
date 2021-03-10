@@ -33,8 +33,6 @@ const ContentStyle = styled.span`
   marginLeft: 20px;
   `
 const EventForm = (props) => { 
-
-  
   // The Event information 
   const Header=<EachateContainer>
       <span style={{ 
@@ -88,6 +86,8 @@ const EventForm = (props) => {
       {isEnd}
     </DateContainer>
   
+  
+  /***************************    Buttons to either change or delete  ************************************************/ 
   //EditButton Clicked
   const [CallEditForm, ChnageEditForm]= useState(false)
   //The edit button
@@ -105,6 +105,7 @@ const EventForm = (props) => {
         />  
     </EachateContainer>
 
+  /***************************    Event Info  ************************************************/ 
   const EventInfo= <NoteContainer
       position={"relative"}
       width={"480px"}
@@ -120,29 +121,28 @@ const EventForm = (props) => {
       {Content}
       {isEditButton}
     </NoteContainer>
-    
-const EditFormInfo = (
-  <EditEventForm
-    EventsInfoList={props.PassedAllEvent} //list of all the Events created and compare it with the changed one
-    IDofClickedEvent={props.EventClickedInfo.Id} //the clicked event ID
-    ChangeOldEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model
-    CloseModel={(value) => props.closedEventForm(value)} //to return true if clicked
-    ReturnNewEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model
-    ScheduleColor={props.ScheduleColor}
-    closedEventForm={props.closedEventForm}
-    getTitle={props.EventClickedInfo.title} //The title
-    getDescription={props.EventClickedInfo.description} //The Description
-    getURL={props.EventClickedInfo.url} //The Url
-    getStartedClickedEvent={props.isStartedDateEditEvent} //The started Date that is passed down from the CalendarForm
-    getEndededClickedEvent={props.isEndedDateEditEvent} //The Ended Date that is passed down from the CalendarForm
-    isStartedDay={props.StartedDay} //the values of data in numbers passed down from CalendarForm
-    isStartedMonth={props.StartedMonth} //the values of data in numbers passed down from CalendarForm
-    isStartedYear={props.StartedYear} //the values of data in numbers passed down from CalendarForm
-    isEndedDay={props.EndedDay} //the values of data in numbers passed down from CalendarForm
-    isEndedMonth={props.EndedMonth} //the values of data in numbers passed down from CalendarForm
-    isEndedYear={props.EndedYear} //the values of data in numbers passed down from CalendarForm
-  />
-);
+  
+  /***************************    Edit Form Info  ************************************************/ 
+  const EditFormInfo =<EditEventForm
+      EventsInfoList={props.PassedAllEvent} //list of all the Events created and compare it with the changed one
+      IDofClickedEvent={props.EventClickedInfo.Id} //the clicked event ID
+      ChangeOldEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model
+      CloseModel={(value) => props.closedEventForm(value)} //to return true if clicked
+      ReturnNewEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model
+      ScheduleColor={props.ScheduleColor}
+      closedEventForm={props.closedEventForm}
+      getTitle={props.EventClickedInfo.title} //The title
+      getDescription={props.EventClickedInfo.description} //The Description
+      getURL={props.EventClickedInfo.url} //The Url
+      getStartedClickedEvent={props.isStartedDateEditEvent} //The started Date that is passed down from the CalendarForm
+      getEndededClickedEvent={props.isEndedDateEditEvent} //The Ended Date that is passed down from the CalendarForm
+      isStartedDay={props.StartedDay} //the values of data in numbers passed down from CalendarForm
+      isStartedMonth={props.StartedMonth} //the values of data in numbers passed down from CalendarForm
+      isStartedYear={props.StartedYear} //the values of data in numbers passed down from CalendarForm
+      isEndedDay={props.EndedDay} //the values of data in numbers passed down from CalendarForm
+      isEndedMonth={props.EndedMonth} //the values of data in numbers passed down from CalendarForm
+      isEndedYear={props.EndedYear} //the values of data in numbers passed down from CalendarForm
+    /> 
 
   return (
     <FadeIn>

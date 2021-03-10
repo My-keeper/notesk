@@ -20,6 +20,7 @@ const auth = async ( req, res, next) => {
         console.log(decoded)
         //now we are looking for the user with that token id and then confirm that the token is the same 
         const user = await User.findOne({ _id:  decoded._id, 'tokens.token': token })
+        console.log(user)
         //if the user in not that then catch method would be tragered 
         if(!user) {
             throw new Error()

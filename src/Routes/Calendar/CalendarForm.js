@@ -6,6 +6,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { INITIAL_EVENTS } from "./event-utils";
 import EventForm from "./EditForm/EvenForm";
+import API from "../../API/API";
 
 const CalendarForm = (props) => {
 
@@ -67,43 +68,55 @@ const CalendarForm = (props) => {
   const [isEndedYear, ChnageIsEndedYear] = useState("") //The value of the ended year clicked Data of event
  
   //this is the handler for the clicked Event
-  const handleEventClick = (clickInfo) => {
-    ChangeShowEventClicekd(false); 
+  const handleEventClick = async (clickInfo) => {
+    const isLoggedIn = await API.isLoggedIn();
+      ChangeShowEventClicekd(false); 
 
-    //Starting Date
-    const StartedDayValue = clickInfo.event._instance.range.start.toString().slice(8, 10) //Day
-    ChangeIsStartedDays(StartedDayValue);
-    const StartedMonthValue = clickInfo.event._instance.range.start.toString().slice(4, 7) //Month
-    ChangeIsStartedMonth(Object.values(CreatedMonthsValues).map( value => { if (value.name == StartedMonthValue) {return value.id;} }).filter(item => item)[0]) //Changing Month to number
-    const StartedYearValue = clickInfo.event._instance.range.start.toString().slice(11, 15) //Year 
-    ChangeIsStartedYear(StartedYearValue)
-    
-    //ending Date
-    const EndedDayValue = clickInfo.event._instance.range.end.toString().slice(8, 10) //Day
-    ChnageIsEndedDay(EndedDayValue);
-    const EndedMonthValue = clickInfo.event._instance.range.end.toString().slice(4, 7) //Month
-    ChnageIsEndedMonth(Object.values(CreatedMonthsValues).map( value => { if (value.name == EndedMonthValue) { return value.id; } }).filter(item => item)[0]) //Changing Month to number
-    const EndedYearValue = clickInfo.event._instance.range.end.toString().slice(11, 15) //Year 
-    ChnageIsEndedYear(EndedYearValue);
-    
-    //save the starting data for edit form event
-    ChangeIsStartedDate(
-      clickInfo.event._instance.range.start.toString().slice(4, 15)
-    ); 
-    //save the starting data for edit form event
-    ChnageIsEndedDate(
+      //Starting Date
+      const StartedDayValue = clickInfo.event._instance.range.start.toString().slice(8, 10) //Day
+      ChangeIsStartedDays(StartedDayValue);
+      const StartedMonthValue = clickInfo.event._instance.range.start.toString().slice(4, 7) //Month
+      ChangeIsStartedMonth(Object.values(CreatedMonthsValues).map( value => { if (value.name == StartedMonthValue) {return value.id;} }).filter(item => item)[0]) //Changing Month to number
+      const StartedYearValue = clickInfo.event._instance.range.start.toString().slice(11, 15) //Year 
+      ChangeIsStartedYear(StartedYearValue)
       
-      clickInfo.event._instance.range.end.toString().slice(4, 15)
-    );
-    ChangeClickedEvent({
-      Id: clickInfo.event._def.publicId,
-      title: clickInfo.event._def.title,
-      description: clickInfo.event._def.extendedProps.description,
-      url: clickInfo.event._def.extendedProps.Url,
-      Start: clickInfo.event._instance.range.start.toString().slice(4, 15),
-      End: clickInfo.event._instance.range.end.toString().slice(4, 15),
-      Display: clickInfo.event._def.ui.display,
-    });
+      //ending Date
+      const EndedDayValue = clickInfo.event._instance.range.end.toString().slice(8, 10) //Day
+      ChnageIsEndedDay(EndedDayValue);
+      const EndedMonthValue = clickInfo.event._instance.range.end.toString().slice(4, 7) //Month
+      ChnageIsEndedMonth(Object.values(CreatedMonthsValues).map( value => { if (value.name == EndedMonthValue) { return value.id; } }).filter(item => item)[0]) //Changing Month to number
+      const EndedYearValue = clickInfo.event._instance.range.end.toString().slice(11, 15) //Year 
+      ChnageIsEndedYear(EndedYearValue);
+      
+      //save the starting data for edit form event
+      ChangeIsStartedDate(
+        clickInfo.event._instance.range.start.toString().slice(4, 15)
+      ); 
+      //save the starting data for edit form event
+      ChnageIsEndedDate(
+        
+        clickInfo.event._instance.range.end.toString().slice(4, 15)
+      );
+      if (isLoggedIn){
+        return ChangeClickedEvent({
+          Id: clickInfo.event._def.extendedProps._id,
+          title: clickInfo.event._def.title,
+          description: clickInfo.event._def.extendedProps.description,
+          url: clickInfo.event._def.extendedProps.Url,
+          Start: clickInfo.event._instance.range.start.toString().slice(4, 15),
+          End: clickInfo.event._instance.range.end.toString().slice(4, 15),
+          Display: clickInfo.event._def.ui.display,
+        })
+      }
+      ChangeClickedEvent({
+        Id: clickInfo.event._def.publicId,
+        title: clickInfo.event._def.title,
+        description: clickInfo.event._def.extendedProps.description,
+        url: clickInfo.event._def.extendedProps.Url,
+        Start: clickInfo.event._instance.range.start.toString().slice(4, 15),
+        End: clickInfo.event._instance.range.end.toString().slice(4, 15),
+        Display: clickInfo.event._def.ui.display,
+      })
   };
 
   //this is the calendar Form

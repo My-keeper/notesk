@@ -46,13 +46,12 @@ const CalendarCollection = (props) => {
       textColor: "black",
     },
   ]); 
+  console.log(currentEvents)
   //using componet did mount using useffect
-  let history = useHistory()
   useEffect( () => {
     async function CheckingIsLoggedIn() {
       const isLoggedIn = await API.isLoggedIn();
       if (isLoggedIn) {
-        // const PrevEvents = [...currentEvents];
         const PrevEvents = currentEvents 
         const DBEvents = await API.GetEvents();
         const MergedNotes = DBEvents.data.concat(PrevEvents);

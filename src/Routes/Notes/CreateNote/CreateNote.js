@@ -32,7 +32,7 @@ const CreateNote = (props) => {
     const [CurrentPlaceHolde, setPlaceHolder]= useState({titlePH: "Title" , contentPH: "Take a note ..."})
     const [isHover, SetHover] = useState(true);
     const OnHovering = () => {SetHover(!isHover)}
-    const subNote = (event) =>  {
+    const subNote = async (event) =>  {
         event.preventDefault();
         setSubmit(true);
         if (CurrentNote.title === "" && CurrentNote.content === "" )
@@ -57,20 +57,35 @@ const CreateNote = (props) => {
         </FadeIn>)
         }else
         {
-            API.CreateNote(CurrentNote.title, CurrentNote.content, (note)=>{
-                setNote({note})
-                props.AddedNote(note)
-                setNote({
-                    title: "",
-                    content: "",
-                    id: ""
-                })
-                setPlaceHolder({
-                    titlePH: "Title" , 
-                    contentPH: "Take a note ..."
-                })
-                setSubmit(false)
-            } ) 
+            const isLoggedIn = await API.isLoggedIn();
+            if(isLoggedIn){
+                return API.CreateNote(CurrentNote.title, CurrentNote.content, (note)=>{
+                    setNote({note})
+                    props.AddedNote(note)
+                    setNote({
+                        title: "",
+                        content: "",
+                        id: ""
+                    })
+                    setPlaceHolder({
+                        titlePH: "Title" , 
+                        contentPH: "Take a note ..."
+                    })
+                    setSubmit(false)
+                } ) 
+            }
+            props.AddedNote(CurrentNote)
+            setNote({
+                title: "",
+                content: "",
+                id: ""
+            })
+            setPlaceHolder({
+                titlePH: "Title" , 
+                contentPH: "Take a note ..."
+            })
+            setSubmit(false)
+
         }  
         
     }
