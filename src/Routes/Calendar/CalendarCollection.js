@@ -1,4 +1,5 @@
-import React, { useState } from "react"; 
+import React, { useState, useEffect } from "react"; 
+import { useHistory } from "react-router-dom";
 import CalendarForm from "./CalendarForm";
 import ScheduleForm from "./ScheduleForm/Schedule";
 import styled from "styled-components";
@@ -8,6 +9,7 @@ import Button from "../../UI/Button";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
+import API from "../../API/API";
 
 const CalenderContainer = styled.div`
   z-index: "1";
@@ -15,20 +17,8 @@ const CalenderContainer = styled.div`
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 16px;
   color: cornflowerblue;
-`;
-const RightNavBarItems = styled.div`
-  margin-right: 12px;
-  display: flex;
-  width: 500px;
-  justify-content: flex-end;
-`;
+`; 
 const CalendarCollection = (props) => {
-  //Close is not hovered on color style
-  const VisibilityStle1 = {
-    marginRight: "8px",
-    fontSize: "22px",
-    color: props.RecieveColor.NavIconColor
- };
   //Collection of Events
   const [currentEvents, ChangeEventList] = useState([
     {
@@ -56,6 +46,30 @@ const CalendarCollection = (props) => {
       textColor: "black",
     },
   ]); 
+  //using componet did mount using useffect
+  let history = useHistory()
+  useEffect( () => {
+    async function CheckingIsLoggedIn() {
+      const isLoggedIn = await API.isLoggedIn();
+      if (isLoggedIn) {
+        // const PrevEvents = [...currentEvents];
+        const PrevEvents = currentEvents 
+        const DBEvents = await API.GetEvents();
+        const MergedNotes = DBEvents.data.concat(PrevEvents);
+        ChangeEventList(MergedNotes );
+      }
+    }
+
+    CheckingIsLoggedIn()
+  } , []) 
+
+  //Close is not hovered on color style
+  const VisibilityStle1 = {
+    marginRight: "8px",
+    fontSize: "22px",
+    color: props.RecieveColor.NavIconColor
+ };
+  
   const [showSchedule, ChangeShowSchedule ] =useState(false) // to show the shedule model 
   const [SelectedStartedData, ChangeStartedData] = useState() //started selected data 
   const [SelectedEndedData, ChangeEndedData] = useState(); // ended slected data  

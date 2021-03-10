@@ -13,12 +13,13 @@ const DeleteButton = (props) => {
   
 const DeleteButton = () => { 
     const id = props.IDofClickedEvent //the Event id
+    console.log(props.IDofClickedEvent)
     const Delete = props.EventsInfoList  //copy the Events list
     props.ReturnNewEvents(Delete.filter(Event => Event.id !== id))
     props.CloseModel(true)
   };
 
-  const SubmitButton = (
+  const SubmitDeleteButton = (
     <FadeIn>
       <Button
         width={"120px"}
@@ -38,7 +39,7 @@ const DeleteButton = () => {
   );
 
 
-  return SubmitButton;
+  return SubmitDeleteButton;
 };
 
 export default DeleteButton;

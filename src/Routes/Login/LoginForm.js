@@ -51,7 +51,6 @@ const SignupForm = (props) => {
     /***********************************************************/    
     //For Validating 
     const[emailValidOrPassword, ChangeEmailValidOrPassword] = useState(false)
-    console.log(emailValidOrPassword)
     const inCorrectInput = <InfoContainer>
         <CloseOutlined style={IconColor}/>
         <span style={{color: props.RecieveColor.IconC, textAlign: "center", marginBottom: "10px"}}>Either the Email or The Password you’ve entered is incorrect</span>
@@ -123,9 +122,7 @@ const SignupForm = (props) => {
                 PasswordValue,
                 () => (history.push("/")),
                 (e) => {
-                    console.log(e)
                     ChangeEmailValidOrPassword(true)
-                    console.log(emailValidOrPassword)
                 }
             )
         }

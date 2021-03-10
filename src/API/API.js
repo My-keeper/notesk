@@ -125,8 +125,7 @@ class API {
     
     /***************************    Events  ************************************************/
     //Create Events 
-    static CreateEvents(title, description, url, start, end, onSuccess) {
-        console.log("asdfasdf " + title, description, url, start, end)
+    static CreateEvents(title, description, url, start, end, onSuccess) { 
         return axios
             .post('http://localhost:9000/Calendar', {
                 title,

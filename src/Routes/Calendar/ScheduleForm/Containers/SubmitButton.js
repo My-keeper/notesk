@@ -12,7 +12,7 @@ const SubmitButton = (props) => {
     marginTop: "4px",
   };   
   var CreateEvent = {
-    id: "",
+    id: createEventId(),
     title: props.isTitle,
     description: props.isDescription,
     Url: props.isURL,
@@ -23,14 +23,12 @@ const SubmitButton = (props) => {
     daysOfWeek: props.isRepeatedDays,
     display: "list-item"  
   };
-  console.log(CreateEvent)
   const SubmitEvent = () => { 
     return(
-      API.CreateEvents(props.isTitle, props.description, props.isURL, props.start, props.end, (Event) => {
+      API.CreateEvents(CreateEvent.title, CreateEvent.description, CreateEvent.Url, CreateEvent.start, CreateEvent.end, (Event) => {
+        CreateEvent=Event //changing the create event before sending it to the front end 
         props.isEvent((oldarr) => [...oldarr, CreateEvent])
         props.isCallingCalendar(false)
-        CreateEvent=Event
-        console.log(CreateEvent)
       })
     )
   };
