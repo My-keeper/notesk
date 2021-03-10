@@ -17,6 +17,7 @@ import NoteAddOutlinedIcon from '@material-ui/icons/NoteAddOutlined';
 import { Link } from "react-router-dom";
 import AppButton from "./Button";
 import LogOutcontainer from "./Modal";
+import LogoNotask from "../UI/logo"
 
 const StyledNavBar = styled(FadeIn)` 
     align-items: center; 
@@ -27,7 +28,7 @@ const StyledNavBar = styled(FadeIn)`
     padding: 16px 32px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     display: flex;
-`;
+`; 
 const DisplayedUsername = styled.span`
   align-items: center;
   transform: translate(0, 30%);
@@ -42,7 +43,8 @@ const RightNavBarItems = styled.div`
 `;
 const LeftNavBarItems = styled.div`
   display: flex;
-  width: 450px;
+  width: 50px;
+  height:50px;
   justify-content: flex-start;
 `;
 
@@ -149,9 +151,8 @@ const NavBar = (props) => {
   return (
     <StyledNavBar>
       <LeftNavBarItems>
-        <FadeIn>
-          <AlipayOutlined style={IconStyle} />
-        </FadeIn>
+          {/* <AlipayOutlined style={IconStyle} /> */}
+          <LogoNotask/>
       </LeftNavBarItems>
 
       <RightNavBarItems>
