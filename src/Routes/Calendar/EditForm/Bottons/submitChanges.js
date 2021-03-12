@@ -42,9 +42,21 @@ const submitChanges = (props) => {
       };
       newNotes[indexOfEvent] = newEvent
       console.log(newNotes)
+      console.log(newNotes)
       props.ReturnNewEvents(newNotes); 
       if(isLoggedIn){
-        API.UpdateEvents(id)
+        API.UpdateEvents(
+          id,
+          props.isTitle,
+          props.isDescription,
+          props.isURL,
+          props.isStartingDate,
+          props.isEndingData,
+          props.isStartingTime,
+          props.isEndingTime,
+          props.isRepeatedDays,
+          "list-item"
+        )
       }
 
       props.isCloseModel(true);

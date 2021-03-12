@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
 import Button from "../../UI/Button"; 
 import API from "../../API/API";
+import { CloudDone } from '@material-ui/icons';
 
 class Notes extends Component {
   //to get the notes from the DB if any
@@ -45,22 +46,25 @@ class Notes extends Component {
     }
   };
   onChangeTitle = (id, newTitle) => {
+    var OldContent = ""
     const newNoteTitle = [...this.state.notes].filter((NoteId, index) => {
-      return !this.state.isLogOut ? NoteId['_id'] == id : index === id;
+      if (!this.state.isLogOut && NoteId['_id'] == id) {OldContent = NoteId.content}
+      return( !this.state.isLogOut ? NoteId['_id'] == id : index === id)
     })[0];
-    console.log(newNoteTitle)
     if (newNoteTitle) {
       newNoteTitle.title = newTitle;
       const newNotes = [...this.state.notes];
       newNotes[id] = newNoteTitle;
       this.setState({ notes: newNotes });
       if (!this.state.isLogOut) {
-        API.UpdateNote(id)
+        API.UpdateNote(id, newTitle, OldContent)
       }
     }
   };
   onChangeContent = (id, newContent) => {
+    var OldTitle = ""
     const newNoteContent = [...this.state.notes].filter((NoteId, index) => {
+      if (!this.state.isLogOut && NoteId['_id'] == id) {OldTitle = NoteId.title}
       return !this.state.isLogOut ? NoteId['_id'] == id : index === id;
     })[0];
     if (newNoteContent) {
@@ -68,6 +72,9 @@ class Notes extends Component {
       const newNotes = [...this.state.notes];
       newNotes[id] = newNoteContent;
       this.setState({ notes: newNotes });
+      if (!this.state.isLogOut) {
+        API.UpdateNote(id, OldTitle, newContent)
+      }
     }
   };
 
@@ -91,14 +98,11 @@ class Notes extends Component {
 
   //for Logginout
   handlerLogout = async () => {
-    const isLoggedIn = await API.isLoggedIn();
-    if (isLoggedIn) {
-      console.log("DADADW")
+    // const isLoggedIn = await API.isLoggedIn();
+    // if (isLoggedIn) {
       await API.Logout()
-      console.log("workeing")
       // () => this.history.push("/");
-    }
-    console.log(" NOt workeing")
+    // }
   };
   IsLogout = (
     <div

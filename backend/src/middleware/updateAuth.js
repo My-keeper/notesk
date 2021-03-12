@@ -12,10 +12,8 @@ const User = require('../models/user')
 
 const auth = async ( req, res, next) => {
     try {
-        // console.log(req.method=="PATCH")req.body.headers.Authorization
         //requesting the header token from the user who is called then , Replacing Bearer with nothing8
-        // const token = req.headers.authorization
-        const token = req.header('Authorization').replace('Bearer ', '')
+        const token = req.body.headers.Authorization 
         //making sure that the token is valid and created by the server 
         const decoded = jwt.verify(token, 'MyFirstWebApplication')
         //now we are looking for the user with that token id and then confirm that the token is the same 

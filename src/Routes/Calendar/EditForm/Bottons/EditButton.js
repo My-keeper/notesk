@@ -11,14 +11,6 @@ const EditButton = (props) => {
     marginTop: "4px",
   };   
 
-
-//   const SubmitEvent = () => { 
-//     return(
-//     //   props.isEvent((oldarr) => [...oldarr, CreateEvent]),
-//     //   props.isCallingCalendar(false)
-//     )
-//   };
-
   const SubmitButton = (
     <FadeIn>
       <Button

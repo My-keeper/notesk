@@ -60,15 +60,13 @@ class API {
     }
 
     //For one machine logout 
-    static Logout(onSuccess, onFail) { 
+    static Logout() { 
         return axios.post('http://localhost:9000/Users/logout',{
             headers: {Authorization: localStorage.getItem("token") },
-        }).then((res) => {
+        }).then(() => {
             console.log("you are logged Out")
-            onSuccess(res);
-        }).catch((e) => {
+        }).catch(() => {
             console.log("there is a prob")
-            onFail(e)
         })
     }
 
@@ -102,12 +100,13 @@ class API {
             })
     }
     //Change Note 
-    static UpdateNote(id) {  
+    static UpdateNote(id, title, content) {  
         return axios
             .patch(`http://localhost:9000/Notes/${id}`,{
+                title,
+                content
+            },{
                 headers: {Authorization: localStorage.getItem("token") },
-            }).then(()=>{
-                console.log("its changeing ")
             }).catch((e) => {
                 console.log(e)
             })
@@ -151,10 +150,22 @@ class API {
             })
     }
     //Change Events 
-    static UpdateEvents(id) {  
+    static UpdateEvents(id, title, description, Url, start, end, startTime, endTime, daysOfWeek, display) {  
         return axios
             .patch(`http://localhost:9000/Calendar/${id}`,{
+                title, 
+                description, 
+                Url, 
+                start, 
+                end, 
+                startTime, 
+                endTime, 
+                daysOfWeek, 
+                display
+            },{
                 headers: {Authorization: localStorage.getItem("token") },
+            }).then(()=>{
+                console.log("changing event")
             }).catch((e) => {
                 console.log(e)
             })
