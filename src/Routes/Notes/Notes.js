@@ -111,8 +111,8 @@ class Notes extends Component {
         position: "absolute",
         display: "flex",
         justifyContent: "flex-end",
-        left: "88%",
-        top: "5%",
+        right: "30px",
+        top: "4.5%",
       }}
     >
       <FadeIn> 

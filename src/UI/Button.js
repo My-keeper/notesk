@@ -40,7 +40,7 @@ const borderStyling = {
 
 const AppButton = (props) => (
   <StyledButton
-    height={props.height}
+    height={props.Height}
     widthInput={props.width}
     color={props.color}
     fontSizeInput={props.fontSizeValue}

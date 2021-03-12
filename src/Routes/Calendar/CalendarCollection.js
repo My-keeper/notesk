@@ -100,7 +100,7 @@ const CalendarCollection = (props) => {
   ); 
     //for Logginout 
     const IsLogout = (
-      <div style={{ zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",left: "88%", top: "5%"}}>
+      <div style={{ height:"50px" ,zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",right: "30px", top: "4.5%"}}>
         <FadeIn>
           <Link to={"/login"}>
             <Button
@@ -112,7 +112,6 @@ const CalendarCollection = (props) => {
               fontSizeValue={"1.2em"}
               marginTopValue={"5%"}
               resizeValue={"both"}
-              LeftValue={"70%"}
               text = {"Logout"} 
               backGroundColorValue={props.RecieveColor.LogSignColor}
               FontColorValue={props.RecieveColor.IconC}
