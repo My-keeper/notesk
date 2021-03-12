@@ -24,6 +24,7 @@ const SubmitButton = (props) => {
     daysOfWeek: props.isRepeatedDays,
     display: "list-item"  
   };
+  
   const SubmitEvent = async () => { 
     const isLoggedIn = await API.isLoggedIn();
       if(isLoggedIn){
