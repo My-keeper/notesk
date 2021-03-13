@@ -31,32 +31,33 @@ const CreateNote = (props) => {
     const [CurrentNote, setNote] = useState({title: "",content: "", id: ""}); 
     const [CurrentPlaceHolde, setPlaceHolder]= useState({titlePH: "Title" , contentPH: "Take a note ..."})
     const [isHover, SetHover] = useState(true);
+    const [TargetLength, ChangeTargetLength] = useState("")
     const OnHovering = () => {SetHover(!isHover)}
     const subNote = async (event) =>  {
         event.preventDefault();
         setSubmit(true);
-        if (CurrentNote.title === "" && CurrentNote.content === "" )
-        {   
-        return( <FadeIn>{
-            setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)!", contentPH: "Please Enter some Content ...(-_-)!"}) 
-            && isIconUserInput() && isIconTextArea()}
-        </FadeIn> )
-        } 
-        else  if (CurrentNote.title === "" )
-        {  
-        return( <FadeIn>{
-            setPlaceHolder({titlePH: "Please Enter A Title ....(-_-)"}) 
-            && isIconUserInput()}
-        </FadeIn>)
+        // if (CurrentNote.title === "" && CurrentNote.content === "" )
+        // {   
+        // return( <FadeIn>{
+        //     setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)!", contentPH: "Please Enter some Content ...(-_-)!"}) 
+        //     && isIconUserInput() && isIconTextArea()}
+        // </FadeIn> )
+        // } 
+        // else  if (CurrentNote.title === "" )
+        // {  
+        // return( <FadeIn>{
+        //     setPlaceHolder({titlePH: "Please Enter A Title ....(-_-)"}) 
+        //     && isIconUserInput()}
+        // </FadeIn>)
                 
-        } else if (CurrentNote.content === "" )
-        {
-        return( <FadeIn>{
-            setPlaceHolder({contentPH: "Please Enter some Content ...(-_-)!"}) 
-            && isIconTextArea()}
-        </FadeIn>)
-        }else
-        {
+        // } else if (CurrentNote.content === "" )
+        // {
+        // return( <FadeIn>{
+        //     setPlaceHolder({contentPH: "Please Enter some Content ...(-_-)!"}) 
+        //     && isIconTextArea()}
+        // </FadeIn>)
+        // }else
+        // {
             const isLoggedIn = await API.isLoggedIn();
             if(isLoggedIn){
                 return API.CreateNote(CurrentNote.title, CurrentNote.content, (note)=>{
@@ -71,6 +72,8 @@ const CreateNote = (props) => {
                         titlePH: "Title" , 
                         contentPH: "Take a note ..."
                     })
+                    props.TitleLitterNumber(TargetLength)
+                    ChangeTargetLength("")
                     setSubmit(false)
                 } ) 
             }
@@ -84,12 +87,12 @@ const CreateNote = (props) => {
                 titlePH: "Title" , 
                 contentPH: "Take a note ..."
             })
+            props.TitleLitterNumber(TargetLength)
+            ChangeTargetLength("")
             setSubmit(false)
-
-        }  
+        // }  
         
     }
-    
     const isIconUserInput = () => 
     (!isSubmit ? 
         (CurrentNote.title === "" ? <SentimentVerySatisfied style={IconColor}/> : <Title style={IconColor}/>) 
@@ -98,81 +101,101 @@ const CreateNote = (props) => {
     (!isSubmit ? 
         (CurrentNote.content === "" ? <SentimentVerySatisfied style={IconColor}/> : <ImportContacts style={IconColor}/>) 
         : (CurrentNote.content === "" ? <SentimentVeryDissatisfied style={IconColor}/> : <ImportContacts style={IconColor}/>))
-    const handlerChange = (event) => {
+    
+    const expand = () => {setExpanded(true)}
+
+    /******************************************************* Title *************************************************************************/
+    const handlerChangeTitle = (event) => {
+        ChangeTargetLength(event.target.value.length)
         const {name , value} = event.target ;
         setNote(prevNote => { return {...prevNote, [name]: value};});
     }
-    const expand = () => {setExpanded(true)}
-    return(
-    <FadeIn>
-    <NoteContainer
-        position= {"relative"}
-        width= {"480px"}
-        margin= {"30px auto 20px auto"}
-        padding= {"15px"}
-        boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
-        borderRadiusValue= {"7px"}
-        resizeValue={"both"}
-        backGroundColorValue={props.RecieveColor.NotekBGC}
-        >
-        <InfoContainer>
-            <FadeIn><UserInput
-            InputValue={CurrentNote.title}
-            name="title"
-            inputType={"text"}
-            PlaceholderValue={CurrentPlaceHolde.titlePH}
-            onchangeValue={handlerChange}
-            onClickValue={expand}
-            widthValue={"421px"}
-            paddingVale={"4px"}
-            outlineValue={"none"}
-            fontSizeValue={"1.2em"}
-            fontFamilyValue={"inherit"}
-            IsCalledValue={"FOCUS"} 
-            borderRadiusValue= {"7px"}
-            backGroundColorValue={props.RecieveColor.UserInputBGC}
-            FontColorValue={props.RecieveColor.UserInputFC}
-            PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
-            borderColorValue={props.RecieveColor.BorderColor}
-            BorderValue={"solid"}
-            borderWidthValue="thin"
-            marginRightValue={"10px"}
+    const TitleValue = <InfoContainer>
+            <FadeIn><TextArea
+                rows={(TargetLength >= 40 ) ? 2 : 1}
+                maxLength={"30"}
+                name="title"
+                inputType={"text"}
+                widthValue={"421px"}
+                paddingVale={"4px"}
+                outlineValue={"none"}
+                marginBottomValue={"5px"}
+                fontSizeValue={"1.2em"}
+                fontFamilyValue={"inherit"}
+                IsCalledValue={"FOCUS"} 
+                borderRadiusValue= {"7px"}
+                BorderValue={"solid"}
+                borderWidthValue="thin"
+                marginRightValue={"10px"}
+                onClickValue={expand}
+                onchangeValue={handlerChangeTitle}
+                InputValue={CurrentNote.title}
+                PlaceholderValue={CurrentPlaceHolde.titlePH}
+                backGroundColorValue={props.RecieveColor.UserInputBGC}
+                FontColorValue={props.RecieveColor.UserInputFC}
+                PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
+                borderColorValue={props.RecieveColor.BorderColor}
             /></FadeIn>
             <FadeIn>{ isIconUserInput()}</FadeIn>
         </InfoContainer>
-            {isExpanded && 
+    
+    /*************************************************** Content *****************************************************************************/
+    const handlerChangeContent = (event) => {
+        const {name , value} = event.target ;
+        setNote(prevNote => { return {...prevNote, [name]: value};});
+    }
+    const ContentValue = isExpanded && 
         <InfoContainer>
             <FadeIn><TextArea
-            InputValue={CurrentNote.content}
-            name="content"
-            PlaceholderValue={CurrentPlaceHolde.contentPH}
-            rows={isExpanded ? 3 : 1}
-            onchangeValue={handlerChange}
-            widthValue={"421px"}
-            paddingVale={"4px"}
-            outlineValue={"none"}
-            fontSizeValue={"1.2em"}
-            fontFamilyValue={"inherit"}
-            resizeValue={"vertical"}
-            IsCalledValue={"FOCUS"}
-            borderRadiusValue= {"7px"}
-            backGroundColorValue={props.RecieveColor.TextAreaBGC}
-            FontColorValue={props.RecieveColor.TextAreaFC}
-            PlaceHolderColorValue={props.RecieveColor.TextAreaPHC}
-            borderColorValue={props.RecieveColor.BorderColor}
-            BorderValue={"solid"}
-            borderWidthValue="thin"
-            marginRightValue={"10px"}
+                InputValue={CurrentNote.content}
+                name="content"
+                PlaceholderValue={CurrentPlaceHolde.contentPH}
+                rows={isExpanded ? 3 : 1}
+                onchangeValue={handlerChangeContent}
+                widthValue={"421px"}
+                paddingVale={"4px"}
+                outlineValue={"none"}
+                fontSizeValue={"1.2em"}
+                fontFamilyValue={"inherit"}
+                resizeValue={"vertical"}
+                IsCalledValue={"FOCUS"}
+                borderRadiusValue= {"7px"}
+                backGroundColorValue={props.RecieveColor.TextAreaBGC}
+                FontColorValue={props.RecieveColor.TextAreaFC}
+                PlaceHolderColorValue={props.RecieveColor.TextAreaPHC}
+                borderColorValue={props.RecieveColor.BorderColor}
+                BorderValue={"solid"}
+                borderWidthValue="thin"
+                marginRightValue={"10px"}
             /> </FadeIn>
             <FadeIn>{isIconTextArea()}</FadeIn>
-        </InfoContainer>}
-            {isExpanded && 
-            <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering}>
-                <FadeIn>{isHover ? <PlusCircleFilled /> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>
-            </AddNote>}
-        </NoteContainer>
-    </FadeIn>
-    )
+        </InfoContainer>
+
+    /*************************************************** Button *****************************************************************************/
+    const ButtonValue = isExpanded && 
+        <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering}>
+            <FadeIn>{isHover ? <PlusCircleFilled /> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>
+        </AddNote>
+    
+    /*************************************************** Create Note *****************************************************************************/
+    const CreateTheNote = <FadeIn>
+            <NoteContainer
+                position= {"relative"}
+                width= {"480px"}
+                margin= {"30px auto 20px auto"}
+                padding= {"15px"}
+                boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
+                borderRadiusValue= {"7px"}
+                resizeValue={"both"}
+                backGroundColorValue={props.RecieveColor.NotekBGC}
+                >
+                {TitleValue}
+                {ContentValue}
+                {ButtonValue}
+            </NoteContainer>
+        </FadeIn>
+
+    return(CreateTheNote)
 }
 
 export default CreateNote;

@@ -76,6 +76,7 @@ export default function UserInput(props) {
   return (
     <Container>
       <InputContainer
+        maxLength={props.maxLength}
         value={props.InputValue}
         type={Password ? "text" : props.inputType}
         placeholder={props.PlaceholderValue}
