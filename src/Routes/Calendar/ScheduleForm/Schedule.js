@@ -4,6 +4,7 @@ import NoteContainer from "../../../UI/Modal";
 import FadeIn from "react-fade-in";
 import {TitleContainer,DescriptionContainer,URLContainer} from "./Containers/TextInputContainer";
 import {CalenderContianer,TimerContainer} from "./Containers/Date-TimeContainer";
+import DisplayContainer from "./Containers/DisplayContainer";
 import RDContainer from "./Containers/DaysContainer";
 import SubmitButton from "./Containers/SubmitButton";
 import { CloseCircleOutlined } from "@ant-design/icons"; 
@@ -44,16 +45,17 @@ const Schedule = (props) => {
             fontSize: "26px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
     />)
 
-    //Title Area
+    /*************************************************** Title Area *****************************************************************************/
     const [getTitle, ChangeTitle] = useState("");
     const [TitlePH, ChangeTitlePH] = useState("Title ...");
     const Title = <TitleContainer
+            MaxLength={"45"}
             SubmitTitle={(value) => ChangeTitle(value)} //this is to return input value of the title and then send it to submit model
             SubmitTitlePlaceHolder={TitlePH} //this is to send the placeholder for the title area
             ScheduleColor={props.ScheduleColor}  // send the color list from the parent App file 
         />  
-    
-    //Description Area
+
+    /*************************************************** Description Area *****************************************************************************/
     const [getDescription, ChangeDescription] = useState("");
     const [DescriptionPH, ChangeDescriptionPH] = useState("Description ...");
     const Description = (
@@ -64,7 +66,7 @@ const Schedule = (props) => {
         />
     );
 
-    //URL Area
+    /*************************************************** URL Area *****************************************************************************/
     const [getURL, ChangeURL] = useState();
     const [URLPH, ChangeURLPH] = useState("Optional Attached Link For Description ...");
     const URL = (
@@ -74,8 +76,8 @@ const Schedule = (props) => {
         ScheduleColor={props.ScheduleColor}
         />
     );
-     
-    //This is to show either the data or repeated days
+
+    /*************************************************** the data or repeated days *****************************************************************************/
     const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
     const ShowData = <div onClick={()=>ChangeisShowTime(!isShowTime)}>
         {isShowTime ?  <RadioButtonUncheckedIcon style={VisibilityStle} /> : <RadioButtonCheckedIcon style={VisibilityStle} /> }
@@ -109,7 +111,7 @@ const Schedule = (props) => {
         /> 
     );
 
-    //This is for the time
+    /*************************************************** time Area *****************************************************************************/
     const [StartHours, ChangeStartHour] = useState(); //have returned starting hour if time is needed
     const [StartMinuts, ChangeStartMinuts] = useState(); //have returned starting minut if time is needed 
     const [EndHours, ChangeEndHour] = useState(); //have returned Ending hour if time is needed
@@ -129,14 +131,22 @@ const Schedule = (props) => {
         />
         );
         
-    //this is for number of rebeated days 
+    /*************************************************** rebeated days Area *****************************************************************************/
     const [GetRepeatedDays, ChangeRepeatedDays] = useState()
     const RepeatedDays =( isShowTime ? null :<RDContainer
         ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
         SubmitNumberOfRP={(value) => ChangeRepeatedDays(value)} //returning the value of repeated days 
         />
     );
-    //Submit Buton 
+
+    /*************************************************** Display Options Area *****************************************************************************/
+    const [GetDiplayOption , ChangeDiplayOption] = useState()
+    const DiplayOption =<DisplayContainer
+        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+        SubmitDisplayOption={(value) => ChangeDiplayOption(value)} //returning the value of repeated days 
+        /> 
+
+    /*************************************************** Submit Buton  Area *****************************************************************************/
     const Submit = (
       <SubmitButton
         isCallingCalendar={(value) => props.CallingCalendar(value)} //return the close value to return to calender from the submit model
@@ -145,16 +155,17 @@ const Schedule = (props) => {
         isDescription={getDescription} //the Description value
         CheckDescriptionPH={(value) => ChangeDescriptionPH(value)} //this is to change the description placeholder if there is no placeholder
         isURL={getURL} //the URL value
-        // isStartingDate= {TimeClicked ?(getFormDate+'T12:00:00') : (getFormDate+"T"+StartHours+":"+StartMinuts+":00")} //the value of the Starting data
         isStartingDate={isShowTime ? getFormDate + "T12:00:00" : undefined} //the value of the Starting data
-        isRepeatedDays={!isShowTime ? GetRepeatedDays : undefined} //Values of Repeated Days
+        isEndingData={getToDate} //the value of Ending data
         isStartingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(StartHours+":"+StartMinuts+":00")) : undefined} //Choose Starting Time of the repeated Event
         isEndingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
-
-        isEndingData={getToDate} //the value of Ending data
+        isRepeatedDays={!isShowTime ? GetRepeatedDays : undefined} //Values of Repeated Days
+        isDisplayOption= {GetDiplayOption} //the value of the Display Option
         isEvent={props.submitEventValues} //returning the new event to the array of objects
       />
     );
+
+    /*************************************************** Submit Form *****************************************************************************/
     const ScheduleForm = (
         <FadeIn>
             <NoteContainer
@@ -176,6 +187,7 @@ const Schedule = (props) => {
             {Data}
             {Time}
             {RepeatedDays}
+            {DiplayOption}
             {Submit}
             </NoteContainer> 
         </FadeIn>

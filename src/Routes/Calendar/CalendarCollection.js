@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react"; 
-import { useHistory } from "react-router-dom";
 import CalendarForm from "./CalendarForm";
 import ScheduleForm from "./ScheduleForm/Schedule";
-import styled from "styled-components";
-import EventForm from "./EditForm/EvenForm"
-import LogOutcontainer from "../../UI/Modal";
+import styled from "styled-components"; 
 import Button from "../../UI/Button";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
@@ -19,33 +16,35 @@ const CalenderContainer = styled.div`
   color: cornflowerblue;
 `; 
 const CalendarCollection = (props) => {
+
+  /*************************************************** Evets List *****************************************************************************/
   //Collection of Events
-  const [currentEvents, ChangeEventList] = useState([
-    {
-      id: "1",
-      title: "Testoing for more ",
-      start: "2021-03-13T12:30:00",
-      end: "2021-03-14T13:30:00",
-      textColor: "pink",
-      description: "lets play some game s",
-      display: "list-item",
-      backgroundColor: "black",
-      Url: "http://localhost:3000/calendar",
-      description: "lets see if it will work"
-    },
-    {
-      id: "3",
-      title: "Doc appoinmnet ",
-      start: "2021-03-13",
-      end: "2021-03-13",
-      startTime: "10:45:00",
-      endTime: "12:45:00",
-      textColor: "pink",
-      daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events 
-      display: "list-item",
-      textColor: "black",
-    },
-  ]); 
+  const [currentEvents, ChangeEventList] = useState([])
+  //   {
+  //     id: "1",
+  //     title: "Testoing for more ",
+  //     start: "2021-03-13T12:30:00",
+  //     end: "2021-03-14T13:30:00",
+  //     textColor: "pink",
+  //     description: "lets play some game s",
+  //     display: "list-item",
+  //     backgroundColor: "black",
+  //     Url: "http://localhost:3000/calendar",
+  //     description: "lets see if it will work"
+  //   },
+  //   {
+  //     id: "3",
+  //     title: "Doc appoinmnet ",
+  //     start: "2021-03-16",
+  //     end: "2021-03-17",
+  //     startTime: "10:45:00",
+  //     endTime: "12:45:00",
+  //     textColor: "pink",
+  //     daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events 
+  //     display: "auto",
+  //     textColor: "black",
+  //   },
+  // ]); 
   console.log(currentEvents)
   //using componet did mount using useffect
   useEffect( () => {
@@ -72,6 +71,8 @@ const CalendarCollection = (props) => {
   const [showSchedule, ChangeShowSchedule ] =useState(false) // to show the shedule model 
   const [SelectedStartedData, ChangeStartedData] = useState() //started selected data 
   const [SelectedEndedData, ChangeEndedData] = useState(); // ended slected data  
+
+  /*************************************************** calendar Form *****************************************************************************/
   //the calendar form 
   const calendarForm = 
     (<div style={{zIndex:"1", filter: !showSchedule ? null : "blur(4px)",
@@ -86,6 +87,7 @@ const CalendarCollection = (props) => {
         />
     </div>
     );
+  /*************************************************** scheduling Form *****************************************************************************/
   //scheduling event is called 
   const scheduleForm = (
     <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
@@ -98,6 +100,7 @@ const CalendarCollection = (props) => {
         />
     </div>
   ); 
+  /*************************************************** LogOut *****************************************************************************/
     //for Logginout 
     const IsLogout = (
       <div style={{ height:"50px" ,zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",right: "30px", top: "4.5%"}}>
@@ -122,11 +125,12 @@ const CalendarCollection = (props) => {
         </FadeIn>
       </div>
     );
+
   return (
     <CalenderContainer>
       {props.isLogOut ? IsLogout : null}
       {showSchedule ? scheduleForm : null}
-      {showSchedule ? calendarForm : calendarForm}
+      {calendarForm}
     </CalenderContainer>
   );
 };

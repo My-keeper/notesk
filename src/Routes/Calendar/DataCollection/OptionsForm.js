@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { createEventId } from "../event-utils";
 
-//this is for the hour input 
-const HourValue = (props) => {
+/*************************************************** Hours Value *****************************************************************************/
+const HourValue = () => {
 
     const Hours = ['01','02','03','04','05','06','07','08','09','10','11','12']
     const DailyHours = (
@@ -11,7 +11,8 @@ const HourValue = (props) => {
         )
     return(DailyHours)
 }
-const MinutsValue = (props) => {
+/*************************************************** Minuts Value *****************************************************************************/
+const MinutsValue = () => {
 
     //this is for the hour input 
     const Minuts = ['05','10','15','20','25','30','35','40','45','50','55']
@@ -21,7 +22,8 @@ const MinutsValue = (props) => {
         )
     return(DailyMinut)
 }
-const TwelveHourSystemValue = (props) => {
+/*************************************************** AM / PM *****************************************************************************/
+const TwelveHourSystemValue = () => {
 
     //this for either AM or PM
     const TwelveHourSystem = ['AM','PM']
@@ -31,7 +33,8 @@ const TwelveHourSystemValue = (props) => {
         )
     return(DayDivided)
 }
-const NumberOfYearsValue = (props) => { 
+/*************************************************** Number Of Years Value *****************************************************************************/
+const NumberOfYearsValue = () => { 
     //this is for the years from this year 
     const NumberOfYears = [ '2020','2021', '2022', '2023', '2024','2025', '2026', 
                             '2027', '2028', '2029', '2030', '2031', '2032','2033', 
@@ -44,7 +47,8 @@ const NumberOfYearsValue = (props) => {
         YearContainer
         )
 }
-const NumberOfMonthsValue = (props) => { 
+/*************************************************** Number Of Months Value *****************************************************************************/
+const NumberOfMonthsValue = () => { 
     //this is for the months in a year 
     const NumberOfMonths = ['01','02','03','04','05','06','07','08','09','10','11','12']
     const MonthContainer = (
@@ -52,7 +56,8 @@ const NumberOfMonthsValue = (props) => {
         )
     return(MonthContainer)
 }
-const NumberOfDaysValue = (props) => { 
+/*************************************************** Number Of Days Value *****************************************************************************/
+const NumberOfDaysValue = () => { 
     //this is for the days in a Month 
     const NumberOfDays = ['01','02','03','04','05','06','07','08','09','10',
                         '11','12','13','14','15','16','17','18','19','20',
@@ -62,17 +67,17 @@ const NumberOfDaysValue = (props) => {
         )
     return(DayContainer)
 }
-const ColorOptionsValue = () => {
+/*************************************************** Display Option *****************************************************************************/
+const DisplayOption = () => {
 
     //this is for the days in a Month 
-    const ColorChoose = ['Choose Color','BlueViolet','Black','CornflowerBlue','DarkMagenta','DimGrey',
-                            'DodgerBlue','Fuchsia','MidnightBlue','Purple','Salmon']
-    const ColorContainer = (
-        [ColorChoose.map((Colors,index ) => <option  key={index.id + createEventId()} value={Colors}>{Colors}</option>)]
+    const display_Option = ['list-item','block']
+    const DisplayContainer = (
+        [display_Option.map((Display,index ) => <option  key={index.id + createEventId()} value={Display}>{Display}</option>)]
         )
-    return(ColorContainer)
+    return(DisplayContainer)
 }
 
 export {HourValue, MinutsValue, TwelveHourSystemValue, 
         NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue, 
-        ColorOptionsValue};
+        DisplayOption};

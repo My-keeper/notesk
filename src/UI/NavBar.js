@@ -6,7 +6,6 @@ import UserIcon from "./UserIcon";
 import {
   LoginOutlined,
   LogoutOutlined,
-  AlipayOutlined,
   DownCircleOutlined,
   UpCircleOutlined,
 } from "@ant-design/icons";
@@ -15,8 +14,6 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import NoteAddOutlinedIcon from '@material-ui/icons/NoteAddOutlined';
 import { Link } from "react-router-dom";
-import AppButton from "./Button";
-import LogOutcontainer from "./Modal";
 import LogoNotask from "../UI/logo"
 
 const StyledNavBar = styled(FadeIn)` 
@@ -138,7 +135,7 @@ const NavBar = (props) => {
       </Link>)
   //This is for the Login
   const GoToLogin =<Link to={props.CallingPage == "Signin" ? "/login" : "/signup"} >
-    {props.CallingPage == "Signin" ?
+    {props.CallingPage === "Signin" ?
         <LoginOutlined  style={VisibilityStle1} />
     :
         <LogoutOutlined style={VisibilityStle1} />

@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import FadeIn from "react-fade-in";
-import SelectData from "../../../../../UI/Select";
-import { ColorOptionsValue } from "./OptionsForm";
+import SelectData from "../../../UI/Select";
+import { DisplayOption } from "./OptionsForm";
 
-const ColorSelected = (props) => {
-  const [ColorValueInput, ChangeColorValueInput] = useState("");
-  const handleColors = (e) => {
-    console.log(e.target.value);
-    ChangeColorValueInput(e.target.value);
+const DisplaySelection = (props) => {
+  const [DisplayOptionInput, ChangeDisplayOptionInput] = useState("list-item");
+  props.ValueOfDisplayOption(DisplayOptionInput)
+  const handleDisplay = (e) => {
+    ChangeDisplayOptionInput(e.target.value);
   };
   const Colors = (
     <FadeIn>
       <SelectData
-        key={ColorValueInput.id + 1}
+        key={DisplayOptionInput.id + 1}
         inputType={"text"}
         name="title"
         widthValue={"160px"}
@@ -29,10 +29,10 @@ const ColorSelected = (props) => {
         BorderValue={"solid"}
         borderWidthValue={"thin"}
         marginRightValue={"15px"}
-        onchangeValue={handleColors}
-        InputValue={ColorValueInput}
+        onchangeValue={handleDisplay}
+        InputValue={DisplayOptionInput}
       >
-        {<ColorOptionsValue />}
+        {<DisplayOption />}
       </SelectData>
     </FadeIn>
   );
@@ -40,4 +40,4 @@ const ColorSelected = (props) => {
   return [Colors];
 };
 
-export default ColorSelected;
+export default DisplaySelection;

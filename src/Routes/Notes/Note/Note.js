@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import FadeIn  from 'react-fade-in';
 import NoteContainer from '../../../UI/Modal';
 import TextArea from '../../../UI/TextArea';
-
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 const HoveringContainer = styled.div`
     display: flex;
     flex-direction: row-reverse;
@@ -69,7 +69,6 @@ const Note = (props) =>
                                 fontSize: "1.2em", 
                                 wordWrap: "break-word",
                                 padding: "5px",
-                                wordWrap: "break-word",
                                 borderRadius: "7px",
                                 border:"solid",
                                 borderWidth:"thin",
@@ -111,7 +110,7 @@ const Note = (props) =>
                     PlaceHolderColorValue={props.RecieveColor.UserInputPHC}
                 />
                 </FadeIn>
-                <FadeIn><IcionStyleing><EditOutlined onClick={changeTItleHandler} /></IcionStyleing></FadeIn>
+                <FadeIn><IcionStyleing><CheckCircleOutlineIcon onClick={changeTItleHandler} /></IcionStyleing></FadeIn>
             </Container>
             </FadeIn>
             )
@@ -179,7 +178,7 @@ const Note = (props) =>
                     borderColorValue={props.RecieveColor.BorderColor}
                 />
                 </FadeIn>
-                <FadeIn><IcionStyleing><EditOutlined onClick={changeContentHandler} /></IcionStyleing></FadeIn>
+                <FadeIn><IcionStyleing><CheckCircleOutlineIcon onClick={changeContentHandler} /></IcionStyleing></FadeIn>
             </Container>
             </FadeIn>
             )

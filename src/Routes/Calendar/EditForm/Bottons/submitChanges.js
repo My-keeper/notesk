@@ -20,12 +20,12 @@ const submitChanges = (props) => {
       let newEvent;
       let indexOfEvent;
       ClickedEvent.forEach((event, index) => {
-        console.log(index)
-        if (event.id == id) {
-          newEvent = {...event};
-          indexOfEvent = index;
-        }
-      }); 
+        if (event.id == id || event._id == id) {
+            newEvent = {...event};
+            indexOfEvent = index;
+          }
+        });
+
       const newNotes = [...ClickedEvent]; 
       newEvent = {
         ...newEvent,
@@ -38,34 +38,33 @@ const submitChanges = (props) => {
         startTime: props.isStartingTime,
         endTime: props.isEndingTime,
         daysOfWeek: props.isRepeatedDays,
-        display: "list-item",
+        display: props.isDisplayOption,
       };
       newNotes[indexOfEvent] = newEvent
-      console.log(newNotes)
-      console.log(newNotes)
       props.ReturnNewEvents(newNotes); 
       if(isLoggedIn){
-        API.UpdateEvents(
-          id,
-          props.isTitle,
-          props.isDescription,
-          props.isURL,
-          props.isStartingDate,
-          props.isEndingData,
-          props.isStartingTime,
-          props.isEndingTime,
-          props.isRepeatedDays,
-          "list-item"
-        )
-      }
+          API.UpdateEvents(
+            id,
+            props.isTitle,
+            props.isDescription,
+            props.isURL,
+            props.isStartingDate,
+            props.isEndingData,
+            props.isStartingTime,
+            props.isEndingTime,
+            props.isRepeatedDays,
+            props.isDisplayOption
+          )
+        }
 
       props.isCloseModel(true);
   };
+
   const SubmitButton = <FadeIn>
       <Button
         width={"130px"}
         marginBottomValue={"10px"}
-        marginLeftValue={"100px"}
+        marginLeftValue={"160px"}
         fontSizeValue={"20px"}
         borderRadiusValue={"15px"}
         IsCalledValue={"hover"}

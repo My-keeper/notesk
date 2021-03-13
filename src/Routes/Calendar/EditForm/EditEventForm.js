@@ -5,6 +5,7 @@ import { CloseCircleOutlined, CheckCircleOutlined, CheckCircleFilled, EditFilled
 import FadeIn from "react-fade-in";
 import {TitleContainer,DescriptionContainer,URLContainer} from "./Containers/TextInputContainer";
 import {CalenderContianer,TimerContainer} from "./Containers/Date-TimeContainer";
+import DisplayOption from "./Containers/DisplayContainer";
 import RDContainer from "../ScheduleForm/Containers/DaysContainer";
 import SubmitButton from "../ScheduleForm/Containers/SubmitButton";
 import DateRangeIcon from '@material-ui/icons/DateRange';
@@ -170,6 +171,13 @@ const EditEventForm = (props) => {
         />
     );
     
+    /***************************    Display Option Area  ************************************************/ 
+    const [GetDiplayOption , ChangeDiplayOption] = useState()
+    const Display = <DisplayOption
+        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+        SubmitDisplayOption={(value) => ChangeDiplayOption(value)} //returning the value of repeated days 
+        />
+
     /***************************    Submit New Changes Area  ************************************************/ 
     const submitChanges = <SubmitChanges 
         PassEventsInfoList={props.EventsInfoList}//list of all the Events created and compare it with the changed one
@@ -185,6 +193,7 @@ const EditEventForm = (props) => {
         isEndingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
         ReturnNewEvents={(value) => props.ReturnNewEvents(value)}
         isEndingData={getToDate} //the value of Ending data
+        isDisplayOption= {GetDiplayOption} //the value of the Display Option
         ColorChange={props.ScheduleColor} 
     />;
 
@@ -209,6 +218,7 @@ const EditEventForm = (props) => {
           {Data}
           {Time}
           {RepeatedDays}
+          {Display}
           {submitChanges}
         </NoteContainer>
       </FadeIn>

@@ -36,28 +36,28 @@ const CreateNote = (props) => {
     const subNote = async (event) =>  {
         event.preventDefault();
         setSubmit(true);
-        // if (CurrentNote.title === "" && CurrentNote.content === "" )
-        // {   
-        // return( <FadeIn>{
-        //     setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)!", contentPH: "Please Enter some Content ...(-_-)!"}) 
-        //     && isIconUserInput() && isIconTextArea()}
-        // </FadeIn> )
-        // } 
-        // else  if (CurrentNote.title === "" )
-        // {  
-        // return( <FadeIn>{
-        //     setPlaceHolder({titlePH: "Please Enter A Title ....(-_-)"}) 
-        //     && isIconUserInput()}
-        // </FadeIn>)
+        if (CurrentNote.title === "" && CurrentNote.content === "" )
+        {   
+        return( <FadeIn>{
+            setPlaceHolder({ titlePH: "Please Enter A Title ....(-_-)!", contentPH: "Please Enter some Content ...(-_-)!"}) 
+            && isIconUserInput() && isIconTextArea()}
+        </FadeIn> )
+        } 
+        else  if (CurrentNote.title === "" )
+        {  
+        return( <FadeIn>{
+            setPlaceHolder({titlePH: "Please Enter A Title ....(-_-)"}) 
+            && isIconUserInput()}
+        </FadeIn>)
                 
-        // } else if (CurrentNote.content === "" )
-        // {
-        // return( <FadeIn>{
-        //     setPlaceHolder({contentPH: "Please Enter some Content ...(-_-)!"}) 
-        //     && isIconTextArea()}
-        // </FadeIn>)
-        // }else
-        // {
+        } else if (CurrentNote.content === "" )
+        {
+        return( <FadeIn>{
+            setPlaceHolder({contentPH: "Please Enter some Content ...(-_-)!"}) 
+            && isIconTextArea()}
+        </FadeIn>)
+        }else
+        {
             const isLoggedIn = await API.isLoggedIn();
             if(isLoggedIn){
                 return API.CreateNote(CurrentNote.title, CurrentNote.content, (note)=>{
@@ -90,7 +90,7 @@ const CreateNote = (props) => {
             props.TitleLitterNumber(TargetLength)
             ChangeTargetLength("")
             setSubmit(false)
-        // }  
+        }  
         
     }
     const isIconUserInput = () => 

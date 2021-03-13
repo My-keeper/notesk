@@ -26,7 +26,6 @@ const DateSelected = (props) => {
   const handleDays = (e) => (
     ChangeDayValue(e.target.value), ChnageUserChangedDay(false), changedValueDay(true)
   );
-  const name = props.name == "start" ? "start" : "end"
   const Days = (
     <FadeIn>
       <SelectData

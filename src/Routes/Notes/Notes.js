@@ -14,28 +14,28 @@ class Notes extends Component {
 
     //to get the notes from the DB if any
     async componentDidMount() {
-      const isLoggedIn = await API.isLoggedIn();
-      if (isLoggedIn) {
-        const PrevNotes = [...this.state.notes];
-        const DBNotes = await API.GetNote();
-        const MergedNotes = DBNotes.data.concat(PrevNotes);
-        this.setState({ notes: MergedNotes });
+        const isLoggedIn = await API.isLoggedIn();
+        if (isLoggedIn) {
+          const PrevNotes = [...this.state.notes];
+          const DBNotes = await API.GetNote();
+          const MergedNotes = DBNotes.data.concat(PrevNotes);
+          this.setState({ notes: MergedNotes });
+        }
       }
-    }
     state = {
-      notes: [],
-      isLogOut: false,
-      titleRowsNumber: "",
-      ChangetitleClicked: true,
-      ChangeContentClicked:true
-    };
+        notes: [],
+        isLogOut: false,
+        titleRowsNumber: "",
+        ChangetitleClicked: true,
+        ChangeContentClicked:true
+      };
 
     //Close is not hovered on color style
     VisibilityStle1 = {
-      marginRight: "8px",
-      fontSize: "22px",
-      color: this.props.Color.NavIconColor,
-    };
+        marginRight: "8px",
+        fontSize: "22px",
+        color: this.props.Color.NavIconColor,
+      };
 
     /*************************************************** Adding Notes *****************************************************************************/
     addNote = (note) => {
