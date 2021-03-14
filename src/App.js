@@ -53,7 +53,9 @@ class App extends Component {
       TextAreaBGC : "#282828",
       TextAreaFC : "#C8C8C8",
       TextAreaPHC : "#C8C8C8",
-    }
+    },
+    location: "", 
+    UserName: ""
   }
    
   ChangeColorsValue = (NewColor) => {
@@ -70,7 +72,7 @@ class App extends Component {
         />
         <Route path="/login" exact render={(props) => <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
-        <Route path="/signup" exact render={(props) => <Signup Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        <Route path="/signup" exact render={(props) => <Signup Location={(value) =>this.setState({location: value})} Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         <Route path="/" exact render={(props) => <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />

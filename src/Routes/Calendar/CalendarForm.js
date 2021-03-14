@@ -162,7 +162,7 @@ const CalendarForm = (props) => {
           }}
         initialView="dayGridMonth"
         titleFormat={{ month: "short", year: "numeric", day: "numeric" }} //this is for the tile what should be there for the user
-        height="900px" //get fixed height for the calendar
+        height="880px" //get fixed height for the calendar
         contentHeight="100%" //get the content height for the calendar
         handleWindowResize="true"
         locale="En" //this is for the languages option

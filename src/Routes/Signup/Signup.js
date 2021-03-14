@@ -20,7 +20,7 @@ const Signup = (props) => {
   } , []) 
 
   return (
-    <div style={{ height: "800px", overflowY : "auto" }}>
+    <div>
       <Nav ColorChanged={props.colorchanged} 
         RecieveColor={props.Color} 
         showLoginButton={true}
@@ -30,7 +30,11 @@ const Signup = (props) => {
         username={null}
       />
       <Imag/>  
-      <SignupForm ColorChanged={props.colorchanged} RecieveColor={props.Color}/>
+      <SignupForm 
+        IsLocation={props.Location}
+        ColorChanged={props.colorchanged} 
+        RecieveColor={props.Color}
+      />
     </div>
   );
 };

@@ -19,6 +19,7 @@ const ModelContainer = styled.div`
     display: ${(props) => (props.displayInput ? props.displayInput :null)};
     flex-direction: ${(props) => (props.flexDirectionInput ? props.flexDirectionInput : null)};
     resize: ${(props) => (props.resizeInput ? props.resizeInput : "none")};
+    overflow: ${(props) => (props.overflow ? props.overflow : "nono")}
     flex-grow: ${(props) => (props.flexGrowInput ? props.flexGrowInput : "none")};
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : "none")};
     background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
@@ -50,6 +51,7 @@ export default function Model (props) {
             BackgroundInput={props.Background}
             widthInput={props.width}
             heightInput={props.heightValue}
+            overflow={props.overflow}
             marginInput={props.margin}
             paddingInput={props.padding}
             floatInput={props.float}
