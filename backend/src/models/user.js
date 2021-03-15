@@ -22,11 +22,11 @@ const userSchema = new mongoose.Schema({
         trim: true,
         required: true,
     },
-    // userName: {
-    //     type: String, 
-    //     trim: true,
-    //     required: true,
-    // },
+    userName: {
+        type: String, 
+        trim: true,
+        required: true,
+    },
     email: {
         unique: true, //to make sure there is no repeated email
         type: String, 
@@ -50,27 +50,27 @@ const userSchema = new mongoose.Schema({
         // },
         trim: true,
     },
-    // country: {
-        // type: String, 
-        // trim: true,
-        // required: true,
-    // },
-    // province: {
-    //     type: String, 
-    //     trim: true,
-    //     required: true,
-    // },
-    // city: {
-    //     type: String, 
-    //     trim: true,
-    //     required: true,
-    // },
-    // ZipCode: {
-    //     type: String, 
-    //     required: true,
-    //     trim: true,
-    //     min: 5,
-    // },
+    country: {
+        type: String, 
+        trim: true,
+        required: true,
+    },
+    province: {
+        type: String, 
+        trim: true,
+        required: true,
+    },
+    city: {
+        type: String, 
+        trim: true,
+        required: true,
+    },
+    ZipCode: {
+        type: String, 
+        required: true,
+        trim: true,
+        min: 5,
+    },
     /*  this to allow users to login and logout from different machines using array of objects
         it an array of objects each has  a token propirty which is the token we are tracking  
     */

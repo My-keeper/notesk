@@ -12,13 +12,18 @@ class API {
     }
 
     //for signup 
-    static singUp (firstName, lastName, email, password, onSuccess, onFail) {
+    static singUp (firstName, lastName, userName, email, password, country, province, city, ZipCode, onSuccess, onFail) {
 
         return axios.post(`http://localhost:9000/Users`, {
             firstName : firstName,
             lastName ,
+            userName,
             email ,
             password,
+            country, 
+            province, 
+            city, 
+            ZipCode
         })
         .then((res)=>{
             localStorage.setItem("token", res.data.token);
@@ -31,11 +36,12 @@ class API {
     }
 
     //for checking if you are logged in 
-    static isLoggedIn() {
+    static isLoggedIn(onSuccess) {
         return axios.get('http://localhost:9000/Users/me', {
             headers: {Authorization: localStorage.getItem("token") },
-        }).then(()=> {
-            return true;
+        }).then((res)=> {
+            onSuccess(res)
+            return true
         }).catch(()=> {
             return false;
         })
@@ -44,7 +50,6 @@ class API {
 
     //for login
     static login(email, password, onSuccess, onFail) {
-        console.log(localStorage)
         return axios.post('http://localhost:9000/Users/login', {
             email,
             password
@@ -60,14 +65,16 @@ class API {
     }
 
     //For one machine logout 
-    static Logout() { 
-        return axios.post('http://localhost:9000/Users/logout',{
-            headers: {Authorization: localStorage.getItem("token") },
-        }).then(() => {
-            console.log("you are logged Out")
-        }).catch(() => {
-            console.log("there is a prob")
-        })
+    static Logout(onSuccess) { 
+        localStorage.clear();
+        onSuccess();
+        // return axios.post('http://localhost:9000/Users/logout',{
+        //     headers: {Authorization: localStorage.getItem("token") },
+        // }).then(() => {
+        //     console.log("you are logged Out")
+        // }).catch(() => {
+        //     console.log("there is a prob")
+        // })
     }
 
     //For all machine logout 

@@ -25,17 +25,35 @@ const SubmitButton = (props) => {
     display: props.isDisplayOption  
   };
   const SubmitEvent = async () => { 
-    const isLoggedIn = await API.isLoggedIn();
-      if(isLoggedIn){
-        return  API.CreateEvents(CreateEvent.title, CreateEvent.description, CreateEvent.Url, CreateEvent.start, CreateEvent.end, (Event) => {
-            CreateEvent=Event //changing the create event before sending it to the front end 
-            props.isEvent((oldarr) => [...oldarr, CreateEvent])
-            props.isCallingCalendar(false)
-          })
+    const isLoggedIn = await API.isLoggedIn(()=>{});
+      if( props.isTitle === "" && props.isDescription === "")
+      {
+        props.TitleMessage(true) 
+        props.DescriptionMessage(true)
+      } else if (props.isTitle === "" ) {
+        props.TitleMessage(true) 
+      } else if (props.isDescription === "") {
+        props.TitleMessage(false) 
       }
-      props.isEvent((oldarr) => [...oldarr, CreateEvent])
-      props.isCallingCalendar(false)
-  };
+      else {
+        if(isLoggedIn){
+          return  API.CreateEvents(
+            CreateEvent.title, 
+            CreateEvent.description, 
+            CreateEvent.Url, 
+            CreateEvent.start, 
+            CreateEvent.end, 
+            (Event) => {
+              CreateEvent=Event //changing the create event before sending it to the front end 
+              props.isEvent((oldarr) => [...oldarr, CreateEvent])
+              props.isCallingCalendar(false) 
+            })
+        }
+        props.isEvent((oldarr) => [...oldarr, CreateEvent])
+        props.isCallingCalendar(false) 
+      }
+
+    };
 
   const SubmitButton = (
     <FadeIn>

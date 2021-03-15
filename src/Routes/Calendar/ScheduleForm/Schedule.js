@@ -7,7 +7,7 @@ import {CalenderContianer,TimerContainer} from "./Containers/Date-TimeContainer"
 import DisplayContainer from "./Containers/DisplayContainer";
 import RDContainer from "./Containers/DaysContainer";
 import SubmitButton from "./Containers/SubmitButton";
-import { CloseCircleOutlined } from "@ant-design/icons"; 
+import { CloseCircleOutlined, CloseOutlined } from "@ant-design/icons"; 
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
@@ -20,6 +20,15 @@ const EachateContainer = styled.div`
     justify-content: ${props => props.JustifyContentCalue};
     margin: 4px;
 `
+const InfoContainer = styled.div`
+    width: 470px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 4px;
+    margin-bottom: 10px;
+` 
 
 const Schedule = (props) => {
     //All Component Color Stle
@@ -36,7 +45,12 @@ const Schedule = (props) => {
         fontSize: "21px", 
         color : props.ScheduleColor.IconC
     }
-        
+    const InValidStyle = {
+        color : "red", 
+        fontSize:"12px", 
+        marginRight:"3px", 
+        marginLeft:"37px"
+    }
     //Close ICion Area
     const CloseIcon = 
     (<CloseCircleOutlined
@@ -48,6 +62,18 @@ const Schedule = (props) => {
     /*************************************************** Title Area *****************************************************************************/
     const [getTitle, ChangeTitle] = useState("");
     const [TitlePH, ChangeTitlePH] = useState("Title ...");
+    const [ShowTitleMessage, ChangeTitleMessage] = useState(false)
+    var TitleMessage = "Please Add Title"
+    const isTitleMessage = <InfoContainer>
+        <CloseOutlined style={InValidStyle}/>
+        <span style={{
+            color:"red", 
+            textAlign: "center",  
+            fontSize: "12px",
+            fontFamily: "Arial"
+        }}
+        >{TitleMessage}</span>
+        </InfoContainer>
     const Title = <TitleContainer
             MaxLength={"45"}
             SubmitTitle={(value) => ChangeTitle(value)} //this is to return input value of the title and then send it to submit model
@@ -58,6 +84,18 @@ const Schedule = (props) => {
     /*************************************************** Description Area *****************************************************************************/
     const [getDescription, ChangeDescription] = useState("");
     const [DescriptionPH, ChangeDescriptionPH] = useState("Description ...");
+    const [ShowDescriptionMessage, ChangeDescriptionMessage] = useState(false)
+    var DescriptionMessage = "Please Add Description"
+    const isDescriptionMessage = <InfoContainer>
+        <CloseOutlined style={InValidStyle}/>
+        <span style={{
+            color:"red", 
+            textAlign: "center",  
+            fontSize: "12px",
+            fontFamily: "Arial"
+        }}
+        >{DescriptionMessage}</span>
+        </InfoContainer>
     const Description = (
         <DescriptionContainer
         SubmitDescription={(value) => ChangeDescription(value)}
@@ -151,8 +189,10 @@ const Schedule = (props) => {
       <SubmitButton
         isCallingCalendar={(value) => props.CallingCalendar(value)} //return the close value to return to calender from the submit model
         isTitle={getTitle} //the Title value
+        TitleMessage={(value) => ChangeTitleMessage(value)} // to show error if empty title
         CheckTitlePH={(value) => ChangeTitlePH(value)} //this is to change the title place holder if there is no title
         isDescription={getDescription} //the Description value
+        DescriptionMessage={(value) => ChangeDescriptionMessage(value)} // to show error if empty description
         CheckDescriptionPH={(value) => ChangeDescriptionPH(value)} //this is to change the description placeholder if there is no placeholder
         isURL={getURL} //the URL value
         isStartingDate={isShowTime ? getFormDate + "T12:00:00" : undefined} //the value of the Starting data
@@ -181,7 +221,9 @@ const Schedule = (props) => {
                 >
             {CloseIcon}
             {Title} 
+            {ShowTitleMessage ? isTitleMessage : null}
             {Description}
+            {ShowDescriptionMessage ? isDescriptionMessage : null}
             {URL}
             {IcionArea}
             {Data}

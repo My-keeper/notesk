@@ -482,8 +482,13 @@ const SignupForm = (props) => {
         API.singUp(
             FirstNameValue,
             LastNameValue,
+            UserNameValue,
             EmailValue,
             PassWordValue,
+            CountryValue,
+            ProvinceValue,
+            CityValue,
+            ZipCodeValue,
             ()=> history.push("/"),
             (err) => {
                 if (err) {

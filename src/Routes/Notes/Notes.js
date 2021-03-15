@@ -4,39 +4,37 @@ import Note from './Note/Note'
 import Footer from '../../UI/Footer'
 import CreateNote from './CreateNote/CreateNote'
 import FadeIn from 'react-fade-in';
-import { Link } from "react-router-dom";
-import { LogoutOutlined } from "@ant-design/icons";
-import Button from "../../UI/Button"; 
 import API from "../../API/API";
-import { CloudDone } from '@material-ui/icons';
 
 class Notes extends Component {
 
     //to get the notes from the DB if any
     async componentDidMount() {
-        const isLoggedIn = await API.isLoggedIn();
+        const isLoggedIn = await API.isLoggedIn(()=>{});
+        console.log(isLoggedIn)
         if (isLoggedIn) {
+          await API.isLoggedIn(e => this.setState({UserName : e.data.userName}))
           const PrevNotes = [...this.state.notes];
           const DBNotes = await API.GetNote();
           const MergedNotes = DBNotes.data.concat(PrevNotes);
-          this.setState({ notes: MergedNotes });
+          return this.setState({ notes: MergedNotes});
         }
+        this.setState({UserName: "Welcome Guest"})
       }
     state = {
         notes: [],
         isLogOut: false,
-        titleRowsNumber: "",
         ChangetitleClicked: true,
-        ChangeContentClicked:true
+        ChangeContentClicked:true,
+        UserName: "Welcome Guest",
       };
-
     //Close is not hovered on color style
     VisibilityStle1 = {
         marginRight: "8px",
         fontSize: "22px",
         color: this.props.Color.NavIconColor,
       };
-
+    
     /*************************************************** Adding Notes *****************************************************************************/
     addNote = (note) => {
       const prevNote = [...this.state.notes];
@@ -106,58 +104,23 @@ class Notes extends Component {
         );
       });
     };
-    /*************************************************** The Note *****************************************************************************/
-    //for Logginout
-    handlerLogout = async () => {
-        // const isLoggedIn = await API.isLoggedIn();
-        // if (isLoggedIn) {
-          await API.Logout()
-          // () => this.history.push("/");
-        // }
-      };
-    IsLogout = <div
-        style={{
-          zIndex: "7",
-          position: "absolute",
-          display: "flex",
-          justifyContent: "flex-end",
-          right: "30px",
-          top: "4.5%",
-        }}
-      >
-        <FadeIn> 
-            <Button
-              onClick={this.handlerLogout}
-              position={"relative"}
-              width={"140px"}
-              padding={"15px"}
-              boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-              borderRadiusValue={"20px"}
-              fontSizeValue={"1.2em"}
-              marginTopValue={"5%"}
-              resizeValue={"both"}
-              text={"Logout"}
-              LeftValue={"70%"}
-              backGroundColorValue={this.props.Color.LogSignColor}
-              FontColorValue={this.props.Color.IconC}
-              borderColorValue={this.props.Color.BorderColor}
-              icon={<LogoutOutlined style={this.VisibilityStle1} />}
-            /> 
-        </FadeIn>
-      </div>
+
   /*************************************************** The Note Route *****************************************************************************/
-  render() { 
+  render() {
+    console.log(this.state.UserName)
     return (
-      <div style={{ height: "100%" }}>
-        {this.state.isLogOut ? this.IsLogout : null}
+      <div style={{ height: "100%" }}> 
+        <div style={{zIndex: "7", position: "sticky" }}>
         <Nav
-          username={"Mero"}
+          username={this.state.UserName}
           ColorChanged={this.props.colorchanged}
           RecieveColor={this.props.Color}
           showLogOutButton={true}
           isShowLogOutButton={(value) => this.setState({ isLogOut: value })}
           ShowLogOutButtonValue={this.state.isLogOut}
+
         />
+        </div>
         <FadeIn>
           <CreateNote
             RecieveColor={this.props.Color}

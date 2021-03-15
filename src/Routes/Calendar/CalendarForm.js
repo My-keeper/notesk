@@ -130,8 +130,7 @@ const CalendarForm = (props) => {
       return(
         ChangeToggleTitle(true),
         ChangeTitleValue(value.event._def.title),
-        ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24)),
-        console.log(value.event._instance.range.start)
+        ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24))
       )
   }
   const HandleMouseLeave = () => (ChangeToggleTitle(false), ChangeTitleValue(""))
@@ -148,10 +147,12 @@ const CalendarForm = (props) => {
   const FullCalendarForm = <div
       style={{
         zIndex: "1",
-        filter: ShowEventClicked ? null : "blur(4px)",
-        pointerEvents: ShowEventClicked ? null : "none",
+        filter: ShowEventClicked ? (toggeltTitle ? "blur(1px)" : null) : "blur(4px)",
+        pointerEvents: ShowEventClicked ? (toggeltTitle ? "none" : null) : "none",
         color: props.CalendarColor.CalendarTC,
       }}
+      // onClick={()=>(ChangeToggleTitle(false), ChangeTitleValue(""))}
+      onClick={()=>(console.log("object"))}
     >
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}

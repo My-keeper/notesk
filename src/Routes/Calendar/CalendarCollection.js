@@ -45,11 +45,11 @@ const CalendarCollection = (props) => {
   //     textColor: "black",
   //   },
   // ]); 
-  console.log(currentEvents)
   //using componet did mount using useffect
   useEffect( () => {
     async function CheckingIsLoggedIn() {
-      const isLoggedIn = await API.isLoggedIn();
+      const isLoggedIn = await API.isLoggedIn(() => {});
+      console.log(isLoggedIn)
       if (isLoggedIn) {
         const PrevEvents = currentEvents 
         const DBEvents = await API.GetEvents();
@@ -100,35 +100,9 @@ const CalendarCollection = (props) => {
         />
     </div>
   ); 
-  /*************************************************** LogOut *****************************************************************************/
-    //for Logginout 
-    const IsLogout = (
-      <div style={{ height:"50px" ,zIndex: "7", position: "absolute",display: "flex",justifyContent: "flex-end",right: "30px", top: "4.5%"}}>
-        <FadeIn>
-          <Link to={"/login"}>
-            <Button
-              position={"relative"}
-              width={"140px"}
-              padding={"15px"}
-              boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-              borderRadiusValue={"20px"}
-              fontSizeValue={"1.2em"}
-              marginTopValue={"5%"}
-              resizeValue={"both"}
-              text = {"Logout"} 
-              backGroundColorValue={props.RecieveColor.LogSignColor}
-              FontColorValue={props.RecieveColor.IconC}
-              borderColorValue={props.RecieveColor.BorderColor}
-              icon={<LogoutOutlined style={VisibilityStle1} />}
-            /> 
-          </Link>
-        </FadeIn>
-      </div>
-    );
-
+  
   return (
     <CalenderContainer>
-      {props.isLogOut ? IsLogout : null}
       {showSchedule ? scheduleForm : null}
       {calendarForm}
     </CalenderContainer>

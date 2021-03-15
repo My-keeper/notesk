@@ -8,28 +8,16 @@ import FadeIn  from "react-fade-in";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import API from "../../API/API";
-// import passwordValidator from "password-validator";
 
 const InfoContainer = styled.div`
     width: 440px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start;
     margin: 4px;
     margin-bottom: 10px;
-`
-//For validating 
-    // var passwordLength = new passwordValidator();
-    // passwordLength.is().min(8);
-
-    // var passwordLetters = new passwordValidator();
-    // passwordLetters.has().uppercase().has().lowercase();
-
-    // var passwordNumbers = new passwordValidator();
-    // passwordNumbers.has().digits();
-
-    // var passwordSymbols = new passwordValidator();
-    // passwordSymbols.has().symbols();
+    `
 
 const SignupForm = (props) => {
     const IconColor = { 
@@ -43,6 +31,14 @@ const SignupForm = (props) => {
         fontSize:"20px", 
         marginRight:"9px", 
         marginTop:"4px" }
+        
+    const ValidStyle = {
+        color : "red", 
+        fontSize:"12px", 
+        marginRight:"3px", 
+        marginLeft:"28px",
+        marginTop: "1px"
+    }
     const [EmailValue, ChangeEmail] = useState("")
     const [EmailPHValue, ChangeEmailPH] = useState("E-mail")
     const [PasswordValue, ChangePassword] = useState("")
@@ -52,8 +48,10 @@ const SignupForm = (props) => {
     //For Validating 
     const[emailValidOrPassword, ChangeEmailValidOrPassword] = useState(false)
     const inCorrectInput = <InfoContainer>
-        <CloseOutlined style={IconColor}/>
-        <span style={{color: props.RecieveColor.IconC, textAlign: "center", marginBottom: "10px"}}>Either the Email or The Password you’ve entered is incorrect</span>
+        <CloseOutlined style={ValidStyle}/>
+        <span style={{color: "red", marginLeft: "33px", textAlign: "center", fontSize: "12px", fontFamily: "Arial"}}>
+            Either the Email or The Password you’ve entered is incorrect
+        </span>
         </InfoContainer>
     
     /***********************************************************/    
