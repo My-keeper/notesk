@@ -53,7 +53,6 @@ const Note = (props) =>
     const changeTItleHandler = () => {return(ChangeTitleClicked(true) , props.ChangeTitle(props.id, RecievedTitle), ChangeRecievedTitle(""))}
     const handlerChangeTitle = (event) => {
         const TargetLength = event.target.value.length
-        console.log(TargetLength)
         const ReturnRowsValue = (TargetLength  >= 20 ) ?  2 : 1
         ChangeRecievedTitle(event.target.value)
         ChangeNumberOfRows(ReturnRowsValue)

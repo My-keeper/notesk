@@ -126,9 +126,10 @@ const NavBar = (props) => {
       });
     
   /*************************************************** if Logged in *****************************************************************************/
-  let history = useHistory()
+  let history = useHistory() 
   const handlingLoggingOut = async () => {
-    await API.Logout(()=>{})
+    await API.Logout()
+    window.location.reload() 
     history.push("/")
   } 
   const handlingLoggingIn =  () => {
@@ -237,7 +238,7 @@ const NavBar = (props) => {
           );
         })}
         {usernameAndAvatar}
-        {props.ShowLogOutButtonValue ? ButtonIsLogOut : null}
+        {props.ShowLogOutButtonValue ? ButtonIsLogOut  : null}
       </RightNavBarItems>
     </StyledNavBar>
   ); 

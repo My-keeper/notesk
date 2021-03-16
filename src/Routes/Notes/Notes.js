@@ -9,17 +9,16 @@ import API from "../../API/API";
 class Notes extends Component {
 
     //to get the notes from the DB if any
-    async componentDidMount() {
+    async componentWillMount() {
         const isLoggedIn = await API.isLoggedIn(()=>{});
-        console.log(isLoggedIn)
         if (isLoggedIn) {
           await API.isLoggedIn(e => this.setState({UserName : e.data.userName}))
           const PrevNotes = [...this.state.notes];
           const DBNotes = await API.GetNote();
           const MergedNotes = DBNotes.data.concat(PrevNotes);
           return this.setState({ notes: MergedNotes});
-        }
-        this.setState({UserName: "Welcome Guest"})
+        }  
+          // return this.setState({UserName: "Welcome Guest", notes: []})
       }
     state = {
         notes: [],
@@ -27,6 +26,7 @@ class Notes extends Component {
         ChangetitleClicked: true,
         ChangeContentClicked:true,
         UserName: "Welcome Guest",
+        reRender: false
       };
     //Close is not hovered on color style
     VisibilityStle1 = {
@@ -107,7 +107,6 @@ class Notes extends Component {
 
   /*************************************************** The Note Route *****************************************************************************/
   render() {
-    console.log(this.state.UserName)
     return (
       <div style={{ height: "100%" }}> 
         <div style={{zIndex: "7", position: "sticky" }}>
@@ -117,8 +116,7 @@ class Notes extends Component {
           RecieveColor={this.props.Color}
           showLogOutButton={true}
           isShowLogOutButton={(value) => this.setState({ isLogOut: value })}
-          ShowLogOutButtonValue={this.state.isLogOut}
-
+          ShowLogOutButtonValue={this.state.isLogOut}  
         />
         </div>
         <FadeIn>

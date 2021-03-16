@@ -153,9 +153,7 @@ const CalendarForm = (props) => {
         filter: ShowEventClicked ? (toggeltTitle ? "blur(1px)" : null) : "blur(4px)",
         pointerEvents: ShowEventClicked ? (toggeltTitle ? "none" : null) : "none",
         color: props.CalendarColor.CalendarTC,
-      }}
-      // onClick={()=>(ChangeToggleTitle(false), ChangeTitleValue(""))}
-      onClick={()=>(console.log("object"))}
+      }} 
     >
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}

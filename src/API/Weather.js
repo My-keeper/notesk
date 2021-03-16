@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import API from './API'
 import InputArea from '../UI/UserInput'
 const Weather = () => {
-    const [LocationV, ChnageLocationV]= useState("")
-    // const LocationV= ""
-    console.log(LocationV)
+    const [LocationV, ChnageLocationV]= useState("") 
     return(
         <div style={{margin:"20px"}}>
             <InputArea 

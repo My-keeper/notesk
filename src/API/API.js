@@ -56,18 +56,14 @@ class API {
             }).then((res) => {
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("user", JSON.stringify(res.data.user)); 
-                console.log(res)
                 onSuccess(res)
             }).catch((e) => {
-                console.log("there is a prob")
                 onFail(e)
             })
     }
 
     //For one machine logout 
-    static Logout(onSuccess) { 
-        localStorage.clear();
-        onSuccess();
+    static Logout() {  
         return axios.post('http://localhost:9000/Users/logout',{
             headers: {Authorization: localStorage.getItem("token") },
         }).then(() => {

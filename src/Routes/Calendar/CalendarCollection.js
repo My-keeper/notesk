@@ -49,7 +49,6 @@ const CalendarCollection = (props) => {
   useEffect( () => {
     async function CheckingIsLoggedIn() {
       const isLoggedIn = await API.isLoggedIn(() => {});
-      console.log(isLoggedIn)
       if (isLoggedIn) {
         const PrevEvents = currentEvents 
         const DBEvents = await API.GetEvents();
