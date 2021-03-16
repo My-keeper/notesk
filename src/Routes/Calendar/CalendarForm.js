@@ -72,7 +72,7 @@ const CalendarForm = (props) => {
  
   /*************************************************** Clicked Event Handler *****************************************************************************/
   const handleEventClick = async (clickInfo) => {
-      const isLoggedIn = await API.isLoggedIn();
+      const isLoggedIn = await API.isLoggedIn(()=>{});
         ChangeShowEventClicekd(false); 
         //Starting Date
         const StartedDayValue = clickInfo.event._instance.range.start.toString().slice(8, 10) //Day
@@ -127,13 +127,16 @@ const CalendarForm = (props) => {
   const [TitleValue, ChangeTitleValue] = useState("")
   const [StartValue, ChangeStartValue] = useState("")
   const HandleMouseEnter = (value) => {
-      return(
-        ChangeToggleTitle(true),
-        ChangeTitleValue(value.event._def.title),
-        ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24))
-      )
+    const ReturnToggle =(ChangeToggleTitle(true),
+          ChangeTitleValue(value.event._def.title),
+          ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24)))
+    // 
+      return(ReturnToggle)
   }
-  const HandleMouseLeave = () => (ChangeToggleTitle(false), ChangeTitleValue(""))
+  const HandleMouseLeave = () => {
+    const FinishToggle = () => (ChangeToggleTitle(false), ChangeTitleValue(""))
+    return(setTimeout(FinishToggle,500))
+  }
   const ShowTitle = <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
     <HoverTitle 
       ScheduleColor={props.CalendarColor} //send color form App

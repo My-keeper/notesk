@@ -58,7 +58,7 @@ const CreateNote = (props) => {
         </FadeIn>)
         }else
         {
-            const isLoggedIn = await API.isLoggedIn();
+            const isLoggedIn = await API.isLoggedIn(()=>{});
             if(isLoggedIn){
                 return API.CreateNote(CurrentNote.title, CurrentNote.content, (note)=>{
                     setNote({note})

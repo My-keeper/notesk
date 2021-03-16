@@ -12,6 +12,7 @@ const User = require('../models/user')
 
 const auth = async ( req, res, next) => {
     try {
+        console.log(req)
         // console.log(req.method=="PATCH")req.body.headers.Authorization
         //requesting the header token from the user who is called then , Replacing Bearer with nothing8
         // const token = req.headers.authorization

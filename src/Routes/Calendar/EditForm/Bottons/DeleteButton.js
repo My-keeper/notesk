@@ -15,7 +15,7 @@ const DeleteButton = (props) => {
 const DeleteButton = async () => { 
     const id = props.IDofClickedEvent //the Event id
     const Delete = props.EventsInfoList  //copy the Events list
-    const isLoggedIn = await API.isLoggedIn();
+    const isLoggedIn = await API.isLoggedIn(()=>{});
     if (isLoggedIn){
       API.DeleteEvents(id)
     }

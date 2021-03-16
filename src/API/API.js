@@ -68,13 +68,13 @@ class API {
     static Logout(onSuccess) { 
         localStorage.clear();
         onSuccess();
-        // return axios.post('http://localhost:9000/Users/logout',{
-        //     headers: {Authorization: localStorage.getItem("token") },
-        // }).then(() => {
-        //     console.log("you are logged Out")
-        // }).catch(() => {
-        //     console.log("there is a prob")
-        // })
+        return axios.post('http://localhost:9000/Users/logout',{
+            headers: {Authorization: localStorage.getItem("token") },
+        }).then(() => {
+            console.log("you are logged Out")
+        }).catch(() => {
+            console.log("there is a prob")
+        })
     }
 
     //For all machine logout 

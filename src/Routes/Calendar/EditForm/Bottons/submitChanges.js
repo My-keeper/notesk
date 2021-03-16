@@ -14,7 +14,7 @@ const submitChanges = (props) => {
 
   // this will delete the old event and send the new one
   const SubmitTheNewEvent = async () => { 
-      const isLoggedIn = await API.isLoggedIn();
+      const isLoggedIn = await API.isLoggedIn(()=>{});
       const ClickedEvent = props.PassEventsInfoList; //copy the Events list
       const id = props.TheIdOfClickedEvent; //the Event id
       let newEvent;

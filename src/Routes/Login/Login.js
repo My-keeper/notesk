@@ -9,7 +9,7 @@ const Login = (props) => {
   let history = useHistory()
   useEffect( () => {
     async function CheckingIsLoggedIn() {
-      const isLoggedIn = await API.isLoggedIn();
+      const isLoggedIn = await API.isLoggedIn(()=>{});
       if (isLoggedIn) {
         history.push("/");
       }
