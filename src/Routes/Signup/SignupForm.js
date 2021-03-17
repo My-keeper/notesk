@@ -460,6 +460,18 @@ const SignupForm = (props) => {
     </InfoContainer>
 
     /*********************** On handler Click ************************************/  
+    const [BEError, ChangeBEError]= useState(false)
+    const backEndError = "Email is already been used before !"
+    const TheBEMessage = <InfoContainer>
+        {<CloseOutlined style={InValidStyle}/>}
+        <span style={{
+            color: "red", 
+            textAlign: "center", 
+            fontSize: "12px",
+            fontFamily: "Arial"
+        }}
+        >{backEndError}</span>
+        </InfoContainer>
     var SubmissionMessage = "Please Fill the Empty Fields"
     const SubmitInValid = <InfoContainer>
         {<CloseOutlined style={InValidStyle}/>}
@@ -492,7 +504,8 @@ const SignupForm = (props) => {
             ()=> history.push("/"),
             (err) => {
                 if (err) {
-                    
+                    console.log(err)
+                    ChangeBEError(true)
                 }
             }
         )
@@ -521,7 +534,7 @@ const SignupForm = (props) => {
 
 const ReturnToLogin =<FadeIn>
         <span style={{color: props.RecieveColor.UserInputFC , fontSize: "1.2em" }}>
-            Already have an acount? 
+            Already have an acount ?  
             <Link to={"/login"} style={{color : props.RecieveColor.IconC }}> Login</Link>
         </span>
     </FadeIn>
@@ -554,6 +567,7 @@ return (
         {ConfirmPasswordValid ? isConfirmPassword : null}
         {Location}
         {ValidSubmission ? SubmitInValid : null}
+        {BEError ? TheBEMessage : null}
         {SignupButton}
         <hr style={{marginBottom : "10px"}}></hr>
         {ReturnToLogin}

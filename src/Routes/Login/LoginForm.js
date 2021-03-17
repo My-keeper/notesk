@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import { MailOutlined, KeyOutlined, LoginOutlined,CloseOutlined} from "@ant-design/icons";
+import { MailOutlined, KeyOutlined, CheckOutlined, CloseOutlined, LoginOutlined} from "@ant-design/icons";
 import UserInput from "../../UI/UserInput";
 import NoteContainer from '../../UI/Modal';
 import Button from "../../UI/Button";
@@ -8,9 +8,10 @@ import FadeIn  from "react-fade-in";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import API from "../../API/API";
+import validator from "validator";
 
 const InfoContainer = styled.div`
-    width: 440px;
+    width: 470px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -32,12 +33,24 @@ const SignupForm = (props) => {
         marginRight:"9px", 
         marginTop:"4px" }
         
-    const ValidStyle = {
+    // const ValidStyle = {
+    //     color : "red", 
+    //     fontSize:"12px", 
+    //     marginRight:"3px", 
+    //     marginLeft:"28px",
+    //     marginTop: "1px"
+    // }
+    const InValidStyle = {
         color : "red", 
         fontSize:"12px", 
         marginRight:"3px", 
-        marginLeft:"28px",
-        marginTop: "1px"
+        marginLeft:"37px"
+    }
+    const ValidStyle = {
+        color : "Green", 
+        fontSize:"12px", 
+        marginRight:"3px", 
+        marginLeft:"37px"
     }
     const [EmailValue, ChangeEmail] = useState("")
     const [EmailPHValue, ChangeEmailPH] = useState("E-mail")
@@ -54,12 +67,31 @@ const SignupForm = (props) => {
         </span>
         </InfoContainer>
     
-    /***********************************************************/    
+    /**************************** Email *******************************/    
+    const[emailValid, ChangeemailValid] = useState(false)
+    const[emailValidMessage, ChangeEmailValidemailValidMessage] = useState(false)
+    var emailValidityString = emailValidMessage ? "Email is Valid!" : "Email is InValid!"
+    const EmailValidation = <InfoContainer>
+        {emailValidMessage ? <CheckOutlined style={ValidStyle}/> : <CloseOutlined style={InValidStyle}/>}
+        <span style={{
+            color: emailValidMessage ? "Green" : "red", 
+            textAlign: "center",  
+            fontSize: "12px",
+            fontFamily: "Arial"
+        }}
+        >{emailValidityString}</span>
+        </InfoContainer>
+    const EmailValidateHandler = (v) => {
+        ChangeemailValid(true) 
+        ChangeEmail(v.target.value)
+        const emailValid = validator.isEmail(v.target.value) 
+        ChangeEmailValidemailValidMessage(emailValid) 
+    }
     const Email = <InfoContainer>
             <FadeIn><MailOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
             InputValue={EmailValue}
-            onchangeValue={(v)=>ChangeEmail(v.target.value)}
+            onchangeValue={EmailValidateHandler}
             inputType={"text"}
             name="title"
             PlaceholderValue={EmailPHValue}
@@ -80,12 +112,13 @@ const SignupForm = (props) => {
             /></FadeIn>
         </InfoContainer>
     
+    /**************************** PassWord *******************************/    
     const PassWord = <InfoContainer>
             <FadeIn><KeyOutlined style={IconColor}/></FadeIn>
             <FadeIn><UserInput 
             InputValue={PasswordValue}
             onchangeValue={(v)=>ChangePassword(v.target.value)}
-            inputType={"Password"}
+            inputType={"password"}
             name="title"
             PlaceholderValue={PasswordPHValue}
             widthValue={"380px"}
@@ -146,7 +179,7 @@ const SignupForm = (props) => {
 
 const ReturnToLogin =<FadeIn>
         <span style={{color: props.RecieveColor.UserInputFC , fontSize: "1.2em" }}>
-           Create Account 
+           Create Account : 
             <Link to={"/signup"} style={{color : props.RecieveColor.IconC }}> SignUp</Link>
         </span>
     </FadeIn>
@@ -163,6 +196,7 @@ return <FadeIn>
         backGroundColorValue={props.RecieveColor.NotekBGC}
         >
             {Email}
+            {emailValid ? EmailValidation : null}
             {PassWord}
             {emailValidOrPassword ? inCorrectInput : null}
             {LoginButton}

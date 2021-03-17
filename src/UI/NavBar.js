@@ -136,54 +136,52 @@ const NavBar = (props) => {
     history.push("/login")
   } 
   /*************************************************** LogOut Button *****************************************************************************/
-  const ButtonIsLogOut =<div
-    style={{
-      zIndex: "7",
-      position: "absolute",
-      display: "flex",
-      justifyContent: "flex-end",
-      right: "12px",
-      top: "52px",
-    }}
-    > 
-      {UserLogged ?
-        <Button
-          onClick={handlingLoggingOut}
-          position={"relative"}
-          width={"140px"}
-          padding={"15px"}
-          boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-          borderRadiusValue={"20px"}
-          fontSizeValue={"1.2em"}
-          marginTopValue={"5%"}
-          resizeValue={"both"}
-          text={"Logout"}
-          LeftValue={"70%"}
-          backGroundColorValue={props.RecieveColor.LogSignColor}
-          FontColorValue={props.RecieveColor.IconC}
-          borderColorValue={props.RecieveColor.BorderColor}
-          icon={<LogoutOutlined style={LogOutStyle} />}
-        /> 
-        :
-        <Button
-          onClick={handlingLoggingIn}
-          position={"relative"}
-          width={"140px"}
-          padding={"15px"}
-          boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-          borderRadiusValue={"20px"}
-          fontSizeValue={"1.2em"}
-          marginTopValue={"5%"}
-          resizeValue={"both"}
-          text={"login"}
-          LeftValue={"70%"}
-          backGroundColorValue={props.RecieveColor.LogSignColor}
-          FontColorValue={props.RecieveColor.IconC}
-          borderColorValue={props.RecieveColor.BorderColor}
-          icon={<LogoutOutlined style={LogOutStyle} />}
-        /> 
-        } 
-    </div>  
+  const ButtonIsLogOut =<FadeIn>
+    <div
+      style={{zIndex: "7",position: "absolute",display: "flex",justifyContent: "flex-end",right: "12px",top: "52px",}}> 
+        {UserLogged ?
+          <FadeIn>
+            <Button
+            onClick={handlingLoggingOut}
+            position={"relative"}
+            width={"140px"}
+            padding={"15px"}
+            boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+            borderRadiusValue={"20px"}
+            fontSizeValue={"1.2em"}
+            marginTopValue={"5%"}
+            resizeValue={"both"}
+            text={"Logout"}
+            LeftValue={"70%"}
+            backGroundColorValue={props.RecieveColor.LogSignColor}
+            FontColorValue={props.RecieveColor.IconC}
+            borderColorValue={props.RecieveColor.BorderColor}
+            icon={<LogoutOutlined style={LogOutStyle} />}
+            />
+          </FadeIn> 
+          :
+          <FadeIn>
+            <Button
+            onClick={handlingLoggingIn}
+            position={"relative"}
+            width={"140px"}
+            padding={"15px"}
+            boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+            borderRadiusValue={"20px"}
+            fontSizeValue={"1.2em"}
+            marginTopValue={"5%"}
+            resizeValue={"both"}
+            text={"login"}
+            LeftValue={"70%"}
+            backGroundColorValue={props.RecieveColor.LogSignColor}
+            FontColorValue={props.RecieveColor.IconC}
+            borderColorValue={props.RecieveColor.BorderColor}
+            icon={<LogoutOutlined style={LogOutStyle} />}
+            /> 
+          </FadeIn>
+          } 
+      </div>
+  </FadeIn>  
   
   /*************************************************** change to calendar link *****************************************************************************/
   const [isCalendar, ChangeIsCalendar] = useState(true);

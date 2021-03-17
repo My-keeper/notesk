@@ -3,14 +3,31 @@ const User = require('../models/user')
 const auth = require('../middleware/auth')
 const router = new express.Router()
 const sendWelcomeEmail = require('../emails/acount')
+const sgMail = require('@sendgrid/mail')
+const { YahooFilled } = require('@ant-design/icons')
+
+const sendgridAPIKey= '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'
+sgMail.setApiKey(sendgridAPIKey)
+
 
 //SignUp
 router.post("/Users", async (req, res) => {
   const user = new User(req.body); //take the info from the website and then save it in user
   //saving the info to the database and see if will match the info in the model or not
   try{
+    // console.log(res.body.email)
+    // await sgMail.send({
+    //     to: res.body.email,
+    //     from: 'kirito21596@gmail.com',
+    //     subject: 'Thanks for joining in!',
+    //     // text: `Welcome to the app, ${res.body.firstName} ${res.body.lastName}. Let me know how you get along with the app.`,
+    //     html: `<strong>Welcome to the app, ${res.body.firstName} ${res.body.lastName}. Let me know how you get along with the app.</strong>`,
+    //     // html: '<body>
+    //     //           <p><strong>Welcome to the app</strong> <var>{res.body.firstName}</var><var>{res.body.lastName}.</var><strong>Let me know how you get along with the app</strong></p>
+    //     //       </body>'
+    // })
+    // console.log(user.email, user.firstName, user.lastName)
     await user.save();
-    // sendWelcomeEmail(user.email, user.firstName, user.lastName)
     /*
     *  Creating a function that we can reuse whenever we want to generate an authentication 
     *  token for a given user where it will be called in user model
