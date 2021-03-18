@@ -9,6 +9,7 @@ const OptionForm = (props) => {
   const [HourClicked, ChangeHourClicked]= useState(false)
   const [HourValueInput, ChangeHourValue] = useState("");
   const handle = (e) => {
+    props.name === "StartingTime" ? props.ChangeSTimeClicked(true) : props.ChangeETimeClicked(true)
     ChangeHourValue(e.target.value)
     ChangeHourClicked(!HourClicked)
   };
@@ -23,7 +24,7 @@ const OptionForm = (props) => {
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
         fontFamilyValue={"inherit"}
-        IsCalledValue={props.DisabledisClicked ? "" : "FOCUS"}
+        IsCalledValue={"FOCUS"}
         borderRadiusValue={"7px"}
         backGroundColorValue={props.RecievedColor.UserInputBGC}
         FontColorValue={props.RecievedColor.UserInputFC}
@@ -45,6 +46,7 @@ const OptionForm = (props) => {
   const [MinutsClicked, ChangeMinutsClicked] = useState(false)
   const [MinutsValueInput, ChangeMinutsValue] = useState("");
   const handleMinuts = (e) => {
+    props.name === "StartingTime" ? props.ChangeSTimeClicked(true) : props.ChangeETimeClicked(true)
     ChangeMinutsValue(e.target.value)
     ChangeMinutsClicked(!MinutsClicked)
   };
@@ -59,7 +61,7 @@ const OptionForm = (props) => {
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
         fontFamilyValue={"inherit"}
-        IsCalledValue={props.DisabledisClicked ? "" : "FOCUS"}
+        IsCalledValue={"FOCUS"}
         borderRadiusValue={"7px"}
         backGroundColorValue={props.RecievedColor.UserInputBGC}
         FontColorValue={props.RecievedColor.UserInputFC}
@@ -81,6 +83,7 @@ const OptionForm = (props) => {
   const [DayTimeClicked, ChangeDayTimeClicked]= useState(false)
   const [DaytimeValueInput, ChangeDaytimeValue] = useState("");
   const handleDaytime = (e) => {
+    props.name === "StartingTime" ? props.ChangeSTimeClicked(true) : props.ChangeETimeClicked(true)
     ChangeDaytimeValue(e.target.value)
     ChangeDayTimeClicked(!DayTimeClicked)
   };
@@ -95,7 +98,7 @@ const OptionForm = (props) => {
         outlineValue={"none"}
         fontSizeValue={"1.2em"}
         fontFamilyValue={"inherit"}
-        IsCalledValue={props.DisabledisClicked ? "" : "FOCUS"}
+        IsCalledValue={"FOCUS"}
         borderRadiusValue={"7px"}
         backGroundColorValue={props.RecievedColor.UserInputBGC}
         FontColorValue={props.RecievedColor.UserInputFC}

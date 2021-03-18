@@ -7,7 +7,7 @@ import {CalenderContianer,TimerContainer} from "./Containers/Date-TimeContainer"
 import DisplayContainer from "./Containers/DisplayContainer";
 import RDContainer from "./Containers/DaysContainer";
 import SubmitButton from "./Containers/SubmitButton";
-import { CloseCircleOutlined, CloseOutlined } from "@ant-design/icons"; 
+import { CloseCircleOutlined, CloseOutlined, CheckOutlined } from "@ant-design/icons"; 
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
@@ -47,6 +47,12 @@ const Schedule = (props) => {
     }
     const InValidStyle = {
         color : "red", 
+        fontSize:"12px", 
+        marginRight:"3px", 
+        marginLeft:"37px"
+    }
+    const ValidStyle = {
+        color : "Green", 
         fontSize:"12px", 
         marginRight:"3px", 
         marginLeft:"37px"
@@ -156,9 +162,21 @@ const Schedule = (props) => {
     const [EndMinuts, ChangeEndMinuts] = useState(); //have returned Ending minut if time is needed 
     const [TimeClicked, ChangeTimeClicked] = useState() //this to make sure that time is included or not and show the repeated days model
     const [EditTime, ChangeEditedTime ] = useState("")
+    const [CheckTimeValidation, ChangeTimeCheck] = useState(false)
+    var TimeValudation = CheckTimeValidation ? "Time is set" : "Please Choose Valid End Time "
+    const timeCheckValidation = <InfoContainer>
+        {CheckTimeValidation ? <CheckOutlined style={ValidStyle}/> : <CloseOutlined style={InValidStyle}/>}
+        <span style={{
+            color: CheckTimeValidation ? "Green" : "red", 
+            textAlign: "center", 
+            fontSize: "12px",
+            fontFamily: "Arial"
+        }}
+        >{TimeValudation}</span>
+        </InfoContainer>
     const Time = (
         <TimerContainer
-        SendShowTime={isShowTime}
+        ChangeTimeCheck={(value) => ChangeTimeCheck(value)} // to check validation on time ending time
         FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
         FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed 
         ToHourSelected={(value) => ChangeEndHour(value)} // return Ending hour if time is needed
@@ -228,6 +246,7 @@ const Schedule = (props) => {
             {IcionArea}
             {Data}
             {Time}
+            {timeCheckValidation}
             {RepeatedDays}
             {DiplayOption}
             {Submit}

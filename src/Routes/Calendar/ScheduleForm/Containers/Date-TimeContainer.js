@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components"; 
 import FadeIn  from 'react-fade-in'; 
 import { CalendarOutlined , ClockCircleOutlined} from "@ant-design/icons"; 
-import TimeSelected from '../../DataCollection/TimeSelected';
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import { CloseCircleOutlined, CheckCircleOutlined, CheckCircleFilled, EditFilled, EditOutlined } from "@ant-design/icons";
-import { createEventId } from "../../event-utils";
+import TimeSelected from '../../DataCollection/TimeSelected'; 
+import { CheckOutlined, CloseOutlined, CheckCircleFilled } from "@ant-design/icons"; 
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 
 const InfoContainer = styled.div`
@@ -103,6 +100,16 @@ const TimerContainer = (props) => {
         fontSize: "18px", 
         color : props.ScheduleColor.IconC
     }
+    const InValidStyle = {
+        color : "red", 
+        fontSize:"17px",  
+        marginTop:"6px"
+    }
+    const ValidStyle = {
+        color : "#22e822", 
+        fontSize:"17px",  
+        marginTop:"6px"
+    }
 
     
     const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
@@ -144,32 +151,38 @@ const TimerContainer = (props) => {
     const [StartHoursValue, ChangeStartHourValue ]= useState() //save the Starting Hour
     const [StartMinutsValue, ChangeStartMinutsValue ]= useState() //save the starting Minuts
     const [StartDayValue, ChangeStartDayValue ]= useState() //save starting if it is AM or PM
+    const [STimeClicked, ChangeSTimeClicked]= useState(false)
+    const inCorrectStartInput = STimeClicked ? <CheckOutlined style={ValidStyle}/> : <CloseOutlined style={InValidStyle}/>
     const StartingTime = isShowTime ? null :<EachateContainer JustifyContentCalue={"space-between" }>
             <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>Start</span></FadeIn>
             <TimeSelected 
+                name={"StartingTime"}
+                ChangeSTimeClicked={(value) => ChangeSTimeClicked(value)}
                 submitHourValue={(value) => ChangeStartHourValue(value)}
                 submitMinutsValue={(value) => ChangeStartMinutsValue(value)}
                 submitDayValue={(value) => ChangeStartDayValue(value)}
                 RecievedColor={props.ScheduleColor}
-                //this is to disable the values that are inside and it is going to DataSelected
-                DisabledisClicked={isShowTime} 
                 />
+            {inCorrectStartInput}
         </EachateContainer>
     
     //collection of ending time for event
     const [EndHoursValue, ChangeEndHourValue ]= useState() //save the Ending Hour
     const [EndMinutsValue, ChangeEndMinutsValue ]= useState() //save the Ending Minuts
     const [EndDayValue, ChangeEndDayValue ]= useState() //save Ending if it is AM or PM
+    const [ETimeClicked, ChangeETimeClicked]= useState(false)
+    const inCorrectEndInput = ETimeClicked ? <CheckOutlined style={ValidStyle}/> : <CloseOutlined style={InValidStyle}/>
     const EndingTime = isShowTime ? null :<EachateContainer  MarginLeft={"10px"}  JustifyContentCalue={"space-between" }>
             <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>End</span></FadeIn>
             <TimeSelected 
+                name={"EndingTime"}
+                ChangeETimeClicked={(value) => ChangeETimeClicked(value)}
                 submitHourValue={(value) => ChangeEndHourValue(value)}
                 submitMinutsValue={(value) => ChangeEndMinutsValue(value)}
                 submitDayValue={(value) => ChangeEndDayValue(value)}
                 RecievedColor={props.ScheduleColor}
-                //this is to disable the values that are inside and it is going to DataSelected
-                DisabledisClicked={isShowTime} 
                 />
+            {inCorrectEndInput}
         </EachateContainer>
  
     const time = (
