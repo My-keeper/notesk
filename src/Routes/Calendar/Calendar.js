@@ -17,10 +17,12 @@ class CalendarList extends Component {
     SelectedDate: true,
     currentEvents: [],
     isLogOut: false,
-    UserName: ""
+    UserName: "", 
+    Lang: "en"
   };
 
   render() {
+    console.log(this.state.Lang)
     return (
       <div>
         <div style={{zIndex: "7", position: "sticky" }}>
@@ -31,11 +33,15 @@ class CalendarList extends Component {
             isShowLogOutButton={(value) => this.setState({ isLogOut: value })}
             ShowLogOutButtonValue={this.state.isLogOut}
             showLogOutButton={true}
+            inCalendar={false}
+            inNotes={true}
+            LangOption={(value) => this.setState({Lang: value})}
           />
         </div>
         <CalendarCollection 
           isLogOut={this.state.isLogOut} 
           RecieveColor={this.props.Color} 
+          ReturnLang={this.state.Lang}
         />
         <Footer />
       </div>

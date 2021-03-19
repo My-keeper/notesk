@@ -19,32 +19,35 @@ const CalendarCollection = (props) => {
 
   /*************************************************** Evets List *****************************************************************************/
   //Collection of Events
-  const [currentEvents, ChangeEventList] = useState([])
-  //   {
-  //     id: "1",
-  //     title: "Testoing for more ",
-  //     start: "2021-03-13T12:30:00",
-  //     end: "2021-03-14T13:30:00",
-  //     textColor: "pink",
-  //     description: "lets play some game s",
-  //     display: "list-item",
-  //     backgroundColor: "black",
-  //     Url: "http://localhost:3000/calendar",
-  //     description: "lets see if it will work"
-  //   },
-  //   {
-  //     id: "3",
-  //     title: "Doc appoinmnet ",
-  //     start: "2021-03-16",
-  //     end: "2021-03-17",
-  //     startTime: "10:45:00",
-  //     endTime: "12:45:00",
-  //     textColor: "pink",
-  //     daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events 
-  //     display: "auto",
-  //     textColor: "black",
-  //   },
-  // ]); 
+  const [currentEvents, ChangeEventList] = useState([
+    
+  // ])
+    // {
+    //   id: "1",
+    //   title: "Testoing for more ",
+    //   start: "2021-03-13T12:30:00",
+    //   end: "2021-03-14",
+    //       startTime: "10:45:00",
+    //   textColor: "pink",
+    //   description: "lets play some game s",
+    //   display: "list-item",
+    //   backgroundColor: "black",
+    //   Url: "http://localhost:3000/calendar",
+    //   description: "lets see if it will work"
+    // },
+    {
+      id: "3",
+      title: "Doc appoinmnet ",
+      start: "2021-03-16",
+      end: "2021-03-17",
+      startTime: "10:45:00",
+      endTime: "12:45:00",
+      textColor: "pink",
+      daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events 
+      display: "auto",
+      textColor: "black",
+    },
+  ]); 
   //using componet did mount using useffect
   useEffect( () => {
     async function CheckingIsLoggedIn() {
@@ -59,13 +62,6 @@ const CalendarCollection = (props) => {
 
     CheckingIsLoggedIn()
   } , []) 
-
-  //Close is not hovered on color style
-  const VisibilityStle1 = {
-    marginRight: "8px",
-    fontSize: "22px",
-    color: props.RecieveColor.NavIconColor
- };
   
   const [showSchedule, ChangeShowSchedule ] =useState(false) // to show the shedule model 
   const [SelectedStartedData, ChangeStartedData] = useState() //started selected data 
@@ -83,6 +79,7 @@ const CalendarCollection = (props) => {
           GetStartDate={(value) => ChangeStartedData(value)} //getting started clicked data
           GetEndDate={(value) => ChangeEndedData(value)} //getting ended clicked data 
           ChangeEvents={(value) => ChangeEventList(value)}
+          TheCalendarLanf={props.ReturnLang}
         />
     </div>
     );

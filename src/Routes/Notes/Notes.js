@@ -117,6 +117,8 @@ class Notes extends Component {
           showLogOutButton={true}
           isShowLogOutButton={(value) => this.setState({ isLogOut: value })}
           ShowLogOutButtonValue={this.state.isLogOut}  
+          inCalendar={true}
+          inNotes={false}
         />
         </div>
         <FadeIn>

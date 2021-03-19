@@ -18,6 +18,7 @@ import LogoNotask from "../UI/logo";
 import Button from "../UI/Button";
 import { useHistory } from "react-router-dom";
 import API from "../API/API";
+import LangSelection from "../Routes/Calendar/DataCollection/LangSelection";
 
 const StyledNavBar = styled(FadeIn)` 
     align-items: center; 
@@ -185,21 +186,21 @@ const NavBar = (props) => {
   
   /*************************************************** change to calendar link *****************************************************************************/
   const [isCalendar, ChangeIsCalendar] = useState(true);
-  const GoToCalendar = isCalendar ? 
-      (<CalendarTodayIcon onMouseEnter={() => ChangeIsCalendar(false)} style={VisibilityStle1} />)  
-      : 
-      (<Link to={"/calendar"}> 
-        <EventAvailableIcon  onMouseLeave={() => ChangeIsCalendar(true)} style={VisibilityStle2} />
-        </Link>)
+  const GoToCalendar = props.inCalendar ? (isCalendar ? 
+    (<CalendarTodayIcon onMouseEnter={() => ChangeIsCalendar(false)} style={VisibilityStle1} />)  
+    : 
+    (<Link to={"/calendar"}> 
+      <EventAvailableIcon  onMouseLeave={() => ChangeIsCalendar(true)} style={VisibilityStle2} />
+      </Link>)) : <EventAvailableIcon  style={VisibilityStle2} />
     
   /*************************************************** change to Notes link *****************************************************************************/
   const [isNote, ChangeIsNote] = useState(true);
-  const GoToNote = isNote ? 
-      (<NoteAddOutlinedIcon onMouseEnter={() => ChangeIsNote(false)} style={VisibilityStle1} />)  
-      : 
-      (<Link to={"/"} >
-      <NotesIcon   onMouseLeave={() => ChangeIsNote(true)} style={VisibilityStle2} />
-      </Link>)
+  const GoToNote = props.inNotes ? (isNote ? 
+    (<NoteAddOutlinedIcon onMouseEnter={() => ChangeIsNote(false)} style={VisibilityStle1} />)  
+    : 
+    (<Link to={"/"} >
+    <NotesIcon   onMouseLeave={() => ChangeIsNote(true)} style={VisibilityStle2} />
+    </Link>)) : <NotesIcon style={VisibilityStle2} />
 
   /*************************************************** change Link to Login *****************************************************************************/
   const GoToLogin =<Link to={props.CallingPage == "Signin" ? "/login" : "/signup"} >
@@ -209,6 +210,12 @@ const NavBar = (props) => {
         <LogoutOutlined style={VisibilityStle1} />
       }
     </Link>
+
+  /*************************************************** lang Drop Down *****************************************************************************/
+  const ButtonLangOption = props.inCalendar ? null : <LangSelection
+    RecievedColor={props.RecieveColor}
+    TheCalndarlang={(value) =>props.LangOption(value)}
+  />
 
   /*************************************************** change The Color *****************************************************************************/
   const ColorSwitcher = <div style={{marginRight : "4px"}}>
@@ -222,6 +229,7 @@ const NavBar = (props) => {
       </LeftNavBarItems>
 
       <RightNavBarItems>
+        {ButtonLangOption}
         {ColorSwitcher}
         {GoToCalendar}
         {GoToNote}

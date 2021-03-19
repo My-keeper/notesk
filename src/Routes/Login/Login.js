@@ -28,6 +28,8 @@ const Login = (props) => {
         showSignUpButton={true}
         showLogOutButton={false}
         username={null}
+        inNotes={true}
+        inCalendar={true}
       />
       <Imag/>  
       <LoginForm ColorChanged={props.colorchanged} RecieveColor={props.Color}/>

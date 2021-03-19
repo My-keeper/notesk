@@ -4,10 +4,7 @@ import FadeIn  from 'react-fade-in';
 import { CalendarOutlined , ClockCircleOutlined} from "@ant-design/icons"; 
 import TimeSelected from '../../DataCollection/TimeSelected';
 import DateSelected from '../../DataCollection/DateSelected';
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import { CloseCircleOutlined, CheckCircleOutlined, CheckCircleFilled, EditFilled, EditOutlined } from "@ant-design/icons";
+import { CheckCircleFilled } from "@ant-design/icons";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 
 const InfoContainer = styled.div`
@@ -158,6 +155,12 @@ const TimerContainer = (props) => {
         fontSize: "18px", 
         color : props.ScheduleColor.IconC
     }
+    const InValidStyle = {
+        color : "red", 
+        fontSize:"17px",  
+        marginLeft: "55px",
+        marginRight: "5px",
+    } 
 
     
     const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
@@ -199,9 +202,14 @@ const TimerContainer = (props) => {
     const [StartHoursValue, ChangeStartHourValue ]= useState() //save the Starting Hour
     const [StartMinutsValue, ChangeStartMinutsValue ]= useState() //save the starting Minuts
     const [StartDayValue, ChangeStartDayValue ]= useState() //save starting if it is AM or PM
+    const [STimeClicked, ChangeSTimeClicked]= useState(false)
+    props.STCValue(STimeClicked)
+
     const StartingTime = isShowTime ? null : <EachateContainer JustifyContentCalue={"space-between" }>
             <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>Start</span></FadeIn>
             <TimeSelected 
+                name={"StartingTime"}
+                ChangeSTimeClicked={(value) => ChangeSTimeClicked(value)}
                 submitHourValue={(value) => ChangeStartHourValue(value)}
                 submitMinutsValue={(value) => ChangeStartMinutsValue(value)}
                 submitDayValue={(value) => ChangeStartDayValue(value)}
@@ -215,18 +223,36 @@ const TimerContainer = (props) => {
     const [EndHoursValue, ChangeEndHourValue ]= useState() //save the Ending Hour
     const [EndMinutsValue, ChangeEndMinutsValue ]= useState() //save the Ending Minuts
     const [EndDayValue, ChangeEndDayValue ]= useState() //save Ending if it is AM or PM
-    const EndingTime = isShowTime ? null : <EachateContainer  MarginLeft={"10px"}  JustifyContentCalue={"space-between" }>
-            <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>End</span></FadeIn>
-            <TimeSelected 
-                submitHourValue={(value) => ChangeEndHourValue(value)}
-                submitMinutsValue={(value) => ChangeEndMinutsValue(value)}
-                submitDayValue={(value) => ChangeEndDayValue(value)}
-                RecievedColor={props.ScheduleColor}
-                //this is to disable the values that are inside and it is going to DataSelected
-                DisabledisClicked={isShowTime} 
-                />
-        </EachateContainer>
- 
+    const [ETimeClicked, ChangeETimeClicked]= useState(false)
+    props.ETCValue(ETimeClicked)
+    
+    const inValidET= props.ETValidationValue //this is for only if the ending time is not bigger than starting time 
+    var inValidEndingTime = inValidET ? null : "Please Change the Time value to be valid"
+    const inValidEndInput =  <InfoContainer>
+            {inValidET ? null : <FadeIn><CloseOutlined style={InValidStyle}/></FadeIn>}
+            <FadeIn><span style={{
+                color: inValidET ? "#22e822" : "red", 
+                textAlign: "center",  
+                fontSize: "17px",
+                fontFamily: "Arial"
+            }}
+            >{inValidEndingTime}</span></FadeIn>
+        </InfoContainer> 
+    
+    const EndingTime = isShowTime ? null :<DateContainer> <EachateContainer  MarginLeft={"10px"}  JustifyContentCalue={"space-between" }>
+                <FadeIn><span style={{ padding: "4px" , fontSize: "1.2em", marginRight: "5px"}}>End</span></FadeIn>
+                <TimeSelected 
+                    submitHourValue={(value) => ChangeEndHourValue(value)}
+                    submitMinutsValue={(value) => ChangeEndMinutsValue(value)}
+                    submitDayValue={(value) => ChangeEndDayValue(value)}
+                    RecievedColor={props.ScheduleColor}
+                    //this is to disable the values that are inside and it is going to DataSelected
+                    DisabledisClicked={isShowTime} 
+                    />
+            </EachateContainer>
+            {inValidEndInput}
+        </DateContainer>
+
     const time = (
       <InfoContainer>
         {IcionArea}
@@ -238,10 +264,10 @@ const TimerContainer = (props) => {
       </InfoContainer>
     );
 
-    props.FromHourSelected(StartDayValue === "PM" ? String(parseInt(StartHoursValue,10) + 12) : StartHoursValue) //this where we convert the returned hour from 12 hour system to 24 hour system 
-    props.FromMinutsSelected(StartMinutsValue)
-    props.ToHourSelected(EndDayValue === "PM" ? String(parseInt(EndHoursValue,10) + 12) : EndHoursValue) //this where we convert the returned hour To 12 hour system to 24 hour system 
-    props.ToMinutsSelected(EndMinutsValue);
+    props.FromHourSelected(STimeClicked ? (StartDayValue === "PM" ? String(parseInt(StartHoursValue,10) + 12) : StartHoursValue): "12") //this where we convert the returned hour from 12 hour system to 24 hour system 
+    props.FromMinutsSelected(STimeClicked ? StartMinutsValue : "00")
+    props.ToHourSelected(STimeClicked ? (EndDayValue === "PM" ? String(parseInt(EndHoursValue,10) + 12) : EndHoursValue): "30") //this where we convert the returned hour To 12 hour system to 24 hour system 
+    props.ToMinutsSelected(STimeClicked ? EndMinutsValue : "00");
     props.isTime(isShowTime) 
     return (time)
 }

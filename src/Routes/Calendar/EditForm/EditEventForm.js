@@ -130,18 +130,18 @@ const EditEventForm = (props) => {
     const [EditTime, ChangeEditedTime ] = useState()
     const Data = !isShowTime ? null : (
       <CalenderContianer
-        SendSD={StartDate} //This is to send back the selected started data
-        SendED={EndDate} //This is to send back the selected ended data
-        GetFromDate={(value) => ChangeFormDate(value)} //Returning the selected data that the user chose
-        GetToDate={(value) => ChangeToDate(value)} //Returning the selected data that the user chose
-        GetIsSelectedDate={(value) => ChangeEditedTime(value)} //To pass down to Time to show when the user want to chagne time
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file
-        PassIsStartedDay={props.isStartedDay} //passing down the data in number from Event Form
-        PassIsStartedMonth={props.isStartedMonth} //passing down the data in number from Event Form
-        PassIsStartedYear={props.isStartedYear} //passing down the data in number from Event Form
-        PassIsEndedDay={props.isEndedDay} //passing down the data in number from Event Form
-        PassIsEndedMonth={props.isEndedMonth} //passing down the data in number from Event Form
-        PassIsEndedYear={props.isEndedYear} //passing down the data in number from Event Form
+            SendSD={StartDate} //This is to send back the selected started data
+            SendED={EndDate} //This is to send back the selected ended data
+            GetFromDate={(value) => ChangeFormDate(value)} //Returning the selected data that the user chose
+            GetToDate={(value) => ChangeToDate(value)} //Returning the selected data that the user chose
+            GetIsSelectedDate={(value) => ChangeEditedTime(value)} //To pass down to Time to show when the user want to chagne time
+            ScheduleColor={props.ScheduleColor} // send the color list from the parent App file
+            PassIsStartedDay={props.isStartedDay} //passing down the data in number from Event Form
+            PassIsStartedMonth={props.isStartedMonth} //passing down the data in number from Event Form
+            PassIsStartedYear={props.isStartedYear} //passing down the data in number from Event Form
+            PassIsEndedDay={props.isEndedDay} //passing down the data in number from Event Form
+            PassIsEndedMonth={props.isEndedMonth} //passing down the data in number from Event Form
+            PassIsEndedYear={props.isEndedYear} //passing down the data in number from Event Form
       />
     );
 
@@ -152,30 +152,36 @@ const EditEventForm = (props) => {
     const [EndHours, ChangeEndHour] = useState(); //have returned Ending hour if time is needed
     const [EndMinuts, ChangeEndMinuts] = useState(); //have returned Ending minut if time is needed 
     const [TimeClicked, ChangeTimeClicked] = useState() //this to make sure that time is included or not and show the repeated days model
+    const [CheckETValidation, ChangeInvalidET] = useState(true)
+    const [STClicked, ChangeSTClicked] = useState(false)
+    const [ETClicked, ChangeETClicked] = useState(false)
     const Time = ( EditTime ? null :
         <TimerContainer
-        FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
-        FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed 
-        ToHourSelected={(value) => ChangeEndHour(value)} // return Ending hour if time is needed
-        ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return Ending minut if time is needed 
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
-        isTime={(value) => ChangeTimeClicked(value)}
+            FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
+            FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed 
+            ToHourSelected={(value) => ChangeEndHour(value)} // return Ending hour if time is needed
+            ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return Ending minut if time is needed 
+            ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+            isTime={(value) => ChangeTimeClicked(value)}
+            ETValidationValue={CheckETValidation} // Pass down validation TIme 
+            STCValue={(value) => ChangeSTClicked(value)} //starting time if clicked 
+            ETCValue={(value) => ChangeETClicked(value)} //starting time if clicked 
         />
         );
         
-    //this is for number of rebeated days 
+    /***************************    rebeated Option Area  ************************************************/ 
     const [GetRepeatedDays, ChangeRepeatedDays] = useState()
     const RepeatedDays =( isShowTime ? null :<RDContainer
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
-        SubmitNumberOfRP={(value) => ChangeRepeatedDays(value)} //returning the value of repeated days 
+            ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+            SubmitNumberOfRP={(value) => ChangeRepeatedDays(value)} //returning the value of repeated days 
         />
     );
     
     /***************************    Display Option Area  ************************************************/ 
     const [GetDiplayOption , ChangeDiplayOption] = useState()
     const Display = <DisplayOption
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
-        SubmitDisplayOption={(value) => ChangeDiplayOption(value)} //returning the value of repeated days 
+            ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+            SubmitDisplayOption={(value) => ChangeDiplayOption(value)} //returning the value of repeated days 
         />
 
     /***************************    Submit New Changes Area  ************************************************/ 
@@ -187,14 +193,16 @@ const EditEventForm = (props) => {
         isTitle={getTitle} //the Title value
         isDescription={getDescription} //the Description value
         isURL={getURL} //the URL value
-        isStartingDate={isShowTime ? getFormDate + "T12:00:00" : undefined} //the value of the Starting data
+        isStartingDate={isShowTime ? (STClicked ? (getFormDate + "T" +StartHours+":"+StartMinuts+":00") :(getFormDate + "T12:00:00")) : undefined} //the value of the Starting data
+        isEndingData={isShowTime ? (ETClicked ? (getToDate + "T" +StartHours+":"+StartMinuts+":00") : (getToDate + "T12:30:00") ) : undefined} //the value of Ending data
         isRepeatedDays={!isShowTime ? GetRepeatedDays : undefined} //Values of Repeated Days
         isStartingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(StartHours+":"+StartMinuts+":00")) : undefined} //Choose Starting Time of the repeated Event
-        isEndingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
+        isEndingTime={!isShowTime ? (TimeClicked ?('12:30:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
         ReturnNewEvents={(value) => props.ReturnNewEvents(value)}
-        isEndingData={getToDate} //the value of Ending data
         isDisplayOption= {GetDiplayOption} //the value of the Display Option
         ColorChange={props.ScheduleColor} 
+        CheckingETValidation={(value)=>ChangeInvalidET(value)}
+        RepeatOrData={isShowTime} // to check the time if it is on repeated days or just a noraml day 
     />;
 
     const EditForm = (

@@ -127,15 +127,14 @@ const CalendarForm = (props) => {
   const [TitleValue, ChangeTitleValue] = useState("")
   const [StartValue, ChangeStartValue] = useState("")
   const HandleMouseEnter = (value) => {
-    const ReturnToggle =(ChangeToggleTitle(true),
+    const ReturnToggle = () => (ChangeToggleTitle(true),
           ChangeTitleValue(value.event._def.title),
           ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24)))
-    // 
-      return(ReturnToggle)
+      return(setTimeout(ReturnToggle,500))
   }
   const HandleMouseLeave = () => {
     const FinishToggle = () => (ChangeToggleTitle(false), ChangeTitleValue(""))
-    return(setTimeout(FinishToggle,500))
+    return(setTimeout(FinishToggle,1000))
   }
   const ShowTitle = <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
     <HoverTitle 
@@ -147,6 +146,7 @@ const CalendarForm = (props) => {
     
 
   /*************************************************** calendar Form *****************************************************************************/
+  const recievedLang = props.TheCalendarLanf 
   const FullCalendarForm = <div
       style={{
         zIndex: "1",
@@ -167,7 +167,7 @@ const CalendarForm = (props) => {
         height="880px" //get fixed height for the calendar
         contentHeight="100%" //get the content height for the calendar
         handleWindowResize="true"
-        locale="En" //this is for the languages option
+        locale={recievedLang} //this is for the languages option
         timeZone="canada/newfoundland" //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it
         editable={true} //to edit the info
         selectable={true} //to enable selection

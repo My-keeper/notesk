@@ -11,6 +11,15 @@ const submitChanges = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   }  
+    //this is for validation that the ending time is after the starting time 
+    const SDTHourValidation = props.RepeatOrData ? props.isStartingDate.toString().slice(11, 13) : props.isStartingTime.toString().slice(0, 2)
+    const SDTValue = parseInt(SDTHourValidation, 10)
+    const EDTHourValidation = props.RepeatOrData ? props.isEndingData.toString().slice(11, 13) : props.isEndingTime.toString().slice(0, 2)
+    const EDTValue = parseInt(EDTHourValidation, 10)
+    const SDTMinValidation = props.RepeatOrData ? props.isStartingDate.toString().slice(14, 16) : props.isStartingTime.toString().slice(3, 5)
+    const SDTMinValue = parseInt(SDTMinValidation, 10)
+    const EDTMinValidation = props.RepeatOrData ? props.isEndingData.toString().slice(14, 16) : props.isEndingTime.toString().slice(3, 5)
+    const EDTMinValue = parseInt(EDTMinValidation, 10)
 
   // this will delete the old event and send the new one
   const SubmitTheNewEvent = async () => { 
@@ -41,23 +50,29 @@ const submitChanges = (props) => {
         display: props.isDisplayOption,
       };
       newNotes[indexOfEvent] = newEvent
-      props.ReturnNewEvents(newNotes); 
-      if(isLoggedIn){
-          API.UpdateEvents(
-            id,
-            props.isTitle,
-            props.isDescription,
-            props.isURL,
-            props.isStartingDate,
-            props.isEndingData,
-            props.isStartingTime,
-            props.isEndingTime,
-            props.isRepeatedDays,
-            props.isDisplayOption
-          )
-        }
+      if (EDTValue < SDTValue) { props.CheckingETValidation(false)}
+      else if (EDTValue === SDTValue && EDTMinValue < SDTMinValue) { props.CheckingETValidation(false)}
+      else if( props.isTitle === "" && props.isDescription === ""){props.TitleMessage(true);props.DescriptionMessage(true);} 
+      else {
+        props.ReturnNewEvents(newNotes); 
+        if(isLoggedIn){
+            API.UpdateEvents(
+              id,
+              props.isTitle,
+              props.isDescription,
+              props.isURL,
+              props.isStartingDate,
+              props.isEndingData,
+              props.isStartingTime,
+              props.isEndingTime,
+              props.isRepeatedDays,
+              props.isDisplayOption
+            )
+          }
 
-      props.isCloseModel(true);
+        props.isCloseModel(true);
+    }
+    
   };
 
   const SubmitButton = <FadeIn>

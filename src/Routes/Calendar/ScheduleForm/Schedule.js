@@ -161,29 +161,20 @@ const Schedule = (props) => {
     const [EndHours, ChangeEndHour] = useState(); //have returned Ending hour if time is needed
     const [EndMinuts, ChangeEndMinuts] = useState(); //have returned Ending minut if time is needed 
     const [TimeClicked, ChangeTimeClicked] = useState() //this to make sure that time is included or not and show the repeated days model
-    const [EditTime, ChangeEditedTime ] = useState("")
-    const [CheckTimeValidation, ChangeTimeCheck] = useState(false)
-    var TimeValudation = CheckTimeValidation ? "Time is set" : "Please Choose Valid End Time "
-    const timeCheckValidation = <InfoContainer>
-        {CheckTimeValidation ? <CheckOutlined style={ValidStyle}/> : <CloseOutlined style={InValidStyle}/>}
-        <span style={{
-            color: CheckTimeValidation ? "Green" : "red", 
-            textAlign: "center", 
-            fontSize: "12px",
-            fontFamily: "Arial"
-        }}
-        >{TimeValudation}</span>
-        </InfoContainer>
+    const [CheckETValidation, ChangeInvalidET] = useState(true)
+    const [STClicked, ChangeSTClicked] = useState(false)
+    const [ETClicked, ChangeETClicked] = useState(false)
     const Time = (
         <TimerContainer
-        ChangeTimeCheck={(value) => ChangeTimeCheck(value)} // to check validation on time ending time
-        FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
-        FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed 
-        ToHourSelected={(value) => ChangeEndHour(value)} // return Ending hour if time is needed
-        ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return Ending minut if time is needed 
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
-        GetIsSelectedDate={(value)=>ChangeEditedTime(value)} //To pass down to Time to show when the user want to chagne time
-        isTime={(value) => ChangeTimeClicked(value)}
+            ETValidationValue={CheckETValidation} // Pass down validation TIme 
+            FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
+            FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed 
+            ToHourSelected={(value) => ChangeEndHour(value)} // return Ending hour if time is needed
+            ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return Ending minut if time is needed 
+            ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+            isTime={(value) => ChangeTimeClicked(value)}
+            STCValue={(value) => ChangeSTClicked(value)} //starting time if clicked 
+            ETCValue={(value) => ChangeETClicked(value)} //starting time if clicked 
         />
         );
         
@@ -203,6 +194,7 @@ const Schedule = (props) => {
         /> 
 
     /*************************************************** Submit Buton  Area *****************************************************************************/
+
     const Submit = (
       <SubmitButton
         isCallingCalendar={(value) => props.CallingCalendar(value)} //return the close value to return to calender from the submit model
@@ -213,13 +205,16 @@ const Schedule = (props) => {
         DescriptionMessage={(value) => ChangeDescriptionMessage(value)} // to show error if empty description
         CheckDescriptionPH={(value) => ChangeDescriptionPH(value)} //this is to change the description placeholder if there is no placeholder
         isURL={getURL} //the URL value
-        isStartingDate={isShowTime ? getFormDate + "T12:00:00" : undefined} //the value of the Starting data
-        isEndingData={getToDate} //the value of Ending data
-        isStartingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(StartHours+":"+StartMinuts+":00")) : undefined} //Choose Starting Time of the repeated Event
-        isEndingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
+        isStartingDate={isShowTime ? (STClicked ? (getFormDate + "T" +StartHours+":"+StartMinuts+":00") : (getFormDate + "T12:00:00") ) : undefined} //the value of the Starting data
+        isEndingData={isShowTime ? (ETClicked ? (getToDate + "T" +StartHours+":"+StartMinuts+":00") : (getToDate + "T12:30:00") ) : undefined} //the value of Ending data
+        //The starting and ending time only works with repeated days 
+        isStartingTime={!isShowTime  ? (TimeClicked ?('12:00:00') :(StartHours+":"+StartMinuts+":00")) : undefined} //Choose Starting Time of the repeated Event
+        isEndingTime={!isShowTime ? (TimeClicked ?('12:30:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
         isRepeatedDays={!isShowTime ? GetRepeatedDays : undefined} //Values of Repeated Days
         isDisplayOption= {GetDiplayOption} //the value of the Display Option
         isEvent={props.submitEventValues} //returning the new event to the array of objects
+        CheckingETValidation={(value)=>ChangeInvalidET(value)}
+        RepeatOrData={isShowTime} // to check the time if it is on repeated days or just a noraml day 
       />
     );
 
@@ -245,8 +240,7 @@ const Schedule = (props) => {
             {URL}
             {IcionArea}
             {Data}
-            {Time}
-            {timeCheckValidation}
+            {Time} 
             {RepeatedDays}
             {DiplayOption}
             {Submit}

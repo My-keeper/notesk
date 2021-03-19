@@ -15,7 +15,7 @@ const HourValue = () => {
 const MinutsValue = () => {
 
     //this is for the hour input 
-    const Minuts = ['05','10','15','20','25','30','35','40','45','50','55']
+    const Minuts = ['00','05','10','15','20','25','30','35','40','45','50','55']
     const DailyMinut =(
         [Minuts.map((Minut, index) => 
             <option key={index.id + createEventId()} value={Minut}>{Minut}</option>)]
@@ -77,7 +77,17 @@ const DisplayOption = () => {
         )
     return(DisplayContainer)
 }
+/*************************************************** Lang Option *****************************************************************************/
+const LangOption = () => {
+
+    //this is for the days in a Month 
+    const Lang_Option = ['en','ar','chi','fi','fr','ja','ko','it','ru']
+    const LangContainer = (
+        [Lang_Option.map((Lang,index ) => <option  key={index.id + createEventId()} value={Lang}>{Lang}</option>)]
+        )
+    return(LangContainer)
+}
 
 export {HourValue, MinutsValue, TwelveHourSystemValue, 
         NumberOfYearsValue, NumberOfMonthsValue, NumberOfDaysValue, 
-        DisplayOption};
+        DisplayOption, LangOption};

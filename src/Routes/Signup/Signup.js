@@ -28,6 +28,8 @@ const Signup = (props) => {
         showLogOutButton={false}
         CallingPage={"Signin"}
         username={null}
+        inCalendar={true}
+        inNotes={true}
       />
       <Imag/>  
       <SignupForm 

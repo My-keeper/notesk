@@ -6,8 +6,9 @@ import { createEventId } from "../event-utils";
 import { ControlCameraOutlined } from "@material-ui/icons";
 
 const OptionForm = (props) => {
+
   const [HourClicked, ChangeHourClicked]= useState(false)
-  const [HourValueInput, ChangeHourValue] = useState("");
+  const [HourValueInput, ChangeHourValue] = useState("12");
   const handle = (e) => {
     props.name === "StartingTime" ? props.ChangeSTimeClicked(true) : props.ChangeETimeClicked(true)
     ChangeHourValue(e.target.value)
@@ -44,7 +45,7 @@ const OptionForm = (props) => {
   );
 
   const [MinutsClicked, ChangeMinutsClicked] = useState(false)
-  const [MinutsValueInput, ChangeMinutsValue] = useState("");
+  const [MinutsValueInput, ChangeMinutsValue] = useState((props.name==="EndingTime") ? "30" : "00");
   const handleMinuts = (e) => {
     props.name === "StartingTime" ? props.ChangeSTimeClicked(true) : props.ChangeETimeClicked(true)
     ChangeMinutsValue(e.target.value)
@@ -81,9 +82,9 @@ const OptionForm = (props) => {
   );
 
   const [DayTimeClicked, ChangeDayTimeClicked]= useState(false)
-  const [DaytimeValueInput, ChangeDaytimeValue] = useState("");
+  const [DaytimeValueInput, ChangeDaytimeValue] = useState("AM");
   const handleDaytime = (e) => {
-    props.name === "StartingTime" ? props.ChangeSTimeClicked(true) : props.ChangeETimeClicked(true)
+    props.name === "StartingTime" ? (props.ChangeSTimeClicked(true)) : (props.ChangeETimeClicked(true))
     ChangeDaytimeValue(e.target.value)
     ChangeDayTimeClicked(!DayTimeClicked)
   };
@@ -118,9 +119,11 @@ const OptionForm = (props) => {
   );
 
   props.submitHourValue(HourClicked ? HourValueInput : "12");
-  props.submitMinutsValue(MinutsValueInput ? MinutsClicked : "00");
+  props.submitMinutsValue(MinutsValueInput ? MinutsValueInput : "00");
   props.submitDayValue(DayTimeClicked ? DaytimeValueInput : "AM");
-
+  
+  //Getting Starting Time and Ending Time to check the value 
+  // props.StartingAmPmValue(DaytimeValueInput === "PM" ? String(parseInt(HourValueInput,10) + 12) : HourValueInput)
   return [Hours, Minuts, DayTime];
 };
 export default OptionForm;
