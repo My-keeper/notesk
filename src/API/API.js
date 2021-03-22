@@ -58,10 +58,6 @@ class API {
     static Logout() {  
         return axios.post('http://localhost:9000/Users/logout',{
             headers: {Authorization: localStorage.getItem("token") },
-        }).then(() => {
-            console.log("you are logged Out")
-        }).catch(() => {
-            console.log("there is a prob")
         })
     }
 

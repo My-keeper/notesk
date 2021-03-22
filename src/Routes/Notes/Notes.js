@@ -28,14 +28,8 @@ class Notes extends Component {
             if(!Callback.latitude || !Callback.longitude){
                 return console.log({error: 'please enter an address'})
             }
-            foreCast(Callback.latitude , Callback.longitude , (error, foreCastData,loc)=>{
-                console.log(Callback.latitude , Callback.longitude)
-                this.setState({Weather : foreCastData})
-                console.log(this.state.Weather)
-                console.log({
-                forcast: foreCastData,
-                location: loc
-              })
+            foreCast(Callback.latitude , Callback.longitude , (error, foreCastData, WeatherIcon)=>{
+                this.setState({Weather : foreCastData, WeatherIcon: WeatherIcon})
             })
           })
         return this.setState({ notes: MergedNotes});
@@ -50,7 +44,8 @@ class Notes extends Component {
         city:"",
         province:"",
         county:"",
-        Weather: ""
+        Weather: "",
+        WeatherIcon: ""
       };
     //Close is not hovered on color style
     VisibilityStle1 = {
@@ -143,6 +138,8 @@ class Notes extends Component {
           ShowLogOutButtonValue={this.state.isLogOut}  
           inCalendar={true}
           inNotes={false}
+          WeatherMessage={this.state.Weather}
+          WeatherIcon={this.state.WeatherIcon}
         />
         </div>
         <FadeIn>

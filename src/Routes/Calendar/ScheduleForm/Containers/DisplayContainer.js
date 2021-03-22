@@ -20,15 +20,15 @@ const DisplayContainer = (props) => {
     const [GetDisplayOption, CHnageDisplayOption] = useState()
     props.SubmitDisplayOption(GetDisplayOption)
     const FontColor = <InfoContainer>
-                <FadeIn>
-                    <BgColorsOutlined style={{fontSize:"32px",color : props.ScheduleColor.IconC,marginRight:"9px",marginTop:"4px"}}/>
-                </FadeIn>
-                <FadeIn>
-                    <DisplaySelected 
-                        ValueOfDisplayOption={(value) => CHnageDisplayOption(value)}
-                        RecievedColor={props.ScheduleColor}
-                    />
-                </FadeIn>
+        <FadeIn>
+            <BgColorsOutlined style={{fontSize:"32px",color : props.ScheduleColor.IconC,marginRight:"9px",marginTop:"4px"}}/>
+        </FadeIn>
+        <FadeIn>
+            <DisplaySelected 
+                ValueOfDisplayOption={(value) => CHnageDisplayOption(value)}
+                RecievedColor={props.ScheduleColor}
+            />
+        </FadeIn>
     </InfoContainer>
 
     return(FontColor)

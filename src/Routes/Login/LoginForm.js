@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import API from "../../API/API";
 import validator from "validator";
 
+/*************************** Style Area ********************************/    
 const InfoContainer = styled.div`
     width: 470px;
     display: flex;
@@ -21,6 +22,7 @@ const InfoContainer = styled.div`
     `
 
 const SignupForm = (props) => {
+    /*************************** Style Area ********************************/    
     const IconColor = { 
         color : props.RecieveColor.IconC, 
         fontSize:"25px", 
@@ -31,15 +33,7 @@ const SignupForm = (props) => {
         color : props.RecieveColor.IconC, 
         fontSize:"20px", 
         marginRight:"9px", 
-        marginTop:"4px" }
-        
-    // const ValidStyle = {
-    //     color : "red", 
-    //     fontSize:"12px", 
-    //     marginRight:"3px", 
-    //     marginLeft:"28px",
-    //     marginTop: "1px"
-    // }
+        marginTop:"4px" } 
     const InValidStyle = {
         color : "red", 
         fontSize:"12px", 

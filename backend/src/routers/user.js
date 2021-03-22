@@ -14,12 +14,12 @@ router.post("/Users", async (req, res) => {
   //saving the info to the database and see if will match the info in the model or not
   try{
     // console.log(res.body.email)
-    // await sgMail.send({
+    // sgMail.send({
     //     to: res.body.email,
     //     from: 'kirito21596@gmail.com',
     //     subject: 'Thanks for joining in!',
     //     // text: `Welcome to the app, ${res.body.firstName} ${res.body.lastName}. Let me know how you get along with the app.`,
-    //     html: `<strong>Welcome to the app, ${res.body.firstName} ${res.body.lastName}. Let me know how you get along with the app.</strong>`,
+    //     html: `Welcome to the app, ${res.body.firstName} ${res.body.lastName}. Let me know how you get along with the app.`,
     //     // html: '<body>
     //     //           <p><strong>Welcome to the app</strong> <var>{res.body.firstName}</var><var>{res.body.lastName}.</var><strong>Let me know how you get along with the app</strong></p>
     //     //       </body>'

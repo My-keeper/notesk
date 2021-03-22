@@ -20,7 +20,10 @@ import { useHistory } from "react-router-dom";
 import API from "../API/API";
 import LangSelection from "../Routes/Calendar/DataCollection/LangSelection";
 import {DayCloudy, DayCloudyHigh} from "@intern0t/react-weather-icons";
+import Model from "../UI/Modal";
+import Weather_Icon from "../UI/WeatherIcon";
 
+/*************************************************** Style Area *****************************************************************************/
 const StyledNavBar = styled(FadeIn)` 
     align-items: center; 
     justify-content: space-between;
@@ -63,34 +66,31 @@ const NavBar = (props) => {
     CheckingIsLoggedIn()
   } , []) 
 
-  //Close is not hovered on color style
+  /*************************************************** Style Area *****************************************************************************/
   const VisibilityStle1 = {
     marginTop: "10px",
     marginRight: "8px",
     fontSize: "28px",
     color: props.RecieveColor.NavIconColor
- };
-  //Close is not hovered on color style
+  };
   const DifferentRouteStyle = {
     marginTop: "10px",
     marginRight: "8px",
     fontSize: "32px",
     color: props.RecieveColor.NavIconColor
- };
-  //Close is hovered on color style
-  const VisibilityStle2 = {
-      marginTop: "10px",
-      marginRight: "4px",
-      fontSize: "34px",
-      color: props.RecieveColor.NavIconColor
+  }; 
+  const IconsNavChange = {
+    marginTop: "10px",
+    marginRight: "4px",
+    fontSize: "36px",
+    color: props.RecieveColor.NavIconColor
   }; 
   const LogoutIconStyle = {
-      marginTop: "15px",
-      marginLeft: "8px",
-      fontSize: "18px",
-      color: props.RecieveColor.NavIconColor
+    marginTop: "15px",
+    marginLeft: "8px",
+    fontSize: "18px",
+    color: props.RecieveColor.NavIconColor
   };  
-  //Close is not hovered on color style
   const LogOutStyle = {
     marginRight: "8px",
     fontSize: "22px",
@@ -199,22 +199,26 @@ const NavBar = (props) => {
   </FadeIn> : null
   
   /*************************************************** change to calendar link *****************************************************************************/
-  const [isCalendar, ChangeIsCalendar] = useState(true);
-  const GoToCalendar = props.inCalendar ? (isCalendar ? 
-    (<CalendarTodayIcon onMouseEnter={() => ChangeIsCalendar(false)} style={DifferentRouteStyle} />)  
-    : 
-    (<Link to={"/calendar"}> 
-      <EventAvailableIcon  onMouseLeave={() => ChangeIsCalendar(true)} style={VisibilityStle2} />
-      </Link>)) : <EventAvailableIcon  style={VisibilityStle2} />
+  const [isCalendar, ChangeIsCalendar] = useState(false);
+  const GoToCalendar = props.inCalendar ? 
+    (isCalendar ? 
+      (<CalendarTodayIcon onMouseEnter={() => ChangeIsCalendar(false)} style={DifferentRouteStyle} />)  
+      : 
+      (<Link to={"/calendar"}> 
+        <EventAvailableIcon  onMouseLeave={() => ChangeIsCalendar(true)} style={IconsNavChange} />
+        </Link>)) 
+    : <EventAvailableIcon  style={IconsNavChange} />
     
   /*************************************************** change to Notes link *****************************************************************************/
   const [isNote, ChangeIsNote] = useState(true);
-  const GoToNote = props.inNotes ? (isNote ? 
-    (<NoteAddOutlinedIcon onMouseEnter={() => ChangeIsNote(false)} style={DifferentRouteStyle} />)  
-    : 
-    (<Link to={"/"} >
-    <NotesIcon   onMouseLeave={() => ChangeIsNote(true)} style={VisibilityStle2} />
-    </Link>)) : <NotesIcon style={VisibilityStle2} />
+  const GoToNote = props.inNotes ? 
+    (isNote ? 
+      (<NoteAddOutlinedIcon onMouseEnter={() => ChangeIsNote(false)} style={DifferentRouteStyle} />)  
+      : 
+      (<Link to={"/"} >
+      <NotesIcon   onMouseLeave={() => ChangeIsNote(true)} style={IconsNavChange} />
+        </Link>)) 
+    : <NotesIcon style={IconsNavChange} />
 
   /*************************************************** change Link to Login *****************************************************************************/
   const GoToLogin =<Link to={props.CallingPage == "Signin" ? "/login" : "/signup"} >
@@ -232,9 +236,9 @@ const NavBar = (props) => {
   /> : null
 
   /*************************************************** change The Color *****************************************************************************/
-  const ColorSwitcher = <div style={{marginRight : "4px"}}>
+  const ColorSwitcher = UserLogged ? <div style={{marginRight : "4px"}}>
         <SwitchIcon OnChangedColor={props.ColorChanged} style={{marginRight : "4px"}}/>
-      </div>
+      </div> : null
 
   /*************************************************** Weather  *****************************************************************************/
   const [isWeather, ChnageisWeather] = useState(true)
@@ -242,45 +246,47 @@ const NavBar = (props) => {
     const FinishToggle = () => (ChnageisWeather(true))
     return(setTimeout(FinishToggle,1000))
   }
-  const IsWeather =isWeather ?
+  const IsWeather =UserLogged ? (isWeather ?
          <Button
             onClick={()=>ChnageisWeather(false)} 
             position={"relative"}
             width={"0px"}
             marginRightValue={"50px"}
-            marginTopValue={"2px"}
+            marginTopValue={"8px"}
             icon={<DayCloudy color={props.RecieveColor.ToggleButton} size={"35px"} />}
             /> 
             :
             <Button
             onClick={()=>ChnageisWeather(true)}
-            // onMouseLeave={HandleMouseLeave}
+            onMouseLeave={HandleMouseLeave}
             position={"relative"}
             width={"0px"}
             marginRightValue={"50px"}
             marginTopValue={"2px"}
             icon={<DayCloudyHigh color={props.RecieveColor.ToggleButton} size={"42px"} />}
-            />
-  const WeatherButton = !isWeather ? <div
-      style={{zIndex: "7",position: "absolute",display: "flex",justifyContent: "flex-end",right: "40%",top: "52px"}}>
-      <Button
-        onClick={handlingLoggingIn}
-        position={"relative"}
-        width={"140px"}
-        padding={"15px"}
-        boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-        borderRadiusValue={"20px"}
-        fontSizeValue={"1.2em"}
-        marginTopValue={"5%"}
-        resizeValue={"both"}
-        text={"login"}
-        LeftValue={"30%"}
-        backGroundColorValue={props.RecieveColor.ToggleButton}
-        FontColorValue={props.RecieveColor.IconC}
-        borderColorValue={props.RecieveColor.BorderColor}
-        icon={<LogoutOutlined style={LogOutStyle} />}
-            /> 
-      </div> : null
+            />) : null 
+            
+  const WeatherButton = !isWeather ? (UserLogged ?<div
+      style={{zIndex: "7",position: "absolute",display: "flex",justifyContent: "flex-end",right: "30%",top: "52px"}}>
+        <Model
+          display={"flex"}
+          flexDirectionValue={"row"}
+          position= {"relative"}
+          width= {"305px"}
+          margin= {"15px"}
+          padding= {"10px"}
+          boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
+          borderRadiusValue= {"7px"}
+          resizeValue={"both"}
+          backGroundColorValue={props.RecieveColor.ToggleButton}
+          FontColorValue={props.RecieveColor.IconC}
+          borderColorValue={props.RecieveColor.BorderColor}
+          icon={<LogoutOutlined style={LogOutStyle} />}
+            >
+              <Weather_Icon SRC={props.WeatherIcon}/>
+              <div style={{marginTop: "10px"}}>{props.WeatherMessage}</div>
+        </Model>
+      </div>: null ): null
 
   /*************************************************** NavBar  *****************************************************************************/
   return (

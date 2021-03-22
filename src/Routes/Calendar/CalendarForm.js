@@ -5,10 +5,8 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import HoverTitle from "./EditForm/HoverTitle";
 import interactionPlugin from "@fullcalendar/interaction";
-import EventForm from "./EditForm/EvenForm";
-import { Typography, Popover, message } from "antd";
-import API from "../../API/API";
-const { Text } = Typography;
+import EventForm from "./EditForm/EvenForm"; 
+import API from "../../API/API"; 
 
 const CalendarForm = (props) => {
   //component did mount 

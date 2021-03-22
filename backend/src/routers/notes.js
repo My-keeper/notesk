@@ -45,8 +45,7 @@ router.patch ('/Notes/:id',auth , async (req, res) => {
     await note.save()
     res.send(note)
   }catch(e){
-    console.log(e)
-      res.status(400).send(e)
+    res.status(400).send(e)
   }
 });
 

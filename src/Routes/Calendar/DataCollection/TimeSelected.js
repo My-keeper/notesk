@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import FadeIn from "react-fade-in";
 import SelectData from "../../../UI/Select";
 import { HourValue, MinutsValue, TwelveHourSystemValue } from "./OptionsForm";
-import { createEventId } from "../event-utils";
-import { ControlCameraOutlined } from "@material-ui/icons";
+import { createEventId } from "../event-utils"; 
 
 const OptionForm = (props) => {
 
@@ -121,9 +120,7 @@ const OptionForm = (props) => {
   props.submitHourValue(HourClicked ? HourValueInput : "12");
   props.submitMinutsValue(MinutsValueInput ? MinutsValueInput : "00");
   props.submitDayValue(DayTimeClicked ? DaytimeValueInput : "AM");
-  
-  //Getting Starting Time and Ending Time to check the value 
-  // props.StartingAmPmValue(DaytimeValueInput === "PM" ? String(parseInt(HourValueInput,10) + 12) : HourValueInput)
+   
   return [Hours, Minuts, DayTime];
 };
 export default OptionForm;

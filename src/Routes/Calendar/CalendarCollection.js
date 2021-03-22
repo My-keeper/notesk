@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react"; 
 import CalendarForm from "./CalendarForm";
 import ScheduleForm from "./ScheduleForm/Schedule";
-import styled from "styled-components"; 
-import Button from "../../UI/Button";
-import FadeIn from "react-fade-in";
-import { Link } from "react-router-dom";
-import { LogoutOutlined } from "@ant-design/icons";
+import styled from "styled-components";  
 import API from "../../API/API";
 
 const CalenderContainer = styled.div`
@@ -20,21 +16,18 @@ const CalendarCollection = (props) => {
   /*************************************************** Evets List *****************************************************************************/
   //Collection of Events
   const [currentEvents, ChangeEventList] = useState([
-    
-  // ])
-    // {
-    //   id: "1",
-    //   title: "Testoing for more ",
-    //   start: "2021-03-13T12:30:00",
-    //   end: "2021-03-14",
-    //       startTime: "10:45:00",
-    //   textColor: "pink",
-    //   description: "lets play some game s",
-    //   display: "list-item",
-    //   backgroundColor: "black",
-    //   Url: "http://localhost:3000/calendar",
-    //   description: "lets see if it will work"
-    // },
+    {
+      id: "1",
+      title: "Testoing for more ",
+      start: "2021-03-24T12:30:00",
+      end: "2021-03-24",
+      textColor: "pink",
+      description: "lets play some game s",
+      display: "list-item",
+      backgroundColor: "black",
+      Url: "http://localhost:3000/calendar",
+      description: "lets see if it will work"
+    },
     {
       id: "3",
       title: "Doc appoinmnet ",

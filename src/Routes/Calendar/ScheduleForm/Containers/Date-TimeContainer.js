@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FadeIn  from 'react-fade-in'; 
 import { CalendarOutlined , ClockCircleOutlined} from "@ant-design/icons"; 
 import TimeSelected from '../../DataCollection/TimeSelected'; 
-import { CheckOutlined, CloseOutlined, CheckCircleFilled } from "@ant-design/icons"; 
+import { CloseOutlined, CheckCircleFilled } from "@ant-design/icons"; 
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 
 const InfoContainer = styled.div`

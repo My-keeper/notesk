@@ -22,14 +22,8 @@ class CalendarList extends Component {
           if(!Callback.latitude || !Callback.longitude){
               return console.log({error: 'please enter an address'})
           }
-          foreCast(Callback.latitude , Callback.longitude , (error, foreCastData,loc)=>{
-              console.log(Callback.latitude , Callback.longitude)
-              this.setState({Weather : foreCastData})
-              console.log(this.state.Weather)
-              console.log({
-              forcast: foreCastData,
-              location: loc
-              })
+          foreCast(Callback.latitude , Callback.longitude , (error, foreCastData, WeatherIcon)=>{ 
+              this.setState({Weather : foreCastData, WeatherIcon: WeatherIcon}) 
           })
         })
       }  
@@ -42,7 +36,8 @@ class CalendarList extends Component {
     city:"",
     province:"",
     county:"",
-    Weather: ""
+    Weather: "",
+    WeatherIcon: ""
   };
 
   render() {
@@ -59,6 +54,8 @@ class CalendarList extends Component {
             inCalendar={false}
             inNotes={true}
             LangOption={(value) => this.setState({Lang: value})}
+            WeatherMessage={this.state.Weather}
+            WeatherIcon={this.state.WeatherIcon}
           />
         </div>
         <CalendarCollection 

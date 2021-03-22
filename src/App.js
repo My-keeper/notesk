@@ -5,8 +5,7 @@ import Notes from "./Routes/Notes/Notes" ;
 import Calendar from "./Routes/Calendar/Calendar";
 import {BrowserRouter, Route,  } from "react-router-dom";
 import Login from "./Routes/Login/Login";
-import Signup from "./Routes/Signup/Signup";
-import Weather from "./API/Weather";
+import Signup from "./Routes/Signup/Signup"; 
 
 const ContainerDiv = styled.div`
   font-family: "Montserrat", sans-serif;  
@@ -76,9 +75,7 @@ class App extends Component {
         <Route path="/signup" exact render={(props) => <Signup Location={(value) =>this.setState({location: value})} Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         <Route path="/" exact render={(props) => <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-        />
-        <Route path="/weather" exact render={(props) => <Weather/>}
-        />
+        /> 
         </ContainerDiv>
       </BrowserRouter>  
     )

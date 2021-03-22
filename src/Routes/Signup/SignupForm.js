@@ -97,6 +97,7 @@ const SignupForm = (props) => {
     const[CityValid, ChangeCityValid] = useState(false)
     const[ZipCodeValid, ChangeZipCodeValid] = useState(false)
     const[ValidSubmission, ChangeValidSubmission]= useState(false)
+
     /************************** First Name *********************************/  
     const FirstName = <FadeIn><UserInput 
             InputValue={FirstNameValue}
@@ -485,12 +486,15 @@ const SignupForm = (props) => {
         </InfoContainer>
     let history = useHistory()
     const SignUp = () => {
-        // if (
-        //     !FirstNameValid || !LastNamrValid || !usernameValid || !PWPassValidation || !CPWPassValidation ||
-        //     !CountryValid || !ProvinceValid || !CityValid || !ZipCodeValid
-        // ){
-        //     return ChangeValidSubmission(true)
-        // }
+        if(PassWordValue !== ConfirmPasswordValue) {
+            return (ChangepasswordSpecial(false), ChangeCPWPassValidation(false))
+        }
+        else if (
+            !FirstNameValid || !LastNamrValid || !usernameValid || !PWPassValidation || !CPWPassValidation ||
+            !CountryValid || !ProvinceValid || !CityValid || !ZipCodeValid
+        ){
+            return ChangeValidSubmission(true)
+        }
         API.singUp(
             FirstNameValue,
             LastNameValue,

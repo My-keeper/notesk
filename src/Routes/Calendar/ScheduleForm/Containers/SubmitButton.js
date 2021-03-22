@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import FadeIn from "react-fade-in";
 import { LoginOutlined } from "@ant-design/icons";
 import Button from "../../../../UI/Button";

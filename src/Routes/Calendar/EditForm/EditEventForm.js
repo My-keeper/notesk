@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import NoteContainer from "../../../UI/Modal"; 
-import { CloseCircleOutlined, CheckCircleOutlined, CheckCircleFilled, EditFilled, EditOutlined } from "@ant-design/icons";
+import { CloseCircleOutlined, EditFilled, EditOutlined } from "@ant-design/icons";
 import FadeIn from "react-fade-in";
 import {TitleContainer,DescriptionContainer,URLContainer} from "./Containers/TextInputContainer";
 import {CalenderContianer,TimerContainer} from "./Containers/Date-TimeContainer";
 import DisplayOption from "./Containers/DisplayContainer";
-import RDContainer from "../ScheduleForm/Containers/DaysContainer";
-import SubmitButton from "../ScheduleForm/Containers/SubmitButton";
+import RDContainer from "../ScheduleForm/Containers/DaysContainer"; 
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
-import SubmitChanges from './Bottons/submitChanges';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import SubmitChanges from './Bottons/submitChanges'; 
 
 const EachateContainer = styled.div`
     width: 500px;
