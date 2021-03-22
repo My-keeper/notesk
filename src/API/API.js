@@ -13,8 +13,13 @@ class API {
 
     //for signup 
     static singUp (firstName, lastName, userName, email, password, country, province, city, ZipCode, onSuccess, onFail) {
-
-        return axios.post(`http://localhost:9000/Users`, {
+        axios.get(`http://localhost:9000/weather`)
+        .then((res) => res.send({
+            city,
+            province,
+            province
+        })).catch(e=>console.log(e))
+        axios.post(`http://localhost:9000/Users`, {
             firstName : firstName,
             lastName ,
             userName,

@@ -1,10 +1,8 @@
 const express = require('express')
 const User = require('../models/user')
 const auth = require('../middleware/auth')
-const router = new express.Router()
-const sendWelcomeEmail = require('../emails/acount')
-const sgMail = require('@sendgrid/mail')
-const { YahooFilled } = require('@ant-design/icons')
+const router = new express.Router() 
+const sgMail = require('@sendgrid/mail') 
 
 const sendgridAPIKey= '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'
 sgMail.setApiKey(sendgridAPIKey)

@@ -485,12 +485,12 @@ const SignupForm = (props) => {
         </InfoContainer>
     let history = useHistory()
     const SignUp = () => {
-        if (
-            !FirstNameValid || !LastNamrValid || !usernameValid || !PWPassValidation || !CPWPassValidation ||
-            !CountryValid || !ProvinceValid || !CityValid || !ZipCodeValid
-        ){
-            return ChangeValidSubmission(true)
-        }
+        // if (
+        //     !FirstNameValid || !LastNamrValid || !usernameValid || !PWPassValidation || !CPWPassValidation ||
+        //     !CountryValid || !ProvinceValid || !CityValid || !ZipCodeValid
+        // ){
+        //     return ChangeValidSubmission(true)
+        // }
         API.singUp(
             FirstNameValue,
             LastNameValue,

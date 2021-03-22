@@ -212,10 +212,10 @@ const NavBar = (props) => {
     </Link>
 
   /*************************************************** lang Drop Down *****************************************************************************/
-  const ButtonLangOption = props.inCalendar ? null : <LangSelection
+  const ButtonLangOption = props.inCalendar ? null : UserLogged ? <LangSelection
     RecievedColor={props.RecieveColor}
     TheCalndarlang={(value) =>props.LangOption(value)}
-  />
+  /> : null
 
   /*************************************************** change The Color *****************************************************************************/
   const ColorSwitcher = <div style={{marginRight : "4px"}}>

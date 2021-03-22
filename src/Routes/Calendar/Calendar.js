@@ -22,7 +22,6 @@ class CalendarList extends Component {
   };
 
   render() {
-    console.log(this.state.Lang)
     return (
       <div>
         <div style={{zIndex: "7", position: "sticky" }}>

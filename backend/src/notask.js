@@ -2,7 +2,8 @@ const express = require('express')
 require('./db/mongoose')
 const UserRouter = require('./routers/user');
 const NoteRouter = require('./routers/notes')
-const CalendarEventsRouter = require("./routers/calendar");
+const CalendarEventsRouter = require('./routers/calendar');
+const WeatherApp = require('./routers/Weather');
 const cors = require("cors");
 
 
@@ -27,7 +28,7 @@ app.use(express.json())
 app.use(UserRouter);
 app.use(NoteRouter);
 app.use(CalendarEventsRouter);
-
+app.use(WeatherApp)
 
 app.listen(port , () => {
     console.log("Server is up and Running on port " + port)
