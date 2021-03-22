@@ -11,6 +11,7 @@ const StyledButton = styled.button`
   background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
   margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : "none")};
   margin-left: ${(props) => (props.marginLeft ? props.marginLeft : "none")};
+  margin-right: ${(props) => (props.marginRight ? props.marginRight : "none")};
   outline: none;
   cursor: ${(props) => (!props.disabled ? "pointer" : "not-allowed")};
   padding: ${(props) => (props.paddingInput ? props.paddingInput : "none" )};
@@ -51,6 +52,7 @@ const AppButton = (props) => (
     disabledBackgroundColor={props.disabledBackgroundColor}
     marginBottom={props.marginBottomValue}
     marginLeft={props.marginLeftValue}
+    marginRight={props.marginRightValue}
     FontColorInput={props.FontColorValue}
     backGroundColorInput={props.backGroundColorValue}
     borderRadiusInput={props.borderRadiusValue}

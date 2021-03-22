@@ -6,27 +6,51 @@ import CreateNote from './CreateNote/CreateNote'
 import FadeIn from 'react-fade-in';
 import API from "../../API/API";
 
+const foreCast = require('../../WeatherApp/WeatherStack');
+const GeoCode = require('../../WeatherApp/GeoCoding');
+
 class Notes extends Component {
 
     //to get the notes from the DB if any
     async componentWillMount() {
-        const isLoggedIn = await API.isLoggedIn(()=>{});
-        if (isLoggedIn) {
-          await API.isLoggedIn(e => this.setState({UserName : e.data.userName}))
-          const PrevNotes = [...this.state.notes];
-          const DBNotes = await API.GetNote();
-          const MergedNotes = DBNotes.data.concat(PrevNotes);
-          return this.setState({ notes: MergedNotes});
-        }  
-          // return this.setState({UserName: "Welcome Guest", notes: []})
-      }
+      const isLoggedIn = await API.isLoggedIn(()=>{});
+      if (isLoggedIn) {
+        await API.isLoggedIn(e => this.setState({
+          UserName : e.data.userName,
+          city : e.data.city,
+          province: e.data.province,
+          county: e.data.county
+        }))
+        const PrevNotes = [...this.state.notes];
+        const DBNotes = await API.GetNote();
+        const MergedNotes = DBNotes.data.concat(PrevNotes);
+          GeoCode( this.state.city ,this.state.province ,this.state.country ,Callback =>{
+            if(!Callback.latitude || !Callback.longitude){
+                return console.log({error: 'please enter an address'})
+            }
+            foreCast(Callback.latitude , Callback.longitude , (error, foreCastData,loc)=>{
+                console.log(Callback.latitude , Callback.longitude)
+                this.setState({Weather : foreCastData})
+                console.log(this.state.Weather)
+                console.log({
+                forcast: foreCastData,
+                location: loc
+              })
+            })
+          })
+        return this.setState({ notes: MergedNotes});
+      }  
+    }
     state = {
         notes: [],
         isLogOut: false,
         ChangetitleClicked: true,
         ChangeContentClicked:true,
         UserName: "Welcome Guest",
-        reRender: false
+        city:"",
+        province:"",
+        county:"",
+        Weather: ""
       };
     //Close is not hovered on color style
     VisibilityStle1 = {

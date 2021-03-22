@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import listPlugin from "@fullcalendar/list";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -11,6 +11,18 @@ import API from "../../API/API";
 const { Text } = Typography;
 
 const CalendarForm = (props) => {
+  //component did mount 
+  const [UserLogged, ChangeUserLogged] = useState(false)
+  useEffect( () => {
+    async function CheckingIsLoggedIn() {
+      const isLoggedIn = await API.isLoggedIn(()=>{});
+      if (isLoggedIn) {
+        return ChangeUserLogged(true)
+      }
+    }
+
+    CheckingIsLoggedIn()
+  } , [])
 
   const weekendsVisible = true;
   const getEvent = props.SendingEvents;
@@ -130,19 +142,19 @@ const CalendarForm = (props) => {
     const ReturnToggle = () => (ChangeToggleTitle(true),
           ChangeTitleValue(value.event._def.title),
           ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24)))
-      return(setTimeout(ReturnToggle,500))
+      return(UserLogged ? setTimeout(ReturnToggle,500) : null)
   }
   const HandleMouseLeave = () => {
     const FinishToggle = () => (ChangeToggleTitle(false), ChangeTitleValue(""))
     return(setTimeout(FinishToggle,1000))
   }
-  const ShowTitle = <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
+  const ShowTitle = UserLogged ? <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
     <HoverTitle 
       ScheduleColor={props.CalendarColor} //send color form App
       isTitle={TitleValue} //Passing Down the title
       isStart={StartValue} //Passing Down the time
       />
-    </div>
+    </div> : null
     
 
   /*************************************************** calendar Form *****************************************************************************/

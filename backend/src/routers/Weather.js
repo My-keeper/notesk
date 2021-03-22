@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
-const foreCast = require('../WeatherApp/WeatherStack');
-const GeoCode = require('../WeatherApp/GeoCoding');
+const foreCast = require('../../../src/WeatherApp/WeatherStack');
+const GeoCode = require('../../../src/WeatherApp/GeoCoding');
 
 
 router.get('/weather', (req, res) => {

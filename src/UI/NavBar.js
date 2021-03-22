@@ -19,6 +19,7 @@ import Button from "../UI/Button";
 import { useHistory } from "react-router-dom";
 import API from "../API/API";
 import LangSelection from "../Routes/Calendar/DataCollection/LangSelection";
+import {DayCloudy, DayCloudyHigh} from "@intern0t/react-weather-icons";
 
 const StyledNavBar = styled(FadeIn)` 
     align-items: center; 
@@ -69,6 +70,13 @@ const NavBar = (props) => {
     fontSize: "28px",
     color: props.RecieveColor.NavIconColor
  };
+  //Close is not hovered on color style
+  const DifferentRouteStyle = {
+    marginTop: "10px",
+    marginRight: "8px",
+    fontSize: "32px",
+    color: props.RecieveColor.NavIconColor
+ };
   //Close is hovered on color style
   const VisibilityStle2 = {
       marginTop: "10px",
@@ -90,6 +98,11 @@ const NavBar = (props) => {
   };
 
   /*************************************************** UserName And Avatar *****************************************************************************/
+  const [isLoggedbutton, ChangeIsLogged] =useState(false)
+  const HandleMouseLeaveLogging = () => {
+    const FinishToggle = () => (ChangeIsLogged(false),props.isShowLogOutButton(false))
+    return(setTimeout(FinishToggle,2000))
+  }
   let usernameAndAvatar = props.username ? 
     <div style={{ display: "flex", minWidth: "fit-content" }}>
       <UserIcon
@@ -102,12 +115,13 @@ const NavBar = (props) => {
       {props.showLogOutButton ? 
         (!props.ShowLogOutButtonValue ? 
           <DownCircleOutlined
-            onClick={() => props.isShowLogOutButton(true)}
+            onClick={() => (props.isShowLogOutButton(true),ChangeIsLogged(true))}
             style={LogoutIconStyle}
           />
         : 
           <UpCircleOutlined
-            onClick={() => props.isShowLogOutButton(false)}
+            onClick={() => (props.isShowLogOutButton(false), ChangeIsLogged(false))}
+            onMouseLeave={HandleMouseLeaveLogging}
             style={LogoutIconStyle}
           />
       ): null}
@@ -137,7 +151,7 @@ const NavBar = (props) => {
     history.push("/login")
   } 
   /*************************************************** LogOut Button *****************************************************************************/
-  const ButtonIsLogOut =<FadeIn>
+  const ButtonIsLogOut = isLoggedbutton ? <FadeIn>
     <div
       style={{zIndex: "7",position: "absolute",display: "flex",justifyContent: "flex-end",right: "12px",top: "52px",}}> 
         {UserLogged ?
@@ -154,7 +168,7 @@ const NavBar = (props) => {
             resizeValue={"both"}
             text={"Logout"}
             LeftValue={"70%"}
-            backGroundColorValue={props.RecieveColor.LogSignColor}
+            backGroundColorValue={props.RecieveColor.ToggleButton}
             FontColorValue={props.RecieveColor.IconC}
             borderColorValue={props.RecieveColor.BorderColor}
             icon={<LogoutOutlined style={LogOutStyle} />}
@@ -182,12 +196,12 @@ const NavBar = (props) => {
           </FadeIn>
           } 
       </div>
-  </FadeIn>  
+  </FadeIn> : null
   
   /*************************************************** change to calendar link *****************************************************************************/
   const [isCalendar, ChangeIsCalendar] = useState(true);
   const GoToCalendar = props.inCalendar ? (isCalendar ? 
-    (<CalendarTodayIcon onMouseEnter={() => ChangeIsCalendar(false)} style={VisibilityStle1} />)  
+    (<CalendarTodayIcon onMouseEnter={() => ChangeIsCalendar(false)} style={DifferentRouteStyle} />)  
     : 
     (<Link to={"/calendar"}> 
       <EventAvailableIcon  onMouseLeave={() => ChangeIsCalendar(true)} style={VisibilityStle2} />
@@ -196,7 +210,7 @@ const NavBar = (props) => {
   /*************************************************** change to Notes link *****************************************************************************/
   const [isNote, ChangeIsNote] = useState(true);
   const GoToNote = props.inNotes ? (isNote ? 
-    (<NoteAddOutlinedIcon onMouseEnter={() => ChangeIsNote(false)} style={VisibilityStle1} />)  
+    (<NoteAddOutlinedIcon onMouseEnter={() => ChangeIsNote(false)} style={DifferentRouteStyle} />)  
     : 
     (<Link to={"/"} >
     <NotesIcon   onMouseLeave={() => ChangeIsNote(true)} style={VisibilityStle2} />
@@ -222,13 +236,61 @@ const NavBar = (props) => {
         <SwitchIcon OnChangedColor={props.ColorChanged} style={{marginRight : "4px"}}/>
       </div>
 
+  /*************************************************** Weather  *****************************************************************************/
+  const [isWeather, ChnageisWeather] = useState(true)
+  const HandleMouseLeave = () => {
+    const FinishToggle = () => (ChnageisWeather(true))
+    return(setTimeout(FinishToggle,1000))
+  }
+  const IsWeather =isWeather ?
+         <Button
+            onClick={()=>ChnageisWeather(false)} 
+            position={"relative"}
+            width={"0px"}
+            marginRightValue={"50px"}
+            marginTopValue={"2px"}
+            icon={<DayCloudy color={props.RecieveColor.ToggleButton} size={"35px"} />}
+            /> 
+            :
+            <Button
+            onClick={()=>ChnageisWeather(true)}
+            // onMouseLeave={HandleMouseLeave}
+            position={"relative"}
+            width={"0px"}
+            marginRightValue={"50px"}
+            marginTopValue={"2px"}
+            icon={<DayCloudyHigh color={props.RecieveColor.ToggleButton} size={"42px"} />}
+            />
+  const WeatherButton = !isWeather ? <div
+      style={{zIndex: "7",position: "absolute",display: "flex",justifyContent: "flex-end",right: "40%",top: "52px"}}>
+      <Button
+        onClick={handlingLoggingIn}
+        position={"relative"}
+        width={"140px"}
+        padding={"15px"}
+        boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
+        borderRadiusValue={"20px"}
+        fontSizeValue={"1.2em"}
+        marginTopValue={"5%"}
+        resizeValue={"both"}
+        text={"login"}
+        LeftValue={"30%"}
+        backGroundColorValue={props.RecieveColor.ToggleButton}
+        FontColorValue={props.RecieveColor.IconC}
+        borderColorValue={props.RecieveColor.BorderColor}
+        icon={<LogoutOutlined style={LogOutStyle} />}
+            /> 
+      </div> : null
+
+  /*************************************************** NavBar  *****************************************************************************/
   return (
     <StyledNavBar>
       <LeftNavBarItems>
           <LogoNotask/>
       </LeftNavBarItems>
-
       <RightNavBarItems>
+        {WeatherButton}
+        {IsWeather}
         {ButtonLangOption}
         {ColorSwitcher}
         {GoToCalendar}

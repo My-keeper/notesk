@@ -1,24 +1,11 @@
 import axios from "axios"
+const foreCast = require('../WeatherApp/WeatherStack');
+const GeoCode = require('../WeatherApp/GeoCoding');
 
 class API {
-    static WeatherApp (location) {
-        return axios.get(`http://localhost:9000/weather?address=${location}`)
-        .then((res)=>{
-            console.log(res.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
-
     //for signup 
     static singUp (firstName, lastName, userName, email, password, country, province, city, ZipCode, onSuccess, onFail) {
-        axios.get(`http://localhost:9000/weather`)
-        .then((res) => res.send({
-            city,
-            province,
-            province
-        })).catch(e=>console.log(e))
+
         axios.post(`http://localhost:9000/Users`, {
             firstName : firstName,
             lastName ,

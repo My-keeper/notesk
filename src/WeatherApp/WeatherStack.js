@@ -12,7 +12,7 @@ const foreCast = (latitude, longitude, callback) => {
       callback('Unable to find Location !',undefined)
     }else{
       const ApiResponse = response.data;
-      // console.log(ApiResponse)
+      console.log(ApiResponse)
         callback(undefined,`Current temperature in ${ApiResponse.location.name} is ${ApiResponse.current.temperature} ℃`,ApiResponse.location.name);
       }
     })

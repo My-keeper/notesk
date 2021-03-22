@@ -4,21 +4,45 @@ import Footer from '../../UI/Footer'
 import CalendarCollection from "./CalendarCollection";
 import API from "../../API/API";
 
+const foreCast = require('../../WeatherApp/WeatherStack');
+const GeoCode = require('../../WeatherApp/GeoCoding');
+
 class CalendarList extends Component {
    //to get the notes from the DB if any
    async componentDidMount() {
-    const isLoggedIn = await API.isLoggedIn((e)=>this.setState({ UserName : e.data.userName}));
-    if (!isLoggedIn) { 
-      return this.setState({isLoggedIn : false, UserName: "Welcome Guest"})
-    } 
+      const isLoggedIn = await API.isLoggedIn(()=>{});
+      if (isLoggedIn) { 
+        await API.isLoggedIn((e)=>this.setState({
+          UserName : e.data.userName,
+          city : e.data.city,
+          province: e.data.province,
+          county: e.data.county
+        }));
+        GeoCode( this.state.city ,this.state.province ,this.state.country ,Callback =>{
+          if(!Callback.latitude || !Callback.longitude){
+              return console.log({error: 'please enter an address'})
+          }
+          foreCast(Callback.latitude , Callback.longitude , (error, foreCastData,loc)=>{
+              console.log(Callback.latitude , Callback.longitude)
+              this.setState({Weather : foreCastData})
+              console.log(this.state.Weather)
+              console.log({
+              forcast: foreCastData,
+              location: loc
+              })
+          })
+        })
+      }  
   }
 
-  state = {
-    SelectedDate: true,
-    currentEvents: [],
+  state = { 
     isLogOut: false,
-    UserName: "", 
-    Lang: "en"
+    UserName: "Welcome Guest", 
+    Lang: "en",
+    city:"",
+    province:"",
+    county:"",
+    Weather: ""
   };
 
   render() {
