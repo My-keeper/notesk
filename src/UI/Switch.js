@@ -22,6 +22,8 @@ const SwitchIcion = (props) => {
         const toReturn = {}
         if(isClicked === 1)
         {
+            //toggle Button color
+            toReturn.ToggleButton = "#282828";  
             //calendar text color
             toReturn.CalendarTC = "#fff";  
             //Nav Icon Color
@@ -54,6 +56,8 @@ const SwitchIcion = (props) => {
         //this is the meddle mode
         else if(isClicked === 2) 
         {
+            //toggle Button color
+            toReturn.ToggleButton = "#fff"; 
             //calendar text color
             toReturn.CalendarTC = "#fff";
             //Nav Icon Color
@@ -86,6 +90,8 @@ const SwitchIcion = (props) => {
         // this is in the drakest mode
         else if (isClicked === 3)
         {
+            //toggle Button color
+            toReturn.ToggleButton = "#999999"; 
             //calendar text color
             toReturn.CalendarTC = "#6495ed";
             //Nav Icon Color

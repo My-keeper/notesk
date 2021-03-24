@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FadeIn from "react-fade-in";
 import { LoginOutlined } from "@ant-design/icons";
 import Button from "../../../../UI/Button";  
@@ -10,14 +10,6 @@ const EditButton = (props) => {
     marginRight: "9px",
     marginTop: "4px",
   };   
-
-
-//   const SubmitEvent = () => { 
-//     return(
-//     //   props.isEvent((oldarr) => [...oldarr, CreateEvent]),
-//     //   props.isCallingCalendar(false)
-//     )
-//   };
 
   const SubmitButton = (
     <FadeIn>

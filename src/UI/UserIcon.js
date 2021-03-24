@@ -18,7 +18,7 @@ const StyledLetter = styled.p`
   color: ${(props) => ( props.backGroundTextColorInput ? props.backGroundTextColorInput : "")};
   margin: 0;
   margin-bottom: 25%;
-  margin-top: 7px;
+  margin-top: 13px;
 `;
 
 const UserIcon = (props) => {

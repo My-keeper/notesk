@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import FadeIn from "react-fade-in";
-import SelectData from "../../../../../UI/Select";
-import { ColorOptionsValue } from "./OptionsForm";
+import SelectData from "../../../UI/Select";
+import { LangOption } from "./OptionsForm";
 
-const ColorSelected = (props) => {
-  const [ColorValueInput, ChangeColorValueInput] = useState("");
-  const handleColors = (e) => {
-    console.log(e.target.value);
-    ChangeColorValueInput(e.target.value);
+const LangSelection = (props) => {
+  const [langOptionInput, ChangelangOptionInput] = useState("en");
+  const handlelang = (e) => {
+    props.TheCalndarlang(e.target.value)
+    ChangelangOptionInput(e.target.value);
   };
   const Colors = (
     <FadeIn>
       <SelectData
-        key={ColorValueInput.id + 1}
+        key={langOptionInput.id + 1}
         inputType={"text"}
         name="title"
-        widthValue={"160px"}
-        paddingVale={"4px"}
-        outlineValue={"none"}
+        widthValue={"56px"}
         fontSizeValue={"1.2em"}
         fontFamilyValue={"inherit"}
         IsCalledValue={"FOCUS"}
@@ -28,11 +26,13 @@ const ColorSelected = (props) => {
         borderColorValue={props.RecievedColor.BorderColor}
         BorderValue={"solid"}
         borderWidthValue={"thin"}
-        marginRightValue={"15px"}
-        onchangeValue={handleColors}
-        InputValue={ColorValueInput}
+        paddingLeftValue={"7px"}
+        marginRightValue={"9px"}
+        marginTopValue={"15px"}
+        onchangeValue={handlelang}
+        InputValue={langOptionInput}
       >
-        {<ColorOptionsValue />}
+        {<LangOption />}
       </SelectData>
     </FadeIn>
   );
@@ -40,4 +40,4 @@ const ColorSelected = (props) => {
   return [Colors];
 };
 
-export default ColorSelected;
+export default LangSelection;

@@ -5,8 +5,7 @@ import Notes from "./Routes/Notes/Notes" ;
 import Calendar from "./Routes/Calendar/Calendar";
 import {BrowserRouter, Route,  } from "react-router-dom";
 import Login from "./Routes/Login/Login";
-import Signup from "./Routes/Signup/Signup";
-import Weather from "./API/Weather";
+import Signup from "./Routes/Signup/Signup"; 
 
 const ContainerDiv = styled.div`
   font-family: "Montserrat", sans-serif;  
@@ -24,6 +23,8 @@ const ContainerDiv = styled.div`
 class App extends Component {
   state = {
     Color: {
+      //Tggele button 
+      ToggleButton: "#999999",
       //calendar text color 
       CalendarTC : "#6495ed",
       //Nav Icon color
@@ -52,7 +53,9 @@ class App extends Component {
       TextAreaBGC : "#282828",
       TextAreaFC : "#C8C8C8",
       TextAreaPHC : "#C8C8C8",
-    }
+    },
+    location: "", 
+    UserName: ""
   }
    
   ChangeColorsValue = (NewColor) => {
@@ -69,12 +72,10 @@ class App extends Component {
         />
         <Route path="/login" exact render={(props) => <Login Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
-        <Route path="/signup" exact render={(props) => <Signup Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
+        <Route path="/signup" exact render={(props) => <Signup Location={(value) =>this.setState({location: value})} Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
         <Route path="/" exact render={(props) => <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
-        />
-        <Route path="/weather" exact render={(props) => <Weather/>}
-        />
+        /> 
         </ContainerDiv>
       </BrowserRouter>  
     )

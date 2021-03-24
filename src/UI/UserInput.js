@@ -45,13 +45,12 @@ const InputContainer = styled.input`
   } */
 `
 const passwordIconStyling = {
-  color: "#c1c1c1",
-  fontSize: "18px",
+  color: "#f5ba13",
+  fontSize: "22px",
   display: "flex",
 };
 
 export default function UserInput(props) {
-  // const [Try,changeTry] = useState(false)
   const [Password, ChangePassword] = useState(false);
   const toggleShowPassword = () => {ChangePassword(!Password)};
   const getInputPasswordIcon = () => {
@@ -76,6 +75,7 @@ export default function UserInput(props) {
   return (
     <Container>
       <InputContainer
+        maxLength={props.maxLength}
         value={props.InputValue}
         type={Password ? "text" : props.inputType}
         placeholder={props.PlaceholderValue}
