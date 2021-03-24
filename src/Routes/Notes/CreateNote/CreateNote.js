@@ -185,7 +185,7 @@ const CreateNote = (props) => {
                 margin= {"30px auto 20px auto"}
                 padding= {"15px"}
                 boxShadowValue= {"0 1px 5px rgb(138, 137, 137)"}
-                borderRadiusValue= {"7px"}
+                borderRadiusValue= {"24px"}
                 resizeValue={"both"}
                 backGroundColorValue={props.RecieveColor.NotekBGC}
                 >

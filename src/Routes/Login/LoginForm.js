@@ -55,8 +55,8 @@ const SignupForm = (props) => {
     //For Validating 
     const[emailValidOrPassword, ChangeEmailValidOrPassword] = useState(false)
     const inCorrectInput = <InfoContainer>
-        <CloseOutlined style={ValidStyle}/>
-        <span style={{color: "red", marginLeft: "33px", textAlign: "center", fontSize: "12px", fontFamily: "Arial"}}>
+        <CloseOutlined style={InValidStyle}/>
+        <span style={{color: "red", marginLeft: "3px", textAlign: "center", fontSize: "12px", fontFamily: "Arial"}}>
             Either the Email or The Password you’ve entered is incorrect
         </span>
         </InfoContainer>

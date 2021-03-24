@@ -15,7 +15,11 @@ const foreCast = (latitude, longitude, callback) => {
       const WeatherIcon = ApiResponse.current.weather_icons[0]
       const message = `Current temperature in ${ApiResponse.location.name} is ${ApiResponse.current.temperature} ℃. 
         It Feels like ${ApiResponse.current.feelslike}`
-        callback(undefined, message, WeatherIcon);
+      const country = `${ApiResponse.location.country}`
+      const province = `${ApiResponse.location.region}`
+      const city = `${ApiResponse.location.name}`
+      const Location = `${country}/${province}/${city}`
+      callback(undefined, message, WeatherIcon, Location);
       }
     })
     .catch(error => {

@@ -188,7 +188,7 @@ const Note = (props) =>
     const NoteValue = <FadeIn>
             <NoteContainer
                 background= {"#fff"}
-                borderRadiusValue= {"7px"}
+                borderRadiusValue= {"20px"}
                 boxShadowValue= {"0 2px 5px #ccc"}
                 flexDirectionValue= {"column"}
                 padding= {"10px"}

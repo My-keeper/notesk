@@ -73,6 +73,7 @@ const CalendarCollection = (props) => {
           GetEndDate={(value) => ChangeEndedData(value)} //getting ended clicked data 
           ChangeEvents={(value) => ChangeEventList(value)}
           TheCalendarLanf={props.ReturnLang}
+          Location={props.Location} //the location that the user inputed
         />
     </div>
     );

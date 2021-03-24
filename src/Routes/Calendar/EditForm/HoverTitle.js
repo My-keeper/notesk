@@ -6,7 +6,7 @@ import styled from "styled-components";
 const EachateContainer = styled.div`
     width: 460px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: ${props => props.JustifyContentCalue};
     margin: 4px;
 `
@@ -20,15 +20,16 @@ const TitleStyle = styled.span`
 const HoverForm = (props) => { 
     const Title = <FadeIn>
             <EachateContainer JustifyContentCalue={""}>
-            <TitleStyle Coloring={props.ScheduleColor.IconC}>Title : </TitleStyle> 
+            <TitleStyle style={{marginLeft: "4px"}}Coloring={props.ScheduleColor.IconC}>Title : </TitleStyle> 
                 <div style={{
-                    width: "470px",
+                    width: "400px",
                     fontSize: "1.2em", 
                     wordWrap: "break-word",
                     padding: "5px",
-                    height: "40px",
+                    height: "30px",
                     borderRadius: "7px",
                     border:"solid",
+                    marginLeftValue:"4px",
                     borderWidth:"thin",
                     color: `${props.ScheduleColor.TextAreaFC}`,
                     backgroundColor: `${props.ScheduleColor.TextAreaBGC}`,
@@ -43,11 +44,11 @@ const HoverForm = (props) => {
             <EachateContainer JustifyContentCalue={""}>
             <TitleStyle Coloring={props.ScheduleColor.IconC}>Start : </TitleStyle> 
                 <div style={{
-                    width: "470px",
+                    width: "400px",
                     fontSize: "1.2em", 
                     wordWrap: "break-word",
                     padding: "5px",
-                    height: "40px",
+                    height: "30px",
                     borderRadius: "7px",
                     border:"solid",
                     borderWidth:"thin",
@@ -62,11 +63,10 @@ const HoverForm = (props) => {
 
     const HoverTitleInfo = <HoverContainer
         position={"relative"}
-        width={"500px"}
-        margin={"30px auto 20px auto"}
-        padding={"15px"}
+        width={"500px"} 
+        padding={"7px"}
         boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
-        borderRadiusValue={"7px"}
+        borderRadiusValue={"30px"}
         resizeValue={"both"}
         backGroundColorValue={props.ScheduleColor.NotekBGC}
         FontColorValue={props.ScheduleColor.NoteFC}

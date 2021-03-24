@@ -28,7 +28,7 @@ class Notes extends Component {
             if(!Callback.latitude || !Callback.longitude){
                 return console.log({error: 'please enter an address'})
             }
-            foreCast(Callback.latitude , Callback.longitude , (error, foreCastData, WeatherIcon)=>{
+            foreCast(Callback.latitude , Callback.longitude , (error, foreCastData, WeatherIcon, Location)=>{
                 this.setState({Weather : foreCastData, WeatherIcon: WeatherIcon})
             })
           })

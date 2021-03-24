@@ -22,6 +22,8 @@ const ModelContainer = styled.div`
     overflow: ${(props) => (props.overflow ? props.overflow : "nono")}
     flex-grow: ${(props) => (props.flexGrowInput ? props.flexGrowInput : "none")};
     margin-bottom: ${(props) => (props.marginBottom ? props.marginBottom : "none")};
+    margin-top: ${(props) => (props.marginTop ? props.marginTop : "none")};
+    margin-left: ${(props) => (props.marginLeft ? props.marginLeft : "none")};
     background-color: ${(props) => ( props.backGroundColorInput ? props.backGroundColorInput : "")};
     color: ${(props) => ( props.FontColorInput ? props.FontColorInput : "")};
     &::placeholder{
@@ -53,6 +55,8 @@ export default function Model (props) {
             heightInput={props.heightValue}
             overflow={props.overflow}
             marginInput={props.margin}
+            marginTop={props.marginTopValue}
+            marginLeft={props.marginLeftValue}
             paddingInput={props.padding}
             floatInput={props.float}
             displayInput={props.display}

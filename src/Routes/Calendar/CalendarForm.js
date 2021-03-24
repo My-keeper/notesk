@@ -7,8 +7,10 @@ import HoverTitle from "./EditForm/HoverTitle";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventForm from "./EditForm/EvenForm"; 
 import API from "../../API/API"; 
+import { CloudFilled } from "@ant-design/icons";
 
 const CalendarForm = (props) => {
+  const UserLocation = props.Location ? props.Location : "UTC"
   //component did mount 
   const [UserLogged, ChangeUserLogged] = useState(false)
   useEffect( () => {
@@ -137,16 +139,17 @@ const CalendarForm = (props) => {
   const [TitleValue, ChangeTitleValue] = useState("")
   const [StartValue, ChangeStartValue] = useState("")
   const HandleMouseEnter = (value) => {
-    const ReturnToggle = () => (ChangeToggleTitle(true),
-          ChangeTitleValue(value.event._def.title),
-          ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24)))
+    const ReturnToggle = () => (
+        ChangeToggleTitle(true),
+        ChangeTitleValue(value.event._def.title),
+        ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24)))
       return(UserLogged ? setTimeout(ReturnToggle,500) : null)
   }
   const HandleMouseLeave = () => {
     const FinishToggle = () => (ChangeToggleTitle(false), ChangeTitleValue(""))
-    return(setTimeout(FinishToggle,1000))
+    return(setTimeout(FinishToggle,500))
   }
-  const ShowTitle = UserLogged ? <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
+  const ShowTitle = UserLogged ? <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "0px", marginTop: "52px" }}>
     <HoverTitle 
       ScheduleColor={props.CalendarColor} //send color form App
       isTitle={TitleValue} //Passing Down the title
@@ -160,8 +163,8 @@ const CalendarForm = (props) => {
   const FullCalendarForm = <div
       style={{
         zIndex: "1",
-        filter: ShowEventClicked ? (toggeltTitle ? "blur(1px)" : null) : "blur(4px)",
-        pointerEvents: ShowEventClicked ? (toggeltTitle ? "none" : null) : "none",
+        filter: ShowEventClicked ? null : "blur(4px)",
+        pointerEvents: ShowEventClicked ? null : "none",
         color: props.CalendarColor.CalendarTC,
       }} 
     >
@@ -178,7 +181,7 @@ const CalendarForm = (props) => {
         contentHeight="100%" //get the content height for the calendar
         handleWindowResize="true"
         locale={recievedLang} //this is for the languages option
-        timeZone="canada/newfoundland" //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it
+        timeZone={UserLocation} //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it
         editable={true} //to edit the info
         selectable={true} //to enable selection
         selectMirror={true}
