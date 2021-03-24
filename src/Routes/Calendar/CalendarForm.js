@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import listPlugin from "@fullcalendar/list";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import HoverTitle from "./EditForm/HoverTitle";
 import interactionPlugin from "@fullcalendar/interaction";
-import { INITIAL_EVENTS } from "./event-utils";
-import EventForm from "./EditForm/EvenForm";
+import EventForm from "./EditForm/EvenForm"; 
+import API from "../../API/API"; 
+import { CloudFilled } from "@ant-design/icons";
 
 const CalendarForm = (props) => {
+  const UserLocation = props.Location ? props.Location : "UTC"
+  //component did mount 
+  const [UserLogged, ChangeUserLogged] = useState(false)
+  useEffect( () => {
+    async function CheckingIsLoggedIn() {
+      const isLoggedIn = await API.isLoggedIn(()=>{});
+      if (isLoggedIn) {
+        return ChangeUserLogged(true)
+      }
+    }
+
+    CheckingIsLoggedIn()
+  } , [])
 
   const weekendsVisible = true;
   const getEvent = props.SendingEvents;
@@ -17,6 +32,7 @@ const CalendarForm = (props) => {
   props.GetEndDate(EndDate); // Send Selected End Data
   const [ShowEventClicked, ChangeShowEventClicekd] = useState(true); //to show event clicked
 
+  /*************************************************** Clicked Event *****************************************************************************/
   //Returning the values of the event that is clicked to be showed
   const [ClickedEvent, ChangeClickedEvent] = useState({
     Id: "",
@@ -28,7 +44,7 @@ const CalendarForm = (props) => {
     Display: "",
   });
 
-  //Data Selected function
+  /*************************************************** Data Selected function Handler *****************************************************************************/
   const handleDateSelect = (selectInfo) => {
     /*
     ih here use splice to check if the ending data is bigger than the starting data just by 
@@ -39,7 +55,7 @@ const CalendarForm = (props) => {
     props.CallingSchedule(true);
   };
 
-  //this is to handle month to change it to number 
+  /*************************************************** handle month to change it to number *****************************************************************************/
   const [CreatedMonthsValues, ChangeMonths] = useState({
     Jan: { id: "01", name: "jan" },
     Feb: { id: "02", name: "Feb" },
@@ -66,72 +82,106 @@ const CalendarForm = (props) => {
   const [isEndedMonth, ChnageIsEndedMonth] = useState("") //The value of the ended Month clicked Data of event
   const [isEndedYear, ChnageIsEndedYear] = useState("") //The value of the ended year clicked Data of event
  
-  //this is the handler for the clicked Event
-  const handleEventClick = (clickInfo) => {
-    ChangeShowEventClicekd(false); 
+  /*************************************************** Clicked Event Handler *****************************************************************************/
+  const handleEventClick = async (clickInfo) => {
+      const isLoggedIn = await API.isLoggedIn(()=>{});
+        ChangeShowEventClicekd(false); 
+        //Starting Date
+        const StartedDayValue = clickInfo.event._instance.range.start.toString().slice(8, 10) //Day
+        ChangeIsStartedDays(StartedDayValue);
+        const StartedMonthValue = clickInfo.event._instance.range.start.toString().slice(4, 7) //Month
+        ChangeIsStartedMonth(Object.values(CreatedMonthsValues).map( value => { if (value.name == StartedMonthValue) {return value.id;} }).filter(item => item)[0]) //Changing Month to number
+        const StartedYearValue = clickInfo.event._instance.range.start.toString().slice(11, 15) //Year 
+        ChangeIsStartedYear(StartedYearValue)
+        
+        //ending Date
+        const EndedDayValue = clickInfo.event._instance.range.end.toString().slice(8, 10) //Day
+        ChnageIsEndedDay(EndedDayValue);
+        const EndedMonthValue = clickInfo.event._instance.range.end.toString().slice(4, 7) //Month
+        ChnageIsEndedMonth(Object.values(CreatedMonthsValues).map( value => { if (value.name == EndedMonthValue) { return value.id; } }).filter(item => item)[0]) //Changing Month to number
+        const EndedYearValue = clickInfo.event._instance.range.end.toString().slice(11, 15) //Year 
+        ChnageIsEndedYear(EndedYearValue);
+        
+        //save the starting data for edit form event
+        ChangeIsStartedDate(
+            clickInfo.event._instance.range.start.toString().slice(4, 15)
+          ); 
+        //save the starting data for edit form event
+        ChnageIsEndedDate(  
+            clickInfo.event._instance.range.end.toString().slice(4, 15)
+          );
 
-    //Starting Date
-    const StartedDayValue = clickInfo.event._instance.range.start.toString().slice(8, 10) //Day
-    ChangeIsStartedDays(StartedDayValue);
-    const StartedMonthValue = clickInfo.event._instance.range.start.toString().slice(4, 7) //Month
-    ChangeIsStartedMonth(Object.values(CreatedMonthsValues).map( value => { if (value.name == StartedMonthValue) {return value.id;} }).filter(item => item)[0]) //Changing Month to number
-    const StartedYearValue = clickInfo.event._instance.range.start.toString().slice(11, 15) //Year 
-    ChangeIsStartedYear(StartedYearValue)
-    
-    //ending Date
-    const EndedDayValue = clickInfo.event._instance.range.end.toString().slice(8, 10) //Day
-    ChnageIsEndedDay(EndedDayValue);
-    const EndedMonthValue = clickInfo.event._instance.range.end.toString().slice(4, 7) //Month
-    ChnageIsEndedMonth(Object.values(CreatedMonthsValues).map( value => { if (value.name == EndedMonthValue) { return value.id; } }).filter(item => item)[0]) //Changing Month to number
-    const EndedYearValue = clickInfo.event._instance.range.end.toString().slice(11, 15) //Year 
-    ChnageIsEndedYear(EndedYearValue);
-    
-    //save the starting data for edit form event
-    ChangeIsStartedDate(
-      clickInfo.event._instance.range.start.toString().slice(4, 15)
-    ); 
-    //save the starting data for edit form event
-    ChnageIsEndedDate(
-      
-      clickInfo.event._instance.range.end.toString().slice(4, 15)
-    );
-    ChangeClickedEvent({
-      Id: clickInfo.event._def.publicId,
-      title: clickInfo.event._def.title,
-      description: clickInfo.event._def.extendedProps.description,
-      url: clickInfo.event._def.extendedProps.Url,
-      Start: clickInfo.event._instance.range.start.toString().slice(4, 15),
-      End: clickInfo.event._instance.range.end.toString().slice(4, 15),
-      Display: clickInfo.event._def.ui.display,
-    });
-  };
+        if (isLoggedIn){
+          return ChangeClickedEvent({
+            Id: clickInfo.event._def.extendedProps._id,
+            title: clickInfo.event._def.title,
+            description: clickInfo.event._def.extendedProps.description,
+            url: clickInfo.event._def.extendedProps.Url,
+            Start: clickInfo.event._instance.range.start.toString().slice(0, 15),
+            End: clickInfo.event._instance.range.end.toString().slice(0, 15),
+            Display: clickInfo.event._def.ui.display,
+          })
+        }
+        ChangeClickedEvent({
+          Id: clickInfo.event._def.publicId,
+          title: clickInfo.event._def.title,
+          description: clickInfo.event._def.extendedProps.description,
+          url: clickInfo.event._def.extendedProps.Url,
+          Start: clickInfo.event._instance.range.start.toString().slice(4, 15),
+          End: clickInfo.event._instance.range.end.toString().slice(4, 15),
+          Display: clickInfo.event._def.ui.display,
+        })
+    };
 
-  //this is the calendar Form
-  const FullCalendarForm = (
-    <div
+  
+  /*************************************************** Hover Event Title *****************************************************************************/
+  const [toggeltTitle, ChangeToggleTitle] = useState(false)
+  const [TitleValue, ChangeTitleValue] = useState("")
+  const [StartValue, ChangeStartValue] = useState("")
+  const HandleMouseEnter = (value) => {
+    const ReturnToggle = () => (
+        ChangeToggleTitle(true),
+        ChangeTitleValue(value.event._def.title),
+        ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24)))
+      return(UserLogged ? setTimeout(ReturnToggle,500) : null)
+  }
+  const HandleMouseLeave = () => {
+    const FinishToggle = () => (ChangeToggleTitle(false), ChangeTitleValue(""))
+    return(setTimeout(FinishToggle,500))
+  }
+  const ShowTitle = UserLogged ? <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "0px", marginTop: "52px" }}>
+    <HoverTitle 
+      ScheduleColor={props.CalendarColor} //send color form App
+      isTitle={TitleValue} //Passing Down the title
+      isStart={StartValue} //Passing Down the time
+      />
+    </div> : null
+    
+
+  /*************************************************** calendar Form *****************************************************************************/
+  const recievedLang = props.TheCalendarLanf 
+  const FullCalendarForm = <div
       style={{
         zIndex: "1",
         filter: ShowEventClicked ? null : "blur(4px)",
         pointerEvents: ShowEventClicked ? null : "none",
-        // color: "#6495ed",
         color: props.CalendarColor.CalendarTC,
-      }}
+      }} 
     >
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
         headerToolbar={{
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth,timeGridWeek,timeGridDay,list",
-        }}
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay,list",
+          }}
         initialView="dayGridMonth"
         titleFormat={{ month: "short", year: "numeric", day: "numeric" }} //this is for the tile what should be there for the user
-        height="850px" //get fixed height for the calendar
-        // contentHeight="800px" //get the content height for the calendar
+        height="880px" //get fixed height for the calendar
         contentHeight="100%" //get the content height for the calendar
         handleWindowResize="true"
-        locale="En" //this is for the languages option
-        timeZone="canada/nl" //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it
+        locale={recievedLang} //this is for the languages option
+        timeZone={UserLocation} //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it
         editable={true} //to edit the info
         selectable={true} //to enable selection
         selectMirror={true}
@@ -140,15 +190,15 @@ const CalendarForm = (props) => {
         eventTextColor="black" //this is for the styling of the text for each event
         eventBackgroundColor="cornflowerblue" //This is for the background of each event
         eventBorderColor="pink" //The border color
-        initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
         select={handleDateSelect}
         events={getEvent}
         eventClick={handleEventClick} 
+        eventMouseEnter={HandleMouseEnter}
+        eventMouseLeave={HandleMouseLeave}
       />
     </div>
-  );
 
-  //Event Form that is clicked
+  /*************************************************** Event Form *****************************************************************************/
   const eventform = (
     <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
       <EventForm
@@ -169,8 +219,10 @@ const CalendarForm = (props) => {
     </div>
   );
 
+
   return (
     <div>
+      {toggeltTitle? ShowTitle : null}
       {ShowEventClicked ? null : eventform}
       {FullCalendarForm}
     </div>

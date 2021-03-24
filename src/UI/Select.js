@@ -13,6 +13,7 @@ const borderStyling = {
       height: ${(props) => (props.heightInput ? props.heightInput : null)};
       border: ${(props) => (props.borderInput ? props.borderInput : "none" )};
       padding: ${(props) => (props.paddingInput ? props.paddingInput : null)};
+      padding-left: ${(props) => (props.paddingLeftInput ? props.paddingLeftInput : null)};
       outline: ${(props) => (props.outlineInput ? props.outlineInput : null)};
       border-radius: ${(props) => (props.borderRadiusInput ? props.borderRadiusInput : null)};
       font-size: ${(props) => (props.fontSizeInput ? props.fontSizeInput : "none")};
@@ -23,6 +24,7 @@ const borderStyling = {
       border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
       border-width: ${(props) => (props.borderWidthInput ? props.borderWidthInput : "inherit")};
       margin-right: ${(props) => (props.marginRightInput ? props.marginRightInput : "none")};
+      margin-top: ${(props) => (props.marginTopInput ? props.marginTopInput : "none")};
       &::placeholder{
         color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
       };
@@ -42,6 +44,7 @@ const SelectData = (props) => {
         <SelectContainer
         value={props.InputValue}
         placeholder={props.PlaceholderValue}
+        paddingLeftInput={props.paddingLeftValue}
         onChange={props.onchangeValue}
         onClick={props.onClickValue}
         widthInput={props.widthValue}
@@ -62,6 +65,7 @@ const SelectData = (props) => {
         borderColorInput={props.borderColorValue}
         borderWidthInput={props.borderWidthValue}
         marginRightInput={props.marginRightValue}
+        marginTopInput={props.marginTopValue}
       >
           {props.children}
       </SelectContainer>

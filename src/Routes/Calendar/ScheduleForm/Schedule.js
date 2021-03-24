@@ -4,9 +4,10 @@ import NoteContainer from "../../../UI/Modal";
 import FadeIn from "react-fade-in";
 import {TitleContainer,DescriptionContainer,URLContainer} from "./Containers/TextInputContainer";
 import {CalenderContianer,TimerContainer} from "./Containers/Date-TimeContainer";
+import DisplayContainer from "./Containers/DisplayContainer";
 import RDContainer from "./Containers/DaysContainer";
 import SubmitButton from "./Containers/SubmitButton";
-import { CloseCircleOutlined } from "@ant-design/icons"; 
+import { CloseCircleOutlined, CloseOutlined, CheckOutlined } from "@ant-design/icons"; 
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
@@ -19,6 +20,15 @@ const EachateContainer = styled.div`
     justify-content: ${props => props.JustifyContentCalue};
     margin: 4px;
 `
+const InfoContainer = styled.div`
+    width: 470px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 4px;
+    margin-bottom: 10px;
+` 
 
 const Schedule = (props) => {
     //All Component Color Stle
@@ -35,7 +45,18 @@ const Schedule = (props) => {
         fontSize: "21px", 
         color : props.ScheduleColor.IconC
     }
-        
+    const InValidStyle = {
+        color : "red", 
+        fontSize:"12px", 
+        marginRight:"3px", 
+        marginLeft:"37px"
+    }
+    const ValidStyle = {
+        color : "Green", 
+        fontSize:"12px", 
+        marginRight:"3px", 
+        marginLeft:"37px"
+    }
     //Close ICion Area
     const CloseIcon = 
     (<CloseCircleOutlined
@@ -44,18 +65,43 @@ const Schedule = (props) => {
             fontSize: "26px", color: props.ScheduleColor.IconC}} // send the color list from the parent App file 
     />)
 
-    //Title Area
+    /*************************************************** Title Area *****************************************************************************/
     const [getTitle, ChangeTitle] = useState("");
     const [TitlePH, ChangeTitlePH] = useState("Title ...");
+    const [ShowTitleMessage, ChangeTitleMessage] = useState(false)
+    var TitleMessage = "Please Add Title"
+    const isTitleMessage = <InfoContainer>
+        <CloseOutlined style={InValidStyle}/>
+        <span style={{
+            color:"red", 
+            textAlign: "center",  
+            fontSize: "12px",
+            fontFamily: "Arial"
+        }}
+        >{TitleMessage}</span>
+        </InfoContainer>
     const Title = <TitleContainer
+            MaxLength={"45"}
             SubmitTitle={(value) => ChangeTitle(value)} //this is to return input value of the title and then send it to submit model
             SubmitTitlePlaceHolder={TitlePH} //this is to send the placeholder for the title area
             ScheduleColor={props.ScheduleColor}  // send the color list from the parent App file 
         />  
-    
-    //Description Area
+
+    /*************************************************** Description Area *****************************************************************************/
     const [getDescription, ChangeDescription] = useState("");
     const [DescriptionPH, ChangeDescriptionPH] = useState("Description ...");
+    const [ShowDescriptionMessage, ChangeDescriptionMessage] = useState(false)
+    var DescriptionMessage = "Please Add Description"
+    const isDescriptionMessage = <InfoContainer>
+        <CloseOutlined style={InValidStyle}/>
+        <span style={{
+            color:"red", 
+            textAlign: "center",  
+            fontSize: "12px",
+            fontFamily: "Arial"
+        }}
+        >{DescriptionMessage}</span>
+        </InfoContainer>
     const Description = (
         <DescriptionContainer
         SubmitDescription={(value) => ChangeDescription(value)}
@@ -64,7 +110,7 @@ const Schedule = (props) => {
         />
     );
 
-    //URL Area
+    /*************************************************** URL Area *****************************************************************************/
     const [getURL, ChangeURL] = useState();
     const [URLPH, ChangeURLPH] = useState("Optional Attached Link For Description ...");
     const URL = (
@@ -74,8 +120,8 @@ const Schedule = (props) => {
         ScheduleColor={props.ScheduleColor}
         />
     );
-     
-    //This is to show either the data or repeated days
+
+    /*************************************************** the data or repeated days *****************************************************************************/
     const [isShowTime, ChangeisShowTime] = useState(true) //to show the option to change the Time that the user selected
     const ShowData = <div onClick={()=>ChangeisShowTime(!isShowTime)}>
         {isShowTime ?  <RadioButtonUncheckedIcon style={VisibilityStle} /> : <RadioButtonCheckedIcon style={VisibilityStle} /> }
@@ -109,52 +155,70 @@ const Schedule = (props) => {
         /> 
     );
 
-    //This is for the time
+    /*************************************************** time Area *****************************************************************************/
     const [StartHours, ChangeStartHour] = useState(); //have returned starting hour if time is needed
     const [StartMinuts, ChangeStartMinuts] = useState(); //have returned starting minut if time is needed 
     const [EndHours, ChangeEndHour] = useState(); //have returned Ending hour if time is needed
     const [EndMinuts, ChangeEndMinuts] = useState(); //have returned Ending minut if time is needed 
     const [TimeClicked, ChangeTimeClicked] = useState() //this to make sure that time is included or not and show the repeated days model
-    const [EditTime, ChangeEditedTime ] = useState("")
+    const [CheckETValidation, ChangeInvalidET] = useState(true)
+    const [STClicked, ChangeSTClicked] = useState(false)
+    const [ETClicked, ChangeETClicked] = useState(false)
     const Time = (
         <TimerContainer
-        SendShowTime={isShowTime}
-        FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
-        FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed 
-        ToHourSelected={(value) => ChangeEndHour(value)} // return Ending hour if time is needed
-        ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return Ending minut if time is needed 
-        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
-        GetIsSelectedDate={(value)=>ChangeEditedTime(value)} //To pass down to Time to show when the user want to chagne time
-        isTime={(value) => ChangeTimeClicked(value)}
+            ETValidationValue={CheckETValidation} // Pass down validation TIme 
+            FromHourSelected={(value) => ChangeStartHour(value)} // return starting hour if time is needed
+            FromMinutsSelected={(value) => ChangeStartMinuts(value)} // return starting minut if time is needed 
+            ToHourSelected={(value) => ChangeEndHour(value)} // return Ending hour if time is needed
+            ToMinutsSelected={(value) => ChangeEndMinuts(value)} // return Ending minut if time is needed 
+            ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+            isTime={(value) => ChangeTimeClicked(value)}
+            STCValue={(value) => ChangeSTClicked(value)} //starting time if clicked 
+            ETCValue={(value) => ChangeETClicked(value)} //starting time if clicked 
         />
         );
         
-    //this is for number of rebeated days 
+    /*************************************************** rebeated days Area *****************************************************************************/
     const [GetRepeatedDays, ChangeRepeatedDays] = useState()
     const RepeatedDays =( isShowTime ? null :<RDContainer
         ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
         SubmitNumberOfRP={(value) => ChangeRepeatedDays(value)} //returning the value of repeated days 
         />
     );
-    //Submit Buton 
+
+    /*************************************************** Display Options Area *****************************************************************************/
+    const [GetDiplayOption , ChangeDiplayOption] = useState()
+    const DiplayOption =<DisplayContainer
+        ScheduleColor={props.ScheduleColor} // send the color list from the parent App file  
+        SubmitDisplayOption={(value) => ChangeDiplayOption(value)} //returning the value of repeated days 
+        /> 
+
+    /*************************************************** Submit Buton  Area *****************************************************************************/
+
     const Submit = (
       <SubmitButton
         isCallingCalendar={(value) => props.CallingCalendar(value)} //return the close value to return to calender from the submit model
         isTitle={getTitle} //the Title value
+        TitleMessage={(value) => ChangeTitleMessage(value)} // to show error if empty title
         CheckTitlePH={(value) => ChangeTitlePH(value)} //this is to change the title place holder if there is no title
         isDescription={getDescription} //the Description value
+        DescriptionMessage={(value) => ChangeDescriptionMessage(value)} // to show error if empty description
         CheckDescriptionPH={(value) => ChangeDescriptionPH(value)} //this is to change the description placeholder if there is no placeholder
         isURL={getURL} //the URL value
-        // isStartingDate= {TimeClicked ?(getFormDate+'T12:00:00') : (getFormDate+"T"+StartHours+":"+StartMinuts+":00")} //the value of the Starting data
-        isStartingDate={isShowTime ? getFormDate + "T12:00:00" : undefined} //the value of the Starting data
+        isStartingDate={isShowTime ? (STClicked ? (getFormDate + "T" +StartHours+":"+StartMinuts+":00") : (getFormDate + "T12:00:00") ) : undefined} //the value of the Starting data
+        isEndingData={isShowTime ? (ETClicked ? (getToDate + "T" +StartHours+":"+StartMinuts+":00") : (getToDate + "T12:30:00") ) : undefined} //the value of Ending data
+        //The starting and ending time only works with repeated days 
+        isStartingTime={!isShowTime  ? (TimeClicked ?('12:00:00') :(StartHours+":"+StartMinuts+":00")) : undefined} //Choose Starting Time of the repeated Event
+        isEndingTime={!isShowTime ? (TimeClicked ?('12:30:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
         isRepeatedDays={!isShowTime ? GetRepeatedDays : undefined} //Values of Repeated Days
-        isStartingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(StartHours+":"+StartMinuts+":00")) : undefined} //Choose Starting Time of the repeated Event
-        isEndingTime={!isShowTime ? (TimeClicked ?('12:00:00') :(EndHours+":"+EndMinuts+":00")) : undefined} //Choose Ending Time of the repeated Event
-
-        isEndingData={getToDate} //the value of Ending data
+        isDisplayOption= {GetDiplayOption} //the value of the Display Option
         isEvent={props.submitEventValues} //returning the new event to the array of objects
+        CheckingETValidation={(value)=>ChangeInvalidET(value)}
+        RepeatOrData={isShowTime} // to check the time if it is on repeated days or just a noraml day 
       />
     );
+
+    /*************************************************** Submit Form *****************************************************************************/
     const ScheduleForm = (
         <FadeIn>
             <NoteContainer
@@ -170,12 +234,15 @@ const Schedule = (props) => {
                 >
             {CloseIcon}
             {Title} 
+            {ShowTitleMessage ? isTitleMessage : null}
             {Description}
+            {ShowDescriptionMessage ? isDescriptionMessage : null}
             {URL}
             {IcionArea}
             {Data}
-            {Time}
+            {Time} 
             {RepeatedDays}
+            {DiplayOption}
             {Submit}
             </NoteContainer> 
         </FadeIn>

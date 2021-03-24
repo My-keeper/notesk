@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import UserInput from '../../../../UI/UserInput'
 import TextArea from '../../../../UI/TextArea';
@@ -24,13 +24,15 @@ const TitleContainer = (props) => {
     }  
     const title = <InfoContainer>
         <FadeIn><Title style={IconColor}/></FadeIn>
-        <FadeIn><UserInput 
+        <FadeIn><TextArea 
         key={`title` + 1} 
         // This is to change the Value of Title based on the input coming from schedule
         onchangeValue={(event)=>props.SubmitTitle(event.target.value)}
+        rows={1}
         //This is the Props that is coming from Schedule From once I click on submit	
         PlaceholderValue={props.SubmitTitlePlaceHolder}
         name="title"
+        maxLength={props.MaxLength ? props.MaxLength : "none"}
         inputType={"text"} 
         widthValue={"425px"}
         paddingVale={"4px"}

@@ -23,6 +23,7 @@ const TextareaContainer = styled.textarea`
     border-color: ${(props) => (props.borderColorInput ? props.borderColorInput : "none")};
     border-width: ${(props) => (props.borderWidthInput ? props.borderWidthInput : "inherit")};
     margin-right: ${(props) => (props.marginRightInput ? props.marginRightInput : "none")};
+    margin-bottom: ${(props) => (props.marginBottomInput ? props.marginBottomInput : "none")};
     &::placeholder{
       color: ${(props) => ( props.PlaceHolderColorInput ? props.PlaceHolderColorInput : "")};
     };
@@ -40,6 +41,8 @@ const TextareaContainer = styled.textarea`
 export default function UserInput(props) {
   return (
       <TextareaContainer
+        marginBottomInput={props.marginBottomValue}
+        maxLength={props.maxLength}
         value={props.InputValue}
         placeholder={props.PlaceholderValue}
         onChange={props.onchangeValue}
