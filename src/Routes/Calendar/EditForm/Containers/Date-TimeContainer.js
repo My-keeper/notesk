@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components"; 
 import FadeIn  from 'react-fade-in'; 
-import { CalendarOutlined , ClockCircleOutlined} from "@ant-design/icons"; 
+import {
+  CalendarOutlined,
+  CloseOutlined,
+  ClockCircleOutlined,
+} from "@ant-design/icons"; 
 import TimeSelected from '../../DataCollection/TimeSelected';
 import DateSelected from '../../DataCollection/DateSelected';
 import { CheckCircleFilled } from "@ant-design/icons";

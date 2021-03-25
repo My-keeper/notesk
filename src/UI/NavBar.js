@@ -151,7 +151,7 @@ const NavBar = (props) => {
     history.push("/login")
   } 
   /*************************************************** LogOut Button *****************************************************************************/
-  const ButtonIsLogOut = isLoggedbutton ? <FadeIn>
+  const ButtonIsLogOut = isLoggedbutton ?
     <div
       style={{zIndex: "7",position: "absolute",display: "flex",justifyContent: "flex-end",right: "12px",top: "52px",}}> 
         {UserLogged ?
@@ -195,8 +195,7 @@ const NavBar = (props) => {
             /> 
           </FadeIn>
           } 
-      </div>
-  </FadeIn> : null
+      </div> : null
   
   /*************************************************** change to calendar link *****************************************************************************/
   const [isCalendar, ChangeIsCalendar] = useState(false);

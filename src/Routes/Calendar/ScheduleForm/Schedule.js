@@ -197,6 +197,7 @@ const Schedule = (props) => {
 
     const Submit = (
       <SubmitButton
+        isLoggedIn={props.isLoggedIn}
         isCallingCalendar={(value) => props.CallingCalendar(value)} //return the close value to return to calender from the submit model
         isTitle={getTitle} //the Title value
         TitleMessage={(value) => ChangeTitleMessage(value)} // to show error if empty title

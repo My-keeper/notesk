@@ -12,10 +12,11 @@ const GeoCode = require('../../WeatherApp/GeoCoding');
 class Notes extends Component {
 
     //to get the notes from the DB if any
-    async componentWillMount() {
+    async componentDidMount() {
       const isLoggedIn = await API.isLoggedIn(()=>{});
       if (isLoggedIn) {
         await API.isLoggedIn(e => this.setState({
+          userLoggedIn: true,
           UserName : e.data.userName,
           city : e.data.city,
           province: e.data.province,
@@ -45,7 +46,8 @@ class Notes extends Component {
         province:"",
         county:"",
         Weather: "",
-        WeatherIcon: ""
+        WeatherIcon: "",
+        userLoggedIn: false
       };
     //Close is not hovered on color style
     VisibilityStle1 = {
@@ -144,6 +146,7 @@ class Notes extends Component {
         </div>
         <FadeIn>
           <CreateNote
+            isLoggedIn={this.state.userLoggedIn}
             RecieveColor={this.props.Color}
             AddedNote={this.addNote}
             TitleLitterNumber={(value) => this.setState({titleRowsNumber: value})}

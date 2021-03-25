@@ -27,7 +27,7 @@
     "cors": "^2.8.5",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.4",
-    "mongoose": "^5.11.17", 
+    "mongoose": "^5.11.17",
     "npm": "^7.4.3",
     "password-validator": "^5.1.1",
     "prettier": "^2.0.5",

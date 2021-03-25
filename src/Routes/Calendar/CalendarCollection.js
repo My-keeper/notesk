@@ -82,12 +82,13 @@ const CalendarCollection = (props) => {
   const scheduleForm = (
     <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
       <ScheduleForm
+        isLoggedIn={props.isLoggedIn}
         submitEventValues={(value) => ChangeEventList(value)}
         ScheduleColor={props.RecieveColor} //send color form App
-        CallingCalendar={(value) => ChangeShowSchedule(value)} //to call calendar back 
+        CallingCalendar={(value) => ChangeShowSchedule(value)} //to call calendar back
         SendSelectedSD={SelectedStartedData} //Selected Start Data
         SendSelectedED={SelectedEndedData} //Selected End Data
-        />
+      />
     </div>
   ); 
   

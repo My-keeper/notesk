@@ -35,7 +35,6 @@ const SubmitButton = (props) => {
   const EDTMinValue = parseInt(EDTMinValidation, 10)
 
   const SubmitEvent = async () => { 
-    const isLoggedIn = await API.isLoggedIn(()=>{});
 
     if (EDTValue < SDTValue) { props.CheckingETValidation(false)}
     else if (EDTValue === SDTValue && EDTMinValue < SDTMinValue) { props.CheckingETValidation(false)}
@@ -43,7 +42,7 @@ const SubmitButton = (props) => {
     else if (props.isTitle === "" ) {props.TitleMessage(true) } 
     else if (props.isDescription === "") {props.TitleMessage(false)}
     else {
-      if(isLoggedIn){
+      if(props.isLoggedIn){
         return  API.CreateEvents(
           CreateEvent.title, 
           CreateEvent.description, 

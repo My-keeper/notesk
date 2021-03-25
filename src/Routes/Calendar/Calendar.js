@@ -16,7 +16,8 @@ class CalendarList extends Component {
           UserName : e.data.userName,
           city : e.data.city,
           province: e.data.province,
-          county: e.data.county
+          county: e.data.county,
+          userLoggedIn: true
         }));
         GeoCode( this.state.city ,this.state.province ,this.state.country ,Callback =>{
           if(!Callback.latitude || !Callback.longitude){
@@ -34,6 +35,7 @@ class CalendarList extends Component {
     UserName: "Welcome Guest", 
     Lang: "en",
     city:"",
+    userLoggedIn: false,
     province:"",
     county:"",
     Weather: "",
@@ -44,7 +46,7 @@ class CalendarList extends Component {
   render() {
     return (
       <div>
-        <div style={{zIndex: "7", position: "sticky" }}>
+        <div style={{ zIndex: "7", position: "sticky" }}>
           <Nav
             username={this.state.UserName}
             ColorChanged={this.props.colorchanged}
@@ -54,14 +56,15 @@ class CalendarList extends Component {
             showLogOutButton={true}
             inCalendar={false}
             inNotes={true}
-            LangOption={(value) => this.setState({Lang: value})}
+            LangOption={(value) => this.setState({ Lang: value })}
             WeatherMessage={this.state.Weather}
             WeatherIcon={this.state.WeatherIcon}
           />
         </div>
-        <CalendarCollection 
-          isLogOut={this.state.isLogOut} 
-          RecieveColor={this.props.Color} 
+        <CalendarCollection
+          isLoggedIn={this.state.userLoggedIn}
+          isLogOut={this.state.isLogOut}
+          RecieveColor={this.props.Color}
           ReturnLang={this.state.Lang}
           Location={this.state.Location}
         />
