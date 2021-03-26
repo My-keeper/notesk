@@ -6,25 +6,10 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import HoverTitle from "./EditForm/HoverTitle";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventForm from "./EditForm/EvenForm"; 
-import API from "../../API/API"; 
-import { CloudFilled } from "@ant-design/icons";
+import API from "../../API/API";  
 
 const CalendarForm = (props) => {
   const UserLocation = props.Location ? props.Location : "UTC"
-  
-  //component did mount 
-  const [UserLogged, ChangeUserLogged] = useState(false)
-  useEffect( () => {
-    async function CheckingIsLoggedIn() {
-      const isLoggedIn = await API.isLoggedIn(()=>{});
-      if (isLoggedIn) {
-        return ChangeUserLogged(true)
-      }
-    }
-
-    CheckingIsLoggedIn()
-  } , [])
-
   
   const weekendsVisible = true;
   const getEvent = props.SendingEvents;
@@ -86,7 +71,6 @@ const CalendarForm = (props) => {
  
   /*************************************************** Clicked Event Handler *****************************************************************************/
   const handleEventClick = async (clickInfo) => {
-      const isLoggedIn = await API.isLoggedIn(()=>{});
         ChangeShowEventClicekd(false); 
         //Starting Date
         const StartedDayValue = clickInfo.event._instance.range.start.toString().slice(8, 10) //Day
@@ -113,16 +97,18 @@ const CalendarForm = (props) => {
             clickInfo.event._instance.range.end.toString().slice(4, 15)
           );
 
-        if (isLoggedIn){
+        if (props.isLoggedIn) {
           return ChangeClickedEvent({
             Id: clickInfo.event._def.extendedProps._id,
             title: clickInfo.event._def.title,
             description: clickInfo.event._def.extendedProps.description,
             url: clickInfo.event._def.extendedProps.Url,
-            Start: clickInfo.event._instance.range.start.toString().slice(0, 15),
+            Start: clickInfo.event._instance.range.start
+              .toString()
+              .slice(0, 15),
             End: clickInfo.event._instance.range.end.toString().slice(0, 15),
             Display: clickInfo.event._def.ui.display,
-          })
+          });
         }
         ChangeClickedEvent({
           Id: clickInfo.event._def.publicId,
@@ -145,13 +131,13 @@ const CalendarForm = (props) => {
         ChangeToggleTitle(true),
         ChangeTitleValue(value.event._def.title),
         ChangeStartValue(value.event._instance.range.start.toString().slice(0, 24)))
-      return(UserLogged ? setTimeout(ReturnToggle,500) : null)
+      return(props.isLoggedIn ? setTimeout(ReturnToggle,500) : null)
   }
   const HandleMouseLeave = () => {
     const FinishToggle = () => (ChangeToggleTitle(false), ChangeTitleValue(""))
     return(setTimeout(FinishToggle,500))
   }
-  const ShowTitle = UserLogged ? <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "0px", marginTop: "52px" }}>
+  const ShowTitle = props.isLoggedIn ? <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "0px", marginTop: "52px" }}>
     <HoverTitle 
       ScheduleColor={props.CalendarColor} //send color form App
       isTitle={TitleValue} //Passing Down the title
@@ -204,6 +190,7 @@ const CalendarForm = (props) => {
   const eventform = (
     <div style={{ zIndex: "3", position: "absolute", left: "35%", top: "10%" }}>
       <EventForm
+        isLoggedIn={props.isLoggedIn} //to check if the user is logged or not
         ScheduleColor={props.CalendarColor} //send color form App
         closedEventForm={(value) => ChangeShowEventClicekd(value)}
         EventClickedInfo={ShowEventClicked ? null : ClickedEvent} //pass downt the info about the clicked data

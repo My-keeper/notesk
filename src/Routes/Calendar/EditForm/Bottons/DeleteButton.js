@@ -12,14 +12,13 @@ const DeleteButton = (props) => {
     marginTop: "4px",
   };   
   
-const DeleteButton = async () => { 
+const DeleteButton = () => { 
     const id = props.IDofClickedEvent //the Event id
     const Delete = props.EventsInfoList  //copy the Events list
-    const isLoggedIn = await API.isLoggedIn(()=>{});
-    if (isLoggedIn){
-      API.DeleteEvents(id)
+    if (props.isLoggedIn) {
+      API.DeleteEvents(id);
     }
-    props.ReturnNewEvents(Delete.filter(Event => Event._id !== id))
+    props.ReturnNewEvents(Delete.filter(Event => (Event.id !== id) ))
     props.CloseModel(true)
   };
 

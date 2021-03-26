@@ -183,6 +183,7 @@ const EditEventForm = (props) => {
 
     /***************************    Submit New Changes Area  ************************************************/ 
     const submitChanges = <SubmitChanges 
+        isLoggedIn={props.isLoggedIn} // this is for checking if the user is logged in or not 
         PassEventsInfoList={props.EventsInfoList}//list of all the Events created and compare it with the changed one
         TheIdOfClickedEvent={props.IDofClickedEvent} //the clicked event ID
         ReturnChangedEvents={(value) => props.ChangeOldEvents(value)} //Delete selected event from all event and close model

@@ -110,6 +110,7 @@ const EventForm = (props) => {
         ColorChange={props.ScheduleColor}
         />
       <DeleteButton
+        isLoggedIn={props.isLoggedIn} // this is for checking if the user is logged in or not 
         EventsInfoList={props.PassedAllEvent} //list of all the Events created 
         IDofClickedEvent={props.EventClickedInfo.Id} //the clicked event ID 
         ReturnNewEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model
@@ -137,6 +138,7 @@ const EventForm = (props) => {
   
   /***************************    Edit Form Info  ************************************************/ 
   const EditFormInfo =<EditEventForm
+      isLoggedIn={props.isLoggedIn} // this is for checking if the user is logged in or not 
       EventsInfoList={props.PassedAllEvent} //list of all the Events created and compare it with the changed one
       IDofClickedEvent={props.EventClickedInfo.Id} //the clicked event ID
       ChangeOldEvents={(value) => props.ChangeAllEvents(value)} //Delete selected event from all event and close model

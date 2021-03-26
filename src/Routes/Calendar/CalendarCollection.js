@@ -66,6 +66,7 @@ const CalendarCollection = (props) => {
     (<div style={{zIndex:"1", filter: !showSchedule ? null : "blur(4px)",
           pointerEvents:!showSchedule ? null : "none"}}>
         <CalendarForm
+          isLoggedIn={props.isLoggedIn}
           CalendarColor={props.RecieveColor} //send color form App
           SendingEvents={currentEvents} //Pass down the list of eventsRecieveColor
           CallingSchedule={(value) => ChangeShowSchedule(value)} //to call schedule

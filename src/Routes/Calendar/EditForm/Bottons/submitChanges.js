@@ -22,8 +22,7 @@ const submitChanges = (props) => {
     const EDTMinValue = parseInt(EDTMinValidation, 10)
 
   // this will delete the old event and send the new one
-  const SubmitTheNewEvent = async () => { 
-      const isLoggedIn = await API.isLoggedIn(()=>{});
+  const SubmitTheNewEvent = () => { 
       const ClickedEvent = props.PassEventsInfoList; //copy the Events list
       const id = props.TheIdOfClickedEvent; //the Event id
       let newEvent;
@@ -55,7 +54,7 @@ const submitChanges = (props) => {
       else if( props.isTitle === "" && props.isDescription === ""){props.TitleMessage(true);props.DescriptionMessage(true);} 
       else {
         props.ReturnNewEvents(newNotes); 
-        if(isLoggedIn){
+        if(props.isLoggedIn){
             API.UpdateEvents(
               id,
               props.isTitle,
