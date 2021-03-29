@@ -101,7 +101,10 @@ const NavBar = (props) => {
   const [isLoggedbutton, ChangeIsLogged] =useState(false)
   const HandleMouseLeaveLogging = () => {
     const FinishToggle = () => (ChangeIsLogged(false),props.isShowLogOutButton(false))
-    return(setTimeout(FinishToggle,2000))
+    const Timer = setTimeout(FinishToggle,2000)
+    console.log(Timer)
+    // return ( clearTimeout(Timer), console.log(Timer))
+    return Timer;
   }
   let usernameAndAvatar = props.username ? 
     <div style={{ display: "flex", minWidth: "fit-content" }}>
