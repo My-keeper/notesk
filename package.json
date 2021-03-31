@@ -1,6 +1,5 @@
-{
-  "homepage ": "https://my-keeper.github.io/notesk/",
-  "name": "my-keeper",
+{ 
+  "name": "notask",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -50,9 +49,7 @@
     "DB-Mac": "mongod --dbpath=/Users/mero/mongodb-data",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "Backend": "nodemon backend/src/notask.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "Backend": "nodemon backend/src/notask.js" 
   },
   "eslintConfig": {
     "extends": "react-app"
