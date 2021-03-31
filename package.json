@@ -1,6 +1,6 @@
 { 
   "name": "notask",
-  "homepage" : "https://my-keeper.github.io/notesk/src",
+  "homepage" : "https://my-keeper.github.io/notesk",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
