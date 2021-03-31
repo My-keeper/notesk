@@ -15,32 +15,7 @@ const CalendarCollection = (props) => {
 
   /*************************************************** Evets List *****************************************************************************/
   //Collection of Events
-  const [currentEvents, ChangeEventList] = useState([
-    {
-      id: "1",
-      title: "Testoing for more ",
-      start: "2021-03-24T12:30:00",
-      end: "2021-03-24",
-      textColor: "pink",
-      description: "lets play some game s",
-      display: "list-item",
-      backgroundColor: "black",
-      Url: "http://localhost:3000/calendar",
-      description: "lets see if it will work"
-    },
-    {
-      id: "3",
-      title: "Doc appoinmnet ",
-      start: "2021-03-16",
-      end: "2021-03-17",
-      startTime: "10:45:00",
-      endTime: "12:45:00",
-      textColor: "pink",
-      daysOfWeek: ["1"], //https://fullcalendar.io/docs/recurring-events 
-      display: "auto",
-      textColor: "black",
-    },
-  ]); 
+  const [currentEvents, ChangeEventList] = useState([]); 
   //using componet did mount using useffect
   useEffect( () => {
     async function CheckingIsLoggedIn() {
