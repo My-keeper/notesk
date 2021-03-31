@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "./App.css";
 import Notes from "./Routes/Notes/Notes" ;
 import Calendar from "./Routes/Calendar/Calendar";
-import {BrowserRouter, Route,  } from "react-router-dom";
+import {HashRouter, Route  } from "react-router-dom";
 import Login from "./Routes/Login/Login";
 import Signup from "./Routes/Signup/Signup"; 
 
@@ -66,7 +66,7 @@ class App extends Component {
 
   render() {
     return ( 
-      <BrowserRouter>
+      <HashRouter>
         <ContainerDiv BodyColorValue={this.state.Color.BodyColor}> 
         <Route path="/calendar" exact render={(props) => <Calendar Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         />
@@ -77,7 +77,7 @@ class App extends Component {
         <Route path="/" exact render={(props) => <Notes Color={this.state.Color} colorchanged={this.ChangeColorsValue}/>}
         /> 
         </ContainerDiv>
-      </BrowserRouter>  
+      </HashRouter>  
     )
       }
 }
