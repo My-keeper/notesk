@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/notesk/static/css/main.5c8a9a47.chunk.css",
-    "main.js": "/notesk/static/js/main.bfbd0fc5.chunk.js",
-    "main.js.map": "/notesk/static/js/main.bfbd0fc5.chunk.js.map",
-    "runtime-main.js": "/notesk/static/js/runtime-main.ac5b4beb.js",
-    "runtime-main.js.map": "/notesk/static/js/runtime-main.ac5b4beb.js.map",
-    "static/css/2.73570c7f.chunk.css": "/notesk/static/css/2.73570c7f.chunk.css",
-    "static/js/2.a2c65670.chunk.js": "/notesk/static/js/2.a2c65670.chunk.js",
-    "static/js/2.a2c65670.chunk.js.map": "/notesk/static/js/2.a2c65670.chunk.js.map",
-    "index.html": "/notesk/index.html",
-    "static/css/2.73570c7f.chunk.css.map": "/notesk/static/css/2.73570c7f.chunk.css.map",
-    "static/css/main.5c8a9a47.chunk.css.map": "/notesk/static/css/main.5c8a9a47.chunk.css.map",
-    "static/js/2.a2c65670.chunk.js.LICENSE.txt": "/notesk/static/js/2.a2c65670.chunk.js.LICENSE.txt",
-    "static/media/Logo.1.2c234f31.png": "/notesk/static/media/Logo.1.2c234f31.png",
-    "static/media/sun.eddd361a.jpg": "/notesk/static/media/sun.eddd361a.jpg"
+    "main.css": "/notesk/public/static/css/main.5c8a9a47.chunk.css",
+    "main.js": "/notesk/public/static/js/main.f026fef5.chunk.js",
+    "main.js.map": "/notesk/public/static/js/main.f026fef5.chunk.js.map",
+    "runtime-main.js": "/notesk/public/static/js/runtime-main.137d8d99.js",
+    "runtime-main.js.map": "/notesk/public/static/js/runtime-main.137d8d99.js.map",
+    "static/css/2.73570c7f.chunk.css": "/notesk/public/static/css/2.73570c7f.chunk.css",
+    "static/js/2.2ba5aeca.chunk.js": "/notesk/public/static/js/2.2ba5aeca.chunk.js",
+    "static/js/2.2ba5aeca.chunk.js.map": "/notesk/public/static/js/2.2ba5aeca.chunk.js.map",
+    "index.html": "/notesk/public/index.html",
+    "static/css/2.73570c7f.chunk.css.map": "/notesk/public/static/css/2.73570c7f.chunk.css.map",
+    "static/css/main.5c8a9a47.chunk.css.map": "/notesk/public/static/css/main.5c8a9a47.chunk.css.map",
+    "static/js/2.2ba5aeca.chunk.js.LICENSE.txt": "/notesk/public/static/js/2.2ba5aeca.chunk.js.LICENSE.txt",
+    "static/media/Logo.1.2c234f31.png": "/notesk/public/static/media/Logo.1.2c234f31.png",
+    "static/media/sun.eddd361a.jpg": "/notesk/public/static/media/sun.eddd361a.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.ac5b4beb.js",
+    "static/js/runtime-main.137d8d99.js",
     "static/css/2.73570c7f.chunk.css",
-    "static/js/2.a2c65670.chunk.js",
+    "static/js/2.2ba5aeca.chunk.js",
     "static/css/main.5c8a9a47.chunk.css",
-    "static/js/main.bfbd0fc5.chunk.js"
+    "static/js/main.f026fef5.chunk.js"
   ]
 }
