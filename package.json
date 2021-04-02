@@ -1,6 +1,6 @@
-{ 
+{
   "name": "notask",
-  "homepage" : "https://arsmohamed.github.io/notesk/",
+  "homepage": "https://arsmohamed.github.io/notesk/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -52,7 +52,7 @@
     "build": "react-scripts build",
     "Backend": "nodemon backend/src/notask.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build" 
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
