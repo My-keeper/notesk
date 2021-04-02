@@ -551,7 +551,7 @@ return (
         width={"480px"}
         heightValue={"420px"}
         overflow={"auto"}
-        margin={"140px auto 20px auto"}
+        margin={"50px auto 20px auto"}
         padding={"15px"}
         boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
         borderRadiusValue={"20px"}
