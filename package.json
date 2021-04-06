@@ -47,6 +47,7 @@
     "validator": "^13.5.2"
   },
   "scripts": {
+    "DB": "/Users/amohamed/mongodb/bin/mongod.exe --dbpath=/Users/amohamed/mongodb-data",
     "DB-Mac": "mongod --dbpath=/Users/mero/mongodb-data",
     "start": "react-scripts start",
     "build": "react-scripts build",
