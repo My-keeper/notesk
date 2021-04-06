@@ -101,9 +101,7 @@ const NavBar = (props) => {
   const [isLoggedbutton, ChangeIsLogged] =useState(false)
   const HandleMouseLeaveLogging = () => {
     const FinishToggle = () => (ChangeIsLogged(false),props.isShowLogOutButton(false))
-    const Timer = setTimeout(FinishToggle,2000)
-    console.log(Timer)
-    // return ( clearTimeout(Timer), console.log(Timer))
+    const Timer = setTimeout(FinishToggle,2000) 
     return Timer;
   }
   let usernameAndAvatar = props.username ? 
@@ -269,7 +267,7 @@ const NavBar = (props) => {
             />) : null 
             
   const WeatherButton = !isWeather ? (UserLogged ?<div
-      style={{zIndex: "7",position: "absolute",display: "flex",justifyContent: "flex-end",right: "30%",top: "52px"}}>
+      style={{zIndex: "7",position: "absolute",display: "flex",justifyContent: "flex-end",right: "10%",top: "52px"}}>
         <Model
           display={"flex"}
           flexDirectionValue={"row"}

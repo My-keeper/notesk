@@ -154,6 +154,7 @@ const CalendarForm = (props) => {
         filter: ShowEventClicked ? null : "blur(4px)",
         pointerEvents: ShowEventClicked ? null : "none",
         color: props.CalendarColor.CalendarTC,
+        height: "840px"
       }} 
     >
       <FullCalendar
@@ -165,8 +166,8 @@ const CalendarForm = (props) => {
           }}
         initialView="dayGridMonth"
         titleFormat={{ month: "short", year: "numeric", day: "numeric" }} //this is for the tile what should be there for the user
-        height="880px" //get fixed height for the calendar
-        contentHeight="100%" //get the content height for the calendar
+        height="810px" //get fixed height for the calendar
+        contentHeight="80%" //get the content height for the calendar
         handleWindowResize="true"
         locale={recievedLang} //this is for the languages option
         timeZone={UserLocation} //to get the time zone of your location that is why we will be using the location in the sigup or make the browser detecte it

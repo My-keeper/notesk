@@ -32,7 +32,8 @@ const CreateNote = (props) => {
     const [CurrentPlaceHolde, setPlaceHolder]= useState({titlePH: "Title" , contentPH: "Take a note ..."})
     const [isHover, SetHover] = useState(true);
     const [TargetLength, ChangeTargetLength] = useState("")
-    const OnHovering = () => {SetHover(!isHover)}
+    const OnHoveringEnter = () => {SetHover(false)}
+    const OnHoveringLeave = () => {SetHover(true)}
     const subNote = async (event) =>  {
         event.preventDefault();
         setSubmit(true);
@@ -171,10 +172,20 @@ const CreateNote = (props) => {
         </InfoContainer>
 
     /*************************************************** Button *****************************************************************************/
-    const ButtonValue = isExpanded && 
-        <AddNote onPointerEnter={OnHovering} onMouseLeave={OnHovering}>
-            <FadeIn>{isHover ? <PlusCircleFilled /> :  <CheckCircleFilled onClick={subNote}/>}</FadeIn>
-        </AddNote>
+    const ButtonValue = isExpanded && (
+      <AddNote>
+        <FadeIn>
+          {isHover ? (
+            <PlusCircleFilled onPointerEnter={OnHoveringEnter} />
+          ) : (
+            <CheckCircleFilled
+              onClick={subNote}
+              onMouseLeave={OnHoveringLeave}
+            />
+          )}
+        </FadeIn>
+      </AddNote>
+    );
     
     /*************************************************** Create Note *****************************************************************************/
     const CreateTheNote = <FadeIn>

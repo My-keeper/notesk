@@ -544,14 +544,13 @@ const ReturnToLogin =<FadeIn>
     </FadeIn>
 
 return (
-    <div style={{height: "800px", overflow: "auto"}}>
     <FadeIn>
         <NoteContainer
         position={"relative"}
         width={"480px"}
         heightValue={"420px"}
         overflow={"auto"}
-        margin={"140px auto 20px auto"}
+        margin={"80px auto auto auto"}
         padding={"15px"}
         boxShadowValue={"0 1px 5px rgb(138, 137, 137)"}
         borderRadiusValue={"20px"}
@@ -577,8 +576,6 @@ return (
         {ReturnToLogin}
         </NoteContainer>
     </FadeIn>
-  </div>
-
 );
 };
 

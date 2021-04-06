@@ -20,23 +20,30 @@ const Signup = (props) => {
   } , []) 
 
   return (
-    <div>
-      <Nav ColorChanged={props.colorchanged} 
-        RecieveColor={props.Color} 
-        showLoginButton={true}
-        showSignUpButton={false}
-        showLogOutButton={false}
-        CallingPage={"Signin"}
-        username={null}
-        inCalendar={true}
-        inNotes={true}
-      />
-      <Imag/>  
-      <SignupForm 
-        IsLocation={props.Location}
-        ColorChanged={props.colorchanged} 
-        RecieveColor={props.Color}
-      />
+    <div style={{ height: "100%" }}>
+      <div style={{ zIndex: "1" }}>
+        <Imag />
+      </div>
+      <div style={{ zIndex: "2", position: "sticky" }}>
+        <Nav
+          ColorChanged={props.colorchanged}
+          RecieveColor={props.Color}
+          showLoginButton={true}
+          showSignUpButton={false}
+          showLogOutButton={false}
+          CallingPage={"Signin"}
+          username={null}
+          inCalendar={true}
+          inNotes={true}
+        />
+      </div>
+      <div style={{ height: "90%", overflow: "scroll" }}>
+        <SignupForm
+          IsLocation={props.Location}
+          ColorChanged={props.colorchanged}
+          RecieveColor={props.Color}
+        />
+      </div>
     </div>
   );
 };
