@@ -6,7 +6,7 @@ class API {
     //for signup 
     static singUp (firstName, lastName, userName, email, password, country, province, city, ZipCode, onSuccess, onFail) {
 
-        axios.post(`http://3.19.29.229:9000/Users`, {
+        axios.post(`http://localhost:9000/Users`, {
             firstName : firstName,
             lastName ,
             userName,
@@ -29,7 +29,7 @@ class API {
 
     //for checking if you are logged in 
     static isLoggedIn(onSuccess) {
-        return axios.get('http://3.19.29.229:9000/Users/me', {
+        return axios.get('http://localhost:9000/Users/me', {
             headers: {Authorization: localStorage.getItem("token") },
         }).then((res)=> {
             onSuccess(res)
@@ -42,7 +42,7 @@ class API {
 
     //for login
     static login(email, password, onSuccess, onFail) {
-        return axios.post('http://3.19.29.229:9000/Users/login', {
+        return axios.post('http://localhost:9000/Users/login', {
             email,
             password
             }).then((res) => {
@@ -56,7 +56,7 @@ class API {
 
     //For one machine logout 
     static Logout() {  
-        return axios.post('http://3.19.29.229:9000/Users/logout',{
+        return axios.post('http://localhost:9000/Users/logout',{
             headers: {Authorization: localStorage.getItem("token") },
         })
     }
@@ -70,7 +70,7 @@ class API {
     //Create Note 
     static CreateNote(title, content,onSuccess) {
         return axios
-            .post('http://3.19.29.229:9000/Notes', {
+            .post('http://localhost:9000/Notes', {
                 title,
                 content
             }, {
@@ -84,7 +84,7 @@ class API {
     //Get Note 
     static GetNote() {
         return axios
-            .get('http://3.19.29.229:9000/Notes',{
+            .get('http://localhost:9000/Notes',{
                 headers: {Authorization: localStorage.getItem("token") },
             }).catch((e) => {
                 console.log(e)
@@ -93,7 +93,7 @@ class API {
     //Change Note 
     static UpdateNote(id, title, content) {  
         return axios
-            .patch(`http://3.19.29.229:9000/Notes/${id}`,{
+            .patch(`http://localhost:9000/Notes/${id}`,{
                 title,
                 content
             },{
@@ -105,7 +105,7 @@ class API {
     //Delete Note 
     static DeleteNote(id) { 
         return axios
-            .delete(`http://3.19.29.229:9000/Notes/${id}`, 
+            .delete(`http://localhost:9000/Notes/${id}`, 
             {
                 headers: {Authorization: localStorage.getItem("token") },
             }).catch((e) => {
@@ -117,7 +117,7 @@ class API {
     //Create Events 
     static CreateEvents(title, description, url, start, end, onSuccess) { 
         return axios
-            .post('http://3.19.29.229:9000/Calendar', {
+            .post('http://localhost:9000/Calendar', {
                 title,
                 description,
                 url,
@@ -134,7 +134,7 @@ class API {
     //Get Events 
     static GetEvents() {
         return axios
-            .get('http://3.19.29.229:9000/Calendar',{
+            .get('http://localhost:9000/Calendar',{
                 headers: {Authorization: localStorage.getItem("token") },
             }).catch((e) => {
                 console.log(e)
@@ -143,7 +143,7 @@ class API {
     //Change Events 
     static UpdateEvents(id, title, description, Url, start, end, startTime, endTime, daysOfWeek, display) {  
         return axios
-            .patch(`http://3.19.29.229:9000/Calendar/${id}`,{
+            .patch(`http://localhost:9000/Calendar/${id}`,{
                 title, 
                 description, 
                 Url, 
@@ -164,7 +164,7 @@ class API {
     //Delete Events 
     static DeleteEvents(id) {
         return axios
-            .delete(`http://3.19.29.229:9000/Calendar/${id}`,{
+            .delete(`http://localhost:9000/Calendar/${id}`,{
                 headers: {Authorization: localStorage.getItem("token") },
             }).catch((e) => {
                 console.log(e)
