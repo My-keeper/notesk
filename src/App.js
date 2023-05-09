@@ -49,7 +49,7 @@ class App extends Component {
       UserInputBGC : "#282828",
       UserInputFC : "#F0F0F0",
       UserInputPHC : "#C8C8C8",
-      //TextArea
+      //TextArea  {check the text coloring for the calender cause it is affected}
       TextAreaBGC : "#282828",
       TextAreaFC : "#C8C8C8",
       TextAreaPHC : "#C8C8C8",
