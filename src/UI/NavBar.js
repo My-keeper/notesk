@@ -236,9 +236,9 @@ const NavBar = (props) => {
   /> : null
 
   /*************************************************** change The Color *****************************************************************************/
-  const ColorSwitcher = UserLogged ? <div style={{marginRight : "4px"}}>
+  const ColorSwitcher =  <div style={{marginRight : "4px"}}>
         <SwitchIcon OnChangedColor={props.ColorChanged} style={{marginRight : "4px"}}/>
-      </div> : null
+      </div>
 
   /*************************************************** Weather  *****************************************************************************/
   const [isWeather, ChnageisWeather] = useState(true)

@@ -30,18 +30,18 @@ class App extends Component {
       //Nav Icon color
       NavIconColor : '#fff',
       //Calender Color 
-      CalendarColorTable: "#C8C8C8",
+      CalendarColorTable: "#fff",
       //Login/Signup color 
       LogSignColor : "#999999",
       //BodyColor
-      BodyColor : "#f2f2f2",
+      BodyColor : "#a8a8a8",
       //borderColor 
       BorderColor : "#f5ba13",
       //IcionColor
       IconC : "#f5ba13",
       //UserIconColor
       UserIconColor: "#fff",
-      UserIconTextColor: "#999999",
+      UserIconTextColor: "#fff",
       //ModelArea
       NotekBGC : "#282828",
       NoteFC : "#F0F0F0",
@@ -49,7 +49,7 @@ class App extends Component {
       UserInputBGC : "#282828",
       UserInputFC : "#F0F0F0",
       UserInputPHC : "#C8C8C8",
-      //TextArea
+      //TextArea  {check the text coloring for the calender cause it is affected}
       TextAreaBGC : "#282828",
       TextAreaFC : "#C8C8C8",
       TextAreaPHC : "#C8C8C8",
