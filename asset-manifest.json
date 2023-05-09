@@ -1,25 +1,15 @@
 {
   "files": {
-    "main.css": "/notesk/static/css/main.5c8a9a47.chunk.css",
-    "main.js": "/notesk/static/js/main.585d47e8.chunk.js",
-    "main.js.map": "/notesk/static/js/main.585d47e8.chunk.js.map",
-    "runtime-main.js": "/notesk/static/js/runtime-main.ac5b4beb.js",
-    "runtime-main.js.map": "/notesk/static/js/runtime-main.ac5b4beb.js.map",
-    "static/css/2.73570c7f.chunk.css": "/notesk/static/css/2.73570c7f.chunk.css",
-    "static/js/2.be647290.chunk.js": "/notesk/static/js/2.be647290.chunk.js",
-    "static/js/2.be647290.chunk.js.map": "/notesk/static/js/2.be647290.chunk.js.map",
+    "main.css": "/notesk/static/css/main.fb2ea426.css",
+    "main.js": "/notesk/static/js/main.5e4a7884.js",
+    "static/media/sun.jpg": "/notesk/static/media/sun.eddd361a26b8d6090664.jpg",
+    "static/media/Logo.1.png": "/notesk/static/media/Logo.1.2c234f31fe5fd83f7ac4.png",
     "index.html": "/notesk/index.html",
-    "static/css/2.73570c7f.chunk.css.map": "/notesk/static/css/2.73570c7f.chunk.css.map",
-    "static/css/main.5c8a9a47.chunk.css.map": "/notesk/static/css/main.5c8a9a47.chunk.css.map",
-    "static/js/2.be647290.chunk.js.LICENSE.txt": "/notesk/static/js/2.be647290.chunk.js.LICENSE.txt",
-    "static/media/Logo.1.2c234f31.png": "/notesk/static/media/Logo.1.2c234f31.png",
-    "static/media/sun.eddd361a.jpg": "/notesk/static/media/sun.eddd361a.jpg"
+    "main.fb2ea426.css.map": "/notesk/static/css/main.fb2ea426.css.map",
+    "main.5e4a7884.js.map": "/notesk/static/js/main.5e4a7884.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.ac5b4beb.js",
-    "static/css/2.73570c7f.chunk.css",
-    "static/js/2.be647290.chunk.js",
-    "static/css/main.5c8a9a47.chunk.css",
-    "static/js/main.585d47e8.chunk.js"
+    "static/css/main.fb2ea426.css",
+    "static/js/main.5e4a7884.js"
   ]
 }
